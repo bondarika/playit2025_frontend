@@ -1,7 +1,7 @@
 ﻿function ProfilePage(): React.ReactElement {
     return (
         <div>
-        <h1>Profile Page</h1>
+        <h1>Профиль</h1>
         </div>
     );
 }

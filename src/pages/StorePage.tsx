@@ -1,7 +1,7 @@
 ﻿function StorePage(): React.ReactElement {
   return (
     <div>
-      <h1>Store Page</h1>
+      <h1>Магазин</h1>
     </div>
   );
 }
