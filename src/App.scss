@@ -5,3 +5,26 @@
   text-align: center;
 }
 
+[role="tablist"] {
+  display: flex;
+  gap: 8px;
+  margin: 8px 0px;
+}
+
+[role="tab"] {
+  all: unset;
+  color: LinkText;
+  color: -webkit-link;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+[role="tab"]:active {
+  color: ActiveText;
+  color: -webkit-activelink;
+}
+
+[role="tab"][aria-selected="true"] {
+  font-weight: bold;
+  text-decoration-thickness: 3px;
+}
