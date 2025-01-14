@@ -1,15 +1,11 @@
-﻿import { ReactNode } from "react";
-import {
-  useLocation,
+﻿import {
   useNavigate,
   useResolvedPath,
-  To,
+  useLocation,
 } from "react-router-dom";
+import { RouterTabProps } from "./types";
+import './styles.scss';
 
-interface RouterTabProps {
-  children: ReactNode;
-  to: To;
-}
 
 function RouterTab({ children, to }: RouterTabProps) {
   const navigate = useNavigate();
@@ -20,7 +16,7 @@ function RouterTab({ children, to }: RouterTabProps) {
   const selected = locationPathname.startsWith(toPathname);
 
   return (
-    <button role="tab" onClick={() => navigate(to)} aria-selected={selected}>
+    <button className="router-tab" onClick={() => navigate(to)} aria-selected={selected}>
       {children}
     </button>
   );

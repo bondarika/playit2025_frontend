@@ -1,0 +1,11 @@
+﻿@import "@/styles/variables.scss";
+
+.router-tab {
+  all: unset;
+  background-color: $red--lighten--1;
+  color: $red;
+  border-radius: 12px;
+  padding: 8px 28px;
+  font-weight: 500;
+  font-size: 16px;
+}

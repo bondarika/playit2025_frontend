@@ -1,0 +1,15 @@
+﻿@import '@/styles/variables.scss';
+
+.tab-bar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 55px;
+    background-color: $grey--lighten--1;
+    border-top: 0.2px solid $grey--lighten--2;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
