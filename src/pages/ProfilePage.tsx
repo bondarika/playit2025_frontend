@@ -1,7 +1,6 @@
 ﻿import React, { useEffect, useState } from "react";
 
 function ProfilePage(): React.ReactElement {
-  const [user, setUser] = useState<any>(null); // Для хранения данных о пользователе
   const [error, setError] = useState<string>(""); // Для хранения ошибок
 
   // Функция для отправки POST-запроса для получения токена
