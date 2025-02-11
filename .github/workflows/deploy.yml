@@ -12,7 +12,7 @@ jobs:
       - name: Deploy
         env:
           SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
-          SSH_HOST: ${{ secrets.SERVER_HOST }}
+          SERVER_HOST: ${{ secrets.SERVER_HOST }}
           SSH_USERNAME: ${{ secrets.DEPLOY_USER }}
         run: |
           sudo apt-get update
