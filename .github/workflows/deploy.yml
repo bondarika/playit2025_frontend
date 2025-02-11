@@ -17,7 +17,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y sshpass
-          sshpass -p "$SSH_PASSWORD" ssh -i StrictHostKeyChecking=no $SSH_USERNAME@$SERVER_HOST '
+          sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SSH_USERNAME@$SERVER_HOST '
             cd ~/playit/playit2025_frontend
             git pull
             docker compose -f docker-compose.yml down || true
