@@ -14,7 +14,7 @@ function TabBar() {
   return (
     <>
       <div className="tab-bar">
-        <RouterTab to="/tasks">задания</RouterTab>
+        <RouterTab to="/tasks">ЗАДАНИЯ</RouterTab>
         <RouterTab to="/profile">профиль</RouterTab>
         <RouterTab to="/store">магазин</RouterTab>
       </div>
