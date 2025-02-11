@@ -2,7 +2,17 @@
 
 function ProfilePage(): React.ReactElement {
   const [error, setError] = useState<string>(""); // Для хранения ошибок
+  interface User {
+    id: number;
+    username: string;
+    telegram_id: number;
+    balance: number;
+    role: string;
+    done_tasks: number;
+    group_number: number;
+  }
 
+  const [user, setUser] = useState<User | null>(null); // Для хранения данных о пользователе
   // Функция для отправки POST-запроса для получения токена
   async function makeRequest() {
     try {
@@ -87,7 +97,7 @@ function ProfilePage(): React.ReactElement {
       <h1>Профиль</h1>
       {user ? (
         <>
-          <p style={{color: "#111111"}}>{user.username}</p>
+          <p style={{ color: "#111111" }}>{user.username}</p>
           <p>ID: {user.id}</p>
           <p>Телеграм ID: {user.telegram_id}</p>
           <p>Баланс: {user.balance}</p>
