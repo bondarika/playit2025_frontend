@@ -8,7 +8,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route index element={<Navigate to="/profile" />} />
-        <Route path="/registration" element={<RegistrationPage />} />
+        {/* <Route path="/registration" element={<RegistrationPage />} /> */}
         <Route path="/*" element={<TabBar />} />
       </Routes>
     </BrowserRouter>

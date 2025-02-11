@@ -8,7 +8,7 @@ function RegistrationPage(): React.ReactElement {
       console.log(user.id);
       console.log(user.username);
       const response = await fetch(
-        "http://188.225.58.99:8000/playit/auth/users/telegram-login",
+        "http://localhost:8000/playit/auth/users/telegram-login",
         {
           method: "POST",
           headers: {
