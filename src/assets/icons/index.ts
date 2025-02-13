@@ -1,7 +1,9 @@
-﻿import about from "./about.svg";
+﻿import settings from "./settings.svg";
+import coin_bag from "./coin_bag.svg"
 
 const icons = {
-  about,
+  settings,
+  coin_bag
 } as const;
 
 export default icons;

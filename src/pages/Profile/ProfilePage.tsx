@@ -15,6 +15,7 @@ function ProfilePage(): React.ReactElement {
   }
 
   const [user, setUser] = useState<User | null>(null); // Для хранения данных о пользователе
+
   // Функция для отправки POST-запроса для получения токена
   async function makeRequest() {
     try {
@@ -98,18 +99,49 @@ function ProfilePage(): React.ReactElement {
     <div>
       <header>
         <h1 className="header">Профиль</h1>
-        <img src={icons["about"]} alt="about" style={{}} />
+        <img src={icons["settings"]} alt="Настройки" />
       </header>
       <div className="profile">
         <div className="profile__picture">
           <div className="profile__picture-avatar">
-            {/*МЕНЯЕМ на реальную аватарку – img */}
+            {/*МЕНЯЕМ на реальную аватарку*/}
           </div>
-          <h3 className="profile__picture-username">@bondarika</h3>
+          <h3 className="profile__subtitle">@bondarika</h3>
+          {/*МЕНЯЕМ на реальный юзернейм*/}
+        </div>
+        <div className="profile__info">
+          <div className="profile__info-block">
+            <h3 className="profile__subtitle">фио</h3>
+            <p className="profile__maintext">Бондаренко Дарья Сергеевна</p>
+          </div>
+          <div className="profile__info-block">
+            <h3 className="profile__subtitle">группа</h3>
+            <p className="profile__maintext">ИСТ-221</p>
+          </div>
+          <div className="profile__info-stats">
+            <p className="profile__maintext">баланс</p>
+            <div className="profile__box">
+              <img src={icons["coin_bag"]} alt="Баланс" />
+              <p>200</p>
+            </div>
+          </div>
+          <div className="profile__info-stats">
+            <p className="profile__maintext">выполнено заданий</p>
+            <div className="profile__box">
+              <p>0/15</p>
+            </div>
+          </div>
+          <div className="profile__info-stats">
+            <p className="profile__maintext">мои призы</p>
+   
+              <img src={icons["coin_bag"]} alt="Баланс" />
+
+          </div>
         </div>
       </div>
 
-      {/* {user ? (
+      {/* 
+      {user ? (
         <>
           <p style={{ color: "#111111" }}>{user.username}</p>
           <p>ID: {user.id}</p>
