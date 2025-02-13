@@ -1,4 +1,6 @@
 ﻿import React, { useEffect, useState } from "react";
+import icons from "../../assets/icons";
+import "./profile.scss";
 
 function ProfilePage(): React.ReactElement {
   const [error, setError] = useState<string>(""); // Для хранения ошибок
@@ -94,8 +96,18 @@ function ProfilePage(): React.ReactElement {
 
   return (
     <div>
-      <h1>Профиль</h1>
-      {user ? (
+      <header>
+        <h1 className="header">Профиль</h1>
+        <img src={icons["about"]} alt="about" style={{}} />
+      </header>
+      <div className="profile">
+        <div className="profile__pic">
+          {/*МЕНЯЕМ на реальную аватарку – img */}
+        </div>
+        <h3 className="profile__username">@bondarika</h3>
+      </div>
+
+      {/* {user ? (
         <>
           <p style={{ color: "#111111" }}>{user.username}</p>
           <p>ID: {user.id}</p>
@@ -107,7 +119,7 @@ function ProfilePage(): React.ReactElement {
         </>
       ) : (
         <h1>А данных нет блин</h1>
-      )}
+      )} */}
     </div>
   );
 }

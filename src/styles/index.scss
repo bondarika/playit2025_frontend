@@ -1,8 +1,9 @@
-@import './variables';
-@import './fonts';
+@import "./variables";
+@import "./fonts";
 
 :root {
-  font-family: 'SF Pro Display', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "SF Pro Display", Inter, system-ui, Avenir, Helvetica, Arial,
+    sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -16,17 +17,29 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  padding: 0;
+  width: 100%;
   min-width: 320px;
   min-height: 100vh;
 }
 
 h1 {
-    font-family: 'Orpheus';
-    font-size: 44px;
-    color: $red;
+  font-family: "Orpheus";
+  font-size: 44px;
+  color: $red;
+  margin: 0;
+}
+
+header {
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+   align-items: center;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  margin-bottom: 10px;
 }

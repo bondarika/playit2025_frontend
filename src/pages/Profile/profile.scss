@@ -1,0 +1,15 @@
+﻿
+@import "@/styles/variables";
+.profile {
+    display: flex;
+    justify-content: center;
+    &__pic {
+        width: 160px;
+        height: 160px;
+        border-radius: 40px;
+        border: 0.2px solid $red--lighten--1;
+    }
+    &__username {
+        color: $grey;
+    }
+}
