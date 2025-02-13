@@ -1,6 +1,6 @@
 ﻿import React, { useEffect, useState } from "react";
 import icons from "../../assets/icons";
-import "./profile.scss";
+import "./styles.scss";
 
 function ProfilePage(): React.ReactElement {
   const [error, setError] = useState<string>(""); // Для хранения ошибок
@@ -101,10 +101,12 @@ function ProfilePage(): React.ReactElement {
         <img src={icons["about"]} alt="about" style={{}} />
       </header>
       <div className="profile">
-        <div className="profile__pic">
-          {/*МЕНЯЕМ на реальную аватарку – img */}
+        <div className="profile__picture">
+          <div className="profile__picture-avatar">
+            {/*МЕНЯЕМ на реальную аватарку – img */}
+          </div>
+          <h3 className="profile__picture-username">@bondarika</h3>
         </div>
-        <h3 className="profile__username">@bondarika</h3>
       </div>
 
       {/* {user ? (
