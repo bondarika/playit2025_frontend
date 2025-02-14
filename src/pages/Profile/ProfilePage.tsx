@@ -101,17 +101,15 @@ function ProfilePage(): React.ReactElement {
 
   return (
     <div>
-      <header>
+      {/* <header>
         <h1 className="header">Профиль</h1>
         <img src={icons["settings"]} alt="Настройки" />
       </header>
       <div className="profile">
         <div className="profile__picture">
           <div className="profile__picture-avatar">
-            {/*МЕНЯЕМ на реальную аватарку*/}
           </div>
           <h3 className="profile__subtitle">@bondarika</h3>
-          {/*МЕНЯЕМ на реальный юзернейм*/}
         </div>
         <div className="profile__info">
           <div className="profile__info-block">
@@ -144,9 +142,9 @@ function ProfilePage(): React.ReactElement {
             />
           </div>
         </div>
-      </div>
+      </div> */}
 
-      {/*       
+            
       {user ? (
         <>
           <p style={{ color: "#111111" }}>{user.username}</p>
@@ -159,7 +157,7 @@ function ProfilePage(): React.ReactElement {
         </>
       ) : (
         <h1>А данных нет блин</h1>
-      )} */}
+      )}
     </div>
   );
 }
