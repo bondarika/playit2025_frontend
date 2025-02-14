@@ -22,6 +22,7 @@ function TabBar() {
           <div className="tabbar__tab">
             <Tasks
               className={`icon-${selected === "tasks" ? "active" : "inactive"}`}
+              style={{ fill: "$red", marginRight: "10px" }}
             />
             <p>задания</p>
           </div>
@@ -35,6 +36,7 @@ function TabBar() {
               className={`tabbar__icon-${
                 selected === "shop" ? "active" : "inactive"
               }`}
+              style={{ fill: "$red", marginRight: "10px" }}
             />
             <p>магазин</p>
           </div>
