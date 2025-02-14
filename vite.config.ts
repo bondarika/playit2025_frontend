@@ -6,6 +6,7 @@ import { resolve } from "path";
 export default defineConfig({
   plugins: [react(), svgr({})],
   server: {
+    allowedHosts: ["it-otdel.space"],
     host: true,
     port: 5173,
     watch: {
