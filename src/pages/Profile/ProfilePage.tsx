@@ -20,7 +20,7 @@ function ProfilePage(): React.ReactElement {
   async function makeRequest() {
     try {
       const response = await fetch(
-        "http://localhost:8000/playit/auth/users/telegram-login",
+        "http://188.225.58.99:8000/playit/auth/users/telegram-login",
         {
           method: "POST",
           headers: {
@@ -52,7 +52,7 @@ function ProfilePage(): React.ReactElement {
   async function fetchUserData() {
     try {
       const response = await fetch(
-        "http://localhost:8000/playit/auth/users/whoami",
+        "http://188.225.58.99:8000/playit/auth/users/whoami",
         {
           method: "GET",
           headers: {
