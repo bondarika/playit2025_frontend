@@ -8,13 +8,13 @@
       - /app/node_modules
     environment:
       - CHOKIDAR_USEPOLLING=true
-    logging:
-      driver: loki
-      options:
-        loki-url: http://localhost:3100/loki/api/v1/push
-    networks:
-      - skynet
+#     logging:
+#       driver: loki
+#       options:
+#         loki-url: http://localhost:3100/loki/api/v1/push
+#     networks:
+#       - skynet
 
-networks:
-  skynet:
-    external: True
+# networks:
+#   skynet:
+#     external: True
