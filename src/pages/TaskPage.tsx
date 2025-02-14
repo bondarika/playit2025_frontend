@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 
 function TaskPage(): React.ReactElement {
   const API_BASE_URL = "http://188.225.58.99:8000/playit";
@@ -6,7 +6,7 @@ function TaskPage(): React.ReactElement {
   async function fetchTasks() {
     try {
       const response = await fetch(
-        `API_BASE_URL/tasks/get-all`,
+        `${API_BASE_URL}/tasks/get-all`,
         {
           method: "GET",
           headers: {
@@ -35,6 +35,9 @@ function TaskPage(): React.ReactElement {
       );
     }
   }
+    useEffect(() => {
+      fetchTasks(); // Сначала выполняем POST-запрос
+    }, []);
   return (
     <div>
       <h1>Задания</h1>
