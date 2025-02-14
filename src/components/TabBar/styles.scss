@@ -1,15 +1,30 @@
-﻿@import '@/styles/variables.scss';
+﻿@import "@/styles/variables.scss";
 
-.tab-bar {
+.tabbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 55px;
+  background-color: $white;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0px -1px 20px 0px rgba(83, 48, 55, 0.1);
+  &__tab {
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    height: 55px;
-    background-color: $white;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    box-shadow: 0px -1px 20px 0px rgba(83, 48, 55, 0.1);
+    justify-content: center;
+  }
+  p {
+    margin: 0;
+  }
+
+  // &__icon {
+  //   fill: $red;
+  //   &-active {
+  //     fill: $red--lighten--2;
+  //   }
+  // }
 }

@@ -133,9 +133,7 @@ function ProfilePage(): React.ReactElement {
           </div>
           <div className="profile__info-stats">
             <p className="profile__maintext">мои призы</p>
-   
-              <img src={icons["coin_bag"]} alt="Баланс" />
-
+            <img src={icons["arrow"]} alt="Открыть" style={{marginRight: "10px"}}/>
           </div>
         </div>
       </div>
