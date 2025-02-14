@@ -20,11 +20,12 @@
   p {
     margin: 0;
   }
-
-  // &__icon {
-  //   fill: $red;
-  //   &-active {
-  //     fill: $red--lighten--2;
-  //   }
-  // }
+}
+.icon {
+  &-inactive {
+    fill: $red;
+  }
+  &-active {
+    fill: $red--lighten--2;
+  }
 }

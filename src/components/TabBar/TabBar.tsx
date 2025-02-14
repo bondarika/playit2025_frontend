@@ -22,7 +22,6 @@ function TabBar() {
           <div className="tabbar__tab">
             <Tasks
               className={`icon-${selected === "tasks" ? "active" : "inactive"}`}
-              style={{ fill: "$red", marginRight: "10px" }}
             />
             <p>задания</p>
           </div>
@@ -33,10 +32,7 @@ function TabBar() {
         <RouterTab to="/store">
           <div className="tabbar__tab">
             <Shop
-              className={`tabbar__icon-${
-                selected === "shop" ? "active" : "inactive"
-              }`}
-              style={{ fill: "$red", marginRight: "10px" }}
+              className={`icon-${selected === "shop" ? "active" : "inactive"}`}
             />
             <p>магазин</p>
           </div>
