@@ -21,7 +21,7 @@ function ProfilePage(): React.ReactElement {
   async function makeRequest() {
     try {
       const response = await fetch(
-        `${API_BASE_URL}/playit/auth/users/telegram-login`,
+        `${API_BASE_URL}/auth/users/telegram-login`,
         {
           method: "POST",
           headers: {
@@ -53,7 +53,7 @@ function ProfilePage(): React.ReactElement {
   async function fetchUserData() {
     try {
       const response = await fetch(
-        `${API_BASE_URL}/playit/auth/users/whoami`,
+        `${API_BASE_URL}/auth/users/whoami`,
         {
           method: "GET",
           headers: {
