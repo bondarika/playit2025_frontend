@@ -39,10 +39,10 @@ function TabBar() {
         </RouterTab>
       </div>
       <Routes>
-        <Route path="playit/tasks" element={<TaskPage />} />
-        <Route path="playit/profile" element={<ProfilePage />} />
-        <Route path="playit/store" element={<StorePage />} />
-        <Route path="playit/registration" element={<RegistrationPage />} />
+        <Route path="/tasks" element={<TaskPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/store" element={<StorePage />} />
+        <Route path="/registration" element={<RegistrationPage />} />
       </Routes>
     </>
   );
