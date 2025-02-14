@@ -72,7 +72,11 @@ function ProfilePage(): React.ReactElement {
         setError(data.message); // Обрабатываем ошибки с сервера
       }
     } catch (error) {
-      setError("Ошибка при загрузке данных пользователя.");
+      setError(
+        `Ошибка при загрузке данных пользователя: ${
+          error instanceof Error ? error.message : error
+        }`
+      );
       console.error(
         "Ошибка при отправке данных на сервер:",
         error instanceof Error ? error.message : error
