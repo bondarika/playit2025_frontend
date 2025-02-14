@@ -5,7 +5,7 @@ import RegistrationPage from "./pages/RegistrationPage";
 
 export default function App() {
   return (
-    <BrowserRouter basename="/playit">
+    <BrowserRouter>
       <Routes>
         <Route index element={<Navigate to="/profile" />} />
         {/* <Route path="/registration" element={<RegistrationPage />} /> */}

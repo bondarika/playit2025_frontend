@@ -21,9 +21,7 @@ function TabBar() {
         <RouterTab to="/tasks">
           <div className="tabbar__tab">
             <Tasks
-              className={`icon-${
-                selected === "tasks" ? "active" : "inactive"
-              }`}
+              className={`icon-${selected === "tasks" ? "active" : "inactive"}`}
             />
             <p>задания</p>
           </div>
@@ -43,10 +41,10 @@ function TabBar() {
         </RouterTab>
       </div>
       <Routes>
-        <Route path="/tasks" element={<TaskPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/store" element={<StorePage />} />
-        <Route path="/registration" element={<RegistrationPage />} />
+        <Route path="playit/tasks" element={<TaskPage />} />
+        <Route path="playit/profile" element={<ProfilePage />} />
+        <Route path="playit/store" element={<StorePage />} />
+        <Route path="playit/registration" element={<RegistrationPage />} />
       </Routes>
     </>
   );
