@@ -65,7 +65,6 @@ function ProfilePage(): React.ReactElement {
       if (!response.ok) {
         throw new Error(`Ошибка: ${response.statusText}`);
       }
-
       const data = await response.json();
       if (data.status === "success") {
         setUser(data.user); // Устанавливаем данные пользователя в состояние
@@ -80,12 +79,12 @@ function ProfilePage(): React.ReactElement {
       );
     }
   }
-
+  console.log("перед пост запросом");
   // Используем useEffect для выполнения POST-запроса при монтировании компонента
   useEffect(() => {
     makeRequest(); // Сначала выполняем POST-запрос
   }, []);
-
+  console.log("перед гет  запросом");
   // Используем useEffect для выполнения GET-запроса после получения токена
   useEffect(() => {
     fetchUserData(); // Запускаем GET-запрос, если токен получен
@@ -138,7 +137,7 @@ function ProfilePage(): React.ReactElement {
         </div>
       </div>
 
-      {/* 
+{/*       
       {user ? (
         <>
           <p style={{ color: "#111111" }}>{user.username}</p>
