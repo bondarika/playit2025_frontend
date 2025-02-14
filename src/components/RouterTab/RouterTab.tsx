@@ -9,6 +9,7 @@ function RouterTab({ children, to }: RouterTabProps) {
   const { pathname: locationPathname } = useLocation();
 
   const selected = locationPathname.startsWith(toPathname);
+  
 
   return (
     <button role="tab" onClick={() => navigate(to)} aria-selected={selected}>

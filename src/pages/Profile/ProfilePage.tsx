@@ -3,6 +3,7 @@ import icons from "../../assets/icons";
 import "./styles.scss";
 
 function ProfilePage(): React.ReactElement {
+  const API_BASE_URL = "http://188.225.58.99:8000/playit";
   const [error, setError] = useState<string>(""); // Для хранения ошибок
   interface User {
     id: number;
@@ -20,7 +21,7 @@ function ProfilePage(): React.ReactElement {
   async function makeRequest() {
     try {
       const response = await fetch(
-        "http://188.225.58.99:8000/playit/auth/users/telegram-login",
+        `${API_BASE_URL}/playit/auth/users/telegram-login`,
         {
           method: "POST",
           headers: {
@@ -52,7 +53,7 @@ function ProfilePage(): React.ReactElement {
   async function fetchUserData() {
     try {
       const response = await fetch(
-        "http://188.225.58.99:8000/playit/auth/users/whoami",
+        `${API_BASE_URL}/playit/auth/users/whoami`,
         {
           method: "GET",
           headers: {
