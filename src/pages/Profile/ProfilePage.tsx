@@ -84,15 +84,15 @@ function ProfilePage(): React.ReactElement {
     }
   }
   console.log("перед пост запросом");
-  // Используем useEffect для выполнения POST-запроса при монтировании компонента
   useEffect(() => {
     makeRequest(); // Сначала выполняем POST-запрос
   }, []);
-  console.log("перед гет  запросом");
-  // Используем useEffect для выполнения GET-запроса после получения токена
+
   useEffect(() => {
-    fetchUserData(); // Запускаем GET-запрос, если токен получен
-  });
+    if (user) {
+      fetchUserData(); // Запускаем GET-запрос, если user получен
+    }
+  }, [user]);
 
   if (error) {
     return <div>{error}</div>;
@@ -136,12 +136,16 @@ function ProfilePage(): React.ReactElement {
           </div>
           <div className="profile__info-stats">
             <p className="profile__maintext">мои призы</p>
-            <img src={icons["arrow"]} alt="Открыть" style={{marginRight: "10px"}}/>
+            <img
+              src={icons["arrow"]}
+              alt="Открыть"
+              style={{ marginRight: "10px" }}
+            />
           </div>
         </div>
       </div>
 
-{/*       
+      {/*       
       {user ? (
         <>
           <p style={{ color: "#111111" }}>{user.username}</p>
