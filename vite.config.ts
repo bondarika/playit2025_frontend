@@ -13,8 +13,10 @@ export default defineConfig({
       usePolling: true,
     },
     hmr: {
-      clientPort: 443, // WebSocket будет подключаться через HTTPS-порт
-      path: "/ws", // Можно указать путь, чтобы избежать конфликтов
+      protocol: "wss", // Используем WebSocket через HTTPS
+      host: "it-otdel.space",
+      port: 443, // HTTPS-порт
+      clientPort: 443,
     },
   },
   resolve: {
@@ -23,3 +25,4 @@ export default defineConfig({
     },
   },
 });
+
