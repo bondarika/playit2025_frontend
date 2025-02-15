@@ -3,7 +3,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import ProfilePage from "../../pages/Profile/ProfilePage";
 import StorePage from "../../pages/StorePage";
 import TaskPage from "../../pages/TaskPage";
-import RegistrationPage from "../../pages/RegistrationPage";
+// import RegistrationPage from "../../pages/RegistrationPage";
 import "./styles.scss";
 import Shop from "/src/assets/icons/shop/shop_icon.svg?react";
 import Tasks from "/src/assets/icons/tasks/tasks_icon.svg?react";
@@ -42,7 +42,7 @@ function TabBar() {
         <Route path="/tasks" element={<TaskPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/store" element={<StorePage />} />
-        <Route path="/registration" element={<RegistrationPage />} />
+        {/* <Route path="/registration" element={<RegistrationPage />} /> */}
       </Routes>
     </>
   );

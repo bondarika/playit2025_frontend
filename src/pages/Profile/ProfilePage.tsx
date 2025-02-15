@@ -1,5 +1,4 @@
 ﻿import React, { useEffect, useState } from "react";
-import icons from "../../assets/icons";
 import "./styles.scss";
 
 function ProfilePage(): React.ReactElement {

@@ -1,7 +1,7 @@
 import { Route, Routes, Navigate, BrowserRouter } from "react-router-dom";
 import "./App.scss";
 import TabBar from "./components/TabBar/TabBar";
-import RegistrationPage from "./pages/RegistrationPage";
+// import RegistrationPage from "./pages/RegistrationPage";
 
 export default function App() {
   return (
