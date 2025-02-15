@@ -6,16 +6,15 @@ import { resolve } from "path";
 export default defineConfig({
   plugins: [react(), svgr({})],
   server: {
-    allowedHosts: ["it-otdel.space"],
-    host: true,
+    host: "0.0.0.0",
     port: 5173,
+    strictPort: true,
     watch: {
       usePolling: true,
     },
     hmr: {
-      protocol: "wss", // Используем WebSocket через HTTPS
+      protocol: "wss",
       host: "it-otdel.space",
-      port: 443, // HTTPS-порт
       clientPort: 443,
     },
   },
@@ -25,4 +24,3 @@ export default defineConfig({
     },
   },
 });
-
