@@ -5,8 +5,8 @@ import StorePage from "../../pages/StorePage";
 import TaskPage from "../../pages/TaskPage";
 // import RegistrationPage from "../../pages/RegistrationPage";
 import "./styles.scss";
-import Shop from "/src/assets/icons/shop/shop_icon.svg?react";
-import Tasks from "/src/assets/icons/tasks/tasks_icon.svg?react";
+import Shop from "@/assets/icons/shop/shop_icon.svg?react";
+import Tasks from "@/assets/icons/tasks/tasks_icon.svg?react";
 
 function TabBar() {
   const location = useLocation();
