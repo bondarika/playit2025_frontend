@@ -6,13 +6,12 @@ import { resolve } from "path";
 export default defineConfig({
   plugins: [react(), svgr({})],
   server: {
-    host: "0.0.0.0",
-    port: 5173,
-    strictPort: true,
-    hmr: {
-      protocol: "wss",
-      host: "it-otdel.space",
-      clientPort: 443,
+    proxy: {
+      "/ws": {
+        target: "wss://it-otdel.space:8000",
+        ws: true,
+        changeOrigin: true,
+      },
     },
   },
   resolve: {
