@@ -6,17 +6,16 @@ import { resolve } from "path";
 export default defineConfig({
   plugins: [react(), svgr({})],
   server: {
-    proxy: {
-      "/ws": {
-        target: "wss://it-otdel.space:8000",
-        ws: true,
-        changeOrigin: true,
-      },
+    allowedHosts: ["it-otdel.space"],
+    host: true,
+    port: 5173,
+    watch: {
+      usePolling: true,
     },
   },
   resolve: {
     alias: {
-      "@": resolve(__dirname, "./src/"),
+      "@": resolve(__dirname, "./src/"), //узнать почему не работает?????
     },
   },
 });
