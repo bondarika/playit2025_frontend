@@ -17,27 +17,34 @@ function TabBar() {
 
   return (
     <>
-      <div className="tabbar">
-        <RouterTab to="/tasks">
-          <div className="tabbar__tab">
-            <Tasks
-              className={`icon-${selected === "tasks" ? "active" : "inactive"}`}
-            />
-            <p>задания</p>
-          </div>
-        </RouterTab>
-        <RouterTab to="/profile">
-          <div></div>
-        </RouterTab>
-        <RouterTab to="/store">
-          <div className="tabbar__tab">
-            <Shop
-              className={`icon-${selected === "shop" ? "active" : "inactive"}`}
-            />
-            <p>магазин</p>
-          </div>
-        </RouterTab>
+      <div style={{width: "100%"}}>
+        <div className="tabbar">
+          <RouterTab to="/tasks">
+            <div className="tabbar__tab">
+              <Tasks
+                className={`icon-${
+                  selected === "tasks" ? "active" : "inactive"
+                }`}
+              />
+              <p>задания</p>
+            </div>
+          </RouterTab>
+          <RouterTab to="/profile">
+            <div></div>
+          </RouterTab>
+          <RouterTab to="/store">
+            <div className="tabbar__tab">
+              <Shop
+                className={`icon-${
+                  selected === "store" ? "active" : "inactive"
+                }`}
+              />
+              <p>магазин</p>
+            </div>
+          </RouterTab>
+        </div>
       </div>
+
       <Routes>
         <Route path="/tasks" element={<TaskPage />} />
         <Route path="/profile" element={<ProfilePage />} />

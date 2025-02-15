@@ -1,8 +1,10 @@
 ﻿import React, { useEffect, useState } from "react";
 import "./styles.scss";
+import icons from "../../assets/icons";
 
 function ProfilePage(): React.ReactElement {
-  const API_BASE_URL = "https://188.225.58.99:8000/playit";
+  // const API_BASE_URL = "https://188.225.58.99:8000/playit";
+    const API_BASE_URL = "https://it-otdel.space/playit";
   const [error, setError] = useState<string>(""); // Для хранения ошибок
   interface User {
     id: number;
@@ -51,16 +53,13 @@ function ProfilePage(): React.ReactElement {
   // Функция для выполнения GET-запроса с использованием токена
   async function fetchUserData() {
     try {
-      const response = await fetch(
-        `${API_BASE_URL}/auth/users/whoami`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-        }
-      );
+      const response = await fetch(`${API_BASE_URL}/auth/users/whoami`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
 
       if (!response.ok) {
         throw new Error(`Ошибка: ${response.statusText}`);
@@ -100,14 +99,13 @@ function ProfilePage(): React.ReactElement {
 
   return (
     <div>
-      {/* <header>
+      <header>
         <h1 className="header">Профиль</h1>
         <img src={icons["settings"]} alt="Настройки" />
       </header>
       <div className="profile">
         <div className="profile__picture">
-          <div className="profile__picture-avatar">
-          </div>
+          <div className="profile__picture-avatar"></div>
           <h3 className="profile__subtitle">@bondarika</h3>
         </div>
         <div className="profile__info">
@@ -141,9 +139,8 @@ function ProfilePage(): React.ReactElement {
             />
           </div>
         </div>
-      </div> */}
+      </div>
 
-            
       {user ? (
         <>
           <p style={{ color: "#111111" }}>{user.username}</p>
