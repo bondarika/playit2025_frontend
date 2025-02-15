@@ -6,6 +6,9 @@ import { resolve } from "path";
 export default defineConfig({
   plugins: [react(), svgr({})],
   server: {
+     hmr: {
+      host: 'it-otdel.space', // Укажи свой домен
+    },
     allowedHosts: ["it-otdel.space"],
     host: true,
     port: 5173,
