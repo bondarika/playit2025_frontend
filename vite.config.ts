@@ -12,10 +12,14 @@ export default defineConfig({
     watch: {
       usePolling: true,
     },
+    hmr: {
+      clientPort: 443, // WebSocket будет подключаться через HTTPS-порт
+      path: "/ws", // Можно указать путь, чтобы избежать конфликтов
+    },
   },
   resolve: {
     alias: {
-      "@": resolve(__dirname, "./src/"), //узнать почему не работает?????
+      "@": resolve(__dirname, "./src/"),
     },
   },
 });
