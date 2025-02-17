@@ -4,7 +4,7 @@ import icons from "../../assets/icons";
 
 function ProfilePage(): React.ReactElement {
   // "https://it-otdel.space/playit";
-  // const API_BASE_URL = "https://it-otdel.space/playit";
+  const API_BASE_URL = "https://it-otdel.space/playit";
   const [error, setError] = useState<string>(""); // Для хранения ошибок
   interface User {
     id: number;
@@ -22,8 +22,7 @@ function ProfilePage(): React.ReactElement {
   async function makeRequest() {
     try {
       const response = await fetch(
-        // `${API_BASE_URL}/auth/users/telegram-login`,
-        "https://188.225.58.99:8000/playit/auth/users/telegram-login",
+        `${API_BASE_URL}/auth/users/telegram-login`,
         {
           method: "POST",
           headers: {
@@ -40,8 +39,8 @@ function ProfilePage(): React.ReactElement {
       if (!response.ok) {
         throw new Error(`Ошибка: ${response.statusText}`);
       }
-      const data = await response.json();
-      console.log("Ответ сервера (POST):", data);
+      const loggedIn = await response.json();
+      console.log("Ответ сервера (POST):", loggedIn);
     } catch (error) {
       if (error instanceof Error) {
         console.error("Ошибка при отправке данных на сервер:", error.message);
@@ -55,20 +54,22 @@ function ProfilePage(): React.ReactElement {
   async function fetchUserData() {
     try {
       const response = await fetch(
-        // `${API_BASE_URL}/auth/users/whoami`
-        "https://188.225.58.99:8000/playit/auth/users/whoami", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      });
+        `${API_BASE_URL}/auth/users/whoami`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`Ошибка: ${response.statusText}`);
       }
       const data = await response.json();
       if (data.status === "success") {
+
         setUser(data.user); // Устанавливаем данные пользователя в состояние
       } else {
         setError(data.message); // Обрабатываем ошибки с сервера
