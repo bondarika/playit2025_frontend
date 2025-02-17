@@ -4,7 +4,7 @@ import icons from "../../assets/icons";
 
 function ProfilePage(): React.ReactElement {
   // "https://it-otdel.space/playit";
-  const API_BASE_URL = "https://it-otdel.space/playit";
+  // const API_BASE_URL = "https://it-otdel.space/playit";
   const [error, setError] = useState<string>(""); // Для хранения ошибок
   interface User {
     id: number;
@@ -22,7 +22,8 @@ function ProfilePage(): React.ReactElement {
   async function makeRequest() {
     try {
       const response = await fetch(
-        `${API_BASE_URL}/auth/users/telegram-login`,
+        // `${API_BASE_URL}/auth/users/telegram-login`,
+        "https://188.225.58.99:8000/playit/auth/users/telegram-login",
         {
           method: "POST",
           headers: {
@@ -53,7 +54,9 @@ function ProfilePage(): React.ReactElement {
   // Функция для выполнения GET-запроса с использованием токена
   async function fetchUserData() {
     try {
-      const response = await fetch(`${API_BASE_URL}/auth/users/whoami`, {
+      const response = await fetch(
+        // `${API_BASE_URL}/auth/users/whoami`
+        "https://188.225.58.99:8000/playit/auth/users/whoami", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
