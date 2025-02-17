@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [react(), svgr({})],
   server: {
     allowedHosts: ["it-otdel.space"],
-    host: "it-otdel.space", // Замените true на конкретный домен
+    host: "0.0.0.0", 
     port: 5173,
     hmr: {
       host: "it-otdel.space", // Явно указываем хост для HMR WebSocket
