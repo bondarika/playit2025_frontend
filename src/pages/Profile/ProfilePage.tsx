@@ -82,7 +82,6 @@ function ProfilePage(): React.ReactElement {
       );
     }
   }
-  console.log("перед пост запросом");
   useEffect(() => {
     makeRequest(); // Сначала выполняем POST-запрос
   }, []);
