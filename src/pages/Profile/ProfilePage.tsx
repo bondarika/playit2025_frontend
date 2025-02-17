@@ -53,23 +53,19 @@ function ProfilePage(): React.ReactElement {
   // Функция для выполнения GET-запроса с использованием токена
   async function fetchUserData() {
     try {
-      const response = await fetch(
-        `${API_BASE_URL}/auth/users/whoami`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-        }
-      );
+      const response = await fetch(`${API_BASE_URL}/auth/users/whoami`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
 
       if (!response.ok) {
         throw new Error(`Ошибка: ${response.statusText}`);
       }
       const data = await response.json();
       if (data.status === "success") {
-
         setUser(data.user); // Устанавливаем данные пользователя в состояние
       } else {
         setError(data.message); // Обрабатываем ошибки с сервера
@@ -91,9 +87,7 @@ function ProfilePage(): React.ReactElement {
   }, []);
 
   useEffect(() => {
-    if (user) {
-      fetchUserData(); // Запускаем GET-запрос, если user получен
-    }
+    fetchUserData(); // Запускаем GET-запрос, если user получен
   }, [user]);
 
   if (error) {
