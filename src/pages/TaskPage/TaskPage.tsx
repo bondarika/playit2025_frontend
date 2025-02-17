@@ -1,27 +1,25 @@
-﻿import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from "react";
+import icons from "../../assets/icons";
 
 function TaskPage(): React.ReactElement {
   const API_BASE_URL = "https://188.225.58.99:8000/playit";
   const [error, setError] = useState<string>(""); // Для хранения ошибок
   async function fetchTasks() {
     try {
-      const response = await fetch(
-        `${API_BASE_URL}/tasks/get-all`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-        }
-      );
+      const response = await fetch(`${API_BASE_URL}/tasks/get-all`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
 
       if (!response.ok) {
         throw new Error(`Ошибка: ${response.statusText}`);
       }
 
       const data = await response.json();
-      console.log(data)
+      console.log(data);
       // if (data.status === "success") {
       //   setUser(data.user); // Устанавливаем данные пользователя в состояние
       // } else {
@@ -35,12 +33,15 @@ function TaskPage(): React.ReactElement {
       );
     }
   }
-    useEffect(() => {
-      fetchTasks(); // Сначала выполняем POST-запрос
-    }, []);
+  useEffect(() => {
+    fetchTasks(); // Сначала выполняем POST-запрос
+  }, []);
   return (
     <div>
-      <h1>Задания</h1>
+      <header>
+        <h1 className="header">Задания</h1>
+        {/* <img src={icons["coin_bag"]} alt="Баланс" /> */}
+      </header>
     </div>
   );
 }

@@ -1,17 +1,37 @@
+// import { defineConfig } from "vite";
+// import react from "@vitejs/plugin-react";
+// import svgr from "vite-plugin-svgr";
+// import { resolve } from "path";
+
+// export default defineConfig({
+//   plugins: [react(), svgr({})],
+//   server: {
+//     allowedHosts: ["it-otdel.space"],
+//     host: "it-otdel.space", 
+//     port: 5173,
+//     hmr: {
+//       host: "it-otdel.space",
+//       protocol: "wss", 
+//     },
+//   },
+//   resolve: {
+//     alias: {
+//       "@": resolve(__dirname, "./src/"),
+//     },
+//   },
+// });
+
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import svgr from "vite-plugin-svgr";
 import { resolve } from "path";
 
 export default defineConfig({
-  plugins: [react(), svgr({})],
+  plugins: [react()],
   server: {
-    allowedHosts: ["it-otdel.space"],
-    host: "0.0.0.0", 
+    host: true,
     port: 5173,
-    hmr: {
-      host: "it-otdel.space", // Явно указываем хост для HMR WebSocket
-      protocol: "wss", // Используйте "wss", если сервер работает по HTTPS
+    watch: {
+      usePolling: true,
     },
   },
   resolve: {

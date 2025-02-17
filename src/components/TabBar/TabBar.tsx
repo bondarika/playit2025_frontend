@@ -2,7 +2,7 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import ProfilePage from "../../pages/Profile/ProfilePage";
 import StorePage from "../../pages/StorePage";
-import TaskPage from "../../pages/TaskPage";
+import TaskPage from "../../pages/TaskPage/TaskPage";
 // import RegistrationPage from "../../pages/RegistrationPage";
 import "./styles.scss";
 import Shop from "@/assets/icons/shop/shop_icon.svg?react";
