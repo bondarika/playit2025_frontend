@@ -7,12 +7,16 @@ export default defineConfig({
   plugins: [react(), svgr({})],
   server: {
     allowedHosts: ["it-otdel.space"],
-    host: true,
+    host: "it-otdel.space", // Замените true на конкретный домен
     port: 5173,
+    hmr: {
+      host: "it-otdel.space", // Явно указываем хост для HMR WebSocket
+      protocol: "wss", // Используйте "wss", если сервер работает по HTTPS
+    },
   },
   resolve: {
     alias: {
-      "@": resolve(__dirname, "./src/"), 
+      "@": resolve(__dirname, "./src/"),
     },
   },
 });
