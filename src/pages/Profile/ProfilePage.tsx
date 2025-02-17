@@ -4,7 +4,8 @@ import icons from "../../assets/icons";
 
 function ProfilePage(): React.ReactElement {
   // "https://it-otdel.space/playit";
-  const API_BASE_URL = "https://it-otdel.space/playit";
+  // const API_BASE_URL = "https://it-otdel.space/playit";
+  const API_BASE_URL = "http://localhost:8000/playit";
   const [error, setError] = useState<string>(""); // Для хранения ошибок
   interface User {
     id: number;
