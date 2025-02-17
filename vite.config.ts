@@ -27,7 +27,11 @@ export default defineConfig({
     allowedHosts: ["it-otdel.space"],
     host: true,
     port: 5173,
-    hmr: false,
+    hmr: {
+      protocol: "wss",
+      host: "it-otdel.space",
+      port: 5173,
+    },
     watch: {
       usePolling: true,
     },
