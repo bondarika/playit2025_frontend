@@ -3,24 +3,6 @@ import react from "@vitejs/plugin-react";
 import svgr from "vite-plugin-svgr";
 import { resolve } from "path";
 
-// export default defineConfig({
-//   plugins: [react(), svgr({})],
-//   server: {
-//     allowedHosts: ["it-otdel.space"],
-//     host: "it-otdel.space", 
-//     port: 5173,
-//     hmr: {
-//       host: "it-otdel.space",
-//       protocol: "wss", 
-//     },
-//   },
-//   resolve: {
-//     alias: {
-//       "@": resolve(__dirname, "./src/"),
-//     },
-//   },
-// });
-
 export default defineConfig({
   plugins: [react(), svgr({})],
   server: {
@@ -31,6 +13,7 @@ export default defineConfig({
       protocol: "wss",
       host: "it-otdel.space",
       port: 5173,
+      clientPort: 5173,
     },
     watch: {
       usePolling: true,
