@@ -10,6 +10,7 @@ function ProfilePage(): React.ReactElement {
     id: number;
     username: string;
     telegram_id: number;
+    name: string;
     balance: number;
     role: string;
     done_tasks: number;
@@ -94,7 +95,7 @@ function ProfilePage(): React.ReactElement {
     return <div>{error}</div>;
   }
 
-  return (
+  return user ? (
     <div>
       <header>
         <h1 className="header">Профиль</h1>
@@ -103,28 +104,30 @@ function ProfilePage(): React.ReactElement {
       <div className="profile">
         <div className="profile__picture">
           <div className="profile__picture-avatar"></div>
-          <h3 className="profile__subtitle">@bondarika</h3>
+          <h3 className="profile__subtitle">
+            {user.username ? user.username : user.telegram_id}
+          </h3>
         </div>
         <div className="profile__info">
           <div className="profile__info-block">
             <h3 className="profile__subtitle">фио</h3>
-            <p className="profile__maintext">Бондаренко Дарья Сергеевна</p>
+            <p className="profile__maintext">{user.name}</p>
           </div>
           <div className="profile__info-block">
             <h3 className="profile__subtitle">группа</h3>
-            <p className="profile__maintext">ИСТ-221</p>
+            <p className="profile__maintext">{user.group_number}</p>
           </div>
           <div className="profile__info-stats">
             <p className="profile__maintext">баланс</p>
             <div className="profile__box">
               <img src={icons["coin_bag"]} alt="Баланс" />
-              <p>200</p>
+              <p>{user.balance}</p>
             </div>
           </div>
           <div className="profile__info-stats">
             <p className="profile__maintext">выполнено заданий</p>
             <div className="profile__box">
-              <p>0/15</p>
+              <p>{user.done_tasks}</p>
             </div>
           </div>
           <div className="profile__info-stats">
@@ -137,21 +140,9 @@ function ProfilePage(): React.ReactElement {
           </div>
         </div>
       </div>
-
-      {user ? (
-        <>
-          <p style={{ color: "#111111" }}>{user.username}</p>
-          <p>ID: {user.id}</p>
-          <p>Телеграм ID: {user.telegram_id}</p>
-          <p>Баланс: {user.balance}</p>
-          <p>Роль: {user.role}</p>
-          <p>Выполнено задач: {user.done_tasks}</p>
-          <p>Группа: {user.group_number}</p>
-        </>
-      ) : (
-        <h1>А данных нет блин</h1>
-      )}
     </div>
+  ) : (
+    <h1>А данных нет блин</h1>
   );
 }
 
