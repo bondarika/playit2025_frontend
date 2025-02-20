@@ -4,6 +4,10 @@ import icons from "../../assets/icons";
 function TaskPage(): React.ReactElement {
   const API_BASE_URL = "https://it-otdel.space/playit";
   const [error, setError] = useState<string>(""); // Для хранения ошибок
+  interface Tasks {
+    data: string[];
+  }
+  const [tasks, setTasks] = useState<Tasks | null>(null);
   async function fetchTasks() {
     try {
       const response = await fetch(`${API_BASE_URL}/tasks/get-all`, {
@@ -19,12 +23,17 @@ function TaskPage(): React.ReactElement {
       }
 
       const data = await response.json();
-      console.log(data);
-      // if (data.status === "success") {
-      //   setUser(data.user); // Устанавливаем данные пользователя в состояние
+
+      // if (data.status === 0) {
+      //   setTasks(data.data);
+      //   console.log(tasks)
       // } else {
-      //   setError(data.message); // Обрабатываем ошибки с сервера
+      //   setError(data.message);
       // }
+
+      setTasks(data.data);
+      console.log("ghbdtn");
+      // setError(data.message);
     } catch (error) {
       setError("Ошибка при загрузке данных.");
       console.error(
@@ -34,13 +43,14 @@ function TaskPage(): React.ReactElement {
     }
   }
   useEffect(() => {
-    fetchTasks(); // Сначала выполняем POST-запрос
+    fetchTasks();
   }, []);
   return (
     <div>
       <header>
         <h1 className="header">Задания</h1>
         {/* <img src={icons["coin_bag"]} alt="Баланс" /> */}
+        <p style={{ color: "black" }}>{tasks?.data}</p>
       </header>
     </div>
   );
