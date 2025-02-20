@@ -38,7 +38,7 @@ export default defineConfig({
     hmr: {
       protocol: "wss", 
       host: "localhost", 
-      port: 5173, 
+      port: 443, 
     },
   },
   resolve: {
