@@ -6,13 +6,18 @@ import { resolve } from "path";
 export default defineConfig({
   plugins: [react(), svgr({})],
   server: {
+    proxy: {
+      '/ws': {
+        target: 'ws://localhost:5173',
+        ws: true,
+      }},
     allowedHosts: ["it-otdel.space"],
     host: true,
     port: 5173,
     hmr: false,
-    // watch: {
-    //   usePolling: true,
-    // },
+    watch: {
+      usePolling: true,
+    },
   },
   resolve: {
     alias: {
