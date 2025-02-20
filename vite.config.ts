@@ -24,10 +24,22 @@ import fs from "fs";
 export default defineConfig({
   plugins: [react(), svgr({})],
   server: {
+    proxy: {
+      "/ws": {
+        target: "wss://it-otdel.space",
+        ws: true,
+        changeOrigin: true,
+        secure: true,
+      },
+    },
     allowedHosts: ["it-otdel.space"],
     https: {
-      key: fs.readFileSync(path.resolve(__dirname, "certs", "localhost+2-key.pem")),
-      cert: fs.readFileSync(path.resolve(__dirname, "certs", "localhost+2.pem")),
+      key: fs.readFileSync(
+        path.resolve(__dirname, "certs", "localhost+2-key.pem")
+      ),
+      cert: fs.readFileSync(
+        path.resolve(__dirname, "certs", "localhost+2.pem")
+      ),
     },
     host: true,
     port: 5173,
