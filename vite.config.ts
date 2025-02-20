@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [react(), svgr({})],
   server: {
     allowedHosts: ["it-otdel.space"],
-    host: true,
+    host: "it-otdel.space",
     port: 5173,
     hmr: false,
     watch: {
