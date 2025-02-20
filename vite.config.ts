@@ -24,14 +24,6 @@ import fs from "fs";
 export default defineConfig({
   plugins: [react(), svgr({})],
   server: {
-    proxy: {
-      "/ws": {
-        target: "wss://it-otdel.space",
-        ws: true,
-        changeOrigin: true,
-        secure: true,
-      },
-    },
     allowedHosts: ["it-otdel.space"],
     https: {
       key: fs.readFileSync(
@@ -43,7 +35,11 @@ export default defineConfig({
     },
     host: true,
     port: 5173,
-    hmr: false,
+    hmr: {
+      protocol: "wss", 
+      host: "localhost", 
+      port: 5173, 
+    },
   },
   resolve: {
     alias: {
