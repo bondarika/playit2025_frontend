@@ -10,9 +10,9 @@ export default defineConfig({
     host: "it-otdel.space",
     port: 5173,
     hmr: false,
-    watch: {
-      usePolling: true,
-    },
+    // watch: {
+    //   usePolling: true,
+    // },
   },
   resolve: {
     alias: {
