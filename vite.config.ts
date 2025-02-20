@@ -26,8 +26,8 @@ export default defineConfig({
   server: {
     allowedHosts: ["it-otdel.space"],
     https: {
-      key: fs.readFileSync(path.resolve(__dirname, "certs", "localhost+2-key.pem")),
-      cert: fs.readFileSync(path.resolve(__dirname, "certs", "localhost+2.pem")),
+      key: fs.readFileSync(path.resolve(__dirname, "localhost+2-key.pem")),
+      cert: fs.readFileSync(path.resolve(__dirname, "localhost+2.pem")),
     },
     host: true,
     port: 5173,
