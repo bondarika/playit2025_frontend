@@ -35,11 +35,6 @@ export default defineConfig({
     },
     host: true,
     port: 5173,
-    hmr: {
-      protocol: "wss", 
-      host: "localhost", 
-      port: 443, 
-    },
   },
   resolve: {
     alias: {
