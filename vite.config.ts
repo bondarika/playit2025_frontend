@@ -25,10 +25,10 @@ export default defineConfig({
   plugins: [react(), svgr({})],
   server: {
     allowedHosts: ["it-otdel.space"],
-    https: {
-      key: fs.readFileSync(path.resolve(__dirname, "certs", "localhost+2-key.pem")),
-      cert: fs.readFileSync(path.resolve(__dirname, "certs", "localhost+2.pem")),
-    },
+    // https: {
+    //   key: fs.readFileSync(path.resolve(__dirname, "certs", "localhost+2-key.pem")),
+    //   cert: fs.readFileSync(path.resolve(__dirname, "certs", "localhost+2.pem")),
+    // },
     host: true,
     port: 5173,
   },
