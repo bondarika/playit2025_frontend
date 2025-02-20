@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import svgr from "vite-plugin-svgr";
-import { resolve } from "path";
+import path, { resolve } from "path";
 import fs from "fs";
 
 // export default defineConfig({
@@ -26,8 +26,8 @@ export default defineConfig({
   server: {
     allowedHosts: ["it-otdel.space"],
     https: {
-      key: fs.readFileSync("localhost+2-key.pem"),
-      cert: fs.readFileSync("localhost+2.pem"),
+      key: fs.readFileSync(path.resolve(__dirname, "localhost+2-key.pem")),
+      cert: fs.readFileSync(path.resolve(__dirname, "localhost+2.pem")),
     },
     host: true,
     port: 5173,
