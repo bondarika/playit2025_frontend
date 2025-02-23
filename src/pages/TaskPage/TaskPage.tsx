@@ -4,6 +4,15 @@ import icons from "../../assets/icons";
 function TaskPage(): React.ReactElement {
   const API_BASE_URL = "https://it-otdel.space/playit";
   const [error, setError] = useState<string>(""); // Для хранения ошибок
+  interface Task {
+    id: string;
+    day: string;
+    brunch: string;
+    title: string;
+    description: string;
+    points: number;
+    is_active: boolean;
+  }
   interface Tasks {
     data: string[];
   }
