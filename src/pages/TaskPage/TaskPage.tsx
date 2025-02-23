@@ -13,9 +13,7 @@ function TaskPage(): React.ReactElement {
     points: number;
     is_active: boolean;
   }
-  interface Tasks {
-    data: string[];
-  }
+
   const [tasks, setTasks] = useState<Tasks | null>(null);
   async function fetchTasks() {
     try {
@@ -32,6 +30,7 @@ function TaskPage(): React.ReactElement {
       }
 
       const data = await response.json();
+      console.log(data)
 
       // if (data.status === 0) {
       //   setTasks(data.data);
