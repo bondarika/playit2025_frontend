@@ -7,6 +7,7 @@ import fs from "fs";
 export default defineConfig({
   plugins: [react(), svgr({})],
   server: {
+    hmr: { overlay: false },
     allowedHosts: ["it-otdel.space"],
     https: {
       key: fs.readFileSync(
