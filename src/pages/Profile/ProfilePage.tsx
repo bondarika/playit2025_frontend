@@ -35,16 +35,14 @@ function ProfilePage(): React.ReactElement {
   useEffect(() => {
     const tg = window.Telegram.WebApp;
     if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+      console.log("проходит")
       setTelegramUser(tg.initDataUnsafe.user);
     }
   }, []);
-  console.log(telegramUser)
 
   // Функция для отправки POST-запроса для получения токена
   async function makeRequest() {
     try {
-      console.log(telegramUser);
-
       const response = await fetch(
         `${API_BASE_URL}/auth/users/telegram-login`,
         {
@@ -53,9 +51,8 @@ function ProfilePage(): React.ReactElement {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            telegram_id: telegramUser?.id,
-            username: telegramUser?.username,
-
+            telegram_id: window.Telegram.WebApp.initDataUnsafe.user[0],
+            username: window.Telegram.WebApp.initDataUnsafe.user[4],
           }),
           credentials: "include",
         }
