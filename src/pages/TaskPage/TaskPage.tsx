@@ -17,7 +17,11 @@ function TaskPage(): React.ReactElement {
     avatar: null;
   }
 
-  const [task, setTask] = useState<Task | null>(null);
+   interface Tasks {
+     tasks: Task[];
+   }
+
+  const [tasks, setTasks] = useState<Tasks | null>(null);
   async function fetchTasks() {
     try {
       const response = await fetch(`${API_BASE_URL}/tasks/get-all`, {
@@ -41,9 +45,9 @@ function TaskPage(): React.ReactElement {
       //   setError(data.message);
       // }
 
-      setTask(data.data);
+      setTasks(data.data);
       console.log(data)
-      console.log(task)
+      console.log(tasks)
       setError(data.message);
     } catch (error) {
       setError("Ошибка при загрузке данных.");
@@ -61,7 +65,7 @@ function TaskPage(): React.ReactElement {
       <header>
         <h1 className="header">задания</h1>
         {/* <img src={icons["coin_bag"]} alt="Баланс" /> */}
-        <p style={{ color: "black" }}>{task?.difficulty}</p>
+        {/* <p style={{ color: "black" }}>{tasks[0]}</p> */}
       </header>
     </div>
   );
