@@ -51,8 +51,6 @@ function ProfilePage(): React.ReactElement {
           },
           body: JSON.stringify({
             telegram_id: telegramUser?.id,
-            first_name: telegramUser?.first_name,
-            last_name: telegramUser?.last_name,
             username: telegramUser?.username,
 
           }),
