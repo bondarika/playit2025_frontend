@@ -13,7 +13,7 @@ function ProfilePage(): React.ReactElement {
     name: string;
     balance: number;
     role: string;
-    done_tasks: number;
+    done_tasks: number[];
     group_number: number;
   }
 
@@ -130,7 +130,7 @@ function ProfilePage(): React.ReactElement {
           <div className="profile__info-stats">
             <p className="profile__maintext">выполнено заданий</p>
             <div className="profile__box">
-              <p>{user.done_tasks}</p>
+              <p>{user.done_tasks.length}</p>
             </div>
           </div>
           <div className="profile__info-stats">
