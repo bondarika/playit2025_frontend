@@ -18,7 +18,7 @@ function TaskPage(): React.ReactElement {
   }
 
    interface Tasks {
-     tasks: Task[];
+     tasks: string[];
    }
 
   const [tasks, setTasks] = useState<Tasks | null>(null);
