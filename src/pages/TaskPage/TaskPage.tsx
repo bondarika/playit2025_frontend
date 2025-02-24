@@ -36,8 +36,12 @@ function TaskPage(): React.ReactElement {
         throw new Error(`Ошибка: ${response.statusText}`);
       }
 
-      const data: Task[] = await response.json();
-      setTasks({ tasks: data });
+       const jsonResponse = await response.json();
+
+       // Достаем массив задач из поля data
+       const data: Task[] = jsonResponse.data;
+
+       setTasks({ tasks: data });
 
       // if (data.status === 0) {
       //   setTasks(data.data);
