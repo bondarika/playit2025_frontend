@@ -20,7 +20,7 @@ function StorePage(): React.ReactElement {
       }
 
       const data = await response.json();
-      const items:
+      // const items:
       console.log(data);
     } catch (error) {
       setError("Ошибка при загрузке данных.");
