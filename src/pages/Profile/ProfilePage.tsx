@@ -38,10 +38,13 @@ function ProfilePage(): React.ReactElement {
       setTelegramUser(tg.initDataUnsafe.user);
     }
   }, []);
+  console.log(telegramUser)
 
   // Функция для отправки POST-запроса для получения токена
   async function makeRequest() {
     try {
+      console.log(telegramUser);
+
       const response = await fetch(
         `${API_BASE_URL}/auth/users/telegram-login`,
         {
