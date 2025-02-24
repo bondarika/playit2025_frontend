@@ -12,7 +12,7 @@ function TaskPage(): React.ReactElement {
     description: string;
     task: string;
     verification: string;
-    answer: string;
+    answer: any;
     points: number;
     avatar: null;
   }
