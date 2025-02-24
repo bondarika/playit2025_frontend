@@ -1,11 +1,17 @@
 ﻿import React, { useEffect, useState } from "react";
 import "./styles.scss";
 import icons from "../../assets/icons";
+  declare global {
+    interface Window {
+      Telegram: any;
+    }
+  }
 
 function ProfilePage(): React.ReactElement {
   // "https://it-otdel.space/playit";
   const API_BASE_URL = "https://it-otdel.space/playit";
   const [error, setError] = useState<string>(""); // Для хранения ошибок
+
   interface User {
     id: number;
     username: string;
@@ -16,8 +22,22 @@ function ProfilePage(): React.ReactElement {
     done_tasks: number[];
     group_number: number;
   }
+  interface TelegramUser {
+    id: number;
+    first_name: string;
+    last_name: string;
+    username: string;
+  }
 
   const [user, setUser] = useState<User | null>(null); // Для хранения данных о пользователе
+  const [telegramUser, setTelegramUser] = useState<TelegramUser | null>(null); // Для хранения данных о пользователе tg
+
+  useEffect(() => {
+    const tg = window.Telegram.WebApp;
+    if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+      setTelegramUser(tg.initDataUnsafe.user);
+    }
+  }, []);
 
   // Функция для отправки POST-запроса для получения токена
   async function makeRequest() {
@@ -30,8 +50,11 @@ function ProfilePage(): React.ReactElement {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            telegram_id: 337683248,
-            username: "bondarika",
+            telegram_id: telegramUser?.id,
+            first_name: telegramUser?.first_name,
+            last_name: telegramUser?.last_name,
+            username: telegramUser?.username,
+
           }),
           credentials: "include",
         }
@@ -67,7 +90,7 @@ function ProfilePage(): React.ReactElement {
       }
       const data = await response.json();
       // console.log(data)
-     
+
       if (data.status === "success") {
         //  console.log("Ответ сервера (GET):", data);
         setUser(data.user); // Устанавливаем данные пользователя в состояние
