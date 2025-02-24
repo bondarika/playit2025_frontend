@@ -1,14 +1,13 @@
 ﻿import React, { useEffect, useState } from "react";
 import "./styles.scss";
 import icons from "../../assets/icons";
-  declare global {
-    interface Window {
-      Telegram: any;
-    }
+declare global {
+  interface Window {
+    Telegram: any;
   }
+}
 
 function ProfilePage(): React.ReactElement {
-  // "https://it-otdel.space/playit";
   const API_BASE_URL = "https://it-otdel.space/playit";
   const [error, setError] = useState<string>(""); // Для хранения ошибок
 
@@ -22,25 +21,8 @@ function ProfilePage(): React.ReactElement {
     done_tasks: number[];
     group_number: number;
   }
-  interface TelegramUser {
-    id: number;
-    first_name: string;
-    last_name: string;
-    username: string;
-  }
 
   const [user, setUser] = useState<User | null>(null); // Для хранения данных о пользователе
-  const [telegramUser, setTelegramUser] = useState<TelegramUser | null>(null); // Для хранения данных о пользователе tg
-
-  useEffect(() => {
-    const tg = window.Telegram.WebApp;
-    if (tg.WebAppUser) {
-      console.log("проходит")
-      setTelegramUser(tg.initDataUnsafe.user);
-    } else {
-      console.log("не проходит");
-    }
-  }, []);
 
   // Функция для отправки POST-запроса для получения токена
   async function makeRequest() {
@@ -53,8 +35,8 @@ function ProfilePage(): React.ReactElement {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            telegram_id: window.Telegram.WebApp.initDataUnsafe.user[0],
-            username: window.Telegram.WebApp.initDataUnsafe.user[4],
+            telegram_id: 337683248,
+            username: "bondarika",
           }),
           credentials: "include",
         }
