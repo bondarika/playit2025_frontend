@@ -66,6 +66,7 @@ function ProfilePage(): React.ReactElement {
         throw new Error(`Ошибка: ${response.statusText}`);
       }
       const data = await response.json();
+      console.log(data)
      
       if (data.status === "success") {
         //  console.log("Ответ сервера (GET):", data);

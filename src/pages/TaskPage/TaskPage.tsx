@@ -42,6 +42,7 @@ function TaskPage(): React.ReactElement {
       // }
 
       setTask(data.task);
+      console.log(data)
       console.log(task);
       setError(data.message);
     } catch (error) {
