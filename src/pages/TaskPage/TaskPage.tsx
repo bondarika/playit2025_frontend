@@ -12,9 +12,9 @@ function TaskPage(): React.ReactElement {
     description: string;
     task: string;
     verification: string;
-    // answer:
+    answer: string;
     points: number;
-    // avatar: 
+    avatar: null;
   }
 
   const [task, setTask] = useState<Task | null>(null);
@@ -59,7 +59,7 @@ function TaskPage(): React.ReactElement {
       <header>
         <h1 className="header">Задания</h1>
         {/* <img src={icons["coin_bag"]} alt="Баланс" /> */}
-        <p style={{ color: "black" }}>{task?.verification}</p>
+        <p style={{ color: "black" }}>{task?.difficulty}</p>
       </header>
     </div>
   );
