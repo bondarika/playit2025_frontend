@@ -18,7 +18,7 @@ function TaskPage(): React.ReactElement {
   }
 
    interface Tasks {
-     tasks: string[];
+     tasks: Task [];
    }
 
   const [tasks, setTasks] = useState<Tasks | null>(null);
@@ -37,6 +37,9 @@ function TaskPage(): React.ReactElement {
       }
 
       const data = await response.json();
+      const data_pack: Task[] = [...data]; // массив задач
+      
+      console.log(data_pack)
 
       // if (data.status === 0) {
       //   setTasks(data.data);
