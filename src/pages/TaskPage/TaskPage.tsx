@@ -12,7 +12,7 @@ function TaskPage(): React.ReactElement {
     description: string;
     task: string;
     verification: string;
-    answer: string;
+    // answer: string;
     points: number;
     avatar: null;
   }
@@ -41,9 +41,7 @@ function TaskPage(): React.ReactElement {
       //   setError(data.message);
       // }
 
-      setTask(data.task);
-      console.log(data)
-      console.log(task);
+      setTask(data.data);
       setError(data.message);
     } catch (error) {
       setError("Ошибка при загрузке данных.");
