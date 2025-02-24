@@ -18,7 +18,9 @@ function TaskPage(): React.ReactElement {
   }
 
   interface Tasks {
-    tasks: Task[];
+    status: number;
+    details: string;
+    data: Task[];
   }
 
   const [tasks, setTasks] = useState<Tasks | null>(null);
@@ -36,12 +38,9 @@ function TaskPage(): React.ReactElement {
         throw new Error(`Ошибка: ${response.statusText}`);
       }
 
-       const jsonResponse = await response.json();
+       const data = await response.json();
 
-       // Достаем массив задач из поля data
-       const data: Task[] = jsonResponse.data;
-
-       setTasks({ tasks: data });
+       const tasks: Task[] = data.data;
 
       // if (data.status === 0) {
       //   setTasks(data.data);
