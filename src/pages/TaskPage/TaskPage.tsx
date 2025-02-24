@@ -39,7 +39,6 @@ function TaskPage(): React.ReactElement {
       }
 
        const data = await response.json();
-
        const tasks: Task[] = data.data;
 
       // if (data.status === 0) {
