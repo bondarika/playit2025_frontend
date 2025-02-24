@@ -57,7 +57,7 @@ function TaskPage(): React.ReactElement {
 
 // №: 1
 
-  const [tasks, setTasks] = useState<Tasks | null>(null);
+  const [tasks, setTask] = useState<Task | null>(null);
   async function fetchTasks() {
     try {
       const response = await fetch(`${API_BASE_URL}/tasks/get-all`, {
@@ -81,7 +81,7 @@ function TaskPage(): React.ReactElement {
       //   setError(data.message);
       // }
 
-      setTasks(data.data);
+      setTask(data.data);
       console.log(data)
       // setError(data.message);
     } catch (error) {

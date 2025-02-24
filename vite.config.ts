@@ -8,7 +8,10 @@ export default defineConfig({
   plugins: [react(), svgr({})],
   server: {
     hmr: {
+      protocol: "wss",
+      host: "localhost",
       clientPort: 5173,
+      // clientPort: 24678,
     },
     allowedHosts: ["it-otdel.space"],
     https: {
