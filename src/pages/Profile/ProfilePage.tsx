@@ -34,7 +34,7 @@ function ProfilePage(): React.ReactElement {
 
   useEffect(() => {
     const tg = window.Telegram.WebApp;
-    if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+    if (tg.WebAppUser) {
       console.log("проходит")
       setTelegramUser(tg.initDataUnsafe.user);
     } else {
