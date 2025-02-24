@@ -17,9 +17,9 @@ function TaskPage(): React.ReactElement {
     avatar: null;
   }
 
-   interface Tasks {
-     tasks: Task [];
-   }
+  interface Tasks {
+    tasks: Task[];
+  }
 
   const [tasks, setTasks] = useState<Tasks | null>(null);
   async function fetchTasks() {
@@ -36,10 +36,8 @@ function TaskPage(): React.ReactElement {
         throw new Error(`Ошибка: ${response.statusText}`);
       }
 
-      const data = await response.json();
-      const data_pack: Task[] = [...data]; // массив задач
-      
-      console.log(data_pack)
+      const data: Task[] = await response.json();
+      setTasks({ tasks: data });
 
       // if (data.status === 0) {
       //   setTasks(data.data);
@@ -48,10 +46,8 @@ function TaskPage(): React.ReactElement {
       //   setError(data.message);
       // }
 
-      setTasks(data.data);
-      console.log(data)
-      console.log(tasks)
-      setError(data.message);
+      console.log(data);
+      console.log(tasks);
     } catch (error) {
       setError("Ошибка при загрузке данных.");
       console.error(
