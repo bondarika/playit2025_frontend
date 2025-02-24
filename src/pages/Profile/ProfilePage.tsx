@@ -37,6 +37,8 @@ function ProfilePage(): React.ReactElement {
     if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
       console.log("проходит")
       setTelegramUser(tg.initDataUnsafe.user);
+    } else {
+      console.log("не проходит");
     }
   }, []);
 
