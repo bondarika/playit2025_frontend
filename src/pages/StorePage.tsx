@@ -7,7 +7,7 @@ function StorePage(): React.ReactElement {
   const [error, setError] = useState<string>(""); // Для хранения ошибок
   async function fetchItems() {
     try {
-      const response = await fetch(`${API_BASE_URL}/shop`, {
+      const response = await fetch(`${API_BASE_URL}/shop/get`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
