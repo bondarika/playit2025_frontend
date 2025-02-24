@@ -42,6 +42,7 @@ function TaskPage(): React.ReactElement {
       // }
 
       setTask(data.task);
+      console.log(task);
       setError(data.message);
     } catch (error) {
       setError("Ошибка при загрузке данных.");
@@ -57,7 +58,7 @@ function TaskPage(): React.ReactElement {
   return (
     <div>
       <header>
-        <h1 className="header">Задания</h1>
+        <h1 className="header">задания</h1>
         {/* <img src={icons["coin_bag"]} alt="Баланс" /> */}
         <p style={{ color: "black" }}>{task?.difficulty}</p>
       </header>
