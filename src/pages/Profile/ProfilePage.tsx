@@ -100,7 +100,7 @@ function ProfilePage(): React.ReactElement {
   return user ? (
     <div>
       <header>
-        <h1 className="header">Профиль</h1>
+        <h1 className="header">Проhиль</h1>
         <img src={icons["settings"]} alt="Настройки" />
       </header>
       <div className="profile">
