@@ -6,17 +6,18 @@ import icons from "../../assets/icons";
 let id: number;
 let username: string;
 
-if (
-  WebApp.initDataUnsafe.user &&
-  WebApp.initDataUnsafe.user.id &&
-  WebApp.initDataUnsafe.user.username
-) {
-  id = WebApp.initDataUnsafe.user.id;
-  username = WebApp.initDataUnsafe.user.username;
-} else {
-  id = 1192157985;
-  username = "sn9skwlkr";
-}
+console.log(WebApp.initData)
+// if (
+//   WebApp.initData.user &&
+//   WebApp.initDataUnsafe.user.id &&
+//   WebApp.initDataUnsafe.user.username
+// ) {
+//   id = WebApp.initDataUnsafe.user.id;
+//   username = WebApp.initDataUnsafe.user.username;
+// } else {
+//   id = 1192157985;
+//   username = "sn9skwlkr";
+// }
 
 function ProfilePage(): React.ReactElement {
   const API_BASE_URL = "https://it-otdel.space/playit";
@@ -45,8 +46,8 @@ function ProfilePage(): React.ReactElement {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            telegram_id: id,
-            username: username,
+            telegram_id: 1192157985,
+            username: "sn9skwlkr",
           }),
           credentials: "include",
         }
