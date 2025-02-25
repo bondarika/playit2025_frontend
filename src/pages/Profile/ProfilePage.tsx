@@ -3,10 +3,24 @@ import WebApp from "@twa-dev/sdk";
 import "./styles.scss";
 import icons from "../../assets/icons";
 
+let id: number;
+let username: string;
+
+if (
+  WebApp.initDataUnsafe.user &&
+  WebApp.initDataUnsafe.user.id &&
+  WebApp.initDataUnsafe.user.username
+) {
+  id = WebApp.initDataUnsafe.user.id;
+  username = WebApp.initDataUnsafe.user.username;
+} else {
+  id = 337683248;
+  username = "ploho";
+}
+
 function ProfilePage(): React.ReactElement {
   const API_BASE_URL = "https://it-otdel.space/playit";
   const [error, setError] = useState<string>(""); // Для хранения ошибок
-
   interface User {
     id: number;
     username: string;
@@ -31,8 +45,8 @@ function ProfilePage(): React.ReactElement {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            telegram_id: 337683248,
-            username: "bondarika",
+            telegram_id: id,
+            username: username,
           }),
           credentials: "include",
         }
