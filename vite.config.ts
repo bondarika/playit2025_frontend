@@ -17,7 +17,7 @@ export default defineConfig({
       ),
     },
     host: "0.0.0.0",
-    port: 443,
+    port: 5173,
     hmr: {
       host: "tg-mini-app.local",
       port: 443,
