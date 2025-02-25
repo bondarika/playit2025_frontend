@@ -1,4 +1,5 @@
 ﻿import React, { useEffect, useState } from "react";
+import WebApp from "@twa-dev/sdk";
 import "./styles.scss";
 import icons from "../../assets/icons";
 declare global {
