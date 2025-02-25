@@ -2,11 +2,6 @@
 import WebApp from "@twa-dev/sdk";
 import "./styles.scss";
 import icons from "../../assets/icons";
-declare global {
-  interface Window {
-    Telegram: any;
-  }
-}
 
 function ProfilePage(): React.ReactElement {
   const API_BASE_URL = "https://it-otdel.space/playit";
