@@ -16,8 +16,12 @@ export default defineConfig({
         path.resolve(__dirname, "certs", "localhost+2.pem")
       ),
     },
-    host: true,
-    port: 5173,
+    host: "0.0.0.0",
+    port: 443,
+    hmr: {
+      host: "tg-mini-app.local",
+      port: 443,
+    },
   },
   resolve: {
     alias: {
