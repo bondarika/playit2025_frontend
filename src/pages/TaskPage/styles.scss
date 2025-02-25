@@ -1,1 +1,8 @@
-﻿
+﻿@import "@/styles/variables";
+.tasks {
+    &__card {
+        width: 340px;
+        height: 90px;
+        border-radius: 20px;
+    }
+}

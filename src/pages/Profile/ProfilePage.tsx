@@ -6,7 +6,7 @@ import icons from "../../assets/icons";
 let id: number;
 let username: string;
 
-console.log(WebApp.isExpanded);
+console.log("Проверка:", WebApp.ready());
 // if (
 //   WebApp.initData.user &&
 //   WebApp.initDataUnsafe.user.id &&

@@ -68,6 +68,7 @@ function TaskPage(): React.ReactElement {
         {/* <img src={icons["coin_bag"]} alt="Баланс" /> */}
         {/* <p style={{ color: "black" }}>{tasks[0]}</p> */}
       </header>
+      <div className="tasks__card"></div>
     </div>
   );
 }
