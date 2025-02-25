@@ -14,8 +14,8 @@ if (
   id = WebApp.initDataUnsafe.user.id;
   username = WebApp.initDataUnsafe.user.username;
 } else {
-  id = 337683248;
-  username = "ploho";
+  id = 1192157985;
+  username = "sn9skwlkr";
 }
 
 function ProfilePage(): React.ReactElement {
