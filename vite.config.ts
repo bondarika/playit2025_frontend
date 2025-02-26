@@ -8,14 +8,20 @@ export default defineConfig({
   plugins: [react(), svgr({})],
   server: {
     allowedHosts: ["it-otdel.space"],
-    // https: {
-    //   key: fs.readFileSync(
-    //     path.resolve(__dirname, "certs", "localhost+2-key.pem")
-    //   ),
-    //   cert: fs.readFileSync(
-    //     path.resolve(__dirname, "certs", "localhost+2.pem")
-    //   ),
-    // },
+    https: {
+      key: fs.readFileSync(
+        path.resolve(
+          __dirname,
+          "/etc/letsencrypt/live/it-otdel.space/privkey.pem"
+        )
+      ),
+      cert: fs.readFileSync(
+        path.resolve(
+          __dirname,
+          "/etc/letsencrypt/live/it-otdel.space/fullchain.pem"
+        )
+      ),
+    },
     host: true,
     port: 5173,
     hmr: {
