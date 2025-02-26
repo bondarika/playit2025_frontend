@@ -16,7 +16,7 @@ export default defineConfig({
         path.resolve(__dirname, "certs", "localhost+2.pem")
       ),
     },
-    host: "it-otdel.space",
+    host: true,
     port: 5173,
     hmr: {
       host: "it-otdel.space",
