@@ -2,7 +2,7 @@
   web:
     build: .
     ports:
-      - "443:5173"
+      - "5173:443"
     volumes:
       - ./certs:/app/certs:ro
       - .:/app

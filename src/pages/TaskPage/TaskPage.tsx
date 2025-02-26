@@ -1,9 +1,9 @@
 ﻿import React, { useEffect, useState } from "react";
-import icons from "../../assets/icons";
+import Task from "@/"
 
 function TaskPage(): React.ReactElement {
   const API_BASE_URL = "https://it-otdel.space/playit";
-  const [error, setError] = useState<string>(""); // Для хранения ошибок
+  const [error, setError] = useState<string>("");
   interface Task {
     id: number;
     day: number;
@@ -38,16 +38,8 @@ function TaskPage(): React.ReactElement {
         throw new Error(`Ошибка: ${response.statusText}`);
       }
 
-       const data = await response.json();
-       const tasks: Task[] = data.data;
-
-      // if (data.status === 0) {
-      //   setTasks(data.data);
-      //   console.log(tasks)
-      // } else {
-      //   setError(data.message);
-      // }
-
+      const data = await response.json();
+      const tasks: Task[] = data.data;
       console.log(data);
       console.log(tasks);
     } catch (error) {
@@ -65,10 +57,8 @@ function TaskPage(): React.ReactElement {
     <div>
       <header>
         <h1 className="header">задания</h1>
-        {/* <img src={icons["coin_bag"]} alt="Баланс" /> */}
-        {/* <p style={{ color: "black" }}>{tasks[0]}</p> */}
       </header>
-      <div className="tasks__card"></div>
+      <Task />
     </div>
   );
 }
