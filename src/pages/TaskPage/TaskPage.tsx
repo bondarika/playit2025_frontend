@@ -1,5 +1,5 @@
 ﻿import React, { useEffect, useState } from "react";
-import Task from "@/"
+import Task from "../../components/Task/Task";
 
 function TaskPage(): React.ReactElement {
   const API_BASE_URL = "https://it-otdel.space/playit";
