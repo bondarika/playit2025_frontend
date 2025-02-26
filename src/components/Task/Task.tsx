@@ -1,4 +1,4 @@
-﻿import Coin from "@/assets/icons/coin/coin.svg?react"
+﻿import Coin from "@/assets/icons/coin/coin_icon.svg?react"
 function Task () {
 
     return (
