@@ -3,17 +3,12 @@ import WebApp from "@twa-dev/sdk";
 import "./styles.scss";
 import icons from "../../assets/icons";
 
-let id: number;
-let username: string;
+const initDataURLSP = new URLSearchParams(WebApp.initData);
+const hash = initDataURLSP.get("hash");
+initDataURLSP.delete("hash");
+initDataURLSP.sort();
+const checkDataString = initDataURLSP.toString().replace("&", "\n");
 
-if (WebApp.initDataUnsafe.user?.id && WebApp.initDataUnsafe.user.username) {
-  id = WebApp.initDataUnsafe.user.id;
-  username = WebApp.initDataUnsafe.user.username;
-} else {
-  // Моковые данные для проверки в браузере, потом УБРАТЬ!
-  id = 1192157985;
-  username = "sn9skwlkr";
-}
 
 function ProfilePage(): React.ReactElement {
   const API_BASE_URL = "https://it-otdel.space/playit";
@@ -42,8 +37,10 @@ function ProfilePage(): React.ReactElement {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            telegram_id: id,
-            username: username,
+            telegram_id: initDataURLSP.get("id"),
+            username: initDataURLSP.get("username"),
+            data_check_string: checkDataString,
+            hash: hash
           }),
           credentials: "include",
         }
