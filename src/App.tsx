@@ -1,15 +1,16 @@
-import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { Route, Routes, BrowserRouter, Navigate } from "react-router-dom";
 import "./App.scss";
 import TabBar from "./components/TabBar/TabBar";
 import WebApp from "@twa-dev/sdk";
 
 export default function App() {
-  WebApp.expand()
+  WebApp.expand();
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/*" element={<TabBar />} />
+        <Route index element={<Navigate to="/profile" />} />
       </Routes>
+      <TabBar />
     </BrowserRouter>
   );
 }

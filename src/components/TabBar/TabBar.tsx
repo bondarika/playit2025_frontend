@@ -1,5 +1,4 @@
-﻿import { useEffect } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+﻿import { Routes, Route } from "react-router-dom";
 import RouterTab from "../RouterTab/RouterTab";
 import ProfilePage from "../../pages/Profile/ProfilePage";
 import StorePage from "../../pages/StorePage";
@@ -10,12 +9,6 @@ import "./styles.scss";
 
 function TabBar() {
   const selected = location.pathname;
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (location.pathname == "/") {
-      navigate("/profile");
-    }
-  }, [navigate]);
 
   return (
     <>
