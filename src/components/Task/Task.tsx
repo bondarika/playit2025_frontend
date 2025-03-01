@@ -7,7 +7,7 @@ function Task() {
         <p className="task__character">Оборотень</p>
         <div
           className="task__description"
-          style={{ width: "118px", height: "40px" }}
+          style={{ width: "118px", height: "40px", textAlign: "left" }}
         >
           Люблю сияющие бусы из раковин и долгие прогулки…
         </div>
