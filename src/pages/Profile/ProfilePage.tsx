@@ -9,7 +9,6 @@ initDataURLSP.delete("hash");
 initDataURLSP.sort();
 const checkDataString = initDataURLSP.toString().replaceAll("&", "\n");
 
-
 function ProfilePage(): React.ReactElement {
   const API_BASE_URL = "https://it-otdel.space/playit";
 
@@ -161,7 +160,10 @@ function ProfilePage(): React.ReactElement {
       </div>
     </div>
   ) : (
-    <h1>тут нужно реализовать страницу ошибки</h1>
+    <div>
+      <h1>тут нужно реализовать страницу ошибки</h1>
+      <h1>{initDataURLSP.get("username")}</h1>
+    </div>
   );
 }
 
