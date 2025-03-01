@@ -9,6 +9,7 @@ const params = new URLSearchParams(WebApp.initData);
 const hash = JSON.parse(params.get("hash") || "null");
 params.delete("hash");
 params.sort();
+console.log(hash)
 // const checkDataString = params.toString().replaceAll("&", "\n");
 
 function ProfilePage(): React.ReactElement {
@@ -151,12 +152,6 @@ function ProfilePage(): React.ReactElement {
             </div>
           </div>
           <div className="profile__info-stats">
-            <p className="profile__maintext">проверка</p>
-            <div className="profile__box">
-              <p>{hash}</p>
-            </div>
-          </div>
-          <div className="profile__info-stats">
             <p className="profile__maintext">мои призы</p>
             <img
               src={icons["arrow"]}
@@ -170,7 +165,6 @@ function ProfilePage(): React.ReactElement {
   ) : (
     <div>
       <h1>тут нужно реализовать страницу ошибки</h1>
-      <h1>{hash}</h1>
     </div>
   );
 }
