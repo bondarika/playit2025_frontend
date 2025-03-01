@@ -5,10 +5,10 @@ import icons from "../../assets/icons";
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get("user") || "null");
-const hash = params.get("hash") || "null";
+// const hash = params.get("hash") || "null";
 params.delete("hash");
 params.sort();
-const checkDataString = params.toString().replaceAll("&", "\n");
+// const checkDataString = params.toString().replaceAll("&", "\n");
 
 function ProfilePage(): React.ReactElement {
   const API_BASE_URL = "https://it-otdel.space/playit";
@@ -149,14 +149,6 @@ function ProfilePage(): React.ReactElement {
               <p>{user.done_tasks.length}/35</p>
             </div>
           </div>
-
-          <div className="profile__info-stats">
-            <p className="profile__maintext">{checkDataString}</p>
-            <div className="profile__box">
-              <p>{hash}</p>
-            </div>
-          </div>
-
           <div className="profile__info-stats">
             <p className="profile__maintext">мои призы</p>
             <img
@@ -170,7 +162,7 @@ function ProfilePage(): React.ReactElement {
     </div>
   ) : (
     <div>
-      <h1>тут нужно реализовать страницу ошибки</h1>
+      <h1>тут нужно реализовать страницу загрузки</h1>
     </div>
   );
 }
