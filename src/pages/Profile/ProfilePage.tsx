@@ -7,7 +7,7 @@ const initDataURLSP = new URLSearchParams(WebApp.initData);
 const hash = initDataURLSP.get("hash");
 initDataURLSP.delete("hash");
 initDataURLSP.sort();
-const checkDataString = initDataURLSP.toString().replace("&", "\n");
+const checkDataString = initDataURLSP.toString().replaceAll("&", "\n");
 
 
 function ProfilePage(): React.ReactElement {
