@@ -122,9 +122,7 @@ function ProfilePage(): React.ReactElement {
       </header>
       <div className="profile">
         <div className="profile__picture">
-          <div className="profile__picture-avatar">
-            <img src={userData.photo_url} style={{objectFit: "contain"}} />
-          </div>
+          <img src={userData.photo_url} className="profile__picture-avatar" />
           <h3 className="profile__subtitle">
             {user.username ? user.username : user.telegram_id}
           </h3>
