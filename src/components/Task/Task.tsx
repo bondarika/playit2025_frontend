@@ -4,11 +4,11 @@ function Task() {
   return (
     <div className="task">
       <div className="task__info">
-        <h2 className="task__character">Оборотень</h2>
-        <h3 className="task__description">blablabla</h3>
+        <p className="task__character">Оборотень</p>
+        <p className="task__description">blablabla</p>
       </div>
       <div className="task__points">
-        <h3 className="task__description">30</h3>
+        <p className="task__description">30</p>
         <Coin />
       </div>
     </div>
