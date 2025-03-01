@@ -3,13 +3,13 @@ import WebApp from "@twa-dev/sdk";
 import "./styles.scss";
 import icons from "../../assets/icons";
 
-const params = new URLSearchParams(WebApp.initData);
+// const params = new URLSearchParams(WebApp.initData);
 // const id = JSON.parse(params.get("id") || "null");
 // const username = JSON.parse(params.get("username") || "null");
-const hash = JSON.parse(params.get("hash") || "null");
-params.delete("hash");
-params.sort();
-console.log(hash)
+// const hash = JSON.parse(params.get("hash") || "null");
+// params.delete("hash");
+// params.sort();
+// console.log(hash)
 // const checkDataString = params.toString().replaceAll("&", "\n");
 
 function ProfilePage(): React.ReactElement {
