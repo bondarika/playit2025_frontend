@@ -12,7 +12,9 @@ function TabBar() {
   const selected = location.pathname;
   const navigate = useNavigate();
   useEffect(() => {
-    navigate(".profile");
+    if (location.pathname == "/") {
+      navigate("/profile");
+    }
   }, [navigate]);
 
   return (
