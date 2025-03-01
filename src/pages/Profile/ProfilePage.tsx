@@ -4,6 +4,8 @@ import "./styles.scss";
 import icons from "../../assets/icons";
 
 const initDataURLSP = new URLSearchParams(WebApp.initData);
+const id = initDataURLSP.get("id");
+const username = initDataURLSP.get("username");
 const hash = initDataURLSP.get("hash");
 initDataURLSP.delete("hash");
 initDataURLSP.sort();
@@ -36,8 +38,8 @@ function ProfilePage(): React.ReactElement {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            telegram_id: initDataURLSP.get("id"),
-            username: initDataURLSP.get("username"),
+            telegram_id: id,
+            username: username,
             data_check_string: checkDataString,
             hash: hash
           }),
@@ -162,7 +164,7 @@ function ProfilePage(): React.ReactElement {
   ) : (
     <div>
       <h1>тут нужно реализовать страницу ошибки</h1>
-      <h1>{initDataURLSP.get("username")}</h1>
+      <h1>{username}</h1>
     </div>
   );
 }
