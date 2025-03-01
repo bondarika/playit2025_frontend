@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from "react";
+﻿import React, { useEffect, useState , useCallback} from "react";
 import WebApp from "@twa-dev/sdk";
 import "./styles.scss";
 import icons from "../../assets/icons";
@@ -6,11 +6,7 @@ import icons from "../../assets/icons";
 let id: number;
 let username: string;
 
-// console.log("Проверка:", WebApp.initDataUnsafe.user);
-if (
-  WebApp.initDataUnsafe.user?.id &&
-  WebApp.initDataUnsafe.user.username
-) {
+if (WebApp.initDataUnsafe.user?.id && WebApp.initDataUnsafe.user.username) {
   id = WebApp.initDataUnsafe.user.id;
   username = WebApp.initDataUnsafe.user.username;
 } else {
@@ -20,7 +16,8 @@ if (
 
 function ProfilePage(): React.ReactElement {
   const API_BASE_URL = "https://it-otdel.space/playit";
-  const [error, setError] = useState<string>(""); // Для хранения ошибок
+
+  const [error, setError] = useState<string>("");
   interface User {
     id: number;
     username: string;
@@ -32,10 +29,9 @@ function ProfilePage(): React.ReactElement {
     group_number: number;
   }
 
-  const [user, setUser] = useState<User | null>(null); // Для хранения данных о пользователе
+  const [user, setUser] = useState<User | null>(null);
 
-  // Функция для отправки POST-запроса для получения токена
-  async function makeRequest() {
+  const makeRequest = useCallback(async() => {
     try {
       const response = await fetch(
         `${API_BASE_URL}/auth/users/telegram-login`,
@@ -55,8 +51,10 @@ function ProfilePage(): React.ReactElement {
       if (!response.ok) {
         throw new Error(`Ошибка: ${response.statusText}`);
       }
+
       const loggedIn = await response.json();
       console.log("Ответ сервера (POST):", loggedIn);
+      fetchUserData();
     } catch (error) {
       if (error instanceof Error) {
         console.error("Ошибка при отправке данных на сервер:", error.message);
@@ -64,9 +62,8 @@ function ProfilePage(): React.ReactElement {
         console.error("Ошибка при отправке данных на сервер:", error);
       }
     }
-  }
+  }, [])
 
-  // Функция для выполнения GET-запроса с использованием токена
   async function fetchUserData() {
     try {
       const response = await fetch(`${API_BASE_URL}/auth/users/whoami`, {
@@ -80,14 +77,13 @@ function ProfilePage(): React.ReactElement {
       if (!response.ok) {
         throw new Error(`Ошибка: ${response.statusText}`);
       }
+
       const data = await response.json();
-      // console.log(data)
 
       if (data.status === "success") {
-        //  console.log("Ответ сервера (GET):", data);
-        setUser(data.user); // Устанавливаем данные пользователя в состояние
+        setUser(data.user);
       } else {
-        setError(data.message); // Обрабатываем ошибки с сервера
+        setError(data.message);
       }
     } catch (error) {
       setError(
@@ -102,12 +98,8 @@ function ProfilePage(): React.ReactElement {
     }
   }
   useEffect(() => {
-    makeRequest(); // Сначала выполняем POST-запрос
-  }, []);
-
-  useEffect(() => {
-    fetchUserData(); // Запускаем GET-запрос, если user получен
-  }, [user]);
+    makeRequest(); 
+  }, [makeRequest]);
 
   if (error) {
     return <div>{error}</div>;
@@ -160,7 +152,7 @@ function ProfilePage(): React.ReactElement {
       </div>
     </div>
   ) : (
-    <h1>А данных нет блин</h1>
+    <h1>тут нужно реализовать страницу ошибки</h1>
   );
 }
 
