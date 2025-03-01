@@ -4,8 +4,8 @@ import "./styles.scss";
 import icons from "../../assets/icons";
 
 const params = new URLSearchParams(WebApp.initData);
-const id = JSON.parse(params.get("id") || "null");
-const username = JSON.parse(params.get("username") || "null");
+// const id = JSON.parse(params.get("id") || "null");
+// const username = JSON.parse(params.get("username") || "null");
 const hash = JSON.parse(params.get("hash") || "null");
 params.delete("hash");
 params.sort();
@@ -38,10 +38,10 @@ function ProfilePage(): React.ReactElement {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            telegram_id: id,
-            username: username,
+            telegram_id: WebApp.initDataUnsafe.user?.id,
+            username: WebApp.initDataUnsafe.user?.username,
             data_check_string: checkDataString,
-            hash: hash
+            hash: hash,
           }),
           credentials: "include",
         }
@@ -151,6 +151,12 @@ function ProfilePage(): React.ReactElement {
             </div>
           </div>
           <div className="profile__info-stats">
+            <p className="profile__maintext">проверка</p>
+            <div className="profile__box">
+              <p>{hash}</p>
+            </div>
+          </div>
+          <div className="profile__info-stats">
             <p className="profile__maintext">мои призы</p>
             <img
               src={icons["arrow"]}
@@ -164,8 +170,7 @@ function ProfilePage(): React.ReactElement {
   ) : (
     <div>
       <h1>тут нужно реализовать страницу ошибки</h1>
-      <h1>{username}</h1>
-      <h1>{checkDataString}</h1>
+      <h1>{hash}</h1>
     </div>
   );
 }
