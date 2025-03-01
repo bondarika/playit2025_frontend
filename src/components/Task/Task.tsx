@@ -1,9 +1,10 @@
-﻿import Coin from "@/assets/icons/coin/coin_icon.svg?react"
+﻿import "./styles.scss"
+import Coin from "@/assets/icons/coin/coin_icon.svg?react"
 function Task () {
 
     return (
-      <div className="tasks__card">
-        <div className="tasks__price">
+      <div className="task">
+        <div className="task__price">
           <p>30</p>
           <Coin/>
         </div>
