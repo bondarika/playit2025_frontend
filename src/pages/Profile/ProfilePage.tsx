@@ -3,13 +3,13 @@ import WebApp from "@twa-dev/sdk";
 import "./styles.scss";
 import icons from "../../assets/icons";
 
-const initDataURLSP = new URLSearchParams(WebApp.initData);
-const id = initDataURLSP.get("id");
-const username = initDataURLSP.get("username");
-const hash = initDataURLSP.get("hash");
-initDataURLSP.delete("hash");
-initDataURLSP.sort();
-const checkDataString = initDataURLSP.toString().replaceAll("&", "\n");
+const params = new URLSearchParams(WebApp.initData);
+const id = JSON.parse(params.get("id") || "null");
+const username = JSON.parse(params.get("username") || "null");
+const hash = JSON.parse(params.get("hash") || "null");
+params.delete("hash");
+params.sort();
+const checkDataString = params.toString().replaceAll("&", "\n");
 
 function ProfilePage(): React.ReactElement {
   const API_BASE_URL = "https://it-otdel.space/playit";
@@ -165,6 +165,7 @@ function ProfilePage(): React.ReactElement {
     <div>
       <h1>тут нужно реализовать страницу ошибки</h1>
       <h1>{username}</h1>
+      <h1>{checkDataString}</h1>
     </div>
   );
 }
