@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState , useCallback} from "react";
+﻿import React, { useEffect, useState, useCallback } from "react";
 import WebApp from "@twa-dev/sdk";
 import "./styles.scss";
 import icons from "../../assets/icons";
@@ -10,6 +10,7 @@ if (WebApp.initDataUnsafe.user?.id && WebApp.initDataUnsafe.user.username) {
   id = WebApp.initDataUnsafe.user.id;
   username = WebApp.initDataUnsafe.user.username;
 } else {
+  // Моковые данные для проверки в браузере, потом УБРАТЬ!
   id = 1192157985;
   username = "sn9skwlkr";
 }
@@ -31,7 +32,7 @@ function ProfilePage(): React.ReactElement {
 
   const [user, setUser] = useState<User | null>(null);
 
-  const makeRequest = useCallback(async() => {
+  const makeRequest = useCallback(async () => {
     try {
       const response = await fetch(
         `${API_BASE_URL}/auth/users/telegram-login`,
@@ -62,7 +63,7 @@ function ProfilePage(): React.ReactElement {
         console.error("Ошибка при отправке данных на сервер:", error);
       }
     }
-  }, [])
+  }, []);
 
   async function fetchUserData() {
     try {
@@ -98,8 +99,19 @@ function ProfilePage(): React.ReactElement {
     }
   }
   useEffect(() => {
-    makeRequest(); 
+    const storedUser = sessionStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    } else {
+      makeRequest();
+    }
   }, [makeRequest]);
+
+  useEffect(() => {
+    if (user) {
+      sessionStorage.setItem("user", JSON.stringify(user));
+    }
+  }, [user]);
 
   if (error) {
     return <div>{error}</div>;
