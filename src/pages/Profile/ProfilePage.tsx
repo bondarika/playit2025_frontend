@@ -9,7 +9,7 @@ const params = new URLSearchParams(WebApp.initData);
 const hash = JSON.parse(params.get("hash") || "null");
 params.delete("hash");
 params.sort();
-const checkDataString = params.toString().replaceAll("&", "\n");
+// const checkDataString = params.toString().replaceAll("&", "\n");
 
 function ProfilePage(): React.ReactElement {
   const API_BASE_URL = "https://it-otdel.space/playit";
@@ -40,8 +40,8 @@ function ProfilePage(): React.ReactElement {
           body: JSON.stringify({
             telegram_id: WebApp.initDataUnsafe.user?.id,
             username: WebApp.initDataUnsafe.user?.username,
-            data_check_string: checkDataString,
-            hash: hash,
+            // data_check_string: checkDataString,
+            // hash: hash,
           }),
           credentials: "include",
         }
