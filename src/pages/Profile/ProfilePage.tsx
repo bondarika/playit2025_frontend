@@ -3,13 +3,11 @@ import WebApp from "@twa-dev/sdk";
 import "./styles.scss";
 import icons from "../../assets/icons";
 
-// const params = new URLSearchParams(WebApp.initData);
-// const id = JSON.parse(params.get("id") || "null");
-// const username = JSON.parse(params.get("username") || "null");
-// const hash = JSON.parse(params.get("hash") || "null");
-// params.delete("hash");
-// params.sort();
-// console.log(hash)
+const params = new URLSearchParams(WebApp.initData);
+const userData = JSON.parse(params.get("user") || "null");
+// const hash = params.get("hash") || "null";
+params.delete("hash");
+params.sort();
 // const checkDataString = params.toString().replaceAll("&", "\n");
 
 function ProfilePage(): React.ReactElement {
@@ -39,8 +37,8 @@ function ProfilePage(): React.ReactElement {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            telegram_id: WebApp.initDataUnsafe.user?.id,
-            username: WebApp.initDataUnsafe.user?.username,
+            telegram_id: userData?.id,
+            username: userData?.username,
             // data_check_string: checkDataString,
             // hash: hash,
           }),
