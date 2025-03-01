@@ -9,11 +9,11 @@ import Tasks from "@/assets/icons/tasks/tasks_icon.svg?react";
 import "./styles.scss";
 
 function TabBar() {
-  const navigate = useNavigate();
   const selected = location.pathname;
+  const navigate = useNavigate();
   useEffect(() => {
-    navigate("/profile")
-  }, [navigate])
+    navigate(".profile");
+  }, [navigate]);
 
   return (
     <>
