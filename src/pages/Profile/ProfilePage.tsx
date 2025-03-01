@@ -18,11 +18,11 @@ function ProfilePage(): React.ReactElement {
     id: number;
     username: string;
     telegram_id: number;
-    name: string;
     balance: number;
     role: string;
     done_tasks: number[];
     group_number: number;
+    name: string;
   }
 
   const [user, setUser] = useState<User | null>(null);
@@ -122,7 +122,9 @@ function ProfilePage(): React.ReactElement {
       </header>
       <div className="profile">
         <div className="profile__picture">
-          <div className="profile__picture-avatar"></div>
+          <div className="profile__picture-avatar">
+            <img src={userData.photo_url} />
+          </div>
           <h3 className="profile__subtitle">
             {user.username ? user.username : user.telegram_id}
           </h3>
