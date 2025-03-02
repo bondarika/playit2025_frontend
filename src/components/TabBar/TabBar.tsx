@@ -1,4 +1,4 @@
-﻿import { Routes, Route } from "react-router-dom";
+﻿import { Routes, Route, useLocation } from "react-router-dom";
 import RouterTab from "../RouterTab/RouterTab";
 import ProfilePage from "../../pages/Profile/ProfilePage";
 import StorePage from "../../pages/StorePage";
@@ -8,6 +8,7 @@ import Tasks from "@/assets/icons/tasks/tasks_icon.svg?react";
 import "./styles.scss";
 
 function TabBar() {
+   const location = useLocation();
   const selected = location.pathname;
 
   return (
