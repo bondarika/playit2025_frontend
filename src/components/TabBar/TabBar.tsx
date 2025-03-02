@@ -14,11 +14,12 @@ function TabBar() {
 
     useEffect(() => {
       setSelected(location.pathname.split("/")[1]);
-    }, [location]);
+      console.log(selected);
+    }, [location, selected]);
 
   return (
     <>
-      <div style={{ width: "100%" }}>
+      <div style={{ width: "100%" }} key={location.pathname}>
         <div className="tabbar">
           <RouterTab to="/tasks">
             <div className="tabbar__tab">
