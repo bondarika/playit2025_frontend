@@ -10,6 +10,7 @@ import "./styles.scss";
 function TabBar() {
   const location = useLocation();
   const selected = location.pathname.split("/")[1];
+  console.log(selected)
 
   return (
     <>
