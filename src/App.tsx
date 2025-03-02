@@ -20,11 +20,13 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<Navigate to="/profile" />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/store" element={<StorePage />} />
-        <Route path="/tasks" element={<TaskPage />} />
-        <Route path="/*" element={<TabBar />} />
+        <Route path="/" element={<Navigate to="/profile" />} />
+
+        <Route element={<TabBar />}>
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/store" element={<StorePage />} />
+          <Route path="/tasks" element={<TaskPage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
