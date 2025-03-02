@@ -6,11 +6,15 @@ import TaskPage from "../../pages/TaskPage/TaskPage";
 import Shop from "@/assets/icons/shop/shop_icon.svg?react";
 import Tasks from "@/assets/icons/tasks/tasks_icon.svg?react";
 import "./styles.scss";
+import { useEffect, useState } from "react";
 
 function TabBar() {
-  const location = useLocation();
-  const selected = location.pathname.split("/")[1];
-  console.log(selected)
+    const location = useLocation();
+    const [selected, setSelected] = useState(location.pathname.split("/")[1]);
+
+    useEffect(() => {
+      setSelected(location.pathname.split("/")[1]);
+    }, [location]);
 
   return (
     <>
