@@ -18,7 +18,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route index element={<Navigate to="/profile" />} />
-        <TabBar />
+        <Route path="/*" element={<TabBar />} />
       </Routes>
     </BrowserRouter>
   );
