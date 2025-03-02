@@ -18,8 +18,8 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route index element={<Navigate to="/profile" />} />
+        <TabBar />
       </Routes>
-      <TabBar />
     </BrowserRouter>
   );
 }
