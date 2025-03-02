@@ -1,4 +1,4 @@
-﻿import { Routes, Route, useLocation } from "react-router-dom";
+﻿import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import RouterTab from "../RouterTab/RouterTab";
 import ProfilePage from "../../pages/Profile/ProfilePage";
 import StorePage from "../../pages/StorePage";
@@ -48,6 +48,7 @@ function TabBar() {
       </div>
 
       <Routes>
+        <Route path="/" element={<Navigate to="/profile" />} />
         <Route path="/tasks" element={<TaskPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/store" element={<StorePage />} />
