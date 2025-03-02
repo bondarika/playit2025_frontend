@@ -48,7 +48,6 @@ function TabBar() {
       </div>
 
       <Routes>
-        <Route path="/" element={<Navigate to="/profile" />} />
         <Route path="/tasks" element={<TaskPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/store" element={<StorePage />} />
