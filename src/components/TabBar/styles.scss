@@ -25,11 +25,11 @@
     padding-left: 10px;
   }
 }
-.icon {
-  &-inactive {
-    fill: $red;
-  }
-  &-active {
-    fill: $white;
-  }
+
+button[aria-selected="true"] .icon {
+  fill: $red;
+}
+
+button[aria-selected="false"] .icon {
+  color: $white;
 }

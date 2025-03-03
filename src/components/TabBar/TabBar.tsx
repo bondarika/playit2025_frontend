@@ -9,18 +9,14 @@ import "./styles.scss";
 
 function TabBar() {
   const location = useLocation();
-  const selected = location.pathname.split("/")[1];
+
   return (
     <>
       <div style={{ width: "100%" }} key={location.pathname}>
         <div className="tabbar">
           <RouterTab to="/tasks">
             <div className="tabbar__tab">
-              <Tasks
-                className={`icon-${
-                  selected === "tasks" ? "active" : "inactive"
-                }`}
-              />
+              <Tasks className="icon" />
               <p>задания</p>
             </div>
           </RouterTab>
@@ -29,11 +25,7 @@ function TabBar() {
           </RouterTab>
           <RouterTab to="/store">
             <div className="tabbar__tab">
-              <Shop
-                className={`icon-${
-                  selected === "shop" ? "active" : "inactive"
-                }`}
-              />
+              <Shop className="icon" />
               <p>магазин</p>
             </div>
           </RouterTab>
