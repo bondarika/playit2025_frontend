@@ -8,9 +8,9 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/profile" />} />
+        <Route index element={<Navigate to="playit/profile" />} />
+        <Route path="playit/*" element={<TabBar />} />
       </Routes>
-      <TabBar />
     </BrowserRouter>
   );
 }
