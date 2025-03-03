@@ -1,4 +1,4 @@
-import { Route, Routes, BrowserRouter, Navigate } from "react-router-dom";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 import "./App.scss";
 import TabBar from "./components/TabBar/TabBar";
 import WebApp from "@twa-dev/sdk";
@@ -8,7 +8,6 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<Navigate to="profile" />} />
         <Route path="*" element={<TabBar />} />
       </Routes>
     </BrowserRouter>
