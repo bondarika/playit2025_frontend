@@ -5,7 +5,7 @@ import "./styles.scss";
 function RouterTab({ children, to }: RouterTabProps) {
   const navigate = useNavigate();
 
-  const { pathname: toPathname } = useResolvedPath(to);
+  const { pathname: toPathname } = useResolvedPath(`/${to}`);
   const { pathname: locationPathname } = useLocation();
 
   const selected = locationPathname.startsWith(toPathname);
