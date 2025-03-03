@@ -11,7 +11,11 @@ function RouterTab({ children, to }: RouterTabProps) {
   const selected = locationPathname.startsWith(toPathname);
 
   return (
-    <button role="tab" onClick={() => navigate(to)} aria-selected={selected}>
+    <button
+      role="tab"
+      onClick={() => navigate(`/${to}`)}
+      aria-selected={selected}
+    >
       {children}
     </button>
   );
