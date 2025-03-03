@@ -26,10 +26,3 @@
   }
 }
 
-button[aria-selected="true"] .icon {
-  fill: $red;
-}
-
-button[aria-selected="false"] .icon {
-  color: $white;
-}
