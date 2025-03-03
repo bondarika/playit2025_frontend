@@ -8,8 +8,8 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<Navigate to="playit/profile" />} />
-        <Route path="playit/*" element={<TabBar />} />
+        <Route index element={<Navigate to="profile" />} />
+        <Route path="*" element={<TabBar />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,5 +1,4 @@
 ﻿import { Routes, Route } from "react-router-dom";
-// import { Routes, Route, useLocation } from "react-router-dom";
 import RouterTab from "../RouterTab/RouterTab";
 import ProfilePage from "../../pages/Profile/ProfilePage";
 import StorePage from "../../pages/StorePage";
@@ -7,28 +6,15 @@ import TaskPage from "../../pages/TaskPage/TaskPage";
 import Shop from "@/assets/icons/shop/shop_icon.svg?react";
 import Tasks from "@/assets/icons/tasks/tasks_icon.svg?react";
 import "./styles.scss";
-// import { useEffect, useState } from "react";
 
 function TabBar() {
-  // const location = useLocation();
-  // const [selected, setSelected] = useState(location.pathname.split("/")[1]);
-
-  // useEffect(() => {
-  //   setSelected(location.pathname.split("/")[1]);
-  //   console.log(selected);
-  // }, [location, selected]);
-
   return (
     <>
       <div style={{ width: "100%" }} key={location.pathname}>
         <div className="tabbar">
           <RouterTab to="tasks">
             <div className="tabbar__tab">
-              <Tasks
-                // className={`icon-${
-                //   selected === "tasks" ? "active" : "inactive"
-                // }`}
-              />
+              <Tasks />
               <p>задания</p>
             </div>
           </RouterTab>
@@ -37,11 +23,7 @@ function TabBar() {
           </RouterTab>
           <RouterTab to="store">
             <div className="tabbar__tab">
-              <Shop
-                // className={`icon-${
-                //   selected === "store" ? "active" : "inactive"
-                // }`}
-              />
+              <Shop />
               <p>магазин</p>
             </div>
           </RouterTab>
