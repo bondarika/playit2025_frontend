@@ -1,5 +1,4 @@
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import "./App.scss";
 import TabBar from "./components/TabBar/TabBar";
 import WebApp from "@twa-dev/sdk";
 
