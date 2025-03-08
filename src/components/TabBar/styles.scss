@@ -24,7 +24,13 @@
     margin: 0;
     padding-left: 10px;
   }
+  &__avatar {
+    width: 33.5px;
+    height: 33.5px;
+    padding: 1.5px;
+  }
 }
+
 .icon {
   &-inactive {
     fill: $red;
