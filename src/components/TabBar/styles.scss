@@ -25,9 +25,7 @@
     padding-left: 10px;
   }
   &__avatar {
-    width: 33.5px;
-    height: 33.5px;
-    padding: 1.5px;
+    object-fit: contain;
   }
 }
 
