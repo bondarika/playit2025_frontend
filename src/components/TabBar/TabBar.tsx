@@ -1,8 +1,8 @@
 ﻿import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import RouterTab from "../RouterTab/RouterTab";
-import ProfilePage from "../../pages/Profile/ProfilePage";
-import StorePage from "../../pages/StorePage";
-import TaskPage from "../../pages/TaskPage/TaskPage";
+import Profile from "../../pages/Profile/Profile";
+import Store from "../../pages/Store/Store";
+import Task from "../../pages/Tasks/Tasks";
 import Shop from "@/assets/icons/shop/shop_icon.svg?react";
 import Tasks from "@/assets/icons/tasks/tasks_icon.svg?react";
 import "./styles.scss";
@@ -42,9 +42,9 @@ function TabBar() {
 
       <Routes>
         <Route index element={<Navigate to="/profile" />} />
-        <Route path="/tasks" element={<TaskPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/store" element={<StorePage />} />
+        <Route path="/tasks" element={<Task />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/store" element={<Store />} />
       </Routes>
     </>
   );

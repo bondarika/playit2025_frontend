@@ -1,5 +1,5 @@
 ﻿import { useEffect, useState } from "react";
-import icons from "../assets/icons";
+import icons from "../../assets/icons";
 
 function StorePage(): React.ReactElement {
   const API_BASE_URL = "https://it-otdel.space/playit";
@@ -36,7 +36,7 @@ function StorePage(): React.ReactElement {
   return (
     <div>
       <header>
-        <h1 className="header">магазин</h1>
+        <h1 className="header">МАГАЗИН</h1>
         {/* <img src={icons["coin_bag"]} alt="Баланс" /> */}
       </header>
     </div>

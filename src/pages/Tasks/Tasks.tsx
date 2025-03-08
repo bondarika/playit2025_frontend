@@ -56,7 +56,7 @@ function TaskPage(): React.ReactElement {
   return (
     <div>
       <header>
-        <h1 className="header">задания</h1>
+        <h1 className="header">ЗАДАНИЯ</h1>
       </header>
       <Task />
     </div>
