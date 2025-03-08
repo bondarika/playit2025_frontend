@@ -1,4 +1,4 @@
-﻿import "./Task.module.scss";
+﻿import "./styles.scss";
 import Coin from "@/assets/icons/coin/coin_icon.svg?react";
 function Task() {
   return (

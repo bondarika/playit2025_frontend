@@ -1,6 +1,6 @@
 ﻿import { useNavigate, useLocation, useResolvedPath } from "react-router-dom";
 import { RouterTabProps } from "./types";
-import "./RouterTab.module.scss";
+import "./styles.scss";
 
 function RouterTab({ children, to }: RouterTabProps) {
   const navigate = useNavigate();

@@ -4,7 +4,7 @@ import Store from "../../pages/Store/Store";
 import Task from "../../pages/Tasks/Tasks";
 import Shop from "@/assets/icons/shop/shop_icon.svg?react";
 import Tasks from "@/assets/icons/tasks/tasks_icon.svg?react";
-import "./TabBar.module.scss.scss";
+import "./styles.scss";
 import Profile from "../../pages/Profile/Profile";
 
 function TabBar() {
