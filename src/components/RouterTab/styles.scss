@@ -1,14 +1,5 @@
 ﻿@import "@/styles/variables.scss";
 
-// .router-tab {
-//   all: unset;
-//   background-color: $red--lighten--2;
-//   color: $red;
-//   border-radius: 12px;
-//   padding: 8px 28px;
-//   font-weight: 500;
-//   font-size: 16px;
-// }
 [role="tab"][aria-selected="false"] {
   background-color: $pink;
   color: $red;
@@ -17,9 +8,12 @@
 [role="tab"] {
   all: unset;
   border-radius: 12px;
-  padding: 8px 28px;
   font-weight: 500;
   font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
 }
 
 [role="tab"][aria-selected="true"] {
