@@ -1,5 +1,5 @@
 ﻿import WebApp from "@twa-dev/sdk";
-import "./Profile.module.scss";
+import "./styles.scss";
 import icons from "../../assets/icons";
 import { useUser } from "../../hooks/useFetch";
 
