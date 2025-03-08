@@ -30,11 +30,7 @@ function TabBar() {
           </RouterTab>
           <RouterTab to="/profile">
             <div className="tabbar__tab">
-              <img
-                src={userData.photo_url}
-                alt="профиль"
-                className="tabbar__avatar"
-              />
+              <img src={userData.photo_url} alt="профиль" />
             </div>
           </RouterTab>
           <RouterTab to="/store">
