@@ -6,10 +6,14 @@ import Shop from "@/assets/icons/shop/shop_icon.svg?react";
 import Tasks from "@/assets/icons/tasks/tasks_icon.svg?react";
 import "./styles.scss";
 import Profile from "../../pages/Profile/Profile";
+import WebApp from "@twa-dev/sdk";
 
 function TabBar() {
   const location = useLocation();
   const selected = location.pathname.split("/")[1];
+  const params = new URLSearchParams(WebApp.initData);
+  const userData = JSON.parse(params.get("user") || "null");
+
   return (
     <>
       <div style={{ width: "100%" }} key={location.pathname}>
@@ -25,7 +29,7 @@ function TabBar() {
             </div>
           </RouterTab>
           <RouterTab to="/profile">
-            <div></div>
+            <div>{userData.photo_url}</div>
           </RouterTab>
           <RouterTab to="/store">
             <div className="tabbar__tab">
