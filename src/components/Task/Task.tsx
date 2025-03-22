@@ -7,7 +7,6 @@ type TaskProps = {
 };
 
 function Task({ task }: TaskProps) {
-  console.log('Task Props:', task); 
   return (
     <div className="task">
       <div className="task__info">

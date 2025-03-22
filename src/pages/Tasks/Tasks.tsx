@@ -21,8 +21,8 @@ function TaskPage(): React.ReactElement {
           verification: task.verification,
           points: task.points,
         }));
+        console.log(formattedTasks)
         setTasks(formattedTasks);
-        setTasks(fetchedTasks);
       } catch (error) {
         console.error(error);
       }
@@ -31,7 +31,6 @@ function TaskPage(): React.ReactElement {
     loadTasks();
   }, []);
 
-  console.log(tasks);
 
   return (
     <div>
