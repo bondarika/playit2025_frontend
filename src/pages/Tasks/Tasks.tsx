@@ -11,7 +11,6 @@ function TaskPage(): React.ReactElement {
     const loadTasks = async () => {
       try {
         const fetchedTasks = await fetchTasks();
-        console.log(fetchedTasks);
         const formattedTasks = fetchedTasks.map((task) => ({
           id: task['№'],
           day: task['Номер дня'],
@@ -22,7 +21,6 @@ function TaskPage(): React.ReactElement {
           verification: task['Формат проверки'],
           points: task['Стоимость'],
         }));
-        console.log(formattedTasks)
         setTasks(formattedTasks);
       } catch (error) {
         console.error(error);
@@ -32,19 +30,16 @@ function TaskPage(): React.ReactElement {
     loadTasks();
   }, []);
 
-
   return (
     <div>
       <header>
         <h1 className="header">ЗАДАНИЯ</h1>
       </header>
-      <ul>
-        {tasks.map((task) => (
-          <li key={task.id}>
-            <Task task={task} />
-          </li>
-        ))}
-      </ul>
+      {tasks.map((task) => (
+        <div key={task.id}>
+          <Task task={task} />
+        </div>
+      ))}
     </div>
   );
 }
