@@ -19,9 +19,6 @@ function TaskPage(): React.ReactElement {
 
     loadTasks();
   }, []);
-  useEffect(() => {
-    fetchTasks();
-  }, []);
 
   console.log(tasks);
 
@@ -30,11 +27,7 @@ function TaskPage(): React.ReactElement {
       <header>
         <h1 className="header">ЗАДАНИЯ</h1>
       </header>
-      <ul>
-        {tasks.map((task, index) => (
-          <Task key={index} task={task} />
-        ))}
-      </ul>
+      <Task task={tasks[0]}/>
     </div>
   );
 }
