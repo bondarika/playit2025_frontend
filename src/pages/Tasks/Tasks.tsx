@@ -41,6 +41,8 @@ function TaskPage(): React.ReactElement {
     fetchTasks();
   }, []);
 
+  console.log(tasks);
+
   return (
     <div>
       <header>
