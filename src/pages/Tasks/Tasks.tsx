@@ -12,15 +12,15 @@ function TaskPage(): React.ReactElement {
       try {
         const fetchedTasks = await fetchTasks();
         console.log(fetchedTasks);
-        const formattedTasks = fetchedTasks.map((task: ITask) => ({
-          id: task.id,
-          day: task.day,
-          difficulty: task.difficulty,
-          character: task.character,
-          description: task.description,
-          task: task.task, 
-          verification: task.verification,
-          points: task.points,
+        const formattedTasks = fetchedTasks.map((task) => ({
+          id: task['№'],
+          day: task['Номер дня'],
+          difficulty: task['Сложность'],
+          character: task['Персонаж'],
+          description: task['О себе'],
+          task: task['Задание'],
+          verification: task['Формат проверки'],
+          points: task['Стоимость'],
         }));
         console.log(formattedTasks)
         setTasks(formattedTasks);
