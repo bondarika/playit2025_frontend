@@ -1,10 +1,9 @@
-﻿import React, { useEffect, useState } from "react";
-import Task from "../../components/Task/Task";
-import "./styles.scss";
+﻿import React, { useEffect, useState } from 'react';
+import Task from '../../components/Task/Task';
+import './styles.scss';
+import { fetchTasks } from '../../services/api';
 
 function TaskPage(): React.ReactElement {
-  const API_BASE_URL = "https://it-otdel.space/playit";
-  const [error, setError] = useState<string>("");
   interface Task {
     id: number;
     day: number;
@@ -24,42 +23,35 @@ function TaskPage(): React.ReactElement {
     data: Task[];
   }
 
-  const [tasks, setTasks] = useState<Tasks | null>(null);
-  async function fetchTasks() {
-    try {
-      const response = await fetch(`${API_BASE_URL}/tasks/get-all`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      });
+  const [tasks, setTasks] = useState<Task[]>([]);
 
-      if (!response.ok) {
-        throw new Error(`Ошибка: ${response.statusText}`);
+  useEffect(() => {
+    const loadTasks = async () => {
+      try {
+        const fetchedTasks = await fetchTasks();
+        setTasks(fetchedTasks);
+      } catch (error) {
+        console.error(error);
       }
+    };
 
-      const data = await response.json();
-      const tasks: Task[] = data.data;
-      console.log(data);
-      console.log(tasks);
-    } catch (error) {
-      setError("Ошибка при загрузке данных.");
-      console.error(
-        "Ошибка при отправке данных на сервер:",
-        error instanceof Error ? error.message : error
-      );
-    }
-  }
+    loadTasks();
+  }, []);
   useEffect(() => {
     fetchTasks();
   }, []);
+
   return (
     <div>
       <header>
         <h1 className="header">ЗАДАНИЯ</h1>
       </header>
       <Task />
+      <ul>
+        {tasks.map((task) => (
+          <li key={task.id}>{task.character}</li>
+        ))}
+      </ul>
     </div>
   );
 }
