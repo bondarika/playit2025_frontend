@@ -31,8 +31,8 @@ function TaskPage(): React.ReactElement {
         <h1 className="header">ЗАДАНИЯ</h1>
       </header>
       <ul>
-        {tasks.map((task) => (
-          <Task task={task} />
+        {tasks.map((task, index) => (
+          <Task key={index} task={task} />
         ))}
       </ul>
     </div>
