@@ -2,7 +2,7 @@
 import Task from '../../components/Task/Task';
 import './styles.scss';
 import { fetchTasks } from '../../services/api';
-import {ITask} from "../../types/task"
+import { ITask } from '../../types/task';
 
 function TaskPage(): React.ReactElement {
   const [tasks, setTasks] = useState<ITask[]>([]);
@@ -21,12 +21,18 @@ function TaskPage(): React.ReactElement {
   }, []);
 
   console.log(tasks);
-  console.log(tasks[1]);
 
   return (
     <div>
       <header>
         <h1 className="header">ЗАДАНИЯ</h1>
+        <ul>
+          {tasks.map((task) => (
+            <li key={task.id}>
+              <Task task={task} />
+            </li>
+          ))}
+        </ul>
       </header>
     </div>
   );
