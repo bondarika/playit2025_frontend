@@ -7,5 +7,4 @@
   task: string;
   verification: string;
   points: number;
-  avatar: null;
 }

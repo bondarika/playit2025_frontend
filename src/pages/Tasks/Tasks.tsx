@@ -26,14 +26,14 @@ function TaskPage(): React.ReactElement {
     <div>
       <header>
         <h1 className="header">ЗАДАНИЯ</h1>
-        <ul>
-          {tasks.map((task) => (
-            <li key={task.id}>
-              <Task task={task} />
-            </li>
-          ))}
-        </ul>
       </header>
+      <ul>
+        {tasks.map((task) => (
+          <li key={task.id}>
+            <Task task={task} />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
