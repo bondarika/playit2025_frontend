@@ -2,28 +2,10 @@
 import Task from '../../components/Task/Task';
 import './styles.scss';
 import { fetchTasks } from '../../services/api';
+import {ITask} from "../../types/task"
 
 function TaskPage(): React.ReactElement {
-  interface Task {
-    id: number;
-    day: number;
-    difficulty: string;
-    character: string;
-    description: string;
-    task: string;
-    verification: string;
-    answer: any;
-    points: number;
-    avatar: null;
-  }
-
-  interface Tasks {
-    status: number;
-    details: string;
-    data: Task[];
-  }
-
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useState<ITask[]>([]);
 
   useEffect(() => {
     const loadTasks = async () => {
@@ -48,10 +30,9 @@ function TaskPage(): React.ReactElement {
       <header>
         <h1 className="header">ЗАДАНИЯ</h1>
       </header>
-      <Task />
       <ul>
         {tasks.map((task) => (
-          <li key={task.id}>{task.character}</li>
+          <Task task={task} />
         ))}
       </ul>
     </div>

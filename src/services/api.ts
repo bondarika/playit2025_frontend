@@ -1,4 +1,4 @@
-﻿import { UserData } from '../types/user';
+﻿import { UserData } from '../types/userData';
 
 const API_BASE_URL = 'https://it-otdel.space/playit';
 
