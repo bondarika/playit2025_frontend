@@ -21,13 +21,13 @@ function TaskPage(): React.ReactElement {
   }, []);
 
   console.log(tasks);
+  console.log(tasks[1]);
 
   return (
     <div>
       <header>
         <h1 className="header">ЗАДАНИЯ</h1>
       </header>
-      <Task task={tasks[0]}/>
     </div>
   );
 }
