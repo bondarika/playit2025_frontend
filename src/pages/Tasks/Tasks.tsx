@@ -11,6 +11,17 @@ function TaskPage(): React.ReactElement {
     const loadTasks = async () => {
       try {
         const fetchedTasks = await fetchTasks();
+        const formattedTasks = fetchedTasks.map((task: ITask) => ({
+          id: task.id,
+          day: task.day,
+          difficulty: task.difficulty,
+          character: task.character,
+          description: task.description,
+          task: task.task, 
+          verification: task.verification,
+          points: task.points,
+        }));
+        setTasks(formattedTasks);
         setTasks(fetchedTasks);
       } catch (error) {
         console.error(error);

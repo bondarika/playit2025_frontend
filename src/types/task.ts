@@ -1,10 +1,10 @@
 ﻿export interface ITask {
-  id: number;
-  day: number;
-  difficulty: string;
-  character: string;
-  description: string;
   task: string;
-  verification: string;
+  day: number;
+  description: string;
+  character: string;
+  difficulty: string;
   points: number;
+  verification: string;
+  id: number;
 }
