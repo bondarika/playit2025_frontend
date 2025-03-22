@@ -11,6 +11,7 @@ function TaskPage(): React.ReactElement {
     const loadTasks = async () => {
       try {
         const fetchedTasks = await fetchTasks();
+        console.log(fetchedTasks);
         const formattedTasks = fetchedTasks.map((task: ITask) => ({
           id: task.id,
           day: task.day,
