@@ -1,42 +1,43 @@
-﻿@import "@/styles/variables.scss";
-
-.task {
+﻿.task {
   width: 340px;
   height: 90px;
   border-radius: 20px;
-  background-color: $grey;
+  color: rgba(231, 231, 233, 1);
   display: flex;
+  flex-direction: row;
+  padding: 12px;
+  align-items: flex-end;
   justify-content: flex-end;
-  padding: 12px 14px 12px 0px;
-
-  &__info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    align-self: flex-start;
-    gap: 6px;
+  overflow: hidden;
+  position: relative;
+  gap: 12px;
+  &_image {
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 154px;
+    height: 90px;
   }
-
-  &__character {
-    font-family: "Orpheus";
+  &_name {
+    font-family: 'Orpheus';
     font-size: 20px;
-  }
-
-  &__description {
-    font-family: "SF Pro Display";
-    font-size: 11px;
-    font-weight: 400;
-  }
-
-  &__points {
-    display: flex;
-    gap: 3px;
-    align-items: center;
-    align-self: flex-end;
-  }
-
-  p {
-    padding: 0;
     margin: 0;
+  }
+  &_description {
+    font-family: 'SF Pro Display';
+    width: 118px;
+    height: 40px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-clamp: 3;
+    font-size: 12px;
+    margin-top: 6px;
+  }
+  &_reward {
+    display: flex;
+    flex-direction: row;
+    font-size: 11px;
+    gap: 3px;
   }
 }

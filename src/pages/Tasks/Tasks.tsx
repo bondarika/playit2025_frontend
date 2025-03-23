@@ -3,6 +3,8 @@ import Task from '../../components/Task/Task';
 import './styles.scss';
 import { fetchTasks } from '../../services/api';
 import { ITask } from '../../types/task';
+import { IFormattedTask } from '../../types/formattedTask';
+import { IFetchedTask } from '../../types/fetchedTask';
 
 function TaskPage(): React.ReactElement {
   const [tasks, setTasks] = useState<ITask[]>([]);
@@ -11,7 +13,7 @@ function TaskPage(): React.ReactElement {
     const loadTasks = async () => {
       try {
         const fetchedTasks = await fetchTasks();
-        const formattedTasks = fetchedTasks.map((task) => ({
+        const formattedTasks: IFormattedTask[] = fetchedTasks.map((task: IFetchedTask) => ({
           id: task['№'],
           day: task['Номер дня'],
           difficulty: task['Сложность'],
