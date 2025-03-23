@@ -32,9 +32,10 @@
     overflow: hidden;
     line-clamp: 3;
     font-size: 12px;
-    margin-top: 6px;
+    margin: 6px 0px 0px 0px;
   }
   &_reward {
+    margin: 0px;
     display: flex;
     flex-direction: row;
     font-size: 11px;
