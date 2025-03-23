@@ -34,13 +34,15 @@ function Task({ task }: TaskProps) {
       }}
     >
       <img src={avatarArray[task.id - 1]} className="task_image" />
-      <div className="task_character">
-        <h2 className="task_name">{task.character}</h2>
-        <p className="task_description">{task.description}</p>
-      </div>
-      <div className="task_reward">
-        <p>{task.points}</p>
-        <img src={coin_icon} />
+      <div className='task_main'>
+        <div className="task_character">
+          <h2 className="task_name">{task.character}</h2>
+          <p className="task_description">{task.description}</p>
+        </div>
+        <div className="task_reward">
+          <p>{task.points}</p>
+          <img src={coin_icon} />
+        </div>
       </div>
     </div>
   );

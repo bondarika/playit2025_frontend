@@ -1,11 +1,10 @@
 ﻿.task {
-  width: 340px;
+  width: 100%;
   height: 90px;
   border-radius: 20px;
   color: rgba(231, 231, 233, 1);
   display: flex;
   flex-direction: row;
-  // padding: 12px;
   align-items: center;
   justify-content: flex-end;
   overflow: hidden;
@@ -18,6 +17,10 @@
     left: 0;
     width: 154px;
     height: 90px;
+  }
+  &_main {
+    display: flex;
+    flex-direction: row;
   }
   &_name {
     font-family: 'Orpheus';
@@ -35,6 +38,7 @@
     margin: 6px 0px 0px 0px;
   }
   &_reward {
+    align-self: flex-end;
     margin: 0px;
     display: flex;
     flex-direction: row;
