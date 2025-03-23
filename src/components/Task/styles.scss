@@ -21,6 +21,7 @@
   &_main {
     display: flex;
     flex-direction: row;
+    margin-right: 12px;
   }
   &_name {
     font-family: 'Orpheus';
@@ -38,6 +39,9 @@
     margin: 6px 0px 0px 0px;
   }
   &_reward {
+    p {
+      margin: 0px;
+    }
     align-self: flex-end;
     margin: 0px;
     display: flex;
