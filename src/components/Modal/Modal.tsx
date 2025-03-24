@@ -2,6 +2,7 @@
 import { ModalProps } from '../../types/modal';
 import { ModalHandle } from '../../types/modalHandle';
 import './styles.scss';
+import icons from '../../assets/icons';
 
 function Modal(props: ModalProps, ref: React.Ref<ModalHandle>) {
   const [isVisible, setIsVisible] = useState(false);
@@ -17,7 +18,7 @@ function Modal(props: ModalProps, ref: React.Ref<ModalHandle>) {
     <div className="modal">
       <div className="modal_content">
         <button className="modal_close" onClick={() => setIsVisible(false)}>
-          Закрыть
+          <img src={icons["close"]} />
         </button>
         {props.children}
       </div>

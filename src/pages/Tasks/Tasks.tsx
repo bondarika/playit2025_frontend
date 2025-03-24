@@ -32,15 +32,7 @@ function TaskPage(): React.ReactElement {
         </div>
       ))}
       <Modal ref={modalRef}>
-        <div style={{ width: '390px', backgroundColor: 'red', height: '90px' }}>
-          <button
-            // className="modal_close"
-            onClick={() => modalRef.current?.close()}
-          >
-            <img src={icons['close']} />
-          </button>
-          <p> привет</p>
-        </div>
+        <p> привет</p>
       </Modal>
     </div>
   );

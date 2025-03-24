@@ -8,7 +8,7 @@
   overflow: hidden;
   overscroll-behavior: none;
   margin: 0 auto;
-  padding: 0px 10px 96px;
+  padding: 60px 10px 86px 10px;
 }
 
 :root {
@@ -39,8 +39,6 @@ header {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  position: -webkit-sticky; /* Safari */
-  position: sticky;
+  position: fixed;
   top: 0;
-  margin-bottom: 10px;
 }
