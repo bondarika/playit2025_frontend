@@ -1,6 +1,9 @@
 ﻿@import '@/styles/variables.scss';
 
-.modal {
+dialog {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: $pink;
   height: 100%;
   width: 100%;
   margin: 0px;

@@ -17,7 +17,6 @@ function Modal(props: ModalProps, ref: React.Ref<ModalHandle>) {
 
   return (
     <dialog ref={dialogRef}>
-      <div className="modal">
         <button
           className="modal_close"
           onClick={() => dialogRef.current?.close()}
@@ -25,7 +24,6 @@ function Modal(props: ModalProps, ref: React.Ref<ModalHandle>) {
           <img src={icons['close']} />
         </button>
         {props.children}
-      </div>
     </dialog>
   );
 }
