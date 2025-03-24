@@ -1,8 +1,4 @@
 ﻿.task {
-  position: absolute;
-  z-index: -2;
-  border-radius: 20px;
-  &_container {
     width: 100%;
     height: 90px;
     border-radius: 20px;
@@ -61,4 +57,4 @@
       gap: 3px;
     }
   }
-}
+

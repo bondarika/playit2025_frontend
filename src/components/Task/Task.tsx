@@ -25,12 +25,6 @@ type TaskProps = {
 
 function Task({ task }: TaskProps) {
   return (
-    <div
-      className="task"
-      style={{
-        backgroundColor: `#${hexCodes[task.id - 1]}`,
-      }}
-    >
       <div
         className="task_container"
         style={{
@@ -51,7 +45,6 @@ function Task({ task }: TaskProps) {
           </div>
         </div>
       </div>
-    </div>
   );
 }
 
