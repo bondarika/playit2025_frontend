@@ -1,7 +1,6 @@
 ﻿@import '@/styles/variables.scss';
 
 dialog {
-  background-color: $pink !important;
   height: 100%;
   width: 100%;
   margin: 0px;
@@ -21,3 +20,16 @@ dialog {
     border: none;
   }
 }
+
+dialog::backdrop {
+    background-image: none;
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-size: auto;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-origin: padding-box;
+    background-clip: border-box;
+    background-color: rgb(255, 0, 0);
+}
+
