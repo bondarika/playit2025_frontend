@@ -1,4 +1,22 @@
-﻿.modal {
-    height: 100%;
-    width: 100%;
+﻿@import "@/styles/variables.scss";
+
+.modal {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  &_close {
+    display: flex;
+    align-self: flex-end;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: $white;
+    border: none;
+  }
 }

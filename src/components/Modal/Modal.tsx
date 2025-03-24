@@ -1,5 +1,6 @@
 ﻿import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { ModalProps } from '../../types/modal';
+import icons from '../../assets/icons';
 
 type ModalHandle = {
   showModal: () => void;
@@ -16,7 +17,9 @@ function Modal(props: ModalProps, ref: React.Ref<ModalHandle>) {
 
   return (
     <dialog ref={dialogRef} className="modal">
-      <button onClick={() => dialogRef.current?.close()}>Закрыть</button>
+      <button onClick={() => dialogRef.current?.close()}>
+        <img src={icons["close"]} />
+      </button>
       {props.children}
     </dialog>
   );

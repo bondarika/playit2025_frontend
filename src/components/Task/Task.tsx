@@ -1,7 +1,7 @@
 ﻿import { ITask } from '../../types/task';
 import { extractHexFromImageName } from '../../utils/extractHexFromImage';
 import './styles.scss';
-import coin_icon from '@/assets/icons/coin_icon.svg';
+import icons from '../../assets/icons';
 
 const characterAvatars: Record<string, { default: string }> = import.meta.glob(
   '@/assets/images/characters/*.png',
@@ -43,7 +43,7 @@ function Task({ task, onClick }: TaskProps) {
         </div>
         <div className="task_reward">
           <p>{task.points}</p>
-          <img src={coin_icon} />
+          <img src={icons["coin"]} />
         </div>
       </div>
     </div>
