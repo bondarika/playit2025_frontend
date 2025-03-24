@@ -17,10 +17,15 @@ function Modal(props: ModalProps, ref: React.Ref<ModalHandle>) {
 
   return (
     <dialog ref={dialogRef}>
-      <button onClick={() => dialogRef.current?.close()}>
-        <img src={icons["close"]} />
-      </button>
-      {props.children}
+      <div className="modal">
+        <button
+          className="modal_close"
+          onClick={() => dialogRef.current?.close()}
+        >
+          <img src={icons['close']} />
+        </button>
+        {props.children}
+      </div>
     </dialog>
   );
 }
