@@ -16,7 +16,7 @@ function Modal(props: ModalProps, ref: React.Ref<ModalHandle>) {
   }));
 
   return (
-    <dialog ref={dialogRef} className="modal">
+    <dialog ref={dialogRef}>
       <button onClick={() => dialogRef.current?.close()}>
         <img src={icons["close"]} />
       </button>
