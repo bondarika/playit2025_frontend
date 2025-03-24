@@ -2,7 +2,7 @@
 import { makeRequest, fetchUserData } from "../services/api";
 import { User } from "../types/user"
 
-export function useUser(userData: { id: number; username: string }) {
+export function useProfile(userData: { id: number; username: string }) {
   const [user, setUser] = useState<User | null>(() => {
     const storedUser = sessionStorage.getItem("user");
     return storedUser ? JSON.parse(storedUser) : null;

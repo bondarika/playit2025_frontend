@@ -1,7 +1,7 @@
 ﻿import WebApp from "@twa-dev/sdk";
 import "./styles.scss";
 import icons from "../../assets/icons";
-import { useUser } from "../../hooks/useFetch";
+import { useProfile } from "../../hooks/useProfile"
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get("user") || "null");
@@ -11,7 +11,7 @@ const userData = JSON.parse(params.get("user") || "null");
 // const checkDataString = params.toString().replaceAll("&", "\n");
 
 function ProfilePage(): React.ReactElement {
-  const { user, error } = useUser(userData);
+  const { user, error } = useProfile(userData);
 
   if (error) {
     return <div>{error}</div>;

@@ -1,11 +1,6 @@
 ﻿import { forwardRef, useImperativeHandle, useRef } from 'react';
 import { ModalProps } from '../../types/modal';
-import icons from '../../assets/icons';
-
-type ModalHandle = {
-  showModal: () => void;
-  close: () => void;
-};
+import { ModalHandle } from '../../types/modalHandle';
 
 function Modal(props: ModalProps, ref: React.Ref<ModalHandle>) {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -17,12 +12,6 @@ function Modal(props: ModalProps, ref: React.Ref<ModalHandle>) {
 
   return (
     <dialog ref={dialogRef}>
-        <button
-          className="modal_close"
-          onClick={() => dialogRef.current?.close()}
-        >
-          <img src={icons['close']} />
-        </button>
         {props.children}
     </dialog>
   );

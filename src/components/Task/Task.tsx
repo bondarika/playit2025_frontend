@@ -1,7 +1,7 @@
-﻿import { ITask } from '../../types/task';
-import { extractHexFromImageName } from '../../utils/extractHexFromImage';
+﻿import { extractHexFromImageName } from '../../utils/extractHexFromImage';
 import './styles.scss';
 import icons from '../../assets/icons';
+import { TaskProps } from '../../types/taskProps';
 
 const characterAvatars: Record<string, { default: string }> = import.meta.glob(
   '@/assets/images/characters/*.png',
@@ -18,11 +18,6 @@ const avatarNames = Object.keys(characterAvatars).map(
 );
 
 const hexCodes = avatarNames.map((avatar) => extractHexFromImageName(avatar));
-
-type TaskProps = {
-  task: ITask;
-  onClick: () => void;
-};
 
 function Task({ task, onClick }: TaskProps) {
   return (
