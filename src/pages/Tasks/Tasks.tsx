@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
 import Task from '../../components/Task/Task';
 import './styles.scss';
 import { fetchTasks } from '../../services/api';
@@ -13,16 +13,18 @@ function TaskPage(): React.ReactElement {
     const loadTasks = async () => {
       try {
         const fetchedTasks = await fetchTasks();
-        const formattedTasks: IFormattedTask[] = fetchedTasks.map((task: IFetchedTask) => ({
-          id: task['№'],
-          day: task['Номер дня'],
-          difficulty: task['Сложность'],
-          character: task['Персонаж'],
-          description: task['О себе'],
-          task: task['Задание'],
-          verification: task['Формат проверки'],
-          points: task['Стоимость'],
-        }));
+        const formattedTasks: IFormattedTask[] = fetchedTasks.map(
+          (task: IFetchedTask) => ({
+            id: task['№'],
+            day: task['Номер дня'],
+            difficulty: task['Сложность'],
+            character: task['Персонаж'],
+            description: task['О себе'],
+            task: task['Задание'],
+            verification: task['Формат проверки'],
+            points: task['Стоимость'],
+          })
+        );
         setTasks(formattedTasks);
       } catch (error) {
         console.error(error);
@@ -32,6 +34,11 @@ function TaskPage(): React.ReactElement {
     loadTasks();
   }, []);
 
+  const modalRef = useRef<HTMLDialogElement>(null);
+  const handleTaskClick = () => {
+    modalRef.current?.showModal();
+  };
+
   return (
     <div>
       <header>
@@ -39,7 +46,7 @@ function TaskPage(): React.ReactElement {
       </header>
       {tasks.map((task) => (
         <div key={task.id}>
-          <Task task={task} />
+          <Task task={task} onClick={handleTaskClick} />
         </div>
       ))}
     </div>

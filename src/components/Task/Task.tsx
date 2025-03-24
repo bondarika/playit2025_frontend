@@ -21,30 +21,32 @@ const hexCodes = avatarNames.map((avatar) => extractHexFromImageName(avatar));
 
 type TaskProps = {
   task: ITask;
+  onClick: () => void;
 };
 
-function Task({ task }: TaskProps) {
+function Task({ task, onClick }: TaskProps) {
   return (
-      <div
-        className="task"
-        style={{
-          background: `linear-gradient(90deg, transparent 23.38%, #${
-            hexCodes[task.id - 1]
-          } 43.82%)`,
-        }}
-      >
-        <img src={avatarArray[task.id - 1]} className="task_image" />
-        <div className="task_main">
-          <div className="task_character">
-            <h2 className="task_name">{task.character}</h2>
-            <p className="task_description">{task.description}</p>
-          </div>
-          <div className="task_reward">
-            <p>{task.points}</p>
-            <img src={coin_icon} />
-          </div>
+    <div
+      onClick={onClick}
+      className="task"
+      style={{
+        background: `linear-gradient(90deg, transparent 23.38%, #${
+          hexCodes[task.id - 1]
+        } 43.82%)`,
+      }}
+    >
+      <img src={avatarArray[task.id - 1]} className="task_image" />
+      <div className="task_main">
+        <div className="task_character">
+          <h2 className="task_name">{task.character}</h2>
+          <p className="task_description">{task.description}</p>
+        </div>
+        <div className="task_reward">
+          <p>{task.points}</p>
+          <img src={coin_icon} />
         </div>
       </div>
+    </div>
   );
 }
 
