@@ -26,7 +26,7 @@ type TaskProps = {
 function Task({ task }: TaskProps) {
   return (
       <div
-        className="task_container"
+        className="task"
         style={{
           background: `linear-gradient(90deg, transparent 23.38%, #${
             hexCodes[task.id - 1]
