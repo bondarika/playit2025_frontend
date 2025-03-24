@@ -1,17 +1,28 @@
-﻿import { forwardRef, useImperativeHandle, useRef } from 'react';
+﻿import { forwardRef, useImperativeHandle, useState } from 'react';
 import { ModalProps } from '../../types/modal';
 import { ModalHandle } from '../../types/modalHandle';
 import './styles.scss';
 
 function Modal(props: ModalProps, ref: React.Ref<ModalHandle>) {
-  const dialogRef = useRef<HTMLDialogElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useImperativeHandle(ref, () => ({
-    showModal: () => dialogRef.current?.showModal(),
-    close: () => dialogRef.current?.close(),
+    showModal: () => setIsVisible(true),
+    close: () => setIsVisible(false),
   }));
 
-  return <dialog ref={dialogRef}>{props.children}</dialog>;
+  if (!isVisible) return null;
+
+  return (
+    <div className="modal">
+      <div className="modal_content">
+        <button className="modal_close" onClick={() => setIsVisible(false)}>
+          Закрыть
+        </button>
+        {props.children}
+      </div>
+    </div>
+  );
 }
 
 export default forwardRef<ModalHandle, ModalProps>(Modal);
