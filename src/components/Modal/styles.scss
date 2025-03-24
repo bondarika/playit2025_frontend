@@ -21,15 +21,4 @@ dialog {
   }
 }
 
-dialog::backdrop {
-    background-image: none;
-    background-position-x: 0%;
-    background-position-y: 0%;
-    background-size: auto;
-    background-repeat: repeat;
-    background-attachment: scroll;
-    background-origin: padding-box;
-    background-clip: border-box;
-    background-color: rgb(255, 0, 0);
-}
 

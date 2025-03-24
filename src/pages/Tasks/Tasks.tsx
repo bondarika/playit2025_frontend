@@ -51,7 +51,7 @@ function TaskPage(): React.ReactElement {
         </div>
       ))}
       <Modal ref={modalRef}>
-        <p>Modal Content</p>
+        <div style={{width: "390px", backgroundColor: "red", height: "90px"}}>привет</div>
       </Modal>
     </div>
   );
