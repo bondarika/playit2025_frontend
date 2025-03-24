@@ -6,21 +6,20 @@ type ModalHandle = {
   close: () => void;
 };
 
-const Modal = forwardRef<ModalHandle, ModalProps>((props, ref) => {
+function Modal(props: ModalProps, ref: React.Ref<ModalHandle>) {
   const dialogRef = useRef<HTMLDialogElement>(null);
+
   useImperativeHandle(ref, () => ({
     showModal: () => dialogRef.current?.showModal(),
     close: () => dialogRef.current?.close(),
   }));
 
   return (
-    <>
-      <dialog ref={dialogRef} className="modal">
-        <button onClick={() => dialogRef.current?.close()}>Закрыть</button>
-        {props.children}
-      </dialog>
-    </>
+    <dialog ref={dialogRef} className="modal">
+      <button onClick={() => dialogRef.current?.close()}>Закрыть</button>
+      {props.children}
+    </dialog>
   );
-});
+}
 
-export default Modal;
+export default forwardRef<ModalHandle, ModalProps>(Modal);

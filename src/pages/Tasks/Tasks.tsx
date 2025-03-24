@@ -5,6 +5,7 @@ import { fetchTasks } from '../../services/api';
 import { ITask } from '../../types/task';
 import { IFormattedTask } from '../../types/formattedTask';
 import { IFetchedTask } from '../../types/fetchedTask';
+import Modal from '../../components/Modal/Modal';
 
 function TaskPage(): React.ReactElement {
   const [tasks, setTasks] = useState<ITask[]>([]);
@@ -49,6 +50,9 @@ function TaskPage(): React.ReactElement {
           <Task task={task} onClick={handleTaskClick} />
         </div>
       ))}
+      <Modal ref={modalRef}>
+        <p>Modal Content</p>
+      </Modal>
     </div>
   );
 }
