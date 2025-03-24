@@ -1,59 +1,64 @@
 ﻿.task {
-  width: 100%;
-  height: 90px;
+  position: absolute;
+  z-index: -2;
   border-radius: 20px;
-  color: rgba(231, 231, 233, 1);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end;
-  overflow: hidden;
-  position: relative;
-  gap: 12px;
-  margin-bottom: 10px;
-  &_image {
-    z-index: -1;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 154px;
+  &_container {
+    width: 100%;
     height: 90px;
-  }
-  &_main {
+    border-radius: 20px;
+    color: rgba(231, 231, 233, 1);
     display: flex;
     flex-direction: row;
-    margin-right: 12px;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: hidden;
+    position: relative;
     gap: 12px;
-  }
-  &_name {
-    width: 118px;
-    font-family: 'Orpheus';
-    font-size: 20px;
-    margin: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  &_description {
-    font-family: 'SF Pro Display';
-    width: 118px;
-    height: 40px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    line-clamp: 3;
-    font-size: 12px;
-    margin: 6px 0px 0px 0px;
-    text-transform: lowercase;
-  }
-  &_reward {
-    p {
-      margin: 0px;
+    margin-bottom: 10px;
+    &_image {
+      z-index: -1;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 154px;
+      height: 90px;
     }
-    align-self: flex-end;
-    margin: 0px;
-    display: flex;
-    flex-direction: row;
-    font-size: 11px;
-    gap: 3px;
+    &_main {
+      display: flex;
+      flex-direction: row;
+      margin-right: 12px;
+      gap: 12px;
+    }
+    &_name {
+      width: 118px;
+      font-family: 'Orpheus';
+      font-size: 20px;
+      margin: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    &_description {
+      font-family: 'SF Pro Display';
+      width: 118px;
+      height: 40px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      line-clamp: 3;
+      font-size: 12px;
+      margin: 6px 0px 0px 0px;
+      text-transform: lowercase;
+    }
+    &_reward {
+      p {
+        margin: 0px;
+      }
+      align-self: flex-end;
+      margin: 0px;
+      display: flex;
+      flex-direction: row;
+      font-size: 11px;
+      gap: 3px;
+    }
   }
 }
