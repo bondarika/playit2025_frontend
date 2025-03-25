@@ -10,8 +10,8 @@ body {
   overscroll-behavior: none;
   margin-top: var(--tg-safe-area-inset-top);
   margin-bottom: var(--tg-safe-area-inset-bottom);
-  margin-left: calc(var(--tg-safe-area-inset-left) + 10px);
-  margin-right: calc(var(--tg-safe-area-inset-right) + 10px);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 :root {
@@ -37,6 +37,8 @@ h1 {
 }
 
 header {
+  min-width: 320px;
+  max-width: 390px;
   background-color: $white;
   height: 50px;
   width: 100%;
