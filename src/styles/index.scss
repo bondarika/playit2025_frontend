@@ -1,19 +1,17 @@
 @import './variables';
 @import './fonts';
 
-#root {
+body {
   min-width: 320px;
   max-width: 390px;
-  height: 100%;
   overflow: hidden;
   overscroll-behavior: none;
-  margin: 0 auto;
-  padding: 60px 10px 86px 10px;
-}
-
-body {
+  width: 100%;
+  // padding: 60px 10px 86px 10px;
   margin-top: var(--tg-safe-area-inset-top);
   margin-bottom: var(--tg-safe-area-inset-bottom);
+  margin-left: var(--tg-safe-area-inset-left);
+  margin-right: var(--tg-safe-area-inset-right);
 }
 
 :root {
@@ -41,12 +39,12 @@ h1 {
 header {
   background-color: $white;
   height: 50px;
-  display: flex;
   width: 100%;
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   position: fixed;
-  top: 0;
+  top: var(--tg-safe-area-inset-top);
   z-index: 1000;
 }
