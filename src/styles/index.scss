@@ -4,10 +4,7 @@
 body {
   min-width: 320px;
   max-width: 390px;
-  overflow: hidden;
-  overscroll-behavior: none;
   width: 100%;
-  // padding: 60px 10px 86px 10px;
   margin-top: var(--tg-safe-area-inset-top);
   margin-bottom: var(--tg-safe-area-inset-bottom);
   margin-left: var(--tg-safe-area-inset-left);

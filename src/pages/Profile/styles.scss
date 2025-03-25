@@ -1,6 +1,7 @@
-﻿@import "@/styles/variables";
+﻿@import '@/styles/variables';
 .profile {
-  font-family: "SF Pro Display";
+  margin-top: calc(var(--tg-safe-area-inset-top) + 10px);
+  font-family: 'SF Pro Display';
   &__picture {
     display: flex;
     flex-direction: column;

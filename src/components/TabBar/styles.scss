@@ -7,11 +7,11 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 55px;
+  height: calc(var(--tg-safe-area-inset-bottom) + 55px);
   background-color: $white;
   position: fixed;
   z-index: 1000;
-  bottom: var(--tg-safe-area-inset-bottom);
+  bottom: 0;
   box-shadow: 0px -1px 20px 0px rgba(83, 48, 55, 0.1);
   &__tab {
     display: flex;
