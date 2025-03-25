@@ -1,6 +1,7 @@
 ﻿@import '@/styles/variables';
 .tasks {
   margin-top: calc(var(--tg-safe-area-inset-top) + 10px);
+  margin-bottom: calc(var(--tg-safe-area-inset-bottom) + 55px);
   &__card {
     width: 340px;
     height: 90px;
