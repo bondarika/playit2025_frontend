@@ -3,14 +3,14 @@
 .tabbar {
   min-width: 320px;
   max-width: 390px;
-  margin: 0 auto;
+  width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 86px;
+  height: 55px;
   background-color: $white;
   position: fixed;
-  bottom: 0;
+  bottom: var(--tg-safe-area-inset-bottom);
   left: 0;
   right: 0;
   z-index: 1000;
