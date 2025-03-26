@@ -1,10 +1,10 @@
-﻿import WebApp from "@twa-dev/sdk";
-import "./styles.scss";
-import icons from "../../assets/icons";
-import { useProfile } from "../../hooks/useProfile"
+﻿import WebApp from '@twa-dev/sdk';
+import './styles.scss';
+import icons from '../../assets/icons';
+import { useProfile } from '../../hooks/useProfile';
 
 const params = new URLSearchParams(WebApp.initData);
-const userData = JSON.parse(params.get("user") || "null");
+const userData = JSON.parse(params.get('user') || 'null');
 // const hash = params.get("hash") || "null";
 // params.delete("hash");
 // params.sort();
@@ -20,8 +20,17 @@ function ProfilePage(): React.ReactElement {
   return user ? (
     <div>
       <header>
-        <h1 className="header">ПРОФИЛЬ</h1>
-        <img src={icons["settings"]} alt="Настройки" />
+        <div
+          className="container"
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
+        >
+          <h1 className="header">ПРОФИЛЬ</h1>
+          <img src={icons['settings']} alt="Настройки" />
+        </div>
       </header>
       <div className="profile">
         <div className="profile__picture">
@@ -42,7 +51,7 @@ function ProfilePage(): React.ReactElement {
           <div className="profile__info-stats">
             <p className="profile__maintext">баланс</p>
             <div className="profile__box">
-              <img src={icons["coin_bag"]} alt="Баланс" />
+              <img src={icons['coin_bag']} alt="Баланс" />
               <p>{user.balance}</p>
             </div>
           </div>
@@ -55,9 +64,9 @@ function ProfilePage(): React.ReactElement {
           <div className="profile__info-stats">
             <p className="profile__maintext">мои призы</p>
             <img
-              src={icons["arrow"]}
+              src={icons['arrow']}
               alt="Открыть"
-              style={{ marginRight: "10px" }}
+              style={{ marginRight: '10px' }}
             />
           </div>
         </div>

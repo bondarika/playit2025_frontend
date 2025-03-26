@@ -16,8 +16,15 @@ function TabBar() {
 
   return (
     <>
-      <div style={{ width: '100%' }} key={location.pathname}>
-        <div className="tabbar">
+      <div className="tabbar" key={location.pathname}>
+        <div
+          className="container"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}
+        >
           <RouterTab to="/tasks">
             <div className="tabbar__tab">
               <Tasks

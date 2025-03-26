@@ -3,13 +3,14 @@
 
 body {
   min-width: 320px;
-  max-width: 390px;
   width: 100%;
   overflow: hidden;
   height: 100vh;
   overscroll-behavior: none;
   margin-top: var(--tg-safe-area-inset-top);
   margin-bottom: var(--tg-safe-area-inset-bottom);
+  margin-right: var(--tg-safe-area-inset-right);
+  margin-left: var(--tg-safe-area-inset-left);
 }
 
 :root {
@@ -35,17 +36,19 @@ h1 {
 }
 
 header {
-  min-width: 320px;
-  max-width: 390px;
-  padding: 0 10px;
+  width: 100%;
   background-color: $white;
   height: 50px;
   width: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
   position: fixed;
   top: var(--tg-safe-area-inset-top);
   z-index: 1000;
+}
+
+.container {
+  width: 100%;
+  max-width: 390px;
+  padding: 0px 10px;
 }

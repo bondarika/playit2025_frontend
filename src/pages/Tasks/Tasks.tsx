@@ -23,9 +23,11 @@ function TaskPage(): React.ReactElement {
   return (
     <div>
       <header>
-        <h1 className="header">ЗАДАНИЯ</h1>
+        <div className="container">
+          <h1>ЗАДАНИЯ</h1>
+        </div>
       </header>
-      <div className='tasks'>
+      <div className="tasks">
         {tasks.map((task) => (
           <div key={task.id}>
             <Task task={task} onClick={handleTaskClick} />
