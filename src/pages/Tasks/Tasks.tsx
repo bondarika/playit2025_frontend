@@ -2,7 +2,6 @@
 import Task from '../../components/Task/Task';
 import './styles.scss';
 import Modal from '../../components/Modal/Modal';
-import icons from '../../assets/icons';
 import useTasks from '../../hooks/useTasks';
 
 function TaskPage(): React.ReactElement {
