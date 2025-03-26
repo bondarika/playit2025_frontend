@@ -1,5 +1,6 @@
 ﻿@import '@/styles/variables';
 .tasks {
+  max-height: 100vh;
   overflow: auto;
   &__card {
     width: 340px;
