@@ -1,14 +1,19 @@
-﻿import React, { useRef } from 'react';
+﻿import React, { useRef, useState } from 'react';
 import Task from '../../components/Task/Task';
 import './styles.scss';
 import Modal from '../../components/Modal/Modal';
 import useTasks from '../../hooks/useTasks';
+import { TaskProps } from '../../types/taskProps';
 
 function TaskPage(): React.ReactElement {
   const { tasks, loading, error } = useTasks();
   const modalRef = useRef<HTMLDialogElement>(null);
+  const [selectedTask, setSelectedTask] = useState<TaskProps['task'] | null>(
+    null
+  );
 
-  const handleTaskClick = () => {
+  const handleTaskClick = (task: TaskProps['task']) => {
+    setSelectedTask(task);
     modalRef.current?.showModal();
   };
 
@@ -31,11 +36,17 @@ function TaskPage(): React.ReactElement {
       <div className="tasks">
         <div className="container" style={{ width: `calc(100% - 20px)` }}>
           {tasks.map((task) => (
-            <Task key={task.id} task={task} onClick={handleTaskClick} />
+            <Task
+              key={task.id}
+              task={task}
+              onClick={() => handleTaskClick(task)}
+            />
           ))}
-          <Modal ref={modalRef}>
-            <p> привет</p>
-          </Modal>
+          {selectedTask && (
+            <Modal ref={modalRef} task={selectedTask}>
+              <p> привет</p>
+            </Modal>
+          )}
         </div>
       </div>
     </>
