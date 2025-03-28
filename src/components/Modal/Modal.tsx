@@ -4,6 +4,8 @@ import './styles.scss';
 import icons from '../../assets/icons';
 import { extractHexFromImageName } from '../../utils/extractHexFromImage';
 import { TaskProps } from '../../types/taskProps';
+import { ITask } from '../../types/task';
+import { ModalProps } from '../../types/modal';
 
 const characterAvatars: Record<string, { default: string }> = import.meta.glob(
   '@/assets/images/characters_a/*.png',
@@ -21,7 +23,7 @@ const avatarNames = Object.keys(characterAvatars).map(
 
 const hexCodes = avatarNames.map((avatar) => extractHexFromImageName(avatar));
 
-function Modal({ task }: TaskProps, ref: React.Ref<ModalHandle>) {
+function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
   const [isVisible, setIsVisible] = useState(false);
 
   useImperativeHandle(ref, () => ({
@@ -40,6 +42,7 @@ function Modal({ task }: TaskProps, ref: React.Ref<ModalHandle>) {
     >
       <div className="modal_content">
         <button
+          role="close"
           className="modal_close"
           onClick={() => setIsVisible(false)}
           style={{ color: 'rgba(231, 231, 233, 1)' }}
