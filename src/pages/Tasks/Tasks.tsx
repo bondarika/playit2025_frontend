@@ -29,7 +29,7 @@ function TaskPage(): React.ReactElement {
       </header>
 
       <div className="tasks">
-        <div className="container">
+        <div className="container" style={{ padding: '0px' }}>
           {tasks.map((task) => (
             <Task key={task.id} task={task} onClick={handleTaskClick} />
           ))}
