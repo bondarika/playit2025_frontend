@@ -6,7 +6,7 @@ import { extractHexFromImageName } from '../../utils/extractHexFromImage';
 import { ModalProps } from '../../types/modal';
 
 const characterAvatars: Record<string, { default: string }> = import.meta.glob(
-  '@/assets/images/characters_a/*.png',
+  '@/assets/images/characters_b/*.png',
   {
     eager: true,
   }
