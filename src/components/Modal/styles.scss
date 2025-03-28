@@ -3,10 +3,10 @@
 .modal {
   position: fixed;
   z-index: 2000;
-  top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  top: calc(50px + var(--tg-safe-area-inset-top, 0px));
+  max-height: calc(100vh - 115px - var(--tg-safe-area-inset-bottom, 0px));
   display: flex;
   justify-content: center;
   align-items: center;
