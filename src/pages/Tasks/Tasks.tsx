@@ -44,7 +44,13 @@ function TaskPage(): React.ReactElement {
           ))}
         </div>
       </div>
-      {selectedTask && <Modal ref={modalRef} task={selectedTask} />}
+      {selectedTask && (
+        <div className="tasks">
+          <div className="container" style={{ width: `calc(100% - 20px)` }}>
+            <Modal ref={modalRef} task={selectedTask} />
+          </div>
+        </div>
+      )}
     </>
   );
 }
