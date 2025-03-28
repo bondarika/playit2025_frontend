@@ -35,28 +35,23 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
   console.log(avatarArray);
 
   return (
-    <div className="modal">
-      <div className="modal_container">
-        <div
-          className="modal_content"
-          style={{
-            backgroundColor: `#${hexCodes[task.id - 1]}`,
-          }}
-        >
-          <div
-            className="modal_content-main"
-            style={{
-              backgroundColor: `#${hexCodes[task.id - 1]}`,
-            }}
-          >
-            {' '}
-            <button role="close" onClick={() => setIsVisible(false)}>
-              <img src={icons['close']} />
-            </button>
-            <h2>{task.character}</h2>
-            <p>{task.description}</p>
-          </div>
-        </div>
+    <div
+      className="modal"
+      style={{
+        backgroundColor: `#${hexCodes[task.id - 1]}`,
+      }}
+    >
+      <div
+        className="modal_content"
+        style={{
+          backgroundColor: `#${hexCodes[task.id - 1]}`,
+        }}
+      >
+        <button role="close" onClick={() => setIsVisible(false)}>
+          <img src={icons['close']} />
+        </button>
+        <h2>{task.character}</h2>
+        <p>{task.description}</p>
       </div>
     </div>
   );

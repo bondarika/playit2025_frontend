@@ -1,34 +1,20 @@
 ﻿@import '@/styles/variables.scss';
 
 .modal {
-  width: 100%;
   position: fixed;
-  padding-top: 10px;
-  top: calc(50px + var(--tg-safe-area-inset-top, 0px));
-  max-height: calc(100vh - 115px - var(--tg-safe-area-inset-bottom, 0px));
-  &_container {
-    width: 100%;
-    max-width: 390px;
-    padding: 0px 10px;
-    margin: 0 auto;
-  }
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   &_content {
-    position: fixed;
-    z-index: 2000;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    &_main {
-      padding: 20px;
-      border-radius: 8px;
-      position: relative;
-      overflow: auto;
-    }
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    overflow: auto;
   }
 }
 
