@@ -43,9 +43,7 @@ function TaskPage(): React.ReactElement {
             />
           ))}
           {selectedTask && (
-            <Modal ref={modalRef} task={selectedTask}>
-              <p> привет</p>
-            </Modal>
+            <Modal ref={modalRef} task={selectedTask} />
           )}
         </div>
       </div>
