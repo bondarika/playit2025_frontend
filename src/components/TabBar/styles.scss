@@ -8,7 +8,7 @@
   padding-bottom: var(--tg-safe-area-inset-bottom);
   background-color: $white;
   position: fixed;
-  z-index: 1000;
+  z-index: 999;
   bottom: 0;
   box-shadow: 0px -1px 20px 0px rgba(83, 48, 55, 0.1);
   &__tab {

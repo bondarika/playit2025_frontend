@@ -45,7 +45,7 @@ header {
   align-items: center;
   position: fixed;
   top: var(--tg-safe-area-inset-top);
-  z-index: 1000;
+  z-index: 999;
 }
 
 .container {

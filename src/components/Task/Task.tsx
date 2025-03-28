@@ -4,7 +4,7 @@ import icons from '../../assets/icons';
 import { TaskProps } from '../../types/taskProps';
 
 const characterAvatars: Record<string, { default: string }> = import.meta.glob(
-  '@/assets/images/characters/*.png',
+  '@/assets/images/characters_b/*.png',
   {
     eager: true,
   }
