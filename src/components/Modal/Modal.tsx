@@ -47,6 +47,7 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
         <button role="close" onClick={() => setIsVisible(false)}>
           <img src={icons['close']} />
         </button>
+        <img src={avatarArray[task.id - 1]} className="task_image" />
         <h2>{task.character}</h2>
         <p>{task.description}</p>
       </div>
