@@ -3,8 +3,6 @@ import { ModalHandle } from '../../types/modalHandle';
 import './styles.scss';
 import icons from '../../assets/icons';
 import { extractHexFromImageName } from '../../utils/extractHexFromImage';
-import { TaskProps } from '../../types/taskProps';
-import { ITask } from '../../types/task';
 import { ModalProps } from '../../types/modal';
 
 const characterAvatars: Record<string, { default: string }> = import.meta.glob(
@@ -37,13 +35,13 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
     <div
       className="modal"
       style={{
-        backgroundColor: task ? `#${hexCodes[task.id - 1]}` : 'transparent',
+        backgroundColor: `#${hexCodes[task.id - 1]}`,
       }}
     >
       <div
         className="modal_content"
         style={{
-          backgroundColor: task ? `#${hexCodes[task.id - 1]}` : 'transparent',
+          backgroundColor: `#${hexCodes[task.id - 1]}`,
         }}
       >
         <button role="close" onClick={() => setIsVisible(false)}>
