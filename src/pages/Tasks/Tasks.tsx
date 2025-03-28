@@ -42,11 +42,9 @@ function TaskPage(): React.ReactElement {
               onClick={() => handleTaskClick(task)}
             />
           ))}
-          {selectedTask && (
-            <Modal ref={modalRef} task={selectedTask} />
-          )}
         </div>
       </div>
+      {selectedTask && <Modal ref={modalRef} task={selectedTask} />}
     </>
   );
 }
