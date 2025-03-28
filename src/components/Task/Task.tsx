@@ -19,13 +19,7 @@ const avatarNames = Object.keys(characterAvatars).map(
 
 const hexCodes = avatarNames.map((avatar) => extractHexFromImageName(avatar));
 
-function truncateText(text: string, maxLength: number): string {
-  return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
-}
-
 function Task({ task, onClick }: TaskProps) {
-  const truncatedTaskName = truncateText(task.character, 10);
-
   return (
     <div
       onClick={onClick}
@@ -37,7 +31,7 @@ function Task({ task, onClick }: TaskProps) {
       <img src={avatarArray[task.id - 1]} className="task_image" />
       <div className="task_main">
         <div className="task_character">
-          <h2 className="task_name">{truncatedTaskName}</h2>
+          <h2 className="task_name">{task.character}</h2>
           <p className="task_description">{task.description}</p>
         </div>
         <div className="task_reward">

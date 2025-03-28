@@ -26,14 +26,18 @@
   }
   &_name {
     width: 118px;
-    font-family: 'Orpheus';
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-family: 'SF Pro Display';
+    font-weight: 400;
     font-size: 20px;
     margin: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
   &_description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
     font-family: 'SF Pro Display';
     width: 118px;
     text-overflow: ellipsis;
