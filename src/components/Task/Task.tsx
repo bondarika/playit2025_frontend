@@ -25,9 +25,7 @@ function Task({ task, onClick }: TaskProps) {
       onClick={onClick}
       className="task"
       style={{
-        background: `linear-gradient(90deg, transparent 23.38%, #${
-          hexCodes[task.id - 1]
-        } 43.82%)`,
+        background: `#${hexCodes[task.id - 1]}`,
       }}
     >
       <img src={avatarArray[task.id - 1]} className="task_image" />
@@ -38,7 +36,7 @@ function Task({ task, onClick }: TaskProps) {
         </div>
         <div className="task_reward">
           <p>{task.points}</p>
-          <img src={icons["coin"]} />
+          <img src={icons['coin']} />
         </div>
       </div>
     </div>

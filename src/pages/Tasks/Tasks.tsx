@@ -27,12 +27,11 @@ function TaskPage(): React.ReactElement {
           <h1>ЗАДАНИЯ</h1>
         </div>
       </header>
+
       <div className="tasks">
         <div className="container">
           {tasks.map((task) => (
-            <div key={task.id}>
-              <Task task={task} onClick={handleTaskClick} />
-            </div>
+            <Task key={task.id} task={task} onClick={handleTaskClick} />
           ))}
           <Modal ref={modalRef}>
             <p> привет</p>
