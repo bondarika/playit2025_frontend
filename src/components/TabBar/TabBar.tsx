@@ -23,6 +23,7 @@ function TabBar() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
+            gap: '8px',
           }}
         >
           <RouterTab to="/tasks">
@@ -36,13 +37,16 @@ function TabBar() {
               <p>задания</p>
             </div>
           </RouterTab>
-          <RouterTab to="/profile">
-            <img
-              src={userData.photo_url}
-              alt="профиль"
-              className="tabbar__avatar"
-            />
-          </RouterTab>
+          <div className="tabbar__profile">
+            <RouterTab to="/profile">
+              <img
+                src={userData.photo_url}
+                alt="профиль"
+                className="tabbar__profile-avatar"
+              />
+            </RouterTab>
+          </div>
+
           <RouterTab to="/store">
             <div className="tabbar__tab">
               <Shop

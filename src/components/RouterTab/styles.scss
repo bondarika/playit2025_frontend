@@ -6,8 +6,10 @@
 }
 
 [role="tab"] {
-  all: unset;
+  width: 100%;
+  border: none;
   border-radius: 12px;
+  padding: 0;
   height: 35px;
 }
 
