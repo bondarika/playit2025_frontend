@@ -36,13 +36,12 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
 
   return (
     <div
-      className="modal"
       style={{
-        backgroundColor: `#${hexCodes[task.id - 1]}`,
+        position: "relative",
       }}
     >
       <div
-        className="modal_content"
+        className="modal"
         style={{
           backgroundColor: `#${hexCodes[task.id - 1]}`,
         }}
