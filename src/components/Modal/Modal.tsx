@@ -31,6 +31,9 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
 
   if (!isVisible) return null;
 
+  console.log(characterAvatars);
+  console.log(avatarArray);
+
   return (
     <div
       className="modal"
