@@ -1,8 +1,8 @@
 ﻿@import '@/styles/variables';
 .profile {
-  padding-top: calc(60px + var(--tg-safe-area-inset-top, 0px));
-  max-width: 390px;
-  margin: 0 10px;
+  width: 100%;
+  position: fixed;
+  top: calc(60px + var(--tg-safe-area-inset-top, 0px));
   font-family: 'SF Pro Display';
   &__picture {
     display: flex;

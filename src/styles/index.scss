@@ -2,6 +2,7 @@
 @import './fonts';
 
 body {
+  max-width: 390px;
   min-width: 320px;
   width: 100%;
   overflow: hidden;
@@ -51,4 +52,5 @@ header {
   width: 100%;
   max-width: 390px;
   padding: 0px 10px;
+  margin: 0 auto;
 }
