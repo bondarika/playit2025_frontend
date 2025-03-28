@@ -40,13 +40,13 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
         backgroundColor: task ? `#${hexCodes[task.id - 1]}` : 'transparent',
       }}
     >
-      <div className="modal_content">
-        <button
-          role="close"
-          className="modal_close"
-          onClick={() => setIsVisible(false)}
-          style={{ color: 'rgba(231, 231, 233, 1)' }}
-        >
+      <div
+        className="modal_content"
+        style={{
+          backgroundColor: task ? `#${hexCodes[task.id - 1]}` : 'transparent',
+        }}
+      >
+        <button role="close" onClick={() => setIsVisible(false)}>
           <img src={icons['close']} />
         </button>
         <h2>{task.character}</h2>
