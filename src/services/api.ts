@@ -40,12 +40,12 @@ export const makeRequest = async (userData: UserData) => {
 
 export const fetchUserData = async () => {
   try {
-    const response = await axiosInstance.get('/auth/users/whoami');
-    const data = response.data;
-    if (data.status === 'success') {
-      return data.user;
+    const response = await axios.get('/auth/users/whoami');
+    console.log('API Response:', response.data); 
+    if (response.data && response.data.user) {
+      return response.data.user;
     } else {
-      throw new Error(data.message);
+      throw new Error('User data not found in response');
     }
   } catch (error) {
     console.error('Error fetching user data:', error);
