@@ -12,19 +12,17 @@ const axiosInstance = axios.create({
 });
 
 export const submitTask = async (data: Record<string, any>) => {
-  const response = await fetch('/your-api-endpoint', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  });
-
-  if (!response.ok) {
-    throw new Error(`Failed to submit task: ${response.statusText}`);
+  try {
+    const response = await axiosInstance.post('/tasks/create/autocheck', data);
+    return response.data;
+  } catch (error: any) {
+    if (error.response) {
+      console.error('API Error:', error.response.status, error.response.data);
+    } else {
+      console.error('Network Error:', error.message);
+    }
+    throw error;
   }
-
-  return response.json();
 };
 
 export const makeRequest = async (userData: UserData) => {
