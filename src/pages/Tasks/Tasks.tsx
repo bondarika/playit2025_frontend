@@ -46,7 +46,14 @@ function TaskPage(): React.ReactElement {
       </div>
       {selectedTask && (
         <div style={{ width: '100%', position: 'fixed' }}>
-          <div className="container">
+          <div
+            style={{
+              width: '100%',
+              maxWidth: '390px',
+              padding: '0px 10px',
+              margin: '0 auto',
+            }}
+          >
             <Modal ref={modalRef} task={selectedTask} />
           </div>
         </div>
