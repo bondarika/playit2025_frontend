@@ -44,6 +44,7 @@ export const fetchUserData = async () => {
     console.log('Full API Response:', response);
 
     if (response.data && response.data.user) {
+      console.log(response.data.user);
       return response.data.user; 
     } else {
       throw new Error('User data not found in response');
