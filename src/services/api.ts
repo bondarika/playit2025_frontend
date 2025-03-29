@@ -17,11 +17,16 @@ export const submitTask = async (
 ) => {
   try {
     const isFormData = data instanceof FormData;
-    const response = await axiosInstance.post(endpoint, data, {
-      headers: isFormData
-        ? {} 
-        : { 'Content-Type': 'application/json' }, 
-    });
+    const response = await axios.post(
+      `https://it-otdel.space/playit${endpoint}`,
+      data,
+      {
+        headers: isFormData
+          ? {} 
+          : { 'Content-Type': 'application/json' },
+        withCredentials: true, 
+      }
+    );
     console.log('Response:', response.data);
     return response.data;
   } catch (error: any) {
@@ -75,3 +80,16 @@ export const fetchTasks = async () => {
     throw error;
   }
 };
+
+export const fetchItems = async() => {
+  try {
+    const response = await axiosInstance.get('/shop/get');
+    console.log(response.data);
+    return response.data
+  } catch (error) {
+    console.error(
+      'Ошибка при отправке данных на сервер:',
+      error instanceof Error ? error.message : error
+    );
+  }
+}

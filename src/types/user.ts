@@ -1,4 +1,4 @@
-﻿import { Prize } from "./prize";
+﻿import { Prize } from "./prizeProps";
 
 export interface User {
   id: number;

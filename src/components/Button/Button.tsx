@@ -2,7 +2,7 @@
 import { ButtonProps } from '../../types/button';
 import styles from './Button.module.scss';
 
-const Button = ({ children, ...props }: ButtonProps): ReactElement => {
+function Button({ children, ...props }: ButtonProps): ReactElement {
   return (
     <button style={styles} {...props}>
       {children}
