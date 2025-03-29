@@ -17,7 +17,8 @@ class UserStore {
 
   async authenticate(userData: { id: number; username: string }) {
     try {
-      await makeRequest(userData);
+      const loginResponse = await makeRequest(userData);
+      console.log('Login Response:', loginResponse);
       const fetchedUser = await fetchUserData();
       if (!fetchedUser) {
         throw new Error('Fetched user data is undefined');
