@@ -11,18 +11,20 @@ const axiosInstance = axios.create({
   withCredentials: true, 
 });
 
-export const submitTask = async (data: FormData): Promise<void> => {
-  try {
-    const response = await axiosInstance.post('/tasks/create/autocheck', data, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-    console.log('Response:', response.data);
-  } catch (error) {
-    console.error('Error submitting task:', error);
-    throw error;
+export const submitTask = async (data: Record<string, any>) => {
+  const response = await fetch('/your-api-endpoint', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to submit task: ${response.statusText}`);
   }
+
+  return response.json();
 };
 
 export const makeRequest = async (userData: UserData) => {

@@ -35,32 +35,38 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
 
   if (!isVisible) return null;
 
-  const handleSubmit = async () => {
-    try {
-      const formData = new FormData();
-      const userId = Cookies.get('user_id');
-      if (!userId) {
-        throw new Error('User ID not found in cookies');
-      }
-      formData.append('task_id', task.id.toString());
-      formData.append('user_id', userId);
-      formData.append('value', task.points.toString());
-
-      if (task.verification === 'автоматически') {
-        formData.append('user_answer', userAnswer);
-      } else if (task.verification === 'модерация' && file) {
-        formData.append('file', file);
-      }
-      console.log(formData);
-      for (const [key, value] of formData.entries()) {
-        console.log(`${key}:`, value);
-      }
-      await submitTask(formData);
-      setIsVisible(false);
-    } catch (error) {
-      console.error('Error submitting task:', error);
+const handleSubmit = async () => {
+  try {
+    const userId = Cookies.get('user_id');
+    if (!userId) {
+      throw new Error('User ID not found in cookies');
     }
-  };
+
+    const requestBody: {
+      task_id: number;
+      user_id: number;
+      value: number;
+      user_answer?: string;
+    } = {
+      task_id: task.id,
+      user_id: parseInt(userId, 10),
+      value: task.points,
+    };
+
+    if (task.verification === 'автоматически') {
+      requestBody.user_answer = userAnswer; 
+    } else if (task.verification === 'модерация' && file) {
+      console.warn('File uploads are not supported in this request format.');
+    }
+
+    console.log('Request Body:', requestBody);
+
+    await submitTask(requestBody); 
+    setIsVisible(false);
+  } catch (error) {
+    console.error('Error submitting task:', error);
+  }
+};
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
