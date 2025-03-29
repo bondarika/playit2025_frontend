@@ -11,6 +11,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
+   overflow: auto;
   &_content {
     display: flex;
     flex-direction: column;
@@ -91,6 +92,7 @@ input[type='file'] {
   background-color: transparent;
   border-radius: 8px;
   border: 1px dotted rgba(231, 231, 233, 1);
+  margin-bottom: 12px;
   input::placeholder {
     color: rgba(231, 231, 233, 0.6);
     text-indent: 16px;
