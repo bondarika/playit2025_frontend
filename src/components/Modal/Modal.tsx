@@ -35,12 +35,7 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
   console.log(avatarArray);
 
   return (
-    <div
-      className="modal"
-      style={{
-        backgroundColor: `#${hexCodes[task.id - 1]}`,
-      }}
-    >
+    <div className="modal">
       <div
         className="modal_content"
         style={{

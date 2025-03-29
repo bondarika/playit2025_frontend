@@ -18,6 +18,7 @@
     position: relative;
     overflow: auto;
     height: calc(100% - 50px);
+    max-height: calc(100% - 50px);;
   }
 }
 
