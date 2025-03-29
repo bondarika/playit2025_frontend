@@ -37,35 +37,6 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
 
   if (!isVisible) return null;
 
-  // const handleSubmit = async () => {
-  //   try {
-  //     const userId = Cookies.get('user_id');
-  //     if (!userId) {
-  //       throw new Error('User ID not found in cookies');
-  //     }
-
-  //     const requestBody: {
-  //       task_id: number;
-  //       user_id: number;
-  //       value: number;
-  //       user_answer?: string;
-  //     } = {
-  //       task_id: task.id,
-  //       user_id: parseInt(userId, 10),
-  //       value: task.points,
-  //     };
-
-  //     if (task.verification === 'автоматически') {
-  //       requestBody.user_answer = userAnswer;
-  //     } else if (task.verification === 'модерация' && file) {
-  //       console.warn('File uploads are not supported in this request format.');
-  //     }
-  //     await submitTask(requestBody);
-  //     setIsVisible(false);
-  //   } catch (error) {
-  //     console.error('Error submitting task:', error);
-  //   }
-  // };
   const handleSubmit = async () => {
     try {
       const userId = Cookies.get('user_id');
@@ -73,27 +44,28 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
         throw new Error('User ID not found in cookies');
       }
 
-      const requestBody: {
-        task_id: number;
-        user_id: number;
-        value: number;
-        user_answer?: string;
-        file?: string;
-      } = {
-        task_id: task.id,
-        user_id: parseInt(userId, 10),
-        value: task.points
-      };
-
       let endpoint = '/tasks/create/autocheck';
+      let requestBody: Record<string, string | number> | FormData = {};
 
       if (task.verification === 'автоматически') {
-        requestBody.user_answer = userAnswer;
-      } else if (task.verification === 'модерация' && file) {
-        const base64File = await convertFileToBase64(file);
-        requestBody.file = base64File;
+        requestBody = {
+          task_id: task.id,
+          user_id: parseInt(userId, 10),
+          value: task.points,
+          user_answer: userAnswer || '',
+        };
+      } else if (task.verification === 'модерация') {
         endpoint = '/tasks/create/moderation';
+        requestBody = new FormData();
+        requestBody.append('task_id', task.id.toString());
+        requestBody.append('user_id', userId);
+        requestBody.append('value', task.points.toString());
+        requestBody.append('text', '');
+        if (file) {
+          requestBody.append('file', file);
+        }
       }
+
       console.log('Request Body:', requestBody);
       await submitTask(requestBody, endpoint);
       setIsVisible(false);

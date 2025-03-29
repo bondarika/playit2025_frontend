@@ -12,16 +12,16 @@ const axiosInstance = axios.create({
 });
 
 export const submitTask = async (
-  data: Record<string, any>,
+  data: Record<string, any> | FormData,
   endpoint: string
 ) => {
   try {
-    const config =
-      endpoint === '/tasks/create/moderation'
-        ? {}
-        : { headers: { 'Content-Type': 'application/json' } };
-
-    const response = await axiosInstance.post(endpoint, data, config);
+    const isFormData = data instanceof FormData;
+    const response = await axiosInstance.post(endpoint, data, {
+      headers: isFormData
+        ? {} 
+        : { 'Content-Type': 'application/json' }, 
+    });
     console.log('Response:', response.data);
     return response.data;
   } catch (error: any) {
