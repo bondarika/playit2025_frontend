@@ -41,14 +41,19 @@ export const makeRequest = async (userData: UserData) => {
 export const fetchUserData = async () => {
   try {
     const response = await axios.get('/auth/users/whoami');
-    console.log('API Response:', response.data); 
+    console.log('Full API Response:', response);
+
     if (response.data && response.data.user) {
-      return response.data.user;
+      return response.data.user; 
     } else {
       throw new Error('User data not found in response');
     }
-  } catch (error) {
-    console.error('Error fetching user data:', error);
+  } catch (error: any) {
+    if (error.response) {
+      console.error('API Error:', error.response.status, error.response.data);
+    } else {
+      console.error('Network Error:', error.message);
+    }
     throw error;
   }
 };

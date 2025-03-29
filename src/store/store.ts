@@ -12,13 +12,16 @@ class UserStore {
       error: observable,
       authenticate: action,
       clearUser: action,
-    }); 
+    });
   }
 
   async authenticate(userData: { id: number; username: string }) {
     try {
       await makeRequest(userData);
       const fetchedUser = await fetchUserData();
+      if (!fetchedUser) {
+        throw new Error('Fetched user data is undefined');
+      }
       this.user = fetchedUser;
       this.error = null;
       document.cookie = `user_id=${fetchedUser.id}; path=/; max-age=259200`;
@@ -31,7 +34,7 @@ class UserStore {
   clearUser() {
     this.user = null;
     this.error = null;
-    document.cookie = 'user_id=; path=/; max-age=0'; 
+    document.cookie = 'user_id=; path=/; max-age=0';
   }
 }
 
