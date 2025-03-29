@@ -16,7 +16,6 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    // padding: 0px 16px 32px 16px;
     border-radius: 20px 20px 0px 0px;
     position: relative;
     overflow: auto;
@@ -26,16 +25,43 @@
     color: rgba(231, 231, 233, 1);
     &-avatar {
       width: 100%;
-      height: 250px;
+      height: auto;
       object-fit: contain;
       border-radius: 20px 20px 0px 0px;
     }
-    &_title {
-      display: flex;
-      justify-content: space-between;
-      margin: 21px 0px 6px 0px;
-      &-character {
-        font-size: 32px;
+    &_main {
+      padding: 0px 16px 32px 16px;
+      &_title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 21px 0px 6px 0px;
+        &-character {
+          font-size: 32px;
+        }
+        &-points {
+          display: flex;
+          align-items: center;
+          flex-direction: row;
+          gap: 2px;
+        }
+      }
+      &-task {
+        color: rgba(231, 231, 233, 0.6);
+        font-size: 12px;
+        margin-top: 8px;
+      }
+      &-input {
+        width: 100%;
+        height: 46px;
+        background-color: transparent;
+        border-radius: 8px;
+        border: 1px solid rgba(231, 231, 233, 1);
+        text-indent: 16px;
+        input::placeholder {
+          color: rgba(231, 231, 233, 0.6);
+          text-indent: 16px;
+        }
       }
     }
   }

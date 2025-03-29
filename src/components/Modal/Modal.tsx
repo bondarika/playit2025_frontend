@@ -87,22 +87,24 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
         </button>
 
         <img src={avatarArray[task.id - 1]} className="modal_content-avatar" />
-        <div className="modal_content_title">
-          <div>
-            <h2 className="modal_content_title-character">{task.character}</h2>
-          </div>
-          <div>
+
+        <div className="modal_content_main_title">
+          <h2 className="modal_content_main_title-character">
+            {task.character}
+          </h2>
+          <div className="modal_content_main_title-points">
             <p>{`награда: ${task.points}`}</p>
             <img src={icons['coin']} />
           </div>
         </div>
-        <div className="modal_content-description">
-          <p>{task.description}</p>
-        </div>
+        <p>{task.description}</p>
+        <p className="modal_content_main-task">задание</p>
+        <p style={{ marginBottom: '20px' }}>{task.task}</p>
 
         {task.verification === 'автоматически' && (
           <div>
             <input
+              className="modal_content_main-input"
               type="text"
               placeholder="напиши сюда ответ"
               value={userAnswer}
