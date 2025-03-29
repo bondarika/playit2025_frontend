@@ -51,7 +51,10 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
       } else if (task.verification === 'модерация' && file) {
         formData.append('file', file);
       }
-
+      console.log(formData);
+      for (const [key, value] of formData.entries()) {
+        console.log(`${key}:`, value);
+      }
       await submitTask(formData);
       setIsVisible(false);
     } catch (error) {
