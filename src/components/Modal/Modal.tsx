@@ -105,7 +105,6 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
           {task.verification === 'автоматически' && (
             <div>
               <input
-                className="modal_content_main-input"
                 type="text"
                 placeholder="напиши сюда ответ"
                 value={userAnswer}
