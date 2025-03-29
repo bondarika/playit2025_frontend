@@ -59,9 +59,6 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
       } else if (task.verification === 'модерация' && file) {
         console.warn('File uploads are not supported in this request format.');
       }
-
-      console.log('Request Body:', requestBody);
-
       await submitTask(requestBody);
       setIsVisible(false);
     } catch (error) {
@@ -69,11 +66,14 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
     }
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setFile(e.target.files[0]);
-    }
-  };
+const handleFileChange = (
+  e: React.ChangeEvent<HTMLInputElement>,
+  setFile: (file: File | null) => void
+) => {
+  if (e.target.files && e.target.files[0]) {
+    setFile(e.target.files[0]); 
+  }
+};
 
   return (
     <div className="modal">
@@ -120,10 +120,10 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
                 <input
                   type="file"
                   id="fileInput"
-                  onChange={(e) => handleFileChange(e)}
+                  onChange={(e) => handleFileChange(e, setFile)}
                 />
                 <label htmlFor="fileInput">
-                  прикрепи сюда решение
+                  {file ? file.name : 'прикрепи сюда решение'}
                 </label>
               </div>
               <Button onClick={handleSubmit}>отправить</Button>

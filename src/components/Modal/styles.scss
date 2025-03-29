@@ -90,7 +90,7 @@ input[type='text'] {
 }
 
 input[type='file'] {
-  display: none; 
+  display: none;
 }
 
 label {
@@ -106,4 +106,7 @@ label {
   color: rgba(231, 231, 233, 1);
   font-weight: 500;
   font-size: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
