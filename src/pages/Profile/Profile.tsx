@@ -2,6 +2,7 @@
 import './styles.scss';
 import icons from '../../assets/icons';
 import { useProfile } from '../../hooks/useProfile';
+import { observer } from 'mobx-react-lite';
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
@@ -84,4 +85,5 @@ function ProfilePage(): React.ReactElement {
   );
 }
 
-export default ProfilePage;
+const ObservedProfilePage = observer(ProfilePage);
+export default ObservedProfilePage;

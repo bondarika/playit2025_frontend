@@ -1,6 +1,7 @@
 ﻿import { forwardRef, useImperativeHandle, useState } from 'react';
 import { ModalHandle } from '../../types/modalHandle';
 import './styles.scss';
+import Cookies from 'js-cookie';
 import icons from '../../assets/icons';
 import { extractHexFromImageName } from '../../utils/extractHexFromImage';
 import { ModalProps } from '../../types/modal';
@@ -34,15 +35,16 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
 
   if (!isVisible) return null;
 
-  const storedUser = sessionStorage.getItem('user');
-  const currentUser = storedUser ? JSON.parse(storedUser) : null;
-
   const handleSubmit = async () => {
     try {
       const formData = new FormData();
+      const userId = Cookies.get('user_id');
+      if (!userId) {
+        throw new Error('User ID not found in cookies');
+      }
       formData.append('task_id', task.id.toString());
-      formData.append('user_id', currentUser?.id); 
-      formData.append('value', task.points.toString()); 
+      formData.append('user_id', userId);
+      formData.append('value', task.points.toString());
 
       if (task.verification === 'автоматически') {
         formData.append('text', userAnswer);
@@ -50,8 +52,8 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
         formData.append('file', file);
       }
 
-      await submitTask(formData); 
-      setIsVisible(false); 
+      await submitTask(formData);
+      setIsVisible(false);
     } catch (error) {
       console.error('Error submitting task:', error);
     }
