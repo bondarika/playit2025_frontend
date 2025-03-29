@@ -7,6 +7,7 @@ import { extractHexFromImageName } from '../../utils/extractHexFromImage';
 import { ModalProps } from '../../types/modal';
 import { submitTask } from '../../services/api';
 import Button from '../Button/Button';
+import { convertFileToBase64 } from '../../utils/convertFileToBase64';
 
 const characterAvatars: Record<string, { default: string }> = import.meta.glob(
   '@/assets/images/characters_a/*.webp',
@@ -36,6 +37,35 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
 
   if (!isVisible) return null;
 
+  // const handleSubmit = async () => {
+  //   try {
+  //     const userId = Cookies.get('user_id');
+  //     if (!userId) {
+  //       throw new Error('User ID not found in cookies');
+  //     }
+
+  //     const requestBody: {
+  //       task_id: number;
+  //       user_id: number;
+  //       value: number;
+  //       user_answer?: string;
+  //     } = {
+  //       task_id: task.id,
+  //       user_id: parseInt(userId, 10),
+  //       value: task.points,
+  //     };
+
+  //     if (task.verification === 'автоматически') {
+  //       requestBody.user_answer = userAnswer;
+  //     } else if (task.verification === 'модерация' && file) {
+  //       console.warn('File uploads are not supported in this request format.');
+  //     }
+  //     await submitTask(requestBody);
+  //     setIsVisible(false);
+  //   } catch (error) {
+  //     console.error('Error submitting task:', error);
+  //   }
+  // };
   const handleSubmit = async () => {
     try {
       const userId = Cookies.get('user_id');
@@ -48,6 +78,7 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
         user_id: number;
         value: number;
         user_answer?: string;
+        file?: string; 
       } = {
         task_id: task.id,
         user_id: parseInt(userId, 10),
@@ -57,8 +88,10 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
       if (task.verification === 'автоматически') {
         requestBody.user_answer = userAnswer;
       } else if (task.verification === 'модерация' && file) {
-        console.warn('File uploads are not supported in this request format.');
+        const base64File = await convertFileToBase64(file);
+        requestBody.file = base64File;
       }
+
       await submitTask(requestBody);
       setIsVisible(false);
     } catch (error) {
@@ -66,14 +99,14 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
     }
   };
 
-const handleFileChange = (
-  e: React.ChangeEvent<HTMLInputElement>,
-  setFile: (file: File | null) => void
-) => {
-  if (e.target.files && e.target.files[0]) {
-    setFile(e.target.files[0]); 
-  }
-};
+  const handleFileChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    setFile: (file: File | null) => void
+  ) => {
+    if (e.target.files && e.target.files[0]) {
+      setFile(e.target.files[0]);
+    }
+  };
 
   return (
     <div className="modal">
