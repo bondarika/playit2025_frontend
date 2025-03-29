@@ -35,38 +35,38 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
 
   if (!isVisible) return null;
 
-const handleSubmit = async () => {
-  try {
-    const userId = Cookies.get('user_id');
-    if (!userId) {
-      throw new Error('User ID not found in cookies');
+  const handleSubmit = async () => {
+    try {
+      const userId = Cookies.get('user_id');
+      if (!userId) {
+        throw new Error('User ID not found in cookies');
+      }
+
+      const requestBody: {
+        task_id: number;
+        user_id: number;
+        value: number;
+        user_answer?: string;
+      } = {
+        task_id: task.id,
+        user_id: parseInt(userId, 10),
+        value: task.points,
+      };
+
+      if (task.verification === 'автоматически') {
+        requestBody.user_answer = userAnswer;
+      } else if (task.verification === 'модерация' && file) {
+        console.warn('File uploads are not supported in this request format.');
+      }
+
+      console.log('Request Body:', requestBody);
+
+      await submitTask(requestBody);
+      setIsVisible(false);
+    } catch (error) {
+      console.error('Error submitting task:', error);
     }
-
-    const requestBody: {
-      task_id: number;
-      user_id: number;
-      value: number;
-      user_answer?: string;
-    } = {
-      task_id: task.id,
-      user_id: parseInt(userId, 10),
-      value: task.points,
-    };
-
-    if (task.verification === 'автоматически') {
-      requestBody.user_answer = userAnswer; 
-    } else if (task.verification === 'модерация' && file) {
-      console.warn('File uploads are not supported in this request format.');
-    }
-
-    console.log('Request Body:', requestBody);
-
-    await submitTask(requestBody); 
-    setIsVisible(false);
-  } catch (error) {
-    console.error('Error submitting task:', error);
-  }
-};
+  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -85,9 +85,20 @@ const handleSubmit = async () => {
         <button role="close" onClick={() => setIsVisible(false)}>
           <img src={icons['close']} />
         </button>
+
         <img src={avatarArray[task.id - 1]} className="modal_content-avatar" />
-        <h2>{task.character}</h2>
-        <p>{task.description}</p>
+        <div className="modal_content_title">
+          <div>
+            <h2 className="modal_content_title-character">{task.character}</h2>
+          </div>
+          <div>
+            <p>{`награда: ${task.points}`}</p>
+            <img src={icons['coin']} />
+          </div>
+        </div>
+        <div className="modal_content-description">
+          <p>{task.description}</p>
+        </div>
 
         {task.verification === 'автоматически' && (
           <div>
