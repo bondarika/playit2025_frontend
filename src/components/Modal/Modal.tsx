@@ -116,7 +116,16 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
 
           {task.verification === 'модерация' && (
             <div>
-              <input type="file" onChange={handleFileChange} />
+              <div>
+                <input
+                  type="file"
+                  id="fileInput"
+                  onChange={(e) => handleFileChange(e)}
+                />
+                <label htmlFor="fileInput">
+                  прикрепи сюда решение
+                </label>
+              </div>
               <Button onClick={handleSubmit}>отправить</Button>
             </div>
           )}
