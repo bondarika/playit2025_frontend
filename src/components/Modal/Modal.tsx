@@ -57,9 +57,9 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
       } else if (task.verification === 'модерация') {
         endpoint = '/tasks/create/moderation';
         requestBody = new FormData();
-        requestBody.append('task_id', JSON.stringify(task.id));
-        requestBody.append('user_id', JSON.stringify(userId));
-        requestBody.append('value', JSON.stringify(task.points));
+        requestBody.append('task_id', task.id.toString());
+        requestBody.append('user_id', parseInt(userId, 10).toString());
+        requestBody.append('value', task.points.toString());
         requestBody.append('text', '');
         if (file) {
           const binaryFile = await convertFileToBinary(file);
