@@ -71,7 +71,14 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
         }
       }
 
-      console.log('Request Body:', requestBody);
+      if (requestBody instanceof FormData) {
+        for (const [key, value] of requestBody.entries()) {
+          console.log(`${key}:`, value);
+        }
+      } else {
+        console.log('Request Body:', requestBody);
+      }
+      
       await submitTask(requestBody, endpoint);
       setIsVisible(false);
     } catch (error) {
