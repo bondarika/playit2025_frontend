@@ -13,7 +13,7 @@ const axiosInstance = axios.create({
 
 export const submitTask = async (data: FormData): Promise<void> => {
   try {
-    const response = await axiosInstance.post('/create/autocheck', data, {
+    const response = await axiosInstance.post('/tasks/create/autocheck', data, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
