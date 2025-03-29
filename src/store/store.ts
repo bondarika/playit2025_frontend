@@ -1,4 +1,4 @@
-﻿import { makeAutoObservable } from 'mobx';
+﻿import { action, makeAutoObservable, observable } from 'mobx';
 import { makeRequest, fetchUserData } from '../services/api';
 import { User } from '../types/user';
 
@@ -7,7 +7,12 @@ class UserStore {
   error: string | null = null;
 
   constructor() {
-    makeAutoObservable(this); 
+    makeAutoObservable(this, {
+      user: observable,
+      error: observable,
+      authenticate: action,
+      clearUser: action,
+    }); 
   }
 
   async authenticate(userData: { id: number; username: string }) {
