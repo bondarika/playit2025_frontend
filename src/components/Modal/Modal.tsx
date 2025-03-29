@@ -7,7 +7,7 @@ import { extractHexFromImageName } from '../../utils/extractHexFromImage';
 import { ModalProps } from '../../types/modal';
 import { submitTask } from '../../services/api';
 import Button from '../Button/Button';
-import { convertFileToBase64 } from '../../utils/convertFileToBase64';
+import { convertFileToBinary } from '../../utils/convertFileToBinary';
 
 const characterAvatars: Record<string, { default: string }> = import.meta.glob(
   '@/assets/images/characters_a/*.webp',
@@ -62,7 +62,12 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
         requestBody.append('value', task.points.toString());
         requestBody.append('text', '');
         if (file) {
-          requestBody.append('file', file);
+          const binaryFile = await convertFileToBinary(file);
+          requestBody.append(
+            'file',
+            new Blob([binaryFile], { type: file.type }),
+            file.name
+          );
         }
       }
 
