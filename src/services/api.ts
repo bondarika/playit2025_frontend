@@ -8,13 +8,19 @@ const axiosInstance = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: true, 
+  withCredentials: true,
 });
 
-export const submitTask = async (data: Record<string, any>, endpoint: string) => {
+export const submitTask = async (
+  data: Record<string, any>,
+  endpoint: string
+) => {
   try {
-    const response = await axiosInstance.post(endpoint, data);
-    console.log(response.data);
+    const response = await axiosInstance.post(endpoint, data, {
+      headers: {
+        'Content-Type': 'application/json', 
+      },
+    });
     console.log(response.data);
     return response.data;
   } catch (error: any) {
@@ -45,7 +51,7 @@ export const fetchUserData = async () => {
     const response = await axiosInstance.get('/auth/users/whoami');
 
     if (response.data && response.data.user) {
-      return response.data.user; 
+      return response.data.user;
     } else {
       throw new Error('User data not found in response');
     }
