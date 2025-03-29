@@ -16,12 +16,13 @@ export const submitTask = async (
   endpoint: string
 ) => {
   try {
-    const response = await axiosInstance.post(endpoint, data, {
-      headers: {
-        'Content-Type': 'application/json', 
-      },
-    });
-    console.log(response.data);
+    const config =
+      endpoint === '/tasks/create/moderation'
+        ? {}
+        : { headers: { 'Content-Type': 'application/json' } };
+
+    const response = await axiosInstance.post(endpoint, data, config);
+    console.log('Response:', response.data);
     return response.data;
   } catch (error: any) {
     if (error.response) {
