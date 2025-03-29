@@ -46,7 +46,7 @@ function ProfilePage(): React.ReactElement {
           <div className="profile__info">
             <div className="profile__info-block">
               <h3 className="profile__subtitle">фио</h3>
-              <p className="profile__maintext">{user.name}</p>
+              <p className="profile__maintext">{user.full_name}</p>
             </div>
             <div className="profile__info-block">
               <h3 className="profile__subtitle">группа</h3>

@@ -4,7 +4,7 @@ import './styles.scss';
 import icons from '../../assets/icons';
 import { extractHexFromImageName } from '../../utils/extractHexFromImage';
 import { ModalProps } from '../../types/modal';
-// import { submitTask } from '../../services/api';
+import { submitTask } from '../../services/api';
 
 const characterAvatars: Record<string, { default: string }> = import.meta.glob(
   '@/assets/images/characters_a/*.webp',
@@ -24,7 +24,8 @@ const hexCodes = avatarNames.map((avatar) => extractHexFromImageName(avatar));
 
 function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
   const [isVisible, setIsVisible] = useState(false);
-  // const [userAnswer, setUserAnswer] = useState('');
+  const [userAnswer, setUserAnswer] = useState('');
+  const [file, setFile] = useState<File | null>(null);
 
   useImperativeHandle(ref, () => ({
     showModal: () => setIsVisible(true),
@@ -33,21 +34,34 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
 
   if (!isVisible) return null;
 
-  // const handleSubmit = async () => {
-  //   if (task.verification === 'автоматически') {
-  //     try {
-  //       await submitTask({
-  //         task_id: task.id,
-  //         user_id: 123, 
-  //         value: 0, 
-  //         user_answer: userAnswer,
-  //       });
-  //       setIsVisible(false); 
-  //     } catch (error) {
-  //       console.error('Error submitting task:', error);
-  //     }
-  //   }
-  // };
+  const storedUser = sessionStorage.getItem('user');
+  const currentUser = storedUser ? JSON.parse(storedUser) : null;
+
+  const handleSubmit = async () => {
+    try {
+      const formData = new FormData();
+      formData.append('task_id', task.id.toString());
+      formData.append('user_id', currentUser?.id); 
+      formData.append('value', task.points.toString()); 
+
+      if (task.verification === 'автоматически') {
+        formData.append('text', userAnswer);
+      } else if (task.verification === 'модерация' && file) {
+        formData.append('file', file);
+      }
+
+      await submitTask(formData); 
+      setIsVisible(false); 
+    } catch (error) {
+      console.error('Error submitting task:', error);
+    }
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setFile(e.target.files[0]);
+    }
+  };
 
   return (
     <div className="modal">
@@ -64,7 +78,7 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
         <h2>{task.character}</h2>
         <p>{task.description}</p>
 
-        {/* {task.verification === 'автоматически' && (
+        {task.verification === 'автоматически' && (
           <div>
             <input
               type="text"
@@ -74,7 +88,14 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
             />
             <button onClick={handleSubmit}>отправить</button>
           </div>
-        )} */}
+        )}
+
+        {task.verification === 'модерация' && (
+          <div>
+            <input type="file" onChange={handleFileChange} />
+            <button onClick={handleSubmit}>отправить</button>
+          </div>
+        )}
       </div>
     </div>
   );

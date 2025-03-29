@@ -1,5 +1,4 @@
 ﻿import axios from 'axios';
-import { SubmitTaskRequest } from '../types/submitTaskRequest';
 import { UserData } from '../types/userData';
 
 const API_BASE_URL = 'https://it-otdel.space/playit';
@@ -12,15 +11,17 @@ const axiosInstance = axios.create({
   withCredentials: true, 
 });
 
-export const submitTask = async (data: SubmitTaskRequest): Promise<void> => {
+export const submitTask = async (data: FormData): Promise<void> => {
   try {
-    const response = await axiosInstance.post('/api/submit-task', data);
+    const response = await axiosInstance.post('/api/submit-task', data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
     console.log('Response:', response.data);
-    alert('Task submitted successfully!');
   } catch (error) {
     console.error('Error submitting task:', error);
-    alert('Failed to submit the task.');
-    throw error; 
+    throw error;
   }
 };
 

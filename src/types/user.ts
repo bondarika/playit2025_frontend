@@ -6,5 +6,5 @@
   role: string;
   done_tasks: number[];
   group_number: number;
-  name: string;
+  full_name: string;
 }
