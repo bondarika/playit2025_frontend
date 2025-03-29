@@ -1,4 +1,4 @@
-﻿import { action, makeAutoObservable, observable } from 'mobx';
+﻿import { action, makeAutoObservable, observable, runInAction } from 'mobx';
 import { makeRequest, fetchUserData } from '../services/api';
 import { User } from '../types/user';
 
@@ -17,22 +17,24 @@ class UserStore {
 
   authenticate = async (userData: { id: number; username: string }) => {
     try {
-      const loginResponse = await makeRequest(userData);
-      console.log('Login Response:', loginResponse);
-
+      await makeRequest(userData);
       const fetchedUser = await fetchUserData();
       if (!fetchedUser) {
         throw new Error('Fetched user data is undefined');
       }
 
-      this.user = fetchedUser;
-      this.error = null;
+      runInAction(() => {
+        this.user = fetchedUser;
+        this.error = null;
+      });
 
       document.cookie = `user_id=${fetchedUser.id}; path=/; max-age=259200`;
     } catch (error: any) {
       console.error('Error during authentication:', error);
-      this.error =
-        error instanceof Error ? error.message : 'Неизвестная ошибка';
+      runInAction(() => {
+        this.error =
+          error instanceof Error ? error.message : 'Неизвестная ошибка';
+      });
     }
   };
 
