@@ -11,7 +11,10 @@ const userData = JSON.parse(params.get('user') || 'null');
 // const checkDataString = params.toString().replaceAll("&", "\n");
 
 function ProfilePage(): React.ReactElement {
-  const { user, error } = useProfile(userData);
+    const { user, error } = useProfile({
+      id: userData.id,
+      username: userData.username,
+    });
 
   if (error) {
     return <div>{error}</div>;

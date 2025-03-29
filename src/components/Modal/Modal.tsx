@@ -4,6 +4,7 @@ import './styles.scss';
 import icons from '../../assets/icons';
 import { extractHexFromImageName } from '../../utils/extractHexFromImage';
 import { ModalProps } from '../../types/modal';
+// import { submitTask } from '../../services/api';
 
 const characterAvatars: Record<string, { default: string }> = import.meta.glob(
   '@/assets/images/characters_a/*.webp',
@@ -23,6 +24,7 @@ const hexCodes = avatarNames.map((avatar) => extractHexFromImageName(avatar));
 
 function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
   const [isVisible, setIsVisible] = useState(false);
+  // const [userAnswer, setUserAnswer] = useState('');
 
   useImperativeHandle(ref, () => ({
     showModal: () => setIsVisible(true),
@@ -31,8 +33,21 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
 
   if (!isVisible) return null;
 
-  console.log(characterAvatars);
-  console.log(avatarArray);
+  // const handleSubmit = async () => {
+  //   if (task.verification === 'автоматически') {
+  //     try {
+  //       await submitTask({
+  //         task_id: task.id,
+  //         user_id: 123, 
+  //         value: 0, 
+  //         user_answer: userAnswer,
+  //       });
+  //       setIsVisible(false); 
+  //     } catch (error) {
+  //       console.error('Error submitting task:', error);
+  //     }
+  //   }
+  // };
 
   return (
     <div className="modal">
@@ -48,6 +63,18 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
         <img src={avatarArray[task.id - 1]} className="modal_content-avatar" />
         <h2>{task.character}</h2>
         <p>{task.description}</p>
+
+        {/* {task.verification === 'автоматически' && (
+          <div>
+            <input
+              type="text"
+              placeholder="напиши сюда ответ"
+              value={userAnswer}
+              onChange={(e) => setUserAnswer(e.target.value)}
+            />
+            <button onClick={handleSubmit}>отправить</button>
+          </div>
+        )} */}
       </div>
     </div>
   );

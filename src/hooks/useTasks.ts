@@ -16,18 +16,19 @@ const useTasks = () => {
         const formattedTasks: IFormattedTask[] = fetchedTasks.map(
           (task: IFetchedTask) => ({
             id: task['№'],
-            day: task['Номер дня'],
-            difficulty: task['Сложность'],
-            character: task['Персонаж'],
-            description: task['О себе'],
+            day: task['Номер дня'], 
+            difficulty: task['Сложность'], 
+            character: task['Персонаж'], 
+            description: task['О себе'], 
             task: task['Задание'],
-            verification: task['Формат проверки'],
+            verification: task['Формат проверки'], 
             points: task['Стоимость'],
           })
         );
         setTasks(formattedTasks);
+        setError(null); 
       } catch (error) {
-        setError(error.message);
+        setError(error instanceof Error ? error.message : 'Неизвестная ошибка');
       } finally {
         setLoading(false);
       }

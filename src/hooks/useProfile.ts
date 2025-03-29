@@ -1,10 +1,10 @@
-﻿import { useState, useEffect, useCallback } from "react";
-import { makeRequest, fetchUserData } from "../services/api";
-import { User } from "../types/user"
+﻿import { useState, useEffect, useCallback } from 'react';
+import { makeRequest, fetchUserData } from '../services/api';
+import { User } from '../types/user';
 
 export function useProfile(userData: { id: number; username: string }) {
   const [user, setUser] = useState<User | null>(() => {
-    const storedUser = sessionStorage.getItem("user");
+    const storedUser = sessionStorage.getItem('user');
     return storedUser ? JSON.parse(storedUser) : null;
   });
 
@@ -15,8 +15,9 @@ export function useProfile(userData: { id: number; username: string }) {
       await makeRequest(userData);
       const fetchedUser = await fetchUserData();
       setUser(fetchedUser);
+      setError(null);
     } catch (error) {
-      setError(error instanceof Error ? error.message : "Неизвестная ошибка");
+      setError(error instanceof Error ? error.message : 'Неизвестная ошибка');
     }
   }, [userData]);
 
@@ -28,7 +29,7 @@ export function useProfile(userData: { id: number; username: string }) {
 
   useEffect(() => {
     if (user) {
-      sessionStorage.setItem("user", JSON.stringify(user));
+      sessionStorage.setItem('user', JSON.stringify(user));
     }
   }, [user]);
 
