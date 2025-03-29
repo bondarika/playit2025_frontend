@@ -77,12 +77,13 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
         task_id: number;
         user_id: number;
         value: number;
-        user_answer?: string;
-        file?: string; 
+        user_answer: string;
+        file?: string;
       } = {
         task_id: task.id,
         user_id: parseInt(userId, 10),
         value: task.points,
+        user_answer: userAnswer || '',
       };
 
       if (task.verification === 'автоматически') {
@@ -91,7 +92,7 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
         const base64File = await convertFileToBase64(file);
         requestBody.file = base64File;
       }
-
+      console.log('Request Body:', requestBody);
       await submitTask(requestBody);
       setIsVisible(false);
     } catch (error) {
