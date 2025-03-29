@@ -77,23 +77,25 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
         task_id: number;
         user_id: number;
         value: number;
-        user_answer: string;
+        user_answer?: string;
         file?: string;
       } = {
         task_id: task.id,
         user_id: parseInt(userId, 10),
-        value: task.points,
-        user_answer: userAnswer || '',
+        value: task.points
       };
+
+      let endpoint = '/tasks/create/autocheck';
 
       if (task.verification === 'автоматически') {
         requestBody.user_answer = userAnswer;
       } else if (task.verification === 'модерация' && file) {
         const base64File = await convertFileToBase64(file);
         requestBody.file = base64File;
+        endpoint = '/tasks/create/moderation';
       }
       console.log('Request Body:', requestBody);
-      await submitTask(requestBody);
+      await submitTask(requestBody, endpoint);
       setIsVisible(false);
     } catch (error) {
       console.error('Error submitting task:', error);

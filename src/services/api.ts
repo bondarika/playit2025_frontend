@@ -11,9 +11,9 @@ const axiosInstance = axios.create({
   withCredentials: true, 
 });
 
-export const submitTask = async (data: Record<string, any>) => {
+export const submitTask = async (data: Record<string, any>, endpoint: string) => {
   try {
-    const response = await axiosInstance.post('/tasks/create/autocheck', data);
+    const response = await axiosInstance.post(endpoint, data);
     console.log(response.data);
     console.log(response.data);
     return response.data;
