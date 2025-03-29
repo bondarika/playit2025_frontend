@@ -6,6 +6,7 @@ import icons from '../../assets/icons';
 import { extractHexFromImageName } from '../../utils/extractHexFromImage';
 import { ModalProps } from '../../types/modal';
 import { submitTask } from '../../services/api';
+import Button from '../Button/Button';
 
 const characterAvatars: Record<string, { default: string }> = import.meta.glob(
   '@/assets/images/characters_a/*.webp',
@@ -87,39 +88,40 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
         </button>
 
         <img src={avatarArray[task.id - 1]} className="modal_content-avatar" />
-
-        <div className="modal_content_main_title">
-          <h2 className="modal_content_main_title-character">
-            {task.character}
-          </h2>
-          <div className="modal_content_main_title-points">
-            <p>{`награда: ${task.points}`}</p>
-            <img src={icons['coin']} />
+        <div className="modal_content_main">
+          <div className="modal_content_main_title">
+            <h2 className="modal_content_main_title-character">
+              {task.character}
+            </h2>
+            <div className="modal_content_main_title-points">
+              <p>{`награда: ${task.points}`}</p>
+              <img src={icons['coin']} />
+            </div>
           </div>
+          <p>{task.description}</p>
+          <p className="modal_content_main-task">задание</p>
+          <p style={{ marginBottom: '20px' }}>{task.task}</p>
+
+          {task.verification === 'автоматически' && (
+            <div>
+              <input
+                className="modal_content_main-input"
+                type="text"
+                placeholder="напиши сюда ответ"
+                value={userAnswer}
+                onChange={(e) => setUserAnswer(e.target.value)}
+              />
+              <Button onClick={handleSubmit}>отправить</Button>
+            </div>
+          )}
+
+          {task.verification === 'модерация' && (
+            <div>
+              <input type="file" onChange={handleFileChange} />
+              <Button onClick={handleSubmit}>отправить</Button>
+            </div>
+          )}
         </div>
-        <p>{task.description}</p>
-        <p className="modal_content_main-task">задание</p>
-        <p style={{ marginBottom: '20px' }}>{task.task}</p>
-
-        {task.verification === 'автоматически' && (
-          <div>
-            <input
-              className="modal_content_main-input"
-              type="text"
-              placeholder="напиши сюда ответ"
-              value={userAnswer}
-              onChange={(e) => setUserAnswer(e.target.value)}
-            />
-            <button onClick={handleSubmit}>отправить</button>
-          </div>
-        )}
-
-        {task.verification === 'модерация' && (
-          <div>
-            <input type="file" onChange={handleFileChange} />
-            <button onClick={handleSubmit}>отправить</button>
-          </div>
-        )}
       </div>
     </div>
   );

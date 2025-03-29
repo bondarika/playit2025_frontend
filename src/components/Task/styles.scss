@@ -29,7 +29,7 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    font-family: 'SF Pro Display';
+    font-family: 'Morfin Sans';
     font-weight: 400;
     font-size: 20px;
     margin: 0;
@@ -38,7 +38,6 @@
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-    font-family: 'SF Pro Display';
     width: 118px;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -48,9 +47,6 @@
     text-transform: lowercase;
   }
   &_reward {
-    p {
-      margin: 0px;
-    }
     align-self: flex-end;
     margin: 0px;
     display: flex;

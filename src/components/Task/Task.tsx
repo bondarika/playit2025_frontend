@@ -30,7 +30,7 @@ function Task({ task, onClick }: TaskProps) {
     >
       <img src={avatarArray[task.id - 1]} className="task_image" />
       <div className="task_main">
-        <div className="task_character">
+        <div>
           <h2 className="task_name">{task.character}</h2>
           <p className="task_description">{task.description}</p>
         </div>
