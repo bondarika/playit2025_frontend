@@ -1,7 +1,6 @@
 ﻿import { useEffect, useState } from 'react';
 import { fetchTasks } from '../services/api';
 import { ITask } from '../types/task';
-import { IFormattedTask } from '../types/formattedTask';
 import { IFetchedTask } from '../types/fetchedTask';
 
 const useTasks = () => {
@@ -13,15 +12,15 @@ const useTasks = () => {
     const loadTasks = async () => {
       try {
         const fetchedTasks = await fetchTasks();
-        const formattedTasks: IFormattedTask[] = fetchedTasks.map(
+        const formattedTasks: ITask[] = fetchedTasks.map(
           (task: IFetchedTask) => ({
             id: task['№'],
-            day: task['Номер дня'], 
-            difficulty: task['Сложность'], 
-            character: task['Персонаж'], 
-            description: task['О себе'], 
+            day: task['Номер дня'],
+            difficulty: task['Сложность'],
+            character: task['Персонаж'],
+            description: task['О себе'],
             task: task['Задание'],
-            verification: task['Формат проверки'], 
+            verification: task['Формат проверки'],
             points: task['Стоимость'],
           })
         );

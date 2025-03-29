@@ -81,7 +81,7 @@ export const fetchTasks = async () => {
   }
 };
 
-export const fetchItems = async() => {
+export const fetchPrizes = async() => {
   try {
     const response = await axiosInstance.get('/shop/get');
     console.log(response.data);

@@ -1,7 +1,12 @@
 ﻿import { PrizeProps } from '../../types/prizeProps';
 
-function Prize({ id, title, value }: PrizeProps) {
-  return <div></div>;
+function Prize({ prize }: PrizeProps) {
+  return (
+    <>
+      <div>{prize.title}</div>
+      <div>{prize.price}</div>
+    </>
+  );
 }
 
 export default Prize;

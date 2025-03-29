@@ -1,7 +1,17 @@
-﻿import { fetchItems } from '../../services/api';
+﻿import Prize from '../../components/Prize/Prize';
+import usePrizes from '../../hooks/usePrizes';
 
 function StorePage(): React.ReactElement {
-  fetchItems();
+  const { prizes, loading, error } = usePrizes();
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
     <div>
       <header>
@@ -9,6 +19,9 @@ function StorePage(): React.ReactElement {
           <h1>МАГАЗИН</h1>
         </div>
       </header>
+      {prizes.map((prize) => (
+        <Prize key={prize.id} prize={prize} onClick={() => {}} />
+      ))}
     </div>
   );
 }
