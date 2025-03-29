@@ -47,7 +47,7 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
       formData.append('value', task.points.toString());
 
       if (task.verification === 'автоматически') {
-        formData.append('text', userAnswer);
+        formData.append('user_answer', userAnswer);
       } else if (task.verification === 'модерация' && file) {
         formData.append('file', file);
       }
