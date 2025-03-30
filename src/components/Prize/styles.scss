@@ -1,12 +1,12 @@
 ﻿.prize {
   flex: 1;
-  min-width: calc(50% - 5px);
+  max-width: calc(50% - 5px);
   height: 227px;
   display: flex;
   flex-direction: column;
   gap: 4px;
   &__image {
-    min-width: calc(50% - 5px);
+    max-width: calc(50% - 5px);
     height: auto;
     border-radius: 20px;
   }
