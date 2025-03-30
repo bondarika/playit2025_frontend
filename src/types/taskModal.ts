@@ -1,5 +1,5 @@
 ﻿import { ITask } from "./task";
 
-export interface ModalProps {
+export interface TaskModalProps {
   task: ITask;
 }

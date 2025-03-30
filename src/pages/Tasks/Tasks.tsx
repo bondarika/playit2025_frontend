@@ -1,9 +1,9 @@
 ﻿import React, { useRef, useState } from 'react';
 import Task from '../../components/Task/Task';
 import './styles.scss';
-import Modal from '../../components/Modal/Modal';
 import useTasks from '../../hooks/useTasks';
 import { TaskProps } from '../../types/taskProps';
+import TaskModal from '../../components/TaskModal/TaskModal';
 
 function TaskPage(): React.ReactElement {
   const { tasks, loading, error } = useTasks();
@@ -44,7 +44,7 @@ function TaskPage(): React.ReactElement {
           ))}
         </div>
       </div>
-      {selectedTask && <Modal ref={modalRef} task={selectedTask} />}
+      {selectedTask && <TaskModal ref={modalRef} task={selectedTask} />}
     </>
   );
 }

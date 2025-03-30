@@ -21,11 +21,9 @@ function StorePage(): React.ReactElement {
       </header>
       <div className="store">
         <div className="container" style={{ width: `calc(100% - 20px)` }}>
-          <div className="store__content">
-            {prizes.map((prize) => (
-              <Prize key={prize.id} prize={prize} onClick={() => {}} />
-            ))}
-          </div>
+          {prizes.map((prize) => (
+            <Prize key={prize.id} prize={prize} onClick={() => {}} />
+          ))}
         </div>
       </div>
     </div>

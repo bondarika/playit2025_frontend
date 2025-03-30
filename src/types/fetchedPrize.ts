@@ -1,6 +1,6 @@
 ﻿export interface IFetchedPrize {
   '№': number;
-  Нaименование: string;
+  Наименование: string;
   Нaполнение: string;
   Цена: number;
   'Кол-во': number;

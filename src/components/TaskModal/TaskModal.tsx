@@ -4,7 +4,7 @@ import './styles.scss';
 import Cookies from 'js-cookie';
 import icons from '../../assets/icons';
 import { extractHexFromImageName } from '../../utils/extractHexFromImage';
-import { ModalProps } from '../../types/modal';
+import { TaskModalProps } from '../../types/taskModal';
 import { submitTask } from '../../services/api';
 import Button from '../Button/Button';
 import { convertFileToBinary } from '../../utils/convertFileToBinary';
@@ -25,10 +25,11 @@ const avatarNames = Object.keys(characterAvatars).map(
 
 const hexCodes = avatarNames.map((avatar) => extractHexFromImageName(avatar));
 
-function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
+function TaskModal({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) {
   const [isVisible, setIsVisible] = useState(false);
   const [userAnswer, setUserAnswer] = useState('');
   const [file, setFile] = useState<File | null>(null);
+  const [loading, setLoading] = useState(false);
 
   useImperativeHandle(ref, () => ({
     showModal: () => setIsVisible(true),
@@ -38,6 +39,7 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
   if (!isVisible) return null;
 
   const handleSubmit = async () => {
+    setLoading(true);
     try {
       const userId = Cookies.get('user_id');
       if (!userId) {
@@ -89,6 +91,8 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
       setIsVisible(false);
     } catch (error) {
       console.error('Error submitting task:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -152,7 +156,9 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
                   {file ? file.name : 'прикрепи сюда решение'}
                 </label>
               </div>
-              <Button onClick={handleSubmit}>отправить</Button>
+              <Button onClick={handleSubmit}>
+                {loading ? 'Загрузка...' : 'отправить'}
+              </Button>
             </div>
           )}
         </div>
@@ -161,4 +167,4 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
   );
 }
 
-export default forwardRef(Modal);
+export default forwardRef(TaskModal);
