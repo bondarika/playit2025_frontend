@@ -12,6 +12,7 @@ const usePrizes = () => {
     const loadPrizes = async () => {
       try {
         const fetchedPrizes = await fetchPrizes();
+        console.log(fetchedPrizes);
         const formattedPrizes: IPrize[] = fetchedPrizes.map(
           (prize: IFetchedPrize) => ({
             id: prize['№'],
