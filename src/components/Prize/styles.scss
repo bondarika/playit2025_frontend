@@ -6,6 +6,7 @@
   flex-direction: column;
   gap: 4px;
   &__image {
+    width: 100%;
     max-width: calc(50% - 5px);
     height: auto;
     border-radius: 20px;
