@@ -25,7 +25,7 @@ function Prize({ prize }: PrizeProps) {
         <div className="prize__content">
           <h2 className="prize__content__title">{prize.title}</h2>
           <div className="prize__content__price">
-            <p className="price__content__price-text">{prize.price}</p>
+            <p className="prize__content__price-text">{prize.price}</p>
             <img src={icons['coin']} alt="монеток" />
           </div>
         </div>

@@ -21,10 +21,8 @@ export const submitTask = async (
       `https://it-otdel.space/playit${endpoint}`,
       data,
       {
-        headers: isFormData
-          ? {} 
-          : { 'Content-Type': 'application/json' },
-        withCredentials: true, 
+        headers: isFormData ? {} : { 'Content-Type': 'application/json' },
+        withCredentials: true,
       }
     );
     console.log('Response:', response.data);
@@ -81,14 +79,15 @@ export const fetchTasks = async () => {
   }
 };
 
-export const fetchPrizes = async() => {
+export const fetchPrizes = async () => {
   try {
     const response = await axiosInstance.get('/shop/get');
-    return response.data.data
+    console.log(response.data.data);
+    return response.data.data;
   } catch (error) {
     console.error(
       'Ошибка при отправке данных на сервер:',
       error instanceof Error ? error.message : error
     );
   }
-}
+};
