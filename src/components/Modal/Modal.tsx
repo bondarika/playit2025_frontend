@@ -60,7 +60,7 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
         requestBody.append('task_id', task.id.toString());
         requestBody.append('user_id', parseInt(userId, 10).toString());
         requestBody.append('value', task.points.toString());
-        requestBody.append('text', '');
+        requestBody.append('text', ' ');
         if (file) {
           const binaryFile = await convertFileToBinary(file);
           requestBody.append(

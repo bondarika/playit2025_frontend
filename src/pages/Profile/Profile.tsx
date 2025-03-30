@@ -3,6 +3,8 @@ import './styles.scss';
 import icons from '../../assets/icons';
 import { useProfile } from '../../hooks/useProfile';
 import { observer } from 'mobx-react-lite';
+import { useEffect, useState } from 'react';
+import Error from '../../components/Error/Error';
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
@@ -12,13 +14,52 @@ const userData = JSON.parse(params.get('user') || 'null');
 // const checkDataString = params.toString().replaceAll("&", "\n");
 
 function ProfilePage(): React.ReactElement {
-    const { user, error } = useProfile({
-      id: userData.id,
-      username: userData.username,
-    });
+  const { user, error } = useProfile({
+    id: userData.id,
+    username: userData.username,
+  });
+
+  const [loading, setLoading] = useState(true);
+  const [timeoutError, setTimeoutError] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (!user) {
+        setTimeoutError(true);
+        setLoading(false);
+      }
+    }, 30000);
+
+    if (user || error) {
+      clearTimeout(timeout);
+      setLoading(false);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [user, error]);
+
+  if (timeoutError) {
+    return (
+      <div>
+        <Error />
+      </div>
+    );
+  }
 
   if (error) {
-    return <div>{error}</div>;
+    return (
+      <div>
+        <Error />
+      </div>
+    );
+  }
+
+  if (loading) {
+    return (
+      <div>
+        <h1>Загрузка...</h1>
+      </div>
+    );
   }
 
   return user ? (
@@ -79,9 +120,7 @@ function ProfilePage(): React.ReactElement {
       </div>
     </div>
   ) : (
-    <div>
-      <h1>тут нужно реализовать страницу загрузки</h1>
-    </div>
+    <div />
   );
 }
 

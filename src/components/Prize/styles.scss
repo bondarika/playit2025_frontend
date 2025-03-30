@@ -1,6 +1,6 @@
 ﻿.prize {
   flex: 1;
-  max-width: calc(50% - 5px);
+  min-width: calc(50% - 5px);
   display: flex;
   flex-direction: column;
   gap: 4px;
