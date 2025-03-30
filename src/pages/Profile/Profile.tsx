@@ -117,7 +117,7 @@ function ProfilePage(): React.ReactElement {
       </div>
     </div>
   ) : (
-    <div />
+    <Loader />
   );
 }
 
