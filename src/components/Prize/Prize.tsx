@@ -1,4 +1,5 @@
 ﻿import { PrizeProps } from '../../types/prizeProps';
+import './styles.scss';
 import icons from '../../assets/icons';
 
 const characterAvatars: Record<string, { default: string }> = import.meta.glob(
