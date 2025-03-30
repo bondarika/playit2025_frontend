@@ -84,8 +84,7 @@ export const fetchTasks = async () => {
 export const fetchPrizes = async() => {
   try {
     const response = await axiosInstance.get('/shop/get');
-    console.log(response.data);
-    return response.data
+    return response.data.data
   } catch (error) {
     console.error(
       'Ошибка при отправке данных на сервер:',
