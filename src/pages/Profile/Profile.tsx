@@ -65,6 +65,7 @@ function ProfilePage(): React.ReactElement {
         <div
           className="container"
           style={{
+            width: `calc(100% - 20px)`,
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'space-between',
