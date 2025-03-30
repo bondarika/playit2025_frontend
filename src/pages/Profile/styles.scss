@@ -39,7 +39,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 100%;
+      width: calc(100% - 20px);
       height: 36px;
       background-color: $pink;
       border-radius: 12px;
