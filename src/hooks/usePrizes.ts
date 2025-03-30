@@ -15,7 +15,7 @@ const usePrizes = () => {
         const formattedPrizes: IPrize[] = fetchedPrizes.map(
           (prize: IFetchedPrize) => ({
             id: prize['№'],
-            title: prize['Нaименование '],
+            title: prize['Нaименование'],
             description: prize['Нaполнение'],
             price: prize['Цена'],
             quantity: prize['Кол-во'],
