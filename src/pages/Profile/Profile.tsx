@@ -56,7 +56,7 @@ function ProfilePage(): React.ReactElement {
   }
 
   if (loading) {
-    return <Loader/>;
+    return <Loader />;
   }
 
   return user ? (
@@ -76,7 +76,7 @@ function ProfilePage(): React.ReactElement {
         </div>
       </header>
       <div className="profile">
-        <div className="container">
+        <div className="container" style={{ width: `calc(100% - 20px)` }}>
           <div className="profile__picture">
             <img src={userData.photo_url} className="profile__picture-avatar" />
             <h3 className="profile__subtitle">
