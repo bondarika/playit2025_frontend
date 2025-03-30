@@ -19,9 +19,11 @@ function StorePage(): React.ReactElement {
           <h1>МАГАЗИН</h1>
         </div>
       </header>
-      {prizes.map((prize) => (
-        <Prize key={prize.id} prize={prize} onClick={() => {}} />
-      ))}
+      <div className="container" style={{ width: `calc(100% - 20px)` }}>
+        {prizes.map((prize) => (
+          <Prize key={prize.id} prize={prize} onClick={() => {}} />
+        ))}
+      </div>
     </div>
   );
 }
