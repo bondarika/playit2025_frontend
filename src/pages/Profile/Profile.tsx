@@ -5,6 +5,7 @@ import { useProfile } from '../../hooks/useProfile';
 import { observer } from 'mobx-react-lite';
 import { useEffect, useState } from 'react';
 import Error from '../../components/Error/Error';
+import Loader from '../../components/Loader/Loader';
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
@@ -55,11 +56,7 @@ function ProfilePage(): React.ReactElement {
   }
 
   if (loading) {
-    return (
-      <div>
-        <h1>Загрузка...</h1>
-      </div>
-    );
+    return <Loader/>;
   }
 
   return user ? (
