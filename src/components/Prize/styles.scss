@@ -1,7 +1,6 @@
 ﻿.prize {
   flex: 1;
-  width: 100%;
-  max-width: calc(50% - 5px);
+  min-width: calc(50% - 5px);
   height: 227px;
   display: flex;
   flex-direction: column;
@@ -9,8 +8,7 @@
   justify-content: center;
   gap: 4px;
   &__image {
-    width: 100%;
-    max-width: calc(50% - 5px);
+    min-width: calc(50% - 5px);
     height: auto;
     border-radius: 20px;
   }
