@@ -20,18 +20,20 @@ function StorePage(): React.ReactElement {
         </div>
       </header>
       <div className="store">
-        <div
-          className="container"
-          style={{
-            width: `calc(100% - 20px)`,
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: '10px',
-          }}
-        >
-          {prizes.map((prize) => (
-            <Prize key={prize.id} prize={prize} onClick={() => {}} />
-          ))}
+        <div className="store__content">
+          <div
+            className="container"
+            style={{
+              width: `calc(100% - 20px)`,
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: '10px',
+            }}
+          >
+            {prizes.map((prize) => (
+              <Prize key={prize.id} prize={prize} onClick={() => {}} />
+            ))}
+          </div>
         </div>
       </div>
     </div>

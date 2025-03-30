@@ -73,7 +73,13 @@ function Modal({ task }: ModalProps, ref: React.Ref<ModalHandle>) {
 
       if (requestBody instanceof FormData) {
         for (const [key, value] of requestBody.entries()) {
-          console.log(`${key}:`, value);
+          if (value instanceof File) {
+            console.log(
+              `${key}: ${value.name}, size: ${value.size}, type: ${value.type}`
+            );
+          } else {
+            console.log(`${key}:`, value);
+          }
         }
       } else {
         console.log('Request Body:', requestBody);
