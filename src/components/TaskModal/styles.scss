@@ -2,7 +2,7 @@
 
 .modal {
   position: fixed;
-  z-index: 2000;
+  z-index: 1000;
   left: 0;
   top: 0;
   background-color: rgba(0, 0, 0, 0.5);
@@ -19,7 +19,6 @@
     width: 100%;
     border-radius: 20px 20px 0px 0px;
     position: relative;
-    overflow: auto;
     height: calc(100% - 50px);
     max-height: calc(100% - 50px);
     font-size: 14px;
