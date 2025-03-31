@@ -1,5 +1,6 @@
 ﻿import Prize from '../../components/Prize/Prize';
 import usePrizes from '../../hooks/usePrizes';
+import './styles.scss';
 
 function StorePage(): React.ReactElement {
   const { prizes, loading, error } = usePrizes();
