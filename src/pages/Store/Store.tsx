@@ -3,10 +3,10 @@ import Prize from '../../components/Prize/Prize';
 import usePrizes from '../../hooks/usePrizes';
 import './styles.scss';
 import useUser from '../../hooks/useUser';
-import { useEffect, useState } from 'react';
 import Error from '../../components/Error/Error';
 import Loader from '../../components/Loader/Loader';
 import icons from '../../assets/icons';
+import useTimeoutError from '../../hooks/useTimeoutError';
 
 function StorePage(): React.ReactElement {
   const params = new URLSearchParams(WebApp.initData);
@@ -17,21 +17,7 @@ function StorePage(): React.ReactElement {
     username: userData.username,
   });
 
-  const [timeoutError, setTimeoutError] = useState(false);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (!user) {
-        setTimeoutError(true);
-      }
-    }, 30000);
-
-    if (user || prizesError || userError) {
-      clearTimeout(timeout);
-    }
-
-    return () => clearTimeout(timeout);
-  }, [user, prizesError, userError]);
+  const timeoutError = useTimeoutError(!!user || !!prizesError || !!userError);
 
   if (timeoutError) {
     return (

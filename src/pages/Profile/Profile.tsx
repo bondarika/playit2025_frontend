@@ -6,6 +6,7 @@ import { observer } from 'mobx-react-lite';
 import { useEffect, useState } from 'react';
 import Error from '../../components/Error/Error';
 import Loader from '../../components/Loader/Loader';
+import useTimeoutError from '../../hooks/useTimeoutError';
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
@@ -20,21 +21,7 @@ function ProfilePage(): React.ReactElement {
     username: userData.username,
   });
 
-  const [timeoutError, setTimeoutError] = useState(false);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (!user) {
-        setTimeoutError(true);
-      }
-    }, 30000);
-
-    if (user || error) {
-      clearTimeout(timeout);
-    }
-
-    return () => clearTimeout(timeout);
-  }, [user, error]);
+  const timeoutError = useTimeoutError(!!user || !!error);
 
   if (timeoutError) {
     return (

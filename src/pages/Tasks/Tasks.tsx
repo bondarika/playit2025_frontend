@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useRef, useState } from 'react';
+﻿import React, { useRef, useState } from 'react';
 import Task from '../../components/Task/Task';
 import './styles.scss';
 import useTasks from '../../hooks/useTasks';
@@ -9,6 +9,7 @@ import useUser from '../../hooks/useUser';
 import Loader from '../../components/Loader/Loader';
 import Error from '../../components/Error/Error';
 import icons from '../../assets/icons';
+import useTimeoutError from '../../hooks/useTimeoutError';
 
 function TaskPage(): React.ReactElement {
   const params = new URLSearchParams(WebApp.initData);
@@ -19,24 +20,11 @@ function TaskPage(): React.ReactElement {
   });
   const { tasks, loading, error: tasksError } = useTasks();
   const modalRef = useRef<HTMLDialogElement>(null);
-  const [timeoutError, setTimeoutError] = useState(false);
   const [selectedTask, setSelectedTask] = useState<TaskProps['task'] | null>(
     null
   );
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (!user) {
-        setTimeoutError(true);
-      }
-    }, 30000);
-
-    if (user || tasksError || userError) {
-      clearTimeout(timeout);
-    }
-
-    return () => clearTimeout(timeout);
-  }, [user, tasksError, userError]);
+  const timeoutError = useTimeoutError(!!user || !!tasksError || !!userError);
 
   const handleTaskClick = (task: TaskProps['task']) => {
     setSelectedTask(task);
