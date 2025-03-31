@@ -1,7 +1,7 @@
 ﻿import { useEffect } from 'react';
 import userStore from '../store/store';
 
-export function useProfile(userData: { id: number; username: string }) {
+export function useUser(userData: { id: number; username: string }) {
   const { user, error, authenticate } = userStore;
 
   useEffect(() => {
@@ -13,4 +13,4 @@ export function useProfile(userData: { id: number; username: string }) {
   return { user, error };
 }
 
-export default useProfile;
+export default useUser;

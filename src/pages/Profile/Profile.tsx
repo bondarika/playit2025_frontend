@@ -1,7 +1,7 @@
 ﻿import WebApp from '@twa-dev/sdk';
 import './styles.scss';
 import icons from '../../assets/icons';
-import { useProfile } from '../../hooks/useProfile';
+import { useUser } from '../../hooks/useUser';
 import { observer } from 'mobx-react-lite';
 import { useEffect, useState } from 'react';
 import Error from '../../components/Error/Error';
@@ -15,25 +15,22 @@ const userData = JSON.parse(params.get('user') || 'null');
 // const checkDataString = params.toString().replaceAll("&", "\n");
 
 function ProfilePage(): React.ReactElement {
-  const { user, error } = useProfile({
+  const { user, error } = useUser({
     id: userData.id,
     username: userData.username,
   });
 
-  const [loading, setLoading] = useState(true);
   const [timeoutError, setTimeoutError] = useState(false);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
       if (!user) {
         setTimeoutError(true);
-        setLoading(false);
       }
     }, 30000);
 
     if (user || error) {
       clearTimeout(timeout);
-      setLoading(false);
     }
 
     return () => clearTimeout(timeout);
@@ -53,10 +50,6 @@ function ProfilePage(): React.ReactElement {
         <Error />
       </div>
     );
-  }
-
-  if (loading) {
-    return <Loader />;
   }
 
   return user ? (
@@ -84,7 +77,7 @@ function ProfilePage(): React.ReactElement {
           <div className="profile__info-stats">
             <p className="profile__maintext">баланс</p>
             <div className="profile__box">
-              <img src={icons['coin_bag']} alt="Баланс" />
+              <img src={icons['coin_bag_white']} alt="Баланс" />
               <p>{user.balance}</p>
             </div>
           </div>
