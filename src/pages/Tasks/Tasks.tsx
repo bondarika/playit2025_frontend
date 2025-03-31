@@ -28,13 +28,10 @@ function TaskPage(): React.ReactElement {
   return (
     <>
       <header>
-        <div className="container">
           <h1>ЗАДАНИЯ</h1>
-        </div>
       </header>
 
       <div className="tasks">
-        <div className="container" style={{ width: `calc(100% - 20px)` }}>
           {tasks.map((task) => (
             <Task
               key={task.id}
@@ -43,7 +40,6 @@ function TaskPage(): React.ReactElement {
             />
           ))}
         </div>
-      </div>
       {selectedTask && <TaskModal ref={modalRef} task={selectedTask} />}
     </>
   );

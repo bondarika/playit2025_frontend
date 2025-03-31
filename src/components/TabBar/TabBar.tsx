@@ -17,48 +17,34 @@ function TabBar() {
   return (
     <>
       <div className="tabbar" key={location.pathname}>
-        <div
-          className="container"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: '8px',
-          }}
-        >
-          <RouterTab to="/tasks">
-            <div className="tabbar__tab">
-              <Tasks
-                style={{ width: '16px', height: '16px' }}
-                className={`icon-${
-                  selected === 'tasks' ? 'active' : 'inactive'
-                }`}
-              />
-              <p>задания</p>
-            </div>
-          </RouterTab>
-          <div className="tabbar__profile">
-            <RouterTab to="/profile">
-              <img
-                src={userData.photo_url}
-                alt="профиль"
-                className="tabbar__profile-avatar"
-              />
-            </RouterTab>
+        <RouterTab to="/tasks">
+          <div className="tabbar__tab">
+            <Tasks
+              style={{ width: '16px', height: '16px' }}
+              className={`icon-${selected === 'tasks' ? 'active' : 'inactive'}`}
+            />
+            <p>задания</p>
           </div>
-
-          <RouterTab to="/store">
-            <div className="tabbar__tab">
-              <Shop
-                style={{ width: '19px', height: '19px' }}
-                className={`icon-${
-                  selected === 'store' ? 'active' : 'inactive'
-                }`}
-              />
-              <p>магазин</p>
-            </div>
+        </RouterTab>
+        <div className="tabbar__profile">
+          <RouterTab to="/profile">
+            <img
+              src={userData.photo_url}
+              alt="профиль"
+              className="tabbar__profile-avatar"
+            />
           </RouterTab>
         </div>
+
+        <RouterTab to="/store">
+          <div className="tabbar__tab">
+            <Shop
+              style={{ width: '19px', height: '19px' }}
+              className={`icon-${selected === 'store' ? 'active' : 'inactive'}`}
+            />
+            <p>магазин</p>
+          </div>
+        </RouterTab>
       </div>
 
       <Routes>

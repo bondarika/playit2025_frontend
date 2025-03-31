@@ -1,5 +1,5 @@
 ﻿.task {
-  width: 100%;
+  width: calc(100% - 20px);
   height: 90px;
   border-radius: 20px;
   color: rgba(231, 231, 233, 1);
@@ -10,7 +10,7 @@
   overflow: hidden;
   position: relative;
   gap: 12px;
-  margin-bottom: 10px;
+  margin: 0 auto 10px auto;
   &_image {
     position: absolute;
     top: 0;

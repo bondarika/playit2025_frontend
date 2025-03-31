@@ -5,21 +5,14 @@ function Loader() {
       <div
         style={{
           width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
           height: 'calc(100% - 55px)',
+          alignItems: 'center',
           position: 'fixed',
         }}
       >
-        <div
-          className="container"
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            height: 'calc(100% - 55px)',
-            alignItems: 'center',
-          }}
-        >
-          <div className="loader"></div>
-        </div>
+        <div className="loader"></div>
       </div>
     </>
   );
