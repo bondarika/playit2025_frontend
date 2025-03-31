@@ -11,25 +11,18 @@ import Error from '../../components/Error/Error';
 import icons from '../../assets/icons';
 
 function TaskPage(): React.ReactElement {
-  const { tasks, loading, error: tasksError } = useTasks();
-  const modalRef = useRef<HTMLDialogElement>(null);
-  const [selectedTask, setSelectedTask] = useState<TaskProps['task'] | null>(
-    null
-  );
-
-  const handleTaskClick = (task: TaskProps['task']) => {
-    setSelectedTask(task);
-    modalRef.current?.showModal();
-  };
-
   const params = new URLSearchParams(WebApp.initData);
   const userData = JSON.parse(params.get('user') || 'null');
   const { user, error: userError } = useUser({
     id: userData.id,
     username: userData.username,
   });
-
+  const { tasks, loading, error: tasksError } = useTasks();
+  const modalRef = useRef<HTMLDialogElement>(null);
   const [timeoutError, setTimeoutError] = useState(false);
+  const [selectedTask, setSelectedTask] = useState<TaskProps['task'] | null>(
+    null
+  );
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -44,6 +37,11 @@ function TaskPage(): React.ReactElement {
 
     return () => clearTimeout(timeout);
   }, [user, tasksError, userError]);
+
+  const handleTaskClick = (task: TaskProps['task']) => {
+    setSelectedTask(task);
+    modalRef.current?.showModal();
+  };
 
   if (timeoutError) {
     return (
@@ -76,13 +74,15 @@ function TaskPage(): React.ReactElement {
       </header>
 
       <div className="tasks">
-        {tasks.map((task) => (
-          <Task
-            key={task.id}
-            task={task}
-            onClick={() => handleTaskClick(task)}
-          />
-        ))}
+        {tasks
+          .sort((a, b) => Number(a.done) - Number(b.done))
+          .map((task) => (
+            <Task
+              key={task.id}
+              task={task}
+              onClick={() => handleTaskClick(task)}
+            />
+          ))}
       </div>
       {selectedTask && <TaskModal ref={modalRef} task={selectedTask} />}
     </>

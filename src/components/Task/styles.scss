@@ -54,4 +54,7 @@
     font-size: 11px;
     gap: 3px;
   }
+  &__disabled {
+    pointer-events: none;
+  }
 }

@@ -7,4 +7,5 @@
   points: number;
   verification: string;
   id: number;
+  done: boolean;
 }
