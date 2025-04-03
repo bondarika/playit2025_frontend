@@ -39,13 +39,8 @@ function TaskModal({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) {
       setIsVisible(false);
       setFile(null);
       setUserAnswer('');
-      if (fileInputRef.current) {
-        fileInputRef.current.value = '';
-      }
-
-      if (textInputRef.current) {
-        textInputRef.current.value = '';
-      }
+      fileInputRef.current.value = '';
+      textInputRef.current.value = '';
     },
   }));
 
