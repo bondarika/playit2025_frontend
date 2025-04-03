@@ -7,15 +7,40 @@ import Cookies from 'js-cookie';
 import { PrizeModalProps } from '../../types/prizeModal';
 import { buyPrize } from '../../services/api';
 
+const characterAvatars: Record<string, { default: string }> = import.meta.glob(
+  '@/assets/images/characters_a/*.webp',
+  {
+    eager: true,
+  }
+);
+
+const avatarArray = Object.values(characterAvatars).map(
+  (img) => (img as { default: string }).default
+);
+
 function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
   const [isVisible, setIsVisible] = useState(false);
+  const [isConfirming, setIsConfirming] = useState(false);
+  const [purchaseSuccess, setPurchaseSuccess] = useState(false);
 
   useImperativeHandle(ref, () => ({
     showModal: () => setIsVisible(true),
-    close: () => setIsVisible(false),
+    close: () => {
+      setIsConfirming(false);
+      setPurchaseSuccess(false);
+      setIsVisible(false);
+    },
   }));
 
   if (!isVisible) return null;
+
+  const handleBuyClick = () => {
+    setIsConfirming(true);
+  };
+
+  const handleCancelClick = () => {
+    setIsConfirming(false);
+  };
 
   const handleSubmit = async () => {
     try {
@@ -23,26 +48,50 @@ function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
       if (!userId) {
         throw new Error('Пользовательский id не найден в cookies');
       }
-      await buyPrize(userId, prize.title, prize.price);
-      setIsVisible(false);
+
+      const response = await buyPrize(userId, prize.title, prize.price);
+
+      if (response.status === '200') {
+        setIsConfirming(false);
+        setPurchaseSuccess(true);
+      } else {
+        throw new Error('Ошибка при покупке приза');
+      }
     } catch (error) {
       console.error('Ошибка при покупке приза:', error);
+      setPurchaseSuccess(false);
     }
   };
 
   return (
     <div className="item">
-      <div className="item_content">
+      <div className="item__content">
         <button role="close" onClick={() => setIsVisible(false)}>
           <img src={icons['close']} />
         </button>
 
-        <img src={''} className="item_content-avatar" />
-        <p className="item_content-tag">в наличии: {prize.quantity} шт</p>
-        <h2 className="item_content-title">{prize.title}</h2>
-        <p className="item_content-description">описание:</p>
-        <p className="item_content-text">{prize.description}</p>
-        <Button onClick={handleSubmit}>купить</Button>
+        <img src={avatarArray[prize.id]} className="item__content-avatar" />
+        <p className="item__content-tag">в наличии: {prize.quantity} шт</p>
+        <h2 className="item__content-title">{prize.title}</h2>
+        <p className="item__content-description">описание:</p>
+        <p className="item__content-text">{prize.description}</p>
+        {purchaseSuccess ? (
+          <p className="item__content__purchase-success">
+            <p>всё успешно!</p>
+            <p>ищите приз в профиле</p>
+          </p>
+        ) : (
+          <>
+            {!isConfirming ? (
+              <Button onClick={handleBuyClick}>купить</Button>
+            ) : (
+              <div className="item__content__purchase-confirmation">
+                <Button onClick={handleSubmit}>Подтвердить покупку</Button>
+                <Button onClick={handleCancelClick}>Отмена</Button>
+              </div>
+            )}
+          </>
+        )}
       </div>
     </div>
   );

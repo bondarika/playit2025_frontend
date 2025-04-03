@@ -1,7 +1,5 @@
 ﻿import axios from 'axios';
 import { UserData } from '../types/userData';
-import { IPrize } from '../types/prize';
-import { User } from '@telegram-apps/sdk-react';
 
 const API_BASE_URL = 'https://it-otdel.space/playit';
 
