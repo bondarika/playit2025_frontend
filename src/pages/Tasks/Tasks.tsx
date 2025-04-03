@@ -10,6 +10,7 @@ import Loader from '../../components/Loader/Loader';
 import Error from '../../components/Error/Error';
 import icons from '../../assets/icons';
 import useTimeoutError from '../../hooks/useTimeoutError';
+import { ModalHandle } from '../../types/modalHandle';
 
 function TaskPage(): React.ReactElement {
   const params = new URLSearchParams(WebApp.initData);
@@ -19,7 +20,8 @@ function TaskPage(): React.ReactElement {
     username: userData.username,
   });
   const { tasks, loading, error: tasksError } = useTasks();
-  const modalRef = useRef<HTMLDialogElement>(null);
+  const modalRef = useRef<ModalHandle | null>(null);
+
   const [selectedTask, setSelectedTask] = useState<TaskProps['task'] | null>(
     null
   );
@@ -29,6 +31,7 @@ function TaskPage(): React.ReactElement {
   const handleTaskClick = (task: TaskProps['task']) => {
     setSelectedTask(task);
     modalRef.current?.showModal();
+    modalRef.current?.close();
   };
 
   if (timeoutError) {

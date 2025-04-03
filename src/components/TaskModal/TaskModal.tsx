@@ -36,9 +36,9 @@ function TaskModal({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) {
   useImperativeHandle(ref, () => ({
     showModal: () => setIsVisible(true),
     close: () => {
-      setIsVisible(false);
       setFile(null);
       setUserAnswer('');
+      setIsVisible(false);
     },
   }));
 
@@ -122,7 +122,7 @@ function TaskModal({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) {
           backgroundColor: `#${hexCodes[task.id - 1]}`,
         }}
       >
-        <button role="close" onClick={() => setIsVisible(false)}>
+        <button role="close">
           <img src={icons['close']} />
         </button>
 
