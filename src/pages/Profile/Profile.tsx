@@ -75,10 +75,14 @@ function ProfilePage(): React.ReactElement {
               <p>{user.done_tasks.length}/35</p>
             </div>
           </div>
-          <div>
+          <div style={{ width: '100%' }}>
             <button
               onClick={() => setIsDropdownOpen((prev) => !prev)}
               className="profile__info-stats"
+              style={{
+                padding: '0',
+                borderRadius: isDropdownOpen ? '12px 12px 0px 0px' : '12px',
+              }}
             >
               <p className="profile__maintext">мои призы</p>
               <img
@@ -93,8 +97,21 @@ function ProfilePage(): React.ReactElement {
             {isDropdownOpen && (
               <div className="profile__dropdown">
                 {user.prizes.length > 0 ? (
-                  user.prizes.map((prize) => (
-                    <div key={prize.id} className="profile__dropdown-item">
+                  [
+                    ...user.prizes,
+                    {
+                      id: 'last',
+                      title:
+                        'вы сможете получить призы после завершения мероприятия',
+                      value: '',
+                    },
+                  ].map((prize, index, arr) => (
+                    <div
+                      key={prize.id}
+                      className={`profile__dropdown-item ${
+                        index === arr.length - 1 ? 'profile__dropdown-item-last' : ''
+                      }`}
+                    >
                       <span>{prize.title}</span>
                       <span>{prize.value}</span>
                     </div>
