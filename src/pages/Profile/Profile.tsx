@@ -115,11 +115,13 @@ function ProfilePage(): React.ReactElement {
                       }`}
                     >
                       <span style={{ paddingLeft: '10px' }}>{prize.title}</span>
-                      <span style={{ paddingRight: '10px' }}>{prize.value}</span>
+                      <span style={{ paddingRight: '10px' }}>
+                        {prize.value}
+                      </span>
                     </div>
                   ))
                 ) : (
-                  <p>нет призов</p>
+                  <p style={{ paddingLeft: '10px' }}>нет призов</p>
                 )}
               </div>
             )}

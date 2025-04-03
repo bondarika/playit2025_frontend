@@ -1,5 +1,7 @@
 ﻿import axios from 'axios';
 import { UserData } from '../types/userData';
+import { IPrize } from '../types/prize';
+import { User } from '@telegram-apps/sdk-react';
 
 const API_BASE_URL = 'https://it-otdel.space/playit';
 
@@ -84,6 +86,27 @@ export const fetchPrizes = async () => {
     const response = await axiosInstance.get('/shop/get');
     console.log(response.data.data);
     return response.data.data;
+  } catch (error) {
+    console.error(
+      'Ошибка при отправке данных на сервер:',
+      error instanceof Error ? error.message : error
+    );
+  }
+};
+
+export const buyPrize = async (
+  user_id: string,
+  prize_title: string,
+  value: number
+) => {
+  try {
+    const response = await axiosInstance.post('/shop/exchange', {
+      user_id,
+      prize_title,
+      value,
+    });
+    console.log(response.data);
+    return response.data;
   } catch (error) {
     console.error(
       'Ошибка при отправке данных на сервер:',

@@ -43,7 +43,7 @@ function TaskModal({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) {
     try {
       const userId = Cookies.get('user_id');
       if (!userId) {
-        throw new Error('User ID not found in cookies');
+        throw new Error('Пользовательский id не найден в cookies');
       }
 
       let endpoint = '/tasks/create/autocheck';
@@ -52,7 +52,7 @@ function TaskModal({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) {
       if (task.verification === 'автоматически') {
         requestBody = {
           task_id: task.id,
-          user_id: parseInt(userId, 10),
+          user_id: userId,
           value: task.points,
           user_answer: userAnswer || '',
         };
