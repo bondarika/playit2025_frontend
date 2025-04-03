@@ -3,10 +3,10 @@ import './styles.scss';
 import icons from '../../assets/icons';
 import { useUser } from '../../hooks/useUser';
 import { observer } from 'mobx-react-lite';
-import { useEffect, useState } from 'react';
 import Error from '../../components/Error/Error';
 import Loader from '../../components/Loader/Loader';
 import useTimeoutError from '../../hooks/useTimeoutError';
+import { useState } from 'react';
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
@@ -16,6 +16,7 @@ const userData = JSON.parse(params.get('user') || 'null');
 // const checkDataString = params.toString().replaceAll("&", "\n");
 
 function ProfilePage(): React.ReactElement {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { user, error } = useUser({
     id: userData.id,
     username: userData.username,
@@ -74,13 +75,35 @@ function ProfilePage(): React.ReactElement {
               <p>{user.done_tasks.length}/35</p>
             </div>
           </div>
-          <div className="profile__info-stats">
-            <p className="profile__maintext">мои призы</p>
-            <img
-              src={icons['arrow']}
-              alt="Открыть"
-              style={{ marginRight: '10px' }}
-            />
+          <div>
+            <button
+              onClick={() => setIsDropdownOpen((prev) => !prev)}
+              className="profile__info-stats"
+            >
+              <p className="profile__maintext">мои призы</p>
+              <img
+                src={icons['arrow']}
+                style={{
+                  marginRight: '10px',
+                  transform: isDropdownOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+                  transition: 'transform 0.2s ease-in-out',
+                }}
+              />
+            </button>
+            {isDropdownOpen && (
+              <div className="profile__dropdown">
+                {user.prizes.length > 0 ? (
+                  user.prizes.map((prize) => (
+                    <div key={prize.id} className="profile__dropdown-item">
+                      <span>{prize.title}</span>
+                      <span>{prize.value}</span>
+                    </div>
+                  ))
+                ) : (
+                  <p className="dropdown-empty">нет призов</p>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>
