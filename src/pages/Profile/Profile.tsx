@@ -109,11 +109,13 @@ function ProfilePage(): React.ReactElement {
                     <div
                       key={prize.id}
                       className={`profile__dropdown-item ${
-                        index === arr.length - 1 ? 'profile__dropdown-item-last' : ''
+                        index === arr.length - 1
+                          ? 'profile__dropdown-item-last'
+                          : ''
                       }`}
                     >
-                      <span>{prize.title}</span>
-                      <span>{prize.value}</span>
+                      <span style={{ paddingLeft: '10px' }}>{prize.title}</span>
+                      <span style={{ paddingRight: '10px' }}>{prize.value}</span>
                     </div>
                   ))
                 ) : (
