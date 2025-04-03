@@ -30,10 +30,15 @@ function TaskModal({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) {
   const [userAnswer, setUserAnswer] = useState('');
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
 
   useImperativeHandle(ref, () => ({
     showModal: () => setIsVisible(true),
-    close: () => setIsVisible(false),
+    close: () => {
+      setIsVisible(false);
+      setFile(null);
+      setUserAnswer('');
+    },
   }));
 
   if (!isVisible) return null;
@@ -96,15 +101,25 @@ function TaskModal({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) {
     }
   };
 
-  const handleFileChange = (
+  // const handleFileChange = (
+  //   e: React.ChangeEvent<HTMLInputElement>,
+  //   setFile: (file: File | null) => void
+  // ) => {
+  //   if (e.target.files && e.target.files[0]) {
+  //     setFile(e.target.files[0]);
+  //   }
+  // };
+  const handleFileChange = async (
     e: React.ChangeEvent<HTMLInputElement>,
     setFile: (file: File | null) => void
   ) => {
     if (e.target.files && e.target.files[0]) {
-      setFile(e.target.files[0]);
+      setIsUploading(true);
+      const selectedFile = e.target.files[0];
+      setFile(selectedFile);
+      setIsUploading(false);
     }
   };
-
   return (
     <div className="modal">
       <div

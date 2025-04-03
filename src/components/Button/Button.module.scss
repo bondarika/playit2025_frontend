@@ -10,4 +10,7 @@ button {
   height: 45px;
   font-weight: 600;
   cursor: pointer;
+  &:active {
+    background-color: $red;
+  }
 }
