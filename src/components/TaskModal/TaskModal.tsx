@@ -39,8 +39,6 @@ function TaskModal({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) {
       setIsVisible(false);
       setFile(null);
       setUserAnswer('');
-      fileInputRef.current.value = '';
-      textInputRef.current.value = '';
     },
   }));
 
@@ -98,6 +96,8 @@ function TaskModal({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) {
       //убрать
 
       await submitTask(requestBody, endpoint);
+      setFile(null);
+      setUserAnswer('');
     } catch (error) {
       console.error('Ошибка при отправке задания:', error);
     } finally {
@@ -153,7 +153,9 @@ function TaskModal({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) {
                 ref={textInputRef}
                 onChange={(e) => setUserAnswer(e.target.value)}
               />
-              <Button onClick={handleSubmit}>отправить</Button>
+              <Button onClick={handleSubmit} disabled={!userAnswer.trim()}>
+                отправить
+              </Button>
             </div>
           )}
 
