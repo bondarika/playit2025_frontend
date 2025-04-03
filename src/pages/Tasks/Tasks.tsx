@@ -31,7 +31,6 @@ function TaskPage(): React.ReactElement {
   const handleTaskClick = (task: TaskProps['task']) => {
     setSelectedTask(task);
     modalRef.current?.showModal();
-    modalRef.current?.close();
   };
 
   if (timeoutError) {
@@ -75,7 +74,12 @@ function TaskPage(): React.ReactElement {
             />
           ))}
       </div>
-      {selectedTask && <TaskModal ref={modalRef} task={selectedTask} />}
+      {selectedTask && (
+        <TaskModal
+          ref={modalRef}
+          task={selectedTask}
+        />
+      )}
     </>
   );
 }

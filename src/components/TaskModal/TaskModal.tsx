@@ -78,23 +78,7 @@ function TaskModal({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) {
           );
         }
       }
-
-      //убрать
-      if (requestBody instanceof FormData) {
-        for (const [key, value] of requestBody.entries()) {
-          if (value instanceof File) {
-            console.log(
-              `${key}: ${value.name}, size: ${value.size}, type: ${value.type}`
-            );
-          } else {
-            console.log(`${key}:`, value);
-          }
-        }
-      } else {
-        console.log('Request Body:', requestBody);
-      }
-      //убрать
-
+      
       await submitTask(requestBody, endpoint);
       setFile(null);
       setUserAnswer('');
@@ -122,7 +106,10 @@ function TaskModal({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) {
           backgroundColor: `#${hexCodes[task.id - 1]}`,
         }}
       >
-        <button role="close">
+        <button
+          role="close"
+          onClick={() => (ref as React.RefObject<ModalHandle>).current?.close()}
+        >
           <img src={icons['close']} />
         </button>
 
