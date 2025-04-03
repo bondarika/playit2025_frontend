@@ -69,14 +69,17 @@ function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
         <button role="close" onClick={() => setIsVisible(false)}>
           <img src={icons['close']} />
         </button>
-
-        <img src={avatarArray[prize.id]} className="item__content-avatar" />
-        <div style={{ width: '100%', padding: '0px 4px' }}>
-          <p className="item__content-tag">в наличии: {prize.quantity} шт</p>
-          <h2 className="item__content-title">{prize.title}</h2>
-          <p className="item__content-description">описание:</p>
-          <p className="item__content-text">{prize.description}</p>
+        
+        <div>
+          <img src={avatarArray[prize.id]} className="item__content-avatar" />
+          <div style={{ padding: '0px 4px' }}>
+            <p className="item__content-tag">в наличии: {prize.quantity} шт</p>
+            <h2 className="item__content-title">{prize.title}</h2>
+            <p className="item__content-description">описание:</p>
+            <p className="item__content-text">{prize.description}</p>
+          </div>
         </div>
+
         <div className="item__content__purchase">
           {purchaseSuccess ? (
             <div className="item__content__purchase-success">

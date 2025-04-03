@@ -15,6 +15,7 @@
   &__content {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     margin: 0 auto;
     width: 100%;
     padding: 0px 8px 32px 8px;
@@ -57,7 +58,6 @@
       margin-left: 12px;
     }
     &__purchase {
-      justify-self: flex-end;
       font-weight: 600;
       color: $grey;
       font-size: 16px;

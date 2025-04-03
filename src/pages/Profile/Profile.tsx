@@ -75,7 +75,7 @@ function ProfilePage(): React.ReactElement {
               <p>{user.done_tasks.length}/35</p>
             </div>
           </div>
-          <div style={{ width: '100%', borderRadius: '12px' }}>
+          <div style={{ width: '100%' }}>
             <button
               onClick={() => setIsDropdownOpen((prev) => !prev)}
               className="profile__info-stats"
@@ -95,7 +95,13 @@ function ProfilePage(): React.ReactElement {
               />
             </button>
             {isDropdownOpen && (
-              <div className="profile__dropdown">
+              <div
+                className="profile__dropdown"
+                style={{
+                  borderRadius:
+                    user.prizes.length > 0 ? '' : '0px 0px 12px 12px',
+                }}
+              >
                 {user.prizes.length > 0 ? (
                   [
                     ...user.prizes,
