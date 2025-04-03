@@ -51,7 +51,7 @@ function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
 
       const response = await buyPrize(userId, prize.title, prize.price);
 
-      if (response.status === '200') {
+      if (response.data.status === '200') {
         setIsConfirming(false);
         setPurchaseSuccess(true);
       } else {
@@ -71,27 +71,43 @@ function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
         </button>
 
         <img src={avatarArray[prize.id]} className="item__content-avatar" />
-        <p className="item__content-tag">в наличии: {prize.quantity} шт</p>
-        <h2 className="item__content-title">{prize.title}</h2>
-        <p className="item__content-description">описание:</p>
-        <p className="item__content-text">{prize.description}</p>
-        {purchaseSuccess ? (
-          <p className="item__content__purchase-success">
-            <p>всё успешно!</p>
-            <p>ищите приз в профиле</p>
-          </p>
-        ) : (
-          <>
-            {!isConfirming ? (
-              <Button onClick={handleBuyClick}>купить</Button>
-            ) : (
-              <div className="item__content__purchase-confirmation">
-                <Button onClick={handleSubmit}>Подтвердить покупку</Button>
-                <Button onClick={handleCancelClick}>Отмена</Button>
-              </div>
-            )}
-          </>
-        )}
+        <div style={{ width: '100%', padding: '0px 4px' }}>
+          <p className="item__content-tag">в наличии: {prize.quantity} шт</p>
+          <h2 className="item__content-title">{prize.title}</h2>
+          <p className="item__content-description">описание:</p>
+          <p className="item__content-text">{prize.description}</p>
+        </div>
+        <div className="item__content__purchase">
+          {purchaseSuccess ? (
+            <div className="item__content__purchase-success">
+              <p>всё успешно!</p>
+              <p>ищите приз в профиле</p>
+            </div>
+          ) : (
+            <>
+              {!isConfirming ? (
+                <Button onClick={handleBuyClick}>купить</Button>
+              ) : (
+                <div className="item__content__purchase-confirmation">
+                  <p>
+                    вы покупаете&nbsp;{prize.title}
+                    &nbsp;за&nbsp;{prize.id}
+                    &nbsp;монет
+                  </p>
+                  <div className="item__content__buttons">
+                    <Button onClick={handleSubmit}>Подтвердить покупку</Button>
+                    <Button
+                      onClick={handleCancelClick}
+                      className="item__content__buttons-cancel"
+                    >
+                      Отмена
+                    </Button>
+                  </div>
+                </div>
+              )}
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

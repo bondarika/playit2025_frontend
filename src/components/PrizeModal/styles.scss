@@ -17,6 +17,7 @@
     flex-direction: column;
     margin: 0 auto;
     width: 100%;
+    padding: 0px 8px 32px 8px;
     border-radius: 30px 30px 0px 0px;
     position: relative;
     overflow: auto;
@@ -29,10 +30,10 @@
       height: auto;
       object-fit: contain;
       border-radius: 24px;
-      margin: 8px;
+      margin-bottom: 16px;
     }
     &-tag {
-      width: auto;
+      display: flex;
       font-size: 12px;
       color: $red--lighten--1;
       background-color: $pink;
@@ -56,9 +57,28 @@
       margin-left: 12px;
     }
     &__purchase {
+      align-self: flex-end;
       font-weight: 600;
       color: $grey;
       font-size: 16px;
+      &-confirmation {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+    }
+    &__buttons {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      &-cancel {
+        background-color: transparent;
+        color: $red;
+        border: 1px solid $red--lighten--1;
+        &:active {
+          background-color: $pink;
+        }
+      }
     }
   }
 }
