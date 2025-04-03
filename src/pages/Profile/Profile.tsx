@@ -100,7 +100,7 @@ function ProfilePage(): React.ReactElement {
                     </div>
                   ))
                 ) : (
-                  <p className="dropdown-empty">нет призов</p>
+                  <p>нет призов</p>
                 )}
               </div>
             )}
