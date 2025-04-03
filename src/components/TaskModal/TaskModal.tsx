@@ -78,6 +78,7 @@ function TaskModal({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) {
         }
       }
 
+      //убрать
       if (requestBody instanceof FormData) {
         for (const [key, value] of requestBody.entries()) {
           if (value instanceof File) {
@@ -91,35 +92,25 @@ function TaskModal({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) {
       } else {
         console.log('Request Body:', requestBody);
       }
+      //убрать
 
       await submitTask(requestBody, endpoint);
-      setIsVisible(false);
     } catch (error) {
-      console.error('Error submitting task:', error);
+      console.error('Ошибка при отправке задания:', error);
     } finally {
       setLoading(false);
     }
   };
 
-  // const handleFileChange = (
-  //   e: React.ChangeEvent<HTMLInputElement>,
-  //   setFile: (file: File | null) => void
-  // ) => {
-  //   if (e.target.files && e.target.files[0]) {
-  //     setFile(e.target.files[0]);
-  //   }
-  // };
-  const handleFileChange = async (
+  const handleFileChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     setFile: (file: File | null) => void
   ) => {
     if (e.target.files && e.target.files[0]) {
-      setIsUploading(true);
-      const selectedFile = e.target.files[0];
-      setFile(selectedFile);
-      setIsUploading(false);
+      setFile(e.target.files[0]);
     }
   };
+
   return (
     <div className="modal">
       <div
@@ -174,7 +165,7 @@ function TaskModal({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) {
                   {file ? file.name : 'прикрепи сюда решение'}
                 </label>
               </div>
-              <Button onClick={handleSubmit}>
+              <Button onClick={handleSubmit} disabled={!file || isUploading}>
                 {loading ? 'Загрузка...' : 'отправить'}
               </Button>
             </div>
