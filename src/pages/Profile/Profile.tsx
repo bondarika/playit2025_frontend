@@ -75,7 +75,7 @@ function ProfilePage(): React.ReactElement {
               <p>{user.done_tasks.length}/35</p>
             </div>
           </div>
-          <div style={{ width: '100%' }}>
+          <div style={{ width: '100%', borderRadius: '12px' }}>
             <button
               onClick={() => setIsDropdownOpen((prev) => !prev)}
               className="profile__info-stats"
@@ -121,7 +121,9 @@ function ProfilePage(): React.ReactElement {
                     </div>
                   ))
                 ) : (
-                  <p style={{ paddingLeft: '10px' }}>нет призов</p>
+                  <>
+                    <p style={{ paddingLeft: '10px' }}>нет призов</p>
+                  </>
                 )}
               </div>
             )}

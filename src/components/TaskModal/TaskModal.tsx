@@ -124,8 +124,11 @@ function TaskModal({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) {
               {task.character}
             </h2>
             <div className="modal_content_main_title-points">
-              <p>{`награда: ${task.points}`}</p>
-              <img src={icons['coin']} />
+              <p>награда:</p>
+              <div>
+                {task.points}
+                <img src={icons['coin']} style={{marginLeft: "2px"}} />
+              </div>
             </div>
           </div>
           <p>{task.description}</p>
@@ -133,7 +136,7 @@ function TaskModal({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) {
           <p style={{ marginBottom: '20px' }}>{task.task}</p>
 
           {task.verification === 'автоматически' && (
-            <div>
+            <div style={{ width: '100%' }}>
               <input
                 type="text"
                 placeholder="напиши сюда ответ"
