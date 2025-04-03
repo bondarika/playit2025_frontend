@@ -33,7 +33,7 @@
       margin-bottom: 16px;
     }
     &-tag {
-      display: flex;
+      width: fit-content;
       font-size: 12px;
       color: $red--lighten--1;
       background-color: $pink;
@@ -57,7 +57,7 @@
       margin-left: 12px;
     }
     &__purchase {
-      align-self: flex-end;
+      justify-self: flex-end;
       font-weight: 600;
       color: $grey;
       font-size: 16px;

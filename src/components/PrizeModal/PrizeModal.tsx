@@ -95,13 +95,13 @@ function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
                     &nbsp;монет
                   </p>
                   <div className="item__content__buttons">
-                    <Button onClick={handleSubmit}>Подтвердить покупку</Button>
                     <Button
                       onClick={handleCancelClick}
                       className="item__content__buttons-cancel"
                     >
-                      Отмена
+                      отмена
                     </Button>
+                    <Button onClick={handleSubmit}>подтвердить</Button>
                   </div>
                 </div>
               )}
