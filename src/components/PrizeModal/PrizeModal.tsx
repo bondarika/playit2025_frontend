@@ -93,7 +93,7 @@ function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
               ) : (
                 <div className="item__content__purchase-confirmation">
                   <p style={{ margin: '0px 12px' }}>
-                    вы покупаете&nbsp;<br>{prize.title}</br>
+                    вы покупаете&nbsp;<b>{prize.title}</b>
                     &nbsp;за&nbsp;{prize.price}
                     &nbsp;
                     <img src={icons['coin']} />
