@@ -32,6 +32,7 @@
       object-fit: contain;
       border-radius: 24px;
       margin-bottom: 16px;
+      margin-top: 8px;
     }
     &-tag {
       width: fit-content;
@@ -40,16 +41,16 @@
       background-color: $pink;
       padding: 2px 5px;
       border-radius: 4px;
-      margin: 0px 0px 4px 12px;
+      margin-bottom: 4px;
     }
     &-title {
       font-size: 16px;
       font-weight: 600;
       color: $grey;
-      margin: 0px 0px 6px 12px;
+      margin-bottom: 6px;
     }
     &-description {
-      margin: 0px 0px 2px 12px;
+      margin-bottom: 2px;
       font-size: 12px;
       color: $grey--lighten--1;
     }

@@ -26,7 +26,7 @@ function Prize({ prize, onClick }: PrizeProps) {
           <h2 className="prize__content__title">{prize.title}</h2>
           <div className="prize__content__price">
             <p className="prize__content__price-text">{prize.price}</p>
-            <img src={icons['coin']} alt="монеток" />
+            <img src={icons['coin']} />
           </div>
         </div>
       </div>
