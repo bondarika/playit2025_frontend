@@ -1,4 +1,4 @@
-﻿import { forwardRef, useImperativeHandle, useState } from 'react';
+﻿import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import { ModalHandle } from '../../types/modalHandle';
 import './styles.scss';
 import Cookies from 'js-cookie';
@@ -30,7 +30,8 @@ function TaskModal({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) {
   const [userAnswer, setUserAnswer] = useState('');
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
-  const [isUploading, setIsUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const textInputRef = useRef<HTMLInputElement | null>(null);
 
   useImperativeHandle(ref, () => ({
     showModal: () => setIsVisible(true),
@@ -38,6 +39,13 @@ function TaskModal({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) {
       setIsVisible(false);
       setFile(null);
       setUserAnswer('');
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
+
+      if (textInputRef.current) {
+        textInputRef.current.value = '';
+      }
     },
   }));
 
@@ -147,6 +155,7 @@ function TaskModal({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) {
                 type="text"
                 placeholder="напиши сюда ответ"
                 value={userAnswer}
+                ref={textInputRef}
                 onChange={(e) => setUserAnswer(e.target.value)}
               />
               <Button onClick={handleSubmit}>отправить</Button>
@@ -159,13 +168,14 @@ function TaskModal({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) {
                 <input
                   type="file"
                   id="fileInput"
+                  ref={fileInputRef}
                   onChange={(e) => handleFileChange(e, setFile)}
                 />
                 <label htmlFor="fileInput">
                   {file ? file.name : 'прикрепи сюда решение'}
                 </label>
               </div>
-              <Button onClick={handleSubmit} disabled={!file || isUploading}>
+              <Button onClick={handleSubmit} disabled={!file}>
                 {loading ? 'Загрузка...' : 'отправить'}
               </Button>
             </div>

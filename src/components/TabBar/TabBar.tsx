@@ -33,7 +33,7 @@ function TabBar() {
               alt="профиль"
               className="tabbar__profile-avatar"
               style={{
-                display: "border-box",
+                boxSizing: "border-box",
                 border:
                   selected === 'profile'
                     ? '1.5px solid rgba(207, 80, 105, 1)'
