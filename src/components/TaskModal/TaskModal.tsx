@@ -125,9 +125,9 @@ function TaskModal({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) {
             </h2>
             <div className="modal_content_main_title-points">
               <p>награда:</p>
-              <div>
-                {task.points}
-                <img src={icons['coin']} style={{marginLeft: "2px"}} />
+              <div style={{ display: 'flex', flexDirection: 'row' }}>
+                <p>{task.points}</p>
+                <img src={icons['coin']} style={{ marginLeft: '2px' }} />
               </div>
             </div>
           </div>
