@@ -7,17 +7,29 @@ import Error from '../../components/Error/Error';
 import Loader from '../../components/Loader/Loader';
 import icons from '../../assets/icons';
 import useTimeoutError from '../../hooks/useTimeoutError';
+import { PrizeProps } from '../../types/prizeProps';
+import { useRef, useState } from 'react';
+import PrizeModal from '../../components/PrizeModal/PrizeModal';
 
 function StorePage(): React.ReactElement {
   const params = new URLSearchParams(WebApp.initData);
   const userData = JSON.parse(params.get('user') || 'null');
+  const modalRef = useRef<HTMLDialogElement>(null);
   const { prizes, loading, error: prizesError } = usePrizes();
   const { user, error: userError } = useUser({
     id: userData.id,
     username: userData.username,
   });
+  const [selectedPrize, setSelectedPrize] = useState<
+    PrizeProps['prize'] | null
+  >(null);
 
   const timeoutError = useTimeoutError(!!user || !!prizesError || !!userError);
+
+  const handlePrizeClick = (prize: PrizeProps['prize']) => {
+    setSelectedPrize(prize);
+    modalRef.current?.showModal();
+  };
 
   if (timeoutError) {
     return (
@@ -40,7 +52,7 @@ function StorePage(): React.ReactElement {
   }
 
   return (
-    <div>
+    <>
       <header>
         <h1>МАГАЗИН</h1>
         <div className="balance">
@@ -51,10 +63,15 @@ function StorePage(): React.ReactElement {
 
       <div className="store">
         {prizes.map((prize) => (
-          <Prize key={prize.id} prize={prize} onClick={() => {}} />
+          <Prize
+            key={prize.id}
+            prize={prize}
+            onClick={() => handlePrizeClick(prize)}
+          />
         ))}
       </div>
-    </div>
+      {selectedPrize && <PrizeModal ref={modalRef} prize={selectedPrize} />}
+    </>
   );
 }
 

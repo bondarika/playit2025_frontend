@@ -13,10 +13,10 @@ const avatarArray = Object.values(characterAvatars).map(
   (img) => (img as { default: string }).default
 );
 
-function Prize({ prize }: PrizeProps) {
+function Prize({ prize, onClick }: PrizeProps) {
   return (
     <>
-      <div className="prize">
+      <div className="prize" onClick={onClick}>
         <img
           src={avatarArray[prize.id - 1]}
           alt="приз"
