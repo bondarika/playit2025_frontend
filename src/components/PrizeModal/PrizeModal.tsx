@@ -66,7 +66,10 @@ function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
   return (
     <div className="item">
       <div className="item__content">
-        <button role="close" onClick={() => setIsVisible(false)}>
+        <button
+          role="close"
+          onClick={() => (ref as React.RefObject<ModalHandle>).current?.close()}
+        >
           <img src={icons['close']} />
         </button>
 
@@ -98,6 +101,7 @@ function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
                     &nbsp;
                     <img src={icons['coin']} />
                   </p>
+                  {/* <div>{user.}</div> */}
                   <div className="item__content__buttons">
                     <Button
                       onClick={handleCancelClick}

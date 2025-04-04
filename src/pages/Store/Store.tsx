@@ -10,11 +10,12 @@ import useTimeoutError from '../../hooks/useTimeoutError';
 import { PrizeProps } from '../../types/prizeProps';
 import { useRef, useState } from 'react';
 import PrizeModal from '../../components/PrizeModal/PrizeModal';
+import { ModalHandle } from '../../types/modalHandle';
 
 function StorePage(): React.ReactElement {
   const params = new URLSearchParams(WebApp.initData);
   const userData = JSON.parse(params.get('user') || 'null');
-  const modalRef = useRef<HTMLDialogElement>(null);
+  const modalRef = useRef<ModalHandle | null>(null);
   const { prizes, loading, error: prizesError } = usePrizes();
   const { user, error: userError } = useUser({
     id: userData.id,
