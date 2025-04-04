@@ -110,7 +110,16 @@ function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
           ) : (
             <>
               {!isConfirming ? (
-                <Button onClick={handleBuyClick}>купить</Button>
+                <Button
+                  onClick={handleBuyClick}
+                  disabled={
+                    !user ||
+                    user.balance === undefined ||
+                    user.balance < prize.price
+                  }
+                >
+                  купить
+                </Button>
               ) : (
                 <div className="item__content__purchase-confirmation">
                   <p style={{ margin: '0px 12px' }}>
