@@ -116,7 +116,14 @@ function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
           ) : (
             <>
               {!isConfirming ? (
-                <>
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '8px',
+                    alignItems: 'center',
+                  }}
+                >
                   <Button
                     onClick={handleBuyClick}
                     disabled={
@@ -134,7 +141,7 @@ function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
                         Недостаточно средств
                       </p>
                     )}
-                </>
+                </div>
               ) : (
                 <div className="item__content__purchase-confirmation">
                   <p style={{ margin: '0px 12px' }}>
