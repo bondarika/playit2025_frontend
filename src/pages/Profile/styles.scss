@@ -30,6 +30,9 @@
     align-items: flex-start;
     margin-top: 20px;
     gap: 8px;
+    button:active {
+      background-color: $pink;
+    }
     &-block {
       display: flex;
       flex-direction: column;

@@ -16,7 +16,7 @@ const usePrizes = () => {
           (prize: IFetchedPrize) => ({
             id: prize['№'],
             title: prize['Наименование'],
-            description: prize['Нaполнение'],
+            description: prize['Описание'],
             price: prize['Цена'],
             quantity: prize['Кол-во'],
           })
