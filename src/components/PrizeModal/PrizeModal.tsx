@@ -97,7 +97,8 @@ function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
             <p className="item__content-tag">в наличии: {prize.quantity} шт</p>
             <h2 className="item__content-title">{prize.title}</h2>
             <p className="item__content-description">описание:</p>
-            <p className="item__content-text">{prize.description}</p>
+            {/* <p className="item__content-text">{prize.description}</p> */}
+            {prize.description}
           </div>
         </div>
 
