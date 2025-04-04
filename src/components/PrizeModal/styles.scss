@@ -62,10 +62,9 @@
       color: $grey;
       font-size: 16px;
       &-warning{
-        color: $red;
-        font-size: 12px;
-        font-weight: 400;
-        margin-top: 8px;
+        color: $red--lighten--1;
+        font-weight: 500;
+        margin: 8px auto 0px auto;
       }
       &-confirmation {
         display: flex;
