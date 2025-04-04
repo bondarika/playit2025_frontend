@@ -9,10 +9,10 @@ function Error() {
           <p className="error__text-sub">похоже, произошла ошибка 😢</p>
           <p>попробуйте перезайти, ну а если не поможет, то вам сюда:</p>
         </div>
-        <div className="error__link">
-          <a href="https://t.me/stremilovv">t.me/stremilovv</a>
+        <a href="https://t.me/stremilovv" className="error__link">
+          <p>t.me/stremilovv</p>
           <img src={icons['help_red']} />
-        </div>
+        </a>
       </div>
     </>
   );
