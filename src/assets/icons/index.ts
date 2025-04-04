@@ -5,6 +5,7 @@ import arrow from './arrow.svg';
 import coin from './coin.svg';
 import close from './close.svg';
 import help_red from './help_red.svg';
+import shop_arrow from './shop_arrow.svg';
 
 const icons = {
   settings,
@@ -14,6 +15,7 @@ const icons = {
   coin,
   close,
   help_red,
+  shop_arrow,
 } as const;
 
 export default icons;

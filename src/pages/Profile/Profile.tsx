@@ -3,7 +3,7 @@ import './styles.scss';
 import icons from '../../assets/icons';
 import { useUser } from '../../hooks/useUser';
 import { observer } from 'mobx-react-lite';
-import Error from '../../components/Error/Error';
+import CustomError from '../../components/CustomError/CustomError';
 import Loader from '../../components/Loader/Loader';
 import useTimeoutError from '../../hooks/useTimeoutError';
 import { useState } from 'react';
@@ -27,7 +27,7 @@ function ProfilePage(): React.ReactElement {
   if (timeoutError) {
     return (
       <div>
-        <Error />
+        <CustomError />
       </div>
     );
   }
@@ -35,7 +35,7 @@ function ProfilePage(): React.ReactElement {
   if (error) {
     return (
       <div>
-        <Error />
+        <CustomError />
       </div>
     );
   }

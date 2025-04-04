@@ -67,6 +67,22 @@
         flex-direction: column;
         gap: 32px;
       }
+      &-balance {
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+        align-items: center;
+        align-self: center;
+        &-text {
+          display: flex;
+          flex-direction: row;
+          gap: 6px;
+          background-color: $pink;
+          color: $red;
+          padding: 5.5px 12px;
+
+        }
+      }
     }
     &__buttons {
       display: flex;

@@ -1,7 +1,7 @@
 ﻿import icons from '../../assets/icons';
 import './styles.scss';
 
-function Error() {
+function CustomError() {
   return (
     <>
       <div className="error">
@@ -18,4 +18,4 @@ function Error() {
   );
 }
 
-export default Error;
+export default CustomError;

@@ -3,7 +3,7 @@ import Prize from '../../components/Prize/Prize';
 import usePrizes from '../../hooks/usePrizes';
 import './styles.scss';
 import useUser from '../../hooks/useUser';
-import Error from '../../components/Error/Error';
+import Error from '../../components/CustomError/CustomError';
 import Loader from '../../components/Loader/Loader';
 import icons from '../../assets/icons';
 import useTimeoutError from '../../hooks/useTimeoutError';

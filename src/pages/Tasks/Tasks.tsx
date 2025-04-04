@@ -7,7 +7,7 @@ import TaskModal from '../../components/TaskModal/TaskModal';
 import WebApp from '@twa-dev/sdk';
 import useUser from '../../hooks/useUser';
 import Loader from '../../components/Loader/Loader';
-import Error from '../../components/Error/Error';
+import CustomError from '../../components/CustomError/CustomError';
 import icons from '../../assets/icons';
 import useTimeoutError from '../../hooks/useTimeoutError';
 import { ModalHandle } from '../../types/modalHandle';
@@ -36,7 +36,7 @@ function TaskPage(): React.ReactElement {
   if (timeoutError) {
     return (
       <div>
-        <Error />
+        <CustomError />
       </div>
     );
   }
@@ -44,7 +44,7 @@ function TaskPage(): React.ReactElement {
   if (tasksError || userError) {
     return (
       <div>
-        <Error />
+        <CustomError />
       </div>
     );
   }
@@ -55,7 +55,7 @@ function TaskPage(): React.ReactElement {
 
   return (
     <>
-      {/* <header>
+      <header>
         <h1>ЗАДАНИЯ</h1>
         <div className="balance">
           <img src={icons['coin_bag_red']} />
@@ -74,13 +74,7 @@ function TaskPage(): React.ReactElement {
             />
           ))}
       </div>
-      {selectedTask && (
-        <TaskModal
-          ref={modalRef}
-          task={selectedTask}
-        />
-      )} */}
-      <Error />
+      {selectedTask && <TaskModal ref={modalRef} task={selectedTask} />}
     </>
   );
 }

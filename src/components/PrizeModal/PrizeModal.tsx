@@ -6,6 +6,12 @@ import Button from '../Button/Button';
 import Cookies from 'js-cookie';
 import { PrizeModalProps } from '../../types/prizeModal';
 import { buyPrize } from '../../services/api';
+import useUser from '../../hooks/useUser';
+import WebApp from '@twa-dev/sdk';
+import CustomError from '../CustomError/CustomError';
+
+const params = new URLSearchParams(WebApp.initData);
+const userData = JSON.parse(params.get('user') || 'null');
 
 const characterAvatars: Record<string, { default: string }> = import.meta.glob(
   '@/assets/images/characters_a/*.webp',
@@ -19,6 +25,10 @@ const avatarArray = Object.values(characterAvatars).map(
 );
 
 function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
+  const { user, error: userError } = useUser({
+    id: userData.id,
+    username: userData.username,
+  });
   const [isVisible, setIsVisible] = useState(false);
   const [isConfirming, setIsConfirming] = useState(false);
   const [purchaseSuccess, setPurchaseSuccess] = useState(false);
@@ -63,6 +73,14 @@ function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
     }
   };
 
+  if (userError) {
+    return (
+      <div>
+        <CustomError />
+      </div>
+    );
+  }
+
   return (
     <div className="item">
       <div className="item__content">
@@ -99,9 +117,26 @@ function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
                     вы покупаете&nbsp;<b>{prize.title}</b>
                     &nbsp;за&nbsp;{prize.price}
                     &nbsp;
-                    <img src={icons['coin']} />
+                    <img
+                      src={icons['coin']}
+                      style={{ width: '16px', height: '16px' }}
+                    />
                   </p>
-                  {/* <div>{user.}</div> */}
+                  {user ? (
+                    <div className="item__content__purchase-balance">
+                      <div className="item__content__purchase-balance-text">
+                        <img src={icons['coin_bag_red']} />
+                        <p>{user.balance}</p>
+                      </div>
+                      <img src={icons['shop_arrow']} />
+                      <div className="item__content__purchase-balance-text">
+                        <img src={icons['coin_bag_red']} />
+                        <p>{user.balance - prize.price}</p>
+                      </div>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
                   <div className="item__content__buttons">
                     <Button
                       onClick={handleCancelClick}
