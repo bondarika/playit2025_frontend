@@ -56,12 +56,17 @@
     }
     &-text {
       color: $grey;
-      margin-left: 12px;
     }
     &__purchase {
       font-weight: 600;
       color: $grey;
       font-size: 16px;
+      &-warning{
+        color: $red;
+        font-size: 12px;
+        font-weight: 400;
+        margin-top: 8px;
+      }
       &-confirmation {
         display: flex;
         flex-direction: column;
