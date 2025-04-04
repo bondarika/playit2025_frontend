@@ -55,7 +55,7 @@ function TaskPage(): React.ReactElement {
 
   return (
     <>
-      <header>
+      {/* <header>
         <h1>ЗАДАНИЯ</h1>
         <div className="balance">
           <img src={icons['coin_bag_red']} />
@@ -79,7 +79,8 @@ function TaskPage(): React.ReactElement {
           ref={modalRef}
           task={selectedTask}
         />
-      )}
+      )} */}
+      <Error />
     </>
   );
 }
