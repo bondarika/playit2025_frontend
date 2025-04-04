@@ -13,6 +13,7 @@
     "@telegram-apps/sdk-react": "^3.1.1",
     "@twa-dev/sdk": "^8.0.2",
     "axios": "^1.8.4",
+    "dompurify": "^3.2.5",
     "esbuild": "^0.25.0",
     "js-cookie": "^3.0.5",
     "mobx": "^6.13.7",

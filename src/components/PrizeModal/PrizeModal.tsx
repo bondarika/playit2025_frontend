@@ -9,6 +9,7 @@ import { buyPrize } from '../../services/api';
 import useUser from '../../hooks/useUser';
 import WebApp from '@twa-dev/sdk';
 import CustomError from '../CustomError/CustomError';
+import DOMPurify from 'dompurify';
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
@@ -73,6 +74,8 @@ function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
     }
   };
 
+  const sanitizedDescription = DOMPurify.sanitize(prize.description);
+
   if (userError) {
     return (
       <div>
@@ -97,8 +100,10 @@ function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
             <p className="item__content-tag">в наличии: {prize.quantity} шт</p>
             <h2 className="item__content-title">{prize.title}</h2>
             <p className="item__content-description">описание:</p>
-            {/* <p className="item__content-text">{prize.description}</p> */}
-            {prize.description}
+            <p
+              className="item__content-text"
+              dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
+            />
           </div>
         </div>
 
