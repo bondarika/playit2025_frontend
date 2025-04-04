@@ -20,6 +20,10 @@
     padding: 6px 10px;
     border-radius: 12px;
     text-decoration: none;
+    margin-top: 8px;
+    a {
+      color: $grey;
+    }
   }
   &__text {
     width: calc(100% - 40px);
