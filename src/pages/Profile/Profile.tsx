@@ -17,6 +17,7 @@ const userData = JSON.parse(params.get('user') || 'null');
 
 function ProfilePage(): React.ReactElement {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [areSettingsOpen, setAreSettingsOpen] = useState(false);
   const { user, error } = useUser({
     id: userData.id,
     username: userData.username,
@@ -44,7 +45,17 @@ function ProfilePage(): React.ReactElement {
     <div>
       <header>
         <h1 className="header">ПРОФИЛЬ</h1>
-        <img src={icons['settings']} alt="Настройки" />
+        <button onClick={() => setAreSettingsOpen((prev) => !prev)}>
+          <img src={icons['settings']} alt="Настройки" />
+        </button>
+        {areSettingsOpen && (
+          <div className="profile__settings">
+            <a className="profile__settings-item">
+              <p style={{textDecoration: "none", color: "black"}}>мне нужна помощь</p>
+              <img src={icons['help_black']}/>
+            </a>
+          </div>
+        )}
       </header>
       <div className="profile">
         <div className="profile__picture">

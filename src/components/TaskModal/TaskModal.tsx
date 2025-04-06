@@ -65,6 +65,7 @@ function TaskModal({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) {
           value: task.points,
           user_answer: userAnswer || '',
         };
+        console.log('requestBody', requestBody);
       } else if (task.verification === 'модерация') {
         endpoint = '/tasks/create/moderation';
         requestBody = new FormData();
