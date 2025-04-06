@@ -6,17 +6,17 @@ import Button from '../Button/Button';
 import Cookies from 'js-cookie';
 import { PrizeModalProps } from '../../types/prizeModal';
 import { buyPrize } from '../../services/api';
-// import useUser from '../../hooks/useUser';
-// import WebApp from '@twa-dev/sdk';
 import CustomError from '../CustomError/CustomError';
 import DOMPurify from 'dompurify';
 import userStore from '../../store/store';
 import { runInAction } from 'mobx';
 import Loader from '../Loader/Loader';
 import useTimeoutError from '../../hooks/useTimeoutError';
+import useUser from '../../hooks/useUser';
+import WebApp from '@twa-dev/sdk';
 
-// const params = new URLSearchParams(WebApp.initData);
-// const userData = JSON.parse(params.get('user') || 'null');
+const params = new URLSearchParams(WebApp.initData);
+const userData = JSON.parse(params.get('user') || 'null');
 
 const prizes: Record<string, { default: string }> = import.meta.glob(
   '@/assets/images/prizes_large/*.webp',
@@ -30,11 +30,13 @@ const avatarArray = Object.values(prizes).map(
 );
 
 function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
-  const user = userStore.user;
-  // const { user, error: userError } = useUser({
-  //   id: userData.id,
-  //   username: userData.username,
-  // });
+  const storeUser = userStore.user;
+  const { user: fetchedUser } = useUser({
+    id: userData.id,
+    username: userData.username,
+  });
+  const user = storeUser ?? fetchedUser;
+
   const [isVisible, setIsVisible] = useState(false);
   const [isConfirming, setIsConfirming] = useState(false);
   const [purchaseSuccess, setPurchaseSuccess] = useState(false);
