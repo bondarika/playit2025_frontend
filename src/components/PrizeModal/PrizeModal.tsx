@@ -108,46 +108,38 @@ function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
         </div>
 
         <div className="item__content__purchase">
-          {!isConfirming ? (
-            !purchaseSuccess ? (
-              <>
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '8px',
-                    alignItems: 'center',
-                  }}
+          {!isConfirming && !purchaseSuccess && (
+            <>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '8px',
+                  alignItems: 'center',
+                }}
+              >
+                <Button
+                  onClick={handleBuyClick}
+                  disabled={
+                    !user ||
+                    user.balance === undefined ||
+                    user.balance < prize.price
+                  }
                 >
-                  <Button
-                    onClick={handleBuyClick}
-                    disabled={
-                      !user ||
-                      user.balance === undefined ||
-                      user.balance < prize.price
-                    }
-                  >
-                    купить
-                  </Button>
-                  {user &&
-                    user.balance !== undefined &&
-                    user.balance < prize.price && (
-                      <p className="item__content__purchase-warning">
-                        Недостаточно средств
-                      </p>
-                    )}
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="item__content__purchase-success">
-                  <p>всё успешно!</p>
-                  <p>ищите приз в профиле</p>
-                </div>
-                ;
-              </>
-            )
-          ) : (
+                  купить
+                </Button>
+                {user &&
+                  user.balance !== undefined &&
+                  user.balance < prize.price && (
+                    <p className="item__content__purchase-warning">
+                      Недостаточно средств
+                    </p>
+                  )}
+              </div>
+            </>
+          )}
+
+          {isConfirming && !purchaseSuccess && (
             <>
               <div className="item__content__purchase-confirmation">
                 <p style={{ margin: '0px 12px' }}>
@@ -185,6 +177,13 @@ function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
                 </div>
               </div>
             </>
+          )}
+
+          {purchaseSuccess && (
+            <div className="item__content__purchase-success">
+              <p>всё успешно!</p>
+              <p>ищите приз в профиле</p>
+            </div>
           )}
         </div>
       </div>
