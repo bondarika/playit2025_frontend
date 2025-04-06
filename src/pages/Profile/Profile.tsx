@@ -165,12 +165,9 @@ function ProfilePage(): React.ReactElement {
                   ))
                 ) : (
                   <>
-                      <p
-                        style={{ padding: '8px 20px' }}
-                        className="profile__dropdown-item"
-                      >
-                        нет призов
-                      </p>
+                    <div className="profile__dropdown-item">
+                      <span style={{ padding: '8px 10px' }}>нет призов</span>
+                    </div>
                   </>
                 )}
               </div>
