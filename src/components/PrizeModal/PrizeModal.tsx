@@ -62,7 +62,7 @@ function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
 
       const response = await buyPrize(userId, prize.title, prize.price);
 
-      if (response.data.status === '200') {
+      if (response.data.status === 'success') {
         setIsConfirming(false);
         setPurchaseSuccess(true);
       } else {
