@@ -12,11 +12,12 @@ import { useRef, useState } from 'react';
 import PrizeModal from '../../components/PrizeModal/PrizeModal';
 import { ModalHandle } from '../../types/modalHandle';
 import userStore from '../../store/store';
+import { observer } from 'mobx-react-lite';
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
 
-function StorePage(): React.ReactElement {
+const StorePage = observer(() => {
   const storeUser = userStore.user;
   const { user: fetchedUser } = useUser({
     id: userData.id,
@@ -78,6 +79,6 @@ function StorePage(): React.ReactElement {
       {selectedPrize && <PrizeModal ref={modalRef} prize={selectedPrize} />}
     </>
   );
-}
+});
 
 export default StorePage;
