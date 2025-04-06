@@ -3,7 +3,7 @@ import './styles.scss';
 import icons from '../../assets/icons';
 
 const characterAvatars: Record<string, { default: string }> = import.meta.glob(
-  '@/assets/images/characters_b/*.png',
+  '@/assets/images/prizes_small/*.png',
   {
     eager: true,
   }

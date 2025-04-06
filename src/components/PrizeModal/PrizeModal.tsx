@@ -15,7 +15,7 @@ const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
 
 const characterAvatars: Record<string, { default: string }> = import.meta.glob(
-  '@/assets/images/characters_a/*.webp',
+  '@/assets/images/prizes_large/*.webp',
   {
     eager: true,
   }
