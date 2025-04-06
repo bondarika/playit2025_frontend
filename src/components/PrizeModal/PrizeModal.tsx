@@ -62,7 +62,7 @@ function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
 
       const response = await buyPrize(userId, prize.title, prize.price);
 
-      if (response.data.status === 'success') {
+      if (response.status === 'success') {
         setIsConfirming(false);
         setPurchaseSuccess(true);
       } else {
@@ -123,11 +123,19 @@ function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
                   disabled={
                     !user ||
                     user.balance === undefined ||
-                    user.balance < prize.price
+                    user.balance < prize.price ||
+                    prize.quantity === 0
                   }
                 >
                   купить
                 </Button>
+                
+                {prize.quantity === 0 && (
+                  <p className="item__content__purchase-warning">
+                    Приз закончился
+                  </p>
+                )}
+
                 {user &&
                   user.balance !== undefined &&
                   user.balance < prize.price && (
