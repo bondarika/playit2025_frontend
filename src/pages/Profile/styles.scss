@@ -4,6 +4,8 @@
   width: calc(100% - 20px);
   margin: 0 auto;
   font-family: 'SF Pro Display';
+  max-height: calc(100vh - 115px - var(--tg-safe-area-inset-bottom, 0px));
+  overflow: auto;
   &__picture {
     display: flex;
     flex-direction: column;
@@ -72,10 +74,8 @@
   }
   &__dropdown {
     display: flex;
-    max-height: 114px;
     flex-direction: column;
     width: 100%;
-    overflow-y: auto;
     background-color: $pink;
     font-size: 16px;
     font-weight: 500;
