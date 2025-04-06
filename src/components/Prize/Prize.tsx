@@ -2,14 +2,14 @@
 import './styles.scss';
 import icons from '../../assets/icons';
 
-const characterAvatars: Record<string, { default: string }> = import.meta.glob(
-  '@/assets/images/prizes_small/*.png',
+const prizes: Record<string, { default: string }> = import.meta.glob(
+  '@/assets/images/prizes_small/*.webp',
   {
     eager: true,
   }
 );
 
-const avatarArray = Object.values(characterAvatars).map(
+const avatarArray = Object.values(prizes).map(
   (img) => (img as { default: string }).default
 );
 

@@ -28,20 +28,25 @@ function TabBar() {
         </RouterTab>
         <div className="tabbar__profile">
           <RouterTab to="/profile">
-            <img
-              src={userData.photo_url}
-              alt="профиль"
-              className="tabbar__profile-avatar"
+            <div
               style={{
-                boxSizing: 'border-box',
-                border:
-                  selected === 'profile'
-                    ? '1.5px solid rgba(207, 80, 105, 1)'
-                    : 'none',
                 background: selected === 'profile' ? 'none' : '#F6E9F0',
                 backdropFilter: selected === 'profile' ? 'none' : 'blur(16px)',
               }}
-            />
+            >
+              <img
+                src={userData.photo_url}
+                alt="профиль"
+                className="tabbar__profile-avatar"
+                style={{
+                  boxSizing: 'border-box',
+                  border:
+                    selected === 'profile'
+                      ? '1.5px solid rgba(207, 80, 105, 1)'
+                      : 'none',
+                }}
+              />
+            </div>
           </RouterTab>
         </div>
 

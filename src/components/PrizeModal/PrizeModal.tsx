@@ -14,14 +14,14 @@ import DOMPurify from 'dompurify';
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
 
-const characterAvatars: Record<string, { default: string }> = import.meta.glob(
+const prizes: Record<string, { default: string }> = import.meta.glob(
   '@/assets/images/prizes_large/*.webp',
   {
     eager: true,
   }
 );
 
-const avatarArray = Object.values(characterAvatars).map(
+const avatarArray = Object.values(prizes).map(
   (img) => (img as { default: string }).default
 );
 

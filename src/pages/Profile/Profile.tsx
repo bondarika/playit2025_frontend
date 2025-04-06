@@ -50,6 +50,7 @@ function ProfilePage(): React.ReactElement {
             width: 'fit-content',
             height: 'fit-content',
             backgroundColor: 'transparent',
+            padding: '0px',
           }}
           onClick={() => setAreSettingsOpen((prev) => !prev)}
         >
