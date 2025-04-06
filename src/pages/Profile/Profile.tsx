@@ -45,15 +45,27 @@ function ProfilePage(): React.ReactElement {
     <div>
       <header>
         <h1 className="header">ПРОФИЛЬ</h1>
-        <button onClick={() => setAreSettingsOpen((prev) => !prev)}>
+        <button
+          style={{
+            width: 'fit-content',
+            height: 'fit-content',
+            backgroundColor: 'transparent',
+          }}
+          onClick={() => setAreSettingsOpen((prev) => !prev)}
+        >
           <img src={icons['settings']} alt="Настройки" />
         </button>
         {areSettingsOpen && (
           <div className="profile__settings">
             <a className="profile__settings-item">
-              <p style={{textDecoration: "none", color: "black"}}>мне нужна помощь</p>
-              <img src={icons['help_black']}/>
+              <p style={{ textDecoration: 'none', color: 'black' }}>
+                мне нужна помощь
+              </p>
+              <img src={icons['help_black']} />
             </a>
+            <div className="profile__settings-text">
+              <p>developed by itse x tech.dep</p>
+            </div>
           </div>
         )}
       </header>
