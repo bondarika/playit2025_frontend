@@ -61,7 +61,15 @@ function ProfilePage(): React.ReactElement {
               href="https://t.me/playit_2025"
               className="profile__settings-item"
             >
-              <p style={{ padding: '8px 0px 8px 15px' }}>мне нужна помощь</p>
+              <p
+                style={{
+                  padding: '8px 0px 8px 15px',
+                  textDecoration: 'none',
+                  color: 'black',
+                }}
+              >
+                мне нужна помощь
+              </p>
               <img
                 src={icons['help_black']}
                 style={{ padding: '8px 15px 8px 0px' }}
