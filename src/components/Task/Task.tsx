@@ -2,6 +2,7 @@
 import './styles.scss';
 import icons from '../../assets/icons';
 import { TaskProps } from '../../types/taskProps';
+import DOMPurify from 'dompurify';
 
 const characterAvatars: Record<string, { default: string }> = import.meta.glob(
   '@/assets/images/characters_b/*.png',
@@ -20,6 +21,7 @@ const avatarNames = Object.keys(characterAvatars).map(
 const hexCodes = avatarNames.map((avatar) => extractHexFromImageName(avatar));
 
 function Task({ task, onClick }: TaskProps) {
+  const sanitizedDescription = DOMPurify.sanitize(task.description);
   return (
     <div
       onClick={!task.done ? onClick : undefined}
@@ -36,7 +38,10 @@ function Task({ task, onClick }: TaskProps) {
       <div className="task_main">
         <div>
           <h2 className="task_name">{task.character}</h2>
-          <p className="task_description">{task.description}</p>
+          <p
+            className="task_description"
+            dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
+          />
         </div>
         <div className="task_reward">
           <p>{task.points}</p>

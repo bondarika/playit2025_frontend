@@ -108,14 +108,9 @@ function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
         </div>
 
         <div className="item__content__purchase">
-          {purchaseSuccess ? (
-            <div className="item__content__purchase-success">
-              <p>всё успешно!</p>
-              <p>ищите приз в профиле</p>
-            </div>
-          ) : (
-            <>
-              {!isConfirming ? (
+          {!isConfirming ? (
+            !purchaseSuccess ? (
+              <>
                 <div
                   style={{
                     display: 'flex',
@@ -142,43 +137,53 @@ function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
                       </p>
                     )}
                 </div>
-              ) : (
-                <div className="item__content__purchase-confirmation">
-                  <p style={{ margin: '0px 12px' }}>
-                    вы покупаете&nbsp;<b>{prize.title}</b>
-                    &nbsp;за&nbsp;{prize.price}
-                    &nbsp;
-                    <img
-                      src={icons['coin']}
-                      style={{ width: '16px', height: '16px' }}
-                    />
-                  </p>
-                  {user ? (
-                    <div className="item__content__purchase-balance">
-                      <div className="item__content__purchase-balance-text">
-                        <img src={icons['coin_bag_red']} />
-                        <p>{user.balance}</p>
-                      </div>
-                      <img src={icons['shop_arrow']} />
-                      <div className="item__content__purchase-balance-text">
-                        <img src={icons['coin_bag_red']} />
-                        <p>{user.balance - prize.price}</p>
-                      </div>
-                    </div>
-                  ) : (
-                    <></>
-                  )}
-                  <div className="item__content__buttons">
-                    <Button
-                      onClick={handleCancelClick}
-                      className="item__content__buttons-cancel"
-                    >
-                      отмена
-                    </Button>
-                    <Button onClick={handleSubmit}>подтвердить</Button>
-                  </div>
+              </>
+            ) : (
+              <>
+                <div className="item__content__purchase-success">
+                  <p>всё успешно!</p>
+                  <p>ищите приз в профиле</p>
                 </div>
-              )}
+                ;
+              </>
+            )
+          ) : (
+            <>
+              <div className="item__content__purchase-confirmation">
+                <p style={{ margin: '0px 12px' }}>
+                  вы покупаете&nbsp;<b>{prize.title}</b>
+                  &nbsp;за&nbsp;{prize.price}
+                  &nbsp;
+                  <img
+                    src={icons['coin']}
+                    style={{ width: '16px', height: '16px' }}
+                  />
+                </p>
+                {user ? (
+                  <div className="item__content__purchase-balance">
+                    <div className="item__content__purchase-balance-text">
+                      <img src={icons['coin_bag_red']} />
+                      <p>{user.balance}</p>
+                    </div>
+                    <img src={icons['shop_arrow']} />
+                    <div className="item__content__purchase-balance-text">
+                      <img src={icons['coin_bag_red']} />
+                      <p>{user.balance - prize.price}</p>
+                    </div>
+                  </div>
+                ) : (
+                  <></>
+                )}
+                <div className="item__content__buttons">
+                  <Button
+                    onClick={handleCancelClick}
+                    className="item__content__buttons-cancel"
+                  >
+                    отмена
+                  </Button>
+                  <Button onClick={handleSubmit}>подтвердить</Button>
+                </div>
+              </div>
             </>
           )}
         </div>

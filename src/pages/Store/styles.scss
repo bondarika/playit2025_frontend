@@ -6,6 +6,7 @@
   flex-wrap: wrap;
   gap: 10px;
   padding-top: calc(60px + var(--tg-safe-area-inset-top, 0px));
-  max-height: calc(100vh - 115px - var(--tg-safe-area-inset-bottom, 0px));
+  max-height: calc(100vh - 125px - var(--tg-safe-area-inset-bottom, 0px));
   overflow: auto;
 }
+

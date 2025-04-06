@@ -8,6 +8,7 @@ import { TaskModalProps } from '../../types/taskModal';
 import { submitTask } from '../../services/api';
 import Button from '../Button/Button';
 import { convertFileToBinary } from '../../utils/convertFileToBinary';
+import DOMPurify from 'dompurify';
 
 const characterAvatars: Record<string, { default: string }> = import.meta.glob(
   '@/assets/images/characters_a/*.webp',
@@ -32,6 +33,8 @@ function TaskModal({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) {
   const [loading, setLoading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const textInputRef = useRef<HTMLInputElement | null>(null);
+  const sanitizedDescription = DOMPurify.sanitize(task.description);
+  const sanitizedTask = DOMPurify.sanitize(task.task);
 
   useImperativeHandle(ref, () => ({
     showModal: () => setIsVisible(true),
@@ -78,7 +81,7 @@ function TaskModal({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) {
           );
         }
       }
-      
+
       await submitTask(requestBody, endpoint);
       setFile(null);
       setUserAnswer('');
@@ -127,9 +130,12 @@ function TaskModal({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) {
               </div>
             </div>
           </div>
-          <p>{task.description}</p>
+          <p dangerouslySetInnerHTML={{ __html: sanitizedDescription }} />
           <p className="modal_content_main-task">задание</p>
-          <p style={{ marginBottom: '20px' }}>{task.task}</p>
+          <p
+            style={{ marginBottom: '20px' }}
+            dangerouslySetInnerHTML={{ __html: sanitizedTask }}
+          />
 
           {task.verification === 'автоматически' && (
             <div style={{ width: '100%' }}>
