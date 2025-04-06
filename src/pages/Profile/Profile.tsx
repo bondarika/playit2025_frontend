@@ -176,6 +176,10 @@ function ProfilePage(): React.ReactElement {
               </div>
             )}
           </div>
+          <div className="profile__identifier">
+            <p>идентификатор пользователя:</p>
+            <p>{user.telegram_id}</p>
+          </div>
         </div>
       </div>
     </div>
