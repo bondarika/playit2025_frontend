@@ -6,13 +6,17 @@ import Button from '../Button/Button';
 import Cookies from 'js-cookie';
 import { PrizeModalProps } from '../../types/prizeModal';
 import { buyPrize } from '../../services/api';
-import useUser from '../../hooks/useUser';
-import WebApp from '@twa-dev/sdk';
+// import useUser from '../../hooks/useUser';
+// import WebApp from '@twa-dev/sdk';
 import CustomError from '../CustomError/CustomError';
 import DOMPurify from 'dompurify';
+import userStore from '../../store/store';
+import { runInAction } from 'mobx';
+import Loader from '../Loader/Loader';
+import useTimeoutError from '../../hooks/useTimeoutError';
 
-const params = new URLSearchParams(WebApp.initData);
-const userData = JSON.parse(params.get('user') || 'null');
+// const params = new URLSearchParams(WebApp.initData);
+// const userData = JSON.parse(params.get('user') || 'null');
 
 const prizes: Record<string, { default: string }> = import.meta.glob(
   '@/assets/images/prizes_large/*.webp',
@@ -26,13 +30,16 @@ const avatarArray = Object.values(prizes).map(
 );
 
 function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
-  const { user, error: userError } = useUser({
-    id: userData.id,
-    username: userData.username,
-  });
+  const user = userStore.user;
+  // const { user, error: userError } = useUser({
+  //   id: userData.id,
+  //   username: userData.username,
+  // });
   const [isVisible, setIsVisible] = useState(false);
   const [isConfirming, setIsConfirming] = useState(false);
   const [purchaseSuccess, setPurchaseSuccess] = useState(false);
+
+  const timeoutError = useTimeoutError(!!user);
 
   useImperativeHandle(ref, () => ({
     showModal: () => setIsVisible(true),
@@ -63,6 +70,11 @@ function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
       const response = await buyPrize(userId, prize.title, prize.price);
 
       if (response.status === 'success') {
+        runInAction(() => {
+          if (userStore.user) {
+            userStore.user.balance -= prize.price;
+          }
+        });
         setIsConfirming(false);
         setPurchaseSuccess(true);
       } else {
@@ -76,7 +88,7 @@ function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
 
   const sanitizedDescription = DOMPurify.sanitize(prize.description);
 
-  if (userError) {
+  if (timeoutError) {
     return (
       <div>
         <CustomError />
@@ -84,7 +96,7 @@ function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
     );
   }
 
-  return (
+  return user ? (
     <div className="item">
       <div className="item__content">
         <button
@@ -129,7 +141,7 @@ function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
                 >
                   купить
                 </Button>
-                
+
                 {prize.quantity === 0 && (
                   <p className="item__content__purchase-warning">
                     Приз закончился
@@ -196,6 +208,8 @@ function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
         </div>
       </div>
     </div>
+  ) : (
+    <Loader />
   );
 }
 
