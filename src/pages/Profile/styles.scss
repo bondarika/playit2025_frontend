@@ -81,6 +81,7 @@
     font-weight: 500;
     color: rgba(207, 80, 105, 1);
     align-items: center;
+    border-radius: 0px 0px 12px 12px;
     &-item {
       display: flex;
       width: 100%;
@@ -91,8 +92,6 @@
         font-weight: 400;
         font-size: 12px;
         color: rgba(68, 68, 68, 0.5);
-        background-color: $pink;
-        border-radius: 0px 12px;
       }
     }
   }
@@ -126,6 +125,7 @@
     }
   }
   &__identifier {
+    margin: 125px 0px 20px 10px;
     font-size: 12px;
     color: $grey--lighten--1;
   }
