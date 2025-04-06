@@ -165,7 +165,12 @@ function ProfilePage(): React.ReactElement {
                   ))
                 ) : (
                   <>
-                    <p style={{ paddingLeft: '10px' }}>нет призов</p>
+                    <p
+                      style={{ padding: '8px 10px' }}
+                      className="profile__dropdown-item"
+                    >
+                      нет призов
+                    </p>
                   </>
                 )}
               </div>
