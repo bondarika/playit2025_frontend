@@ -61,16 +61,11 @@ function ProfilePage(): React.ReactElement {
               href="https://t.me/playit_2025"
               className="profile__settings-item"
             >
-              <p
-                style={{
-                  textDecoration: 'none',
-                  color: 'black',
-                  padding: '8px 10px',
-                }}
-              >
-                мне нужна помощь
-              </p>
-              <img src={icons['help_black']} />
+              <p style={{ padding: '8px 0px 8px 15px' }}>мне нужна помощь</p>
+              <img
+                src={icons['help_black']}
+                style={{ padding: '8px 15px 8px 0px' }}
+              />
             </a>
             <div className="profile__settings-text">
               <p>developed by itse x tech.dep</p>
@@ -153,7 +148,7 @@ function ProfilePage(): React.ReactElement {
                       }`}
                     >
                       <span
-                        style={{ padding: '0px 10px', whiteSpace: 'pre-line' }}
+                        style={{ padding: '8px 10px', whiteSpace: 'pre-line' }}
                       >
                         {prize.title}
                       </span>
