@@ -83,9 +83,9 @@
     &-item {
       display: flex;
       width: 100%;
-      justify-content: space-between;
-      border-top: 0.5px dotted rgba(60, 60, 67, 0.3);
-      border-bottom: 0.5px dotted rgba(60, 60, 67, 0.3);
+      padding: 8px 0px;
+      justify-content: flex-start;
+      border-top: 0.5px dashed rgba(60, 60, 67, 0.3);
       &-last {
         padding: 4px 0px;
         font-weight: 400;
@@ -110,10 +110,9 @@
       border-bottom: 0.5px solid rgba(60, 60, 67, 0.36);
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
+      gap: 56px;
       align-items: center;
       width: 100%;
-      padding: 10px 0px;
       font-size: 16px;
     }
     &-text {

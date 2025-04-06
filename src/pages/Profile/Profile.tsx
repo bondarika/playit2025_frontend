@@ -57,8 +57,17 @@ function ProfilePage(): React.ReactElement {
         </button>
         {areSettingsOpen && (
           <div className="profile__settings">
-            <a className="profile__settings-item">
-              <p style={{ textDecoration: 'none', color: 'black' }}>
+            <a
+              href="https://t.me/playit_2025"
+              className="profile__settings-item"
+            >
+              <p
+                style={{
+                  textDecoration: 'none',
+                  color: 'black',
+                  padding: '0px 10px',
+                }}
+              >
                 мне нужна помощь
               </p>
               <img src={icons['help_black']} />
@@ -143,10 +152,7 @@ function ProfilePage(): React.ReactElement {
                           : ''
                       }`}
                     >
-                      <span style={{ paddingLeft: '10px' }}>{prize.title}</span>
-                      <span style={{ paddingRight: '10px' }}>
-                        {prize.value}
-                      </span>
+                      <span style={{ padding: '0px 10px' }}>{prize.title}</span>
                     </div>
                   ))
                 ) : (
