@@ -65,7 +65,7 @@ function ProfilePage(): React.ReactElement {
                 style={{
                   textDecoration: 'none',
                   color: 'black',
-                  padding: '0px 10px',
+                  padding: '8px 10px',
                 }}
               >
                 мне нужна помощь
@@ -140,7 +140,7 @@ function ProfilePage(): React.ReactElement {
                     {
                       id: 'last',
                       title:
-                        'вы сможете получить призы после завершения мероприятия',
+                        'вы сможете получить призы\nпосле завершения мероприятия',
                       value: '',
                     },
                   ].map((prize, index, arr) => (
@@ -152,7 +152,11 @@ function ProfilePage(): React.ReactElement {
                           : ''
                       }`}
                     >
-                      <span style={{ padding: '0px 10px' }}>{prize.title}</span>
+                      <span
+                        style={{ padding: '0px 10px', whiteSpace: 'pre-line' }}
+                      >
+                        {prize.title}
+                      </span>
                     </div>
                   ))
                 ) : (

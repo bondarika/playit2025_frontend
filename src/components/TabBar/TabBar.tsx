@@ -33,11 +33,13 @@ function TabBar() {
               alt="профиль"
               className="tabbar__profile-avatar"
               style={{
-                boxSizing: "border-box",
+                boxSizing: 'border-box',
                 border:
                   selected === 'profile'
                     ? '1.5px solid rgba(207, 80, 105, 1)'
                     : 'none',
+                background: selected === 'profile' ? 'none' : '#F6E9F0',
+                backdropFilter: selected === 'profile' ? 'none' : 'blur(16px)',
               }}
             />
           </RouterTab>
