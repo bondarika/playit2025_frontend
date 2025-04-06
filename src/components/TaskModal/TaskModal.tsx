@@ -61,7 +61,7 @@ function TaskModal({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) {
       if (task.verification === 'автоматически') {
         requestBody = {
           task_id: task.id,
-          user_id: userId,
+          user_id: parseInt(userId, 10),
           value: task.points,
           user_answer: userAnswer || '',
         };
