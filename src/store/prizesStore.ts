@@ -32,7 +32,7 @@ class PrizesStore {
         })
       );
       runInAction(() => {
-        this.prizes = toJS(formattedPrizes);
+        this.prizes = formattedPrizes;
         this.error = null;
       });
     } catch (error: any) {

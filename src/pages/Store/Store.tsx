@@ -14,6 +14,7 @@ import { ModalHandle } from '../../types/modalHandle';
 import userStore from '../../store/userStore';
 import { observer } from 'mobx-react-lite';
 import prizesStore from '../../store/prizesStore';
+import { toJS } from 'mobx';
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
@@ -28,7 +29,7 @@ const StorePage = observer(() => {
   });
   const user = storeUser ?? fetchedUser;
 
-  const storePrizes = prizesStore.prizes;
+  const storePrizes = toJS(prizesStore.prizes);
   console.log('storePrizes', storePrizes);
   const { prizes: fetchedPrizes } = usePrizes();
   const prizes = storePrizes ?? fetchedPrizes;
