@@ -41,6 +41,7 @@ const StorePage = observer(() => {
   const timeoutError = useTimeoutError(!!user);
 
   const handlePrizeClick = (prize: PrizeProps['prize']) => {
+    prizesStore.selectPrize(prize);
     setSelectedPrize(prize);
     modalRef.current?.showModal();
   };

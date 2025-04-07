@@ -1,4 +1,4 @@
-﻿import { action, makeAutoObservable, observable, runInAction, toJS } from 'mobx';
+﻿import { action, makeAutoObservable, observable, runInAction } from 'mobx';
 import { fetchPrizes } from '../services/api';
 import { Prize } from '../types/prize';
 import { FetchedPrize } from '../types/fetchedPrize';
@@ -6,12 +6,16 @@ import { FetchedPrize } from '../types/fetchedPrize';
 class PrizesStore {
   prizes: Prize[] | null = null;
   error: string | null = null;
+  selectedPrize: Prize | null = null;
 
   constructor() {
     makeAutoObservable(this, {
       prizes: observable,
       error: observable,
+      selectedPrize: observable,
       getPrizes: action,
+      selectPrize: action,
+      updatePrizeQuantity: action,
     });
   }
 
@@ -41,6 +45,17 @@ class PrizesStore {
         this.error =
           error instanceof Error ? error.message : 'Неизвестная ошибка';
       });
+    }
+  };
+
+  selectPrize(prize: Prize) {
+    this.selectedPrize = prize;
+  }
+
+  updatePrizeQuantity = (prizeId: number, newQuantity: number) => {
+    const prize = this.prizes?.find((prize) => prize.id === prizeId);
+    if (prize) {
+      prize.quantity = newQuantity;
     }
   };
 }
