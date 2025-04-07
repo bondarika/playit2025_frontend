@@ -11,26 +11,32 @@ import { PrizeProps } from '../../types/prizeProps';
 import { useRef, useState } from 'react';
 import PrizeModal from '../../components/PrizeModal/PrizeModal';
 import { ModalHandle } from '../../types/modalHandle';
-import userStore from '../../store/store';
+import userStore from '../../store/userStore';
 import { observer } from 'mobx-react-lite';
+import prizesStore from '../../store/prizesStore';
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
 
 const StorePage = observer(() => {
+  const modalRef = useRef<ModalHandle | null>(null);
+
   const storeUser = userStore.user;
   const { user: fetchedUser } = useUser({
     id: userData.id,
     username: userData.username,
   });
   const user = storeUser ?? fetchedUser;
-  const modalRef = useRef<ModalHandle | null>(null);
-  const { prizes, loading, error: prizesError } = usePrizes();
+
+  const storePrizes = prizesStore.prizes;
+  const { prizes: fetchedPrizes } = usePrizes();
+  const prizes = storePrizes ?? fetchedPrizes;
+
   const [selectedPrize, setSelectedPrize] = useState<
     PrizeProps['prize'] | null
   >(null);
 
-  const timeoutError = useTimeoutError(!!user || !!prizesError);
+  const timeoutError = useTimeoutError(!!user);
 
   const handlePrizeClick = (prize: PrizeProps['prize']) => {
     setSelectedPrize(prize);
@@ -45,19 +51,7 @@ const StorePage = observer(() => {
     );
   }
 
-  if (prizesError) {
-    return (
-      <div>
-        <Error />
-      </div>
-    );
-  }
-
-  if (loading) {
-    return <Loader />;
-  }
-
-  return (
+  return prizes && user ? (
     <>
       <header>
         <h1>МАГАЗИН</h1>
@@ -78,6 +72,8 @@ const StorePage = observer(() => {
       </div>
       {selectedPrize && <PrizeModal ref={modalRef} prize={selectedPrize} />}
     </>
+  ) : (
+    <Loader />
   );
 });
 

@@ -1,5 +1,5 @@
 ﻿import { useEffect } from 'react';
-import userStore from '../store/store';
+import userStore from '../store/userStore';
 
 export function useUser(userData: { id: number; username: string }) {
   const { user, error, authenticate } = userStore;

@@ -1,4 +1,4 @@
-﻿export interface IFetchedPrize {
+﻿export interface FetchedPrize {
   '№': number;
   Наименование: string;
   Описание: string;

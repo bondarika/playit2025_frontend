@@ -1,4 +1,4 @@
-﻿export interface IPrize {
+﻿export interface Prize {
   id: number;
   title: string;
   description: string;

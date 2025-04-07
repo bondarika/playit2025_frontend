@@ -8,7 +8,7 @@ import { PrizeModalProps } from '../../types/prizeModal';
 import { buyPrize } from '../../services/api';
 import CustomError from '../CustomError/CustomError';
 import DOMPurify from 'dompurify';
-import userStore from '../../store/store';
+import userStore from '../../store/userStore';
 import { runInAction } from 'mobx';
 import Loader from '../Loader/Loader';
 import useTimeoutError from '../../hooks/useTimeoutError';
@@ -109,7 +109,7 @@ function PrizeModal({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) {
         </button>
 
         <div>
-          <img src={avatarArray[prize.id]} className="item__content-avatar" />
+          <img src={avatarArray[prize.id - 1]} className="item__content-avatar" />
           <div style={{ padding: '0px 4px' }}>
             <p className="item__content-tag">в наличии: {prize.quantity} шт</p>
             <h2 className="item__content-title">{prize.title}</h2>

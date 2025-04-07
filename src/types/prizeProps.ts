@@ -1,5 +1,5 @@
-﻿import { IPrize } from './prize';
+﻿import { Prize } from './prize';
 export interface PrizeProps {
-  prize: IPrize;
+  prize: Prize;
   onClick: () => void;
 }
