@@ -14,11 +14,12 @@ import { ModalHandle } from '../../types/modalHandle';
 import userStore from '../../store/userStore';
 import { toJS } from 'mobx';
 import tasksStore from '../../store/tasksStore';
+import { observer } from 'mobx-react-lite';
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
 
-function TaskPage(): React.ReactElement {
+const TaskPage = observer(() => {
   const modalRef = useRef<ModalHandle | null>(null);
 
   const storeUser = userStore.user;
@@ -28,9 +29,10 @@ function TaskPage(): React.ReactElement {
   });
   const user = storeUser ?? fetchedUser;
 
-  const { tasks, error, isLoading } = useTasks();
   const storeTasks = toJS(tasksStore.tasks);
-  const allTasks = storeTasks ?? tasks;
+  console.log('storeTasks', storeTasks);
+  const { tasks: fetchedTasks } = useTasks();
+  const tasks = storeTasks ?? fetchedTasks;
 
   const [selectedTask, setSelectedTask] = useState<TaskProps['task'] | null>(
     null
@@ -44,18 +46,6 @@ function TaskPage(): React.ReactElement {
     modalRef.current?.showModal();
   };
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
-  if (!user || !allTasks) {
-    return <Loader />;
-  }
-
-  if (error) {
-    return <CustomError />;
-  }
-
   if (timeoutError) {
     return (
       <div>
@@ -64,7 +54,7 @@ function TaskPage(): React.ReactElement {
     );
   }
 
-  return (
+  return tasks && user ? (
     <>
       <header>
         <h1>ЗАДАНИЯ</h1>
@@ -75,7 +65,7 @@ function TaskPage(): React.ReactElement {
       </header>
 
       <div className="tasks">
-        {allTasks
+        {tasks
           .sort((a, b) => Number(a.done) - Number(b.done))
           .map((task) => (
             <Task
@@ -87,7 +77,9 @@ function TaskPage(): React.ReactElement {
       </div>
       {selectedTask && <TaskModal ref={modalRef} task={selectedTask} />}
     </>
+  ) : (
+    <Loader />
   );
-}
+})
 
 export default TaskPage;
