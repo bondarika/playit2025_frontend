@@ -194,8 +194,8 @@ const PrizeModal = forwardRef(
                     вы покупаете&nbsp;
                     <p
                       style={{
-                        color:
-                          ' linear-gradient(180deg, #CF5069 22.72%, #9E1D37 91.21%)',
+                        display: 'inline',
+                        color: 'CF5069',
                       }}
                     >
                       {prize.title}
