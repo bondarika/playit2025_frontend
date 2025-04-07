@@ -16,6 +16,7 @@ import useUser from '../../hooks/useUser';
 import WebApp from '@twa-dev/sdk';
 import prizesStore from '../../store/prizesStore';
 import { observer } from 'mobx-react-lite';
+import { useNavigate } from 'react-router-dom';
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
@@ -33,6 +34,8 @@ const avatarArray = Object.values(prizes).map(
 
 const PrizeModal = forwardRef(
   ({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) => {
+    const navigate = useNavigate();
+
     const storeUser = userStore.user;
     const { user: fetchedUser } = useUser({
       id: userData.id,
@@ -237,13 +240,7 @@ const PrizeModal = forwardRef(
                   <p style={{ width: '100%' }}>ищите приз в профиле</p>
                 </div>
                 <img src={icons['arrow_success']} />
-                <Button
-                  onClick={() => {
-                    WebApp.openLink(
-                      `${window.location.origin}/profile?openPrizes=true`
-                    );
-                  }}
-                >
+                <Button onClick={() => navigate('/profile?openPrizes=true')}>
                   перейти в профиль
                 </Button>
               </div>

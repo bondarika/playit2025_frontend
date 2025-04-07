@@ -6,18 +6,26 @@ import { observer } from 'mobx-react-lite';
 import CustomError from '../../components/CustomError/CustomError';
 import Loader from '../../components/Loader/Loader';
 import useTimeoutError from '../../hooks/useTimeoutError';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
-const shouldOpenPrizes = params.get('openPrizes') === 'true';
 // const hash = params.get("hash") || "null";
 // params.delete("hash");
 // params.sort();
 // const checkDataString = params.toString().replaceAll("&", "\n");
 
 function ProfilePage(): React.ReactElement {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(shouldOpenPrizes);
+  const location = useLocation();
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params.get('openPrizes') === 'true') {
+      setIsDropdownOpen(true);
+    }
+  }, [location.search]);
+  
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [areSettingsOpen, setAreSettingsOpen] = useState(false);
   const { user, error } = useUser({
     id: userData.id,
