@@ -31,7 +31,7 @@ const avatarArray = Object.values(prizes).map(
   (img) => (img as { default: string }).default
 );
 
-const PrizeModal = observer(
+const PrizeModal = forwardRef(
   ({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) => {
     const storeUser = userStore.user;
     const { user: fetchedUser } = useUser({
@@ -228,4 +228,4 @@ const PrizeModal = observer(
   }
 );
 
-export default forwardRef(PrizeModal);
+export default observer(PrizeModal);
