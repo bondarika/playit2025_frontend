@@ -154,15 +154,9 @@ const PrizeModal = forwardRef(
                       gap: '4px',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      fontWeight: 'regular',
                     }}
                   >
-                    <p
-                      style={{
-                        fontFamily: 'SF Pro Display',
-                        fontWeight: 'regular',
-                      }}
-                    >
+                    <p className="item__content__purchase-price">
                       {prize.price}
                     </p>
                     <img
