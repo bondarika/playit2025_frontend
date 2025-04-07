@@ -2,7 +2,7 @@
 import tasksStore from '../store/tasksStore';
 
 const useTasks = () => {
-  const { tasks, error, getTasks } = tasksStore;
+  const { tasks, error, getTasks, isLoading } = tasksStore;
 
   useEffect(() => {
     if (!tasks || tasks.length === 0) {
@@ -10,7 +10,7 @@ const useTasks = () => {
     }
   }, [tasks, error, getTasks]);
 
-  return { tasks, error };
+  return { tasks, error, isLoading };
 };
 
 export default useTasks;

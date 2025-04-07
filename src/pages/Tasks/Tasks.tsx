@@ -28,10 +28,9 @@ function TaskPage(): React.ReactElement {
   });
   const user = storeUser ?? fetchedUser;
 
+  const { tasks, error, isLoading } = useTasks();
   const storeTasks = toJS(tasksStore.tasks);
-  console.log('storeTasks', storeTasks);
-  const { tasks: fetchedTasks } = useTasks();
-  const tasks = storeTasks ?? fetchedTasks;
+  const allTasks = storeTasks ?? tasks;
 
   const [selectedTask, setSelectedTask] = useState<TaskProps['task'] | null>(
     null
@@ -45,6 +44,18 @@ function TaskPage(): React.ReactElement {
     modalRef.current?.showModal();
   };
 
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (!user || !allTasks) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return <CustomError />;
+  }
+
   if (timeoutError) {
     return (
       <div>
@@ -53,7 +64,7 @@ function TaskPage(): React.ReactElement {
     );
   }
 
-  return tasks && user ? (
+  return (
     <>
       <header>
         <h1>ЗАДАНИЯ</h1>
@@ -64,7 +75,7 @@ function TaskPage(): React.ReactElement {
       </header>
 
       <div className="tasks">
-        {tasks
+        {allTasks
           .sort((a, b) => Number(a.done) - Number(b.done))
           .map((task) => (
             <Task
@@ -76,8 +87,6 @@ function TaskPage(): React.ReactElement {
       </div>
       {selectedTask && <TaskModal ref={modalRef} task={selectedTask} />}
     </>
-  ) : (
-    <Loader />
   );
 }
 

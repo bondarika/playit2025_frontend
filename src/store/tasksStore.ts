@@ -7,19 +7,23 @@ class TasksStore {
   tasks: Task[] | null = null;
   error: string | null = null;
   selectedTask: Task | null = null;
+  isLoading = false;
 
   constructor() {
     makeAutoObservable(this, {
       tasks: observable,
       error: observable,
       selectedTask: observable,
+      isLoading: observable,
       getTasks: action,
       selectTask: action,
-    //   updateTaskQuantity: action,
+      //   updateTaskQuantity: action,
     });
   }
 
   getTasks = async () => {
+    if (this.isLoading || this.tasks) return;
+    this.isLoading = true;
     try {
       const fetchedTasks = await fetchTasks();
       if (!fetchedTasks) {
@@ -45,6 +49,10 @@ class TasksStore {
         this.error =
           error instanceof Error ? error.message : 'Неизвестная ошибка';
       });
+    } finally {
+      runInAction(() => {
+        this.isLoading = false;
+      });
     }
   };
 
@@ -52,12 +60,12 @@ class TasksStore {
     this.selectedTask = task;
   }
 
-//   updateTaskQuantity = (taskId: number, newQuantity: number) => {
-//     const task = this.task?.find((task) => task.id === taskId);
-//     if (task) {
-//       task.quantity = newQuantity;
-//     }
-//   };
+  //   updateTaskQuantity = (taskId: number, newQuantity: number) => {
+  //     const task = this.task?.find((task) => task.id === taskId);
+  //     if (task) {
+  //       task.quantity = newQuantity;
+  //     }
+  //   };
 }
 
 const tasksStore = new TasksStore();
