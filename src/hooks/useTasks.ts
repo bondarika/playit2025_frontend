@@ -5,7 +5,7 @@ const useTasks = () => {
   const { tasks, error, getTasks } = tasksStore;
 
   useEffect(() => {
-    if (!tasks) {
+    if (!tasks || tasks.length === 0) {
       getTasks();
     }
   }, [tasks, error, getTasks]);

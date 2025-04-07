@@ -58,12 +58,10 @@ const TaskModal = forwardRef(
         }
 
         let endpoint = '/tasks/create/autocheck';
-        let requestBody: Record<string, string | number | boolean> | FormData =
-          {};
+        let requestBody: Record<string, string | number> | FormData = {};
 
         if (task.verification === 'автоматически') {
           requestBody = {
-            tg: true,
             task_id: task.id,
             user_id: parseInt(userId, 10),
             value: task.points,
