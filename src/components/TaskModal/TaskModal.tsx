@@ -85,7 +85,9 @@ const TaskModal = forwardRef(
           }
         }
 
-        await submitTask(requestBody, endpoint);
+        const response = await submitTask(requestBody, endpoint);
+        console.log(response.status)
+        console.log(response.is_correct)
         setFile(null);
         setUserAnswer('');
       } catch (error) {
