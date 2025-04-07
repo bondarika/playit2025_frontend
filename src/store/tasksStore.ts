@@ -7,14 +7,12 @@ class TasksStore {
   tasks: Task[] | null = null;
   error: string | null = null;
   selectedTask: Task | null = null;
-  isLoading = false;
 
   constructor() {
     makeAutoObservable(this, {
       tasks: observable,
       error: observable,
       selectedTask: observable,
-      isLoading: observable,
       getTasks: action,
       selectTask: action,
       //   updateTaskQuantity: action,
@@ -22,8 +20,6 @@ class TasksStore {
   }
 
   getTasks = async () => {
-    if (this.isLoading || this.tasks) return;
-    this.isLoading = true;
     try {
       const fetchedTasks = await fetchTasks();
       if (!fetchedTasks) {
@@ -48,10 +44,6 @@ class TasksStore {
       runInAction(() => {
         this.error =
           error instanceof Error ? error.message : 'Неизвестная ошибка';
-      });
-    } finally {
-      runInAction(() => {
-        this.isLoading = false;
       });
     }
   };
