@@ -154,9 +154,10 @@ const PrizeModal = forwardRef(
                       gap: '4px',
                       alignItems: 'center',
                       justifyContent: 'center',
+                      fontWeight: '400px',
                     }}
                   >
-                    <p style={{ fontWeight: '400px' }}>{prize.price}</p>
+                    <p>{prize.price}</p>
                     <img
                       src={icons['coin']}
                       style={{ width: '15px', height: '15px' }}
