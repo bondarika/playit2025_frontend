@@ -139,11 +139,26 @@ const PrizeModal = forwardRef(
                 <div
                   style={{
                     display: 'flex',
-                    flexDirection: 'column',
-                    gap: '8px',
+                    flexDirection: 'row',
+                    marginTop: '40px',
+                    gap: '12px',
                     alignItems: 'center',
+                    justifyContent: 'space-between',
                   }}
                 >
+                  <div
+                    style={{
+                      display: 'flex',
+                      width: '100%',
+                      flexDirection: 'row',
+                      gap: '4px',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <p>{prize.price}</p>
+                    <img src={icons['coin']} />
+                  </div>
                   <Button
                     onClick={handleBuyClick}
                     disabled={
@@ -153,22 +168,16 @@ const PrizeModal = forwardRef(
                       prize.quantity === 0
                     }
                   >
-                    купить
+                    {prize.quantity === 0 && <p>приз закончился</p>}
+                    {user &&
+                      user.balance !== undefined &&
+                      user.balance < prize.price &&
+                      prize.quantity !== 0 && <p>недостаточно средств</p>}
+                    {user &&
+                      user.balance !== undefined &&
+                      user.balance >= prize.price &&
+                      prize.quantity !== 0 && <p> купить</p>}
                   </Button>
-
-                  {prize.quantity === 0 && (
-                    <p className="item__content__purchase-warning">
-                      Приз закончился
-                    </p>
-                  )}
-
-                  {user &&
-                    user.balance !== undefined &&
-                    user.balance < prize.price && (
-                      <p className="item__content__purchase-warning">
-                        Недостаточно средств
-                      </p>
-                    )}
                 </div>
               </>
             )}
