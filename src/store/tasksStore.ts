@@ -21,7 +21,6 @@ class TasksStore {
 
   getTasks = async () => {
     try {
-      await fetchTasks();
       const fetchedTasks = await fetchTasks();
       if (!fetchedTasks) {
         throw new Error('Error when fetching tasks');

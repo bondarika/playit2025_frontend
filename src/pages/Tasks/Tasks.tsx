@@ -20,10 +20,7 @@ const userData = JSON.parse(params.get('user') || 'null');
 
 function TaskPage(): React.ReactElement {
   const modalRef = useRef<ModalHandle | null>(null);
-  useEffect(() => {
-    getTasks();
-  }, []);
-
+  
   const storeUser = userStore.user;
   const { user: fetchedUser } = useUser({
     id: userData.id,

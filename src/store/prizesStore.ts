@@ -21,7 +21,6 @@ class PrizesStore {
 
   getPrizes = async () => {
     try {
-      await fetchPrizes();
       const fetchedPrizes = await fetchPrizes();
       if (!fetchedPrizes) {
         throw new Error('Error when fetching prizes');
