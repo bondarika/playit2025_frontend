@@ -1,4 +1,4 @@
-﻿import React, { useRef, useState } from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
 import Task from '../../components/Task/Task';
 import './styles.scss';
 import useTasks from '../../hooks/useTasks';
@@ -20,6 +20,9 @@ const userData = JSON.parse(params.get('user') || 'null');
 
 function TaskPage(): React.ReactElement {
   const modalRef = useRef<ModalHandle | null>(null);
+  useEffect(() => {
+    getTasks();
+  }, []);
 
   const storeUser = userStore.user;
   const { user: fetchedUser } = useUser({
@@ -82,3 +85,6 @@ function TaskPage(): React.ReactElement {
 }
 
 export default TaskPage;
+function getTasks() {
+  throw new Error('Function not implemented.');
+}
