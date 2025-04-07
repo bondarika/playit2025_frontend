@@ -190,21 +190,22 @@ const PrizeModal = forwardRef(
             {isConfirming && !purchaseSuccess && (
               <>
                 <div className="item__content__purchase-confirmation">
-                  <div
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    вы покупаете&nbsp;<b>{prize.title}</b>
-                    &nbsp;за&nbsp;{prize.price}
-                    &nbsp;
-                    <img
-                      src={icons['coin']}
-                      style={{ width: '16px', height: '16px' }}
-                    />
+                  <div>
+                    вы покупаете <b>{prize.title}</b>
+                    за
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      <p>{prize.price}</p>
+                      <img
+                        src={icons['coin']}
+                        style={{ width: '16px', height: '16px' }}
+                      />
+                    </div>
                   </div>
                   {user ? (
                     <div className="item__content__purchase-balance">
