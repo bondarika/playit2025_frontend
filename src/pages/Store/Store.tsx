@@ -29,6 +29,7 @@ const StorePage = observer(() => {
   const user = storeUser ?? fetchedUser;
 
   const storePrizes = prizesStore.prizes;
+  console.log('storePrizes', storePrizes);
   const { prizes: fetchedPrizes } = usePrizes();
   const prizes = storePrizes ?? fetchedPrizes;
 
