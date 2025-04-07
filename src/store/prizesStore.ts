@@ -1,4 +1,4 @@
-﻿import { action, makeAutoObservable, observable, runInAction } from 'mobx';
+﻿import { action, makeAutoObservable, observable, runInAction, toJS } from 'mobx';
 import { fetchPrizes } from '../services/api';
 import { Prize } from '../types/prize';
 import { FetchedPrize } from '../types/fetchedPrize';
@@ -32,7 +32,7 @@ class PrizesStore {
         })
       );
       runInAction(() => {
-        this.prizes = formattedPrizes;
+        this.prizes = toJS(formattedPrizes);
         this.error = null;
       });
     } catch (error: any) {
