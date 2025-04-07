@@ -156,11 +156,15 @@ const PrizeModal = forwardRef(
                       justifyContent: 'center',
                     }}
                   >
-                    <p>{prize.price}</p>
-                    <img src={icons['coin']} />
+                    <p style={{ fontWeight: '400px' }}>{prize.price}</p>
+                    <img
+                      src={icons['coin']}
+                      style={{ width: '15px', height: '15px' }}
+                    />
                   </div>
                   <Button
                     onClick={handleBuyClick}
+                    style={{ minWidth: '250px' }}
                     disabled={
                       !user ||
                       user.balance === undefined ||
