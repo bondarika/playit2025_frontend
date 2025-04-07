@@ -1,6 +1,6 @@
-﻿import { ITask } from "./task";
+﻿import { Task } from "./task";
 
 export interface TaskProps {
-  task: ITask;
+  task: Task;
   onClick: () => void;
 }

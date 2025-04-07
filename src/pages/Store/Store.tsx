@@ -38,7 +38,7 @@ const StorePage = observer(() => {
     PrizeProps['prize'] | null
   >(null);
 
-  const timeoutError = useTimeoutError(!!user);
+  const timeoutError = useTimeoutError(!!user || !!prizes);
 
   const handlePrizeClick = (prize: PrizeProps['prize']) => {
     prizesStore.selectPrize(prize);

@@ -1,4 +1,4 @@
-﻿export interface IFetchedTask {
+﻿export interface FetchedTask {
   '№': number;
   'Номер дня': number;
   Сложность: string;

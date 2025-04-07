@@ -1,4 +1,4 @@
-﻿export interface ITask {
+﻿export interface Task {
   task: string;
   day: number;
   description: string;

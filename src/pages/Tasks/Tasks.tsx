@@ -11,24 +11,36 @@ import CustomError from '../../components/CustomError/CustomError';
 import icons from '../../assets/icons';
 import useTimeoutError from '../../hooks/useTimeoutError';
 import { ModalHandle } from '../../types/modalHandle';
+import userStore from '../../store/userStore';
+import { toJS } from 'mobx';
+import tasksStore from '../../store/tasksStore';
+
+const params = new URLSearchParams(WebApp.initData);
+const userData = JSON.parse(params.get('user') || 'null');
 
 function TaskPage(): React.ReactElement {
-  const params = new URLSearchParams(WebApp.initData);
-  const userData = JSON.parse(params.get('user') || 'null');
-  const { user, error: userError } = useUser({
+  const modalRef = useRef<ModalHandle | null>(null);
+
+  const storeUser = userStore.user;
+  const { user: fetchedUser } = useUser({
     id: userData.id,
     username: userData.username,
   });
-  const { tasks, loading, error: tasksError } = useTasks();
-  const modalRef = useRef<ModalHandle | null>(null);
+  const user = storeUser ?? fetchedUser;
+
+  const storeTasks = toJS(tasksStore.tasks);
+  console.log('storeTasks', storeTasks);
+  const { tasks: fetchedTasks } = useTasks();
+  const tasks = storeTasks ?? fetchedTasks;
 
   const [selectedTask, setSelectedTask] = useState<TaskProps['task'] | null>(
     null
   );
 
-  const timeoutError = useTimeoutError(!!user || !!tasksError || !!userError);
+  const timeoutError = useTimeoutError(!!user || !!tasks);
 
   const handleTaskClick = (task: TaskProps['task']) => {
+    tasksStore.selectTask(task);
     setSelectedTask(task);
     modalRef.current?.showModal();
   };
@@ -41,19 +53,7 @@ function TaskPage(): React.ReactElement {
     );
   }
 
-  if (tasksError || userError) {
-    return (
-      <div>
-        <CustomError />
-      </div>
-    );
-  }
-
-  if (loading) {
-    return <Loader />;
-  }
-
-  return (
+  return tasks && user ? (
     <>
       <header>
         <h1>ЗАДАНИЯ</h1>
@@ -76,6 +76,8 @@ function TaskPage(): React.ReactElement {
       </div>
       {selectedTask && <TaskModal ref={modalRef} task={selectedTask} />}
     </>
+  ) : (
+    <Loader />
   );
 }
 

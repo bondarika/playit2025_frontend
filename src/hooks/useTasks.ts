@@ -1,42 +1,16 @@
-﻿import { useEffect, useState } from 'react';
-import { fetchTasks } from '../services/api';
-import { ITask } from '../types/task';
-import { IFetchedTask } from '../types/fetchedTask';
+﻿import { useEffect } from 'react';
+import tasksStore from '../store/tasksStore';
 
 const useTasks = () => {
-  const [tasks, setTasks] = useState<ITask[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  const { tasks, error, getTasks } = tasksStore;
 
   useEffect(() => {
-    const loadTasks = async () => {
-      try {
-        const fetchedTasks = await fetchTasks();
-        const formattedTasks: ITask[] = fetchedTasks.map(
-          (task: IFetchedTask) => ({
-            id: task['№'],
-            day: task['Номер дня'],
-            difficulty: task['Сложность'],
-            character: task['Персонаж'],
-            description: task['О себе'],
-            task: task['Задание'],
-            verification: task['Формат проверки'],
-            points: task['Стоимость'],
-          })
-        );
-        setTasks(formattedTasks);
-        setError(null); 
-      } catch (error) {
-        setError(error instanceof Error ? error.message : 'Неизвестная ошибка');
-      } finally {
-        setLoading(false);
-      }
-    };
+    if (!tasks) {
+      getTasks();
+    }
+  }, [tasks, error, getTasks]);
 
-    loadTasks();
-  }, []);
-
-  return { tasks, loading, error };
+  return { tasks, error };
 };
 
 export default useTasks;

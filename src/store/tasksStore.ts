@@ -1,0 +1,65 @@
+﻿import { action, makeAutoObservable, observable, runInAction } from 'mobx';
+import { fetchTasks } from '../services/api';
+import { Task } from '../types/task';
+import { FetchedTask } from '../types/fetchedTask';
+
+class TasksStore {
+  tasks: Task[] | null = null;
+  error: string | null = null;
+  selectedTask: Task | null = null;
+
+  constructor() {
+    makeAutoObservable(this, {
+      tasks: observable,
+      error: observable,
+      selectedTask: observable,
+      getTasks: action,
+      selectTask: action,
+    //   updateTaskQuantity: action,
+    });
+  }
+
+  getTasks = async () => {
+    try {
+      await fetchTasks();
+      const fetchedTasks = await fetchTasks();
+      if (!fetchedTasks) {
+        throw new Error('Error when fetching tasks');
+      }
+      const formattedTasks: Task[] = fetchedTasks.map((task: FetchedTask) => ({
+        id: task['№'],
+        day: task['Номер дня'],
+        difficulty: task['Сложность'],
+        character: task['Персонаж'],
+        description: task['О себе'],
+        task: task['Задание'],
+        verification: task['Формат проверки'],
+        points: task['Стоимость'],
+      }));
+      runInAction(() => {
+        this.tasks = formattedTasks;
+        this.error = null;
+      });
+    } catch (error: any) {
+      console.error('Error when getting tasks:', error);
+      runInAction(() => {
+        this.error =
+          error instanceof Error ? error.message : 'Неизвестная ошибка';
+      });
+    }
+  };
+
+  selectTask(task: Task) {
+    this.selectedTask = task;
+  }
+
+//   updateTaskQuantity = (taskId: number, newQuantity: number) => {
+//     const task = this.task?.find((task) => task.id === taskId);
+//     if (task) {
+//       task.quantity = newQuantity;
+//     }
+//   };
+}
+
+const tasksStore = new TasksStore();
+export default tasksStore;
