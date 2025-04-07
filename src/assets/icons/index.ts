@@ -7,6 +7,7 @@ import close from './close.svg';
 import help_red from './help_red.svg';
 import shop_arrow from './shop_arrow.svg';
 import help_black from './help_black.svg';
+import arrow_success from './arrow_success.svg';
 
 const icons = {
   settings,
@@ -18,6 +19,7 @@ const icons = {
   help_red,
   help_black,
   shop_arrow,
+  arrow_success,
 } as const;
 
 export default icons;

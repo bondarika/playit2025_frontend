@@ -62,6 +62,13 @@
       color: $grey;
       font-size: 16px;
       margin-top: 40px;
+      &-success {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        margin: 0px 4px;
+      }
       &-price {
         font-weight: 400;
       }

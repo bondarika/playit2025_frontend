@@ -232,8 +232,20 @@ const PrizeModal = forwardRef(
 
             {purchaseSuccess && (
               <div className="item__content__purchase-success">
-                <p>всё успешно!</p>
-                <p>ищите приз в профиле</p>
+                <div>
+                  <p style={{ width: '100%' }}>всё успешно!</p>
+                  <p style={{ width: '100%' }}>ищите приз в профиле</p>
+                </div>
+                <img src={icons['arrow_success']} />
+                <Button
+                  onClick={() => {
+                    WebApp.openLink(
+                      `${window.location.origin}/profile?openPrizes=true`
+                    );
+                  }}
+                >
+                  перейти в профиль
+                </Button>
               </div>
             )}
           </div>
