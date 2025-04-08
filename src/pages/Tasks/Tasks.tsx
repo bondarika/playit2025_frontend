@@ -66,7 +66,10 @@ const TaskPage = observer(() => {
 
       <div className="tasks">
         {tasks
-          .sort((a, b) => Number(a.done) - Number(b.done))
+          .sort((a, b) => {
+            if (a.done === b.done) return 0;
+            return a.done ? 1 : -1;
+          })
           .map((task) => (
             <Task
               key={task.id}
@@ -81,6 +84,6 @@ const TaskPage = observer(() => {
   ) : (
     <Loader />
   );
-})
+});
 
 export default TaskPage;
