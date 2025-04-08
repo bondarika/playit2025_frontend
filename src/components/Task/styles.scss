@@ -76,15 +76,14 @@
       border-radius: 20px;
       z-index: 1;
     }
-
-     .task__checkmark {
-      position: absolute;
-      top: 50%;
-      bottom: 50%;
-      right: 30px;
-      transform: translateY(-50%); 
-      height: 24px;
-      z-index: 2; 
-    }
+  }
+  &__checkmark {
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+    right: 30px;
+    transform: translateY(-50%);
+    height: 24px;
+    z-index: 2;
   }
 }
