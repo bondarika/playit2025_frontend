@@ -65,19 +65,14 @@ const TaskPage = observer(() => {
       </header>
 
       <div className="tasks">
-        {tasks
-          .sort((a, b) => {
-            if (a.done === b.done) return 0;
-            return a.done ? 1 : -1;
-          })
-          .map((task) => (
-            <Task
-              key={task.id}
-              task={task}
-              onClick={() => handleTaskClick(task)}
-              isDone={user?.done_tasks.includes(task.id)}
-            />
-          ))}
+        {tasks.map((task) => (
+          <Task
+            key={task.id}
+            task={task}
+            onClick={() => handleTaskClick(task)}
+            isDone={user?.done_tasks.includes(task.id)}
+          />
+        ))}
       </div>
       {selectedTask && <TaskModal ref={modalRef} task={selectedTask} />}
     </>
