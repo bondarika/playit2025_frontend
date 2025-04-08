@@ -39,12 +39,11 @@
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-    width: 118px;
     text-overflow: ellipsis;
     overflow: hidden;
     line-clamp: 3;
     font-size: 12px;
-    margin: 4px 0px 0px 0px;
+    margin: 4px 12px 0px 0px;
     text-transform: lowercase;
   }
   &_reward {
