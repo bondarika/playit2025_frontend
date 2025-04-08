@@ -214,11 +214,12 @@ const TaskModal = forwardRef(
                     onChange={(e) => handleFileChange(e, setFile)}
                   />
                   <label htmlFor="fileInput">
-                    {file ? file.name : 'прикрепи сюда решение'}
+                    {file && !loading ? file.name : 'прикрепи сюда решение'}
+                    {loading && 'идёт загрузка файла'}
                   </label>
                 </div>
-                <Button onClick={handleSubmit} disabled={!file}>
-                  {loading ? 'Загрузка...' : 'отправить'}
+                <Button onClick={handleSubmit} disabled={!file || loading}>
+                  {loading ? 'загрузка...' : 'отправить'}
                 </Button>
               </div>
             )}

@@ -29,7 +29,8 @@ const TaskPage = observer(() => {
   });
   const user = storeUser ?? fetchedUser;
 
-  const storeTasks = toJS(tasksStore.tasks);
+  // const storeTasks = toJS(tasksStore.tasks);
+  const storeTasks = tasksStore.tasks;
   console.log('storeTasks', storeTasks);
   const { tasks: fetchedTasks } = useTasks();
   const tasks = storeTasks ?? fetchedTasks;
