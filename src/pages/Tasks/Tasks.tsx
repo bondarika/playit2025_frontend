@@ -72,6 +72,7 @@ const TaskPage = observer(() => {
               key={task.id}
               task={task}
               onClick={() => handleTaskClick(task)}
+              isDone={user?.done_tasks.includes(task.id)}
             />
           ))}
       </div>

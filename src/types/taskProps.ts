@@ -3,4 +3,5 @@
 export interface TaskProps {
   task: Task;
   onClick: () => void;
+  isDone: boolean;
 }
