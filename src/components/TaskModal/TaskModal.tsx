@@ -95,6 +95,7 @@ const TaskModal = forwardRef(
         if (response?.is_correct === true) {
           setIsCorrect(true);
           tasksStore.markTaskAsDone(task.id);
+          userStore.markTaskAsDone(task.id);
           setTimeout(() => {
             (ref as React.RefObject<ModalHandle>).current?.close();
             setIsCorrect(false);

@@ -1,6 +1,7 @@
 ﻿import { PrizeProps } from '../../types/prizeProps';
 import './styles.scss';
 import icons from '../../assets/icons';
+import { observer } from 'mobx-react-lite';
 
 const prizes: Record<string, { default: string }> = import.meta.glob(
   '@/assets/images/prizes_small/*.webp',
@@ -13,7 +14,7 @@ const avatarArray = Object.values(prizes).map(
   (img) => (img as { default: string }).default
 );
 
-function Prize({ prize, onClick }: PrizeProps) {
+const Prize = observer(({ prize, onClick }: PrizeProps) => {
   return (
     <>
       <div className="prize" onClick={onClick}>
@@ -32,6 +33,6 @@ function Prize({ prize, onClick }: PrizeProps) {
       </div>
     </>
   );
-}
+});
 
 export default Prize;
