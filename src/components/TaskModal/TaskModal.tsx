@@ -88,7 +88,21 @@ const TaskModal = forwardRef(
 
         const response = await submitTask(requestBody, endpoint);
         if (response?.is_correct === true) {
-          tasksStore.markTaskAsDone(task.id);
+          tasksStore.tasks =
+            tasksStore.tasks?.map((t) =>
+              t.id === task.id ? { ...t, done: true } : t
+            ) ?? null;
+
+          if (tasksStore.tasks) {
+            const updatedTasks = [...tasksStore.tasks];
+            const index = updatedTasks.findIndex((t) => t.id === task.id);
+            if (index !== -1) {
+              const [doneTask] = updatedTasks.splice(index, 1);
+              updatedTasks.push(doneTask);
+              tasksStore.tasks = updatedTasks;
+            }
+          }
+
           (ref as React.RefObject<ModalHandle>).current?.close();
         }
         setFile(null);

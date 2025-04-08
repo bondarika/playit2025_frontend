@@ -15,7 +15,7 @@ class TasksStore {
       selectedTask: observable,
       getTasks: action,
       selectTask: action,
-      markTaskAsDone: action,
+      // markTaskAsDone: action,
     });
   }
 
@@ -52,16 +52,16 @@ class TasksStore {
     this.selectedTask = task;
   }
 
-  markTaskAsDone(taskId: number) {
-    runInAction(() => {
-      if (this.tasks) {
-        const taskIndex = this.tasks.findIndex((t) => t.id === taskId);
-        if (taskIndex !== -1) {
-          this.tasks[taskIndex] = { ...this.tasks[taskIndex], done: true };
-        }
-      }
-    });
-  }
+  // markTaskAsDone(taskId: number) {
+  //   runInAction(() => {
+  //     if (this.tasks) {
+  //       const taskIndex = this.tasks.findIndex((t) => t.id === taskId);
+  //       if (taskIndex !== -1) {
+  //         this.tasks[taskIndex] = { ...this.tasks[taskIndex], done: true };
+  //       }
+  //     }
+  //   });
+  // }
 }
 
 const tasksStore = new TasksStore();
