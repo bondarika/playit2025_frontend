@@ -12,7 +12,6 @@ import icons from '../../assets/icons';
 import useTimeoutError from '../../hooks/useTimeoutError';
 import { ModalHandle } from '../../types/modalHandle';
 import userStore from '../../store/userStore';
-import { toJS } from 'mobx';
 import tasksStore from '../../store/tasksStore';
 import { observer } from 'mobx-react-lite';
 
@@ -21,17 +20,13 @@ const userData = JSON.parse(params.get('user') || 'null');
 
 const TaskPage = observer(() => {
   const modalRef = useRef<ModalHandle | null>(null);
-
-  const storeUser = userStore.user;
   const { user: fetchedUser } = useUser({
     id: userData.id,
     username: userData.username,
   });
-  const user = storeUser ?? fetchedUser;
+  const user = userStore.user ?? fetchedUser;
 
-  // const storeTasks = toJS(tasksStore.tasks);
   const storeTasks = tasksStore.tasks;
-  console.log('storeTasks', storeTasks);
   const { tasks: fetchedTasks } = useTasks();
   const tasks = storeTasks ?? fetchedTasks;
 
@@ -79,7 +74,7 @@ const TaskPage = observer(() => {
               key={task.id}
               task={task}
               onClick={() => handleTaskClick(task)}
-              isDone={user?.done_tasks.includes(task.id)}
+              isDone={userStore.doneTasks.includes(task.id)}
             />
           ))}
       </div>

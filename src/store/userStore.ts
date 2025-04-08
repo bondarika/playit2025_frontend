@@ -16,6 +16,10 @@ class UserStore {
     });
   }
 
+  get doneTasks() {
+    return this.user?.done_tasks ?? [];
+  }
+
   authenticate = async (userData: { id: number; username: string }) => {
     try {
       await makeRequest(userData);
@@ -55,7 +59,6 @@ class UserStore {
     runInAction(() => {
       this.user?.done_tasks.push(taskId);
     });
-
   };
 }
 
