@@ -22,8 +22,8 @@
     padding-left: 170px;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     margin-right: 12px;
-    gap: 12px;
   }
   &_name {
     width: 118px;

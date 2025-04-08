@@ -113,3 +113,7 @@ label {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+input[type='text']:focus {
+  outline: 2px solid $red--lighten--1;
+}
