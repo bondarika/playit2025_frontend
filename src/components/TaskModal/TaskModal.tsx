@@ -33,6 +33,7 @@ const hexCodes = avatarNames.map((avatar) => extractHexFromImageName(avatar));
 const TaskModal = forwardRef(
   ({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) => {
     const [isCorrect, setIsCorrect] = useState(false);
+    const [isIncorrect, setIsIncorrect] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [userAnswer, setUserAnswer] = useState('');
     const [file, setFile] = useState<File | null>(null);
@@ -99,6 +100,13 @@ const TaskModal = forwardRef(
             setIsCorrect(false);
           }, 5000);
         }
+        if (response?.is_correct === false) {
+          setIsIncorrect(true);
+          setTimeout(() => {
+            (ref as React.RefObject<ModalHandle>).current?.close();
+            setIsIncorrect(false);
+          }, 5000);
+        }
         console.log(toJS(userStore.user));
         setFile(null);
         setUserAnswer('');
@@ -158,7 +166,9 @@ const TaskModal = forwardRef(
               style={{ marginBottom: '20px' }}
               dangerouslySetInnerHTML={{ __html: sanitizedTask }}
             />
-            <p className="modal_content_main-task">материалы</p>
+            {task.link != null && (
+              <p className="modal_content_main-task">материалы</p>
+            )}
             <p
               style={{ marginBottom: '20px' }}
               dangerouslySetInnerHTML={{ __html: sanitizedLink }}
@@ -169,6 +179,10 @@ const TaskModal = forwardRef(
                 {isCorrect ? (
                   <div className="modal_content_main-correct">
                     <p>верно</p>
+                  </div>
+                ) : isIncorrect ? (
+                  <div className="modal_content_main-incorrect">
+                    <p>неверно</p>
                   </div>
                 ) : (
                   <>

@@ -42,6 +42,17 @@
         justify-content: center;
         font-family: 'Morfin Sans';
         font-size: 48px;
+        color: #30a952;
+      }
+      &-incorrect {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Morfin Sans';
+        font-size: 48px;
+        color: #9E1D37;
       }
       &_title {
         width: 100%;
@@ -125,5 +136,5 @@ label {
 
 input[type='text']:focus {
   outline: 2px solid $red--lighten--1;
-  border: 1px solid $red--lighten--1;;
+  border: 1px solid $red--lighten--1;
 }
