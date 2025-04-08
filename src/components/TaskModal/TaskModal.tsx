@@ -12,6 +12,7 @@ import DOMPurify from 'dompurify';
 import { observer } from 'mobx-react-lite';
 import tasksStore from '../../store/tasksStore';
 import userStore from '../../store/userStore';
+import { toJS } from 'mobx';
 
 const characterAvatars: Record<string, { default: string }> = import.meta.glob(
   '@/assets/images/characters_a/*.webp',
@@ -92,7 +93,7 @@ const TaskModal = forwardRef(
           tasksStore.markTaskAsDone(task.id);
           (ref as React.RefObject<ModalHandle>).current?.close();
         }
-        console.log(userStore.user)
+        console.log(toJS(userStore.user))
         setFile(null);
         setUserAnswer('');
       } catch (error) {
