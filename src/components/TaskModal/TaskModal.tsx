@@ -152,6 +152,7 @@ const TaskModal = forwardRef(
               style={{ marginBottom: '20px' }}
               dangerouslySetInnerHTML={{ __html: sanitizedTask }}
             />
+            <p>{task.link}</p>
 
             {task.verification === 'автоматически' && (
               <div style={{ width: '100%' }}>
