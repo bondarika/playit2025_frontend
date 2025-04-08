@@ -5,6 +5,7 @@
   Персонаж: string;
   'О себе': string;
   Задание: string;
+  Ссылка: string;
   'Формат проверки': string;
   Стоимость: number;
 }

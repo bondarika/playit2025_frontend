@@ -1,4 +1,5 @@
 ﻿export interface Task {
+  link: string;
   task: string;
   day: number;
   description: string;
