@@ -26,12 +26,7 @@ function Task({ task, onClick }: TaskProps) {
     <div
       onClick={!task.done ? onClick : undefined}
       className={`task ${task.done ? 'task__disabled' : ''}`}
-      style={{
-        background: task.done
-          ? 'linear-gradient(275deg, #30A952 15.76%, rgba(48, 169, 82, 0.00) 100.77%), linear-gradient(90deg, rgba(28, 32, 37, 0.00) 23.38%, #1C2025 43.82%), url(<path-to-image>) lightgray 154.097px -9.863px / -48.169% 145.719% no-repeat'
-          : `#${hexCodes[task.id - 1]}`,
-        pointerEvents: task.done ? 'none' : 'auto',
-      }}
+      style={{ background: `#${hexCodes[task.id - 1]}` }}
     >
       {task.done && <div className="task__disabled" />}
       <img src={avatarArray[task.id - 1]} className="task_image" />
