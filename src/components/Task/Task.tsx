@@ -29,13 +29,10 @@ function Task({ task, onClick, isDone }: TaskProps) {
       style={{ background: `#${hexCodes[task.id - 1]}` }}
     >
       {task.done && (
-        <div className="task__disabled">
-          <img
-            src={icons['check']}
-            alt="Task Completed"
-            className="task__checkmark"
-          />
-        </div>
+        <img
+          src={icons['check']}
+          className="task__checkmark"
+        />
       )}
       <img src={avatarArray[task.id - 1]} className="task_image" />
       <div className="task_main">
