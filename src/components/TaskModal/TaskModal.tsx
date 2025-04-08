@@ -32,6 +32,7 @@ const hexCodes = avatarNames.map((avatar) => extractHexFromImageName(avatar));
 
 const TaskModal = forwardRef(
   ({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) => {
+    const [isCorrect, setIsCorrect] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [userAnswer, setUserAnswer] = useState('');
     const [file, setFile] = useState<File | null>(null);
@@ -90,10 +91,14 @@ const TaskModal = forwardRef(
 
         const response = await submitTask(requestBody, endpoint);
         if (response?.is_correct === true) {
+          setIsCorrect(true);
           tasksStore.markTaskAsDone(task.id);
-          (ref as React.RefObject<ModalHandle>).current?.close();
+          setTimeout(() => {
+            (ref as React.RefObject<ModalHandle>).current?.close();
+            setIsCorrect(false); 
+          }, 5000);
         }
-        console.log(toJS(userStore.user))
+        console.log(toJS(userStore.user));
         setFile(null);
         setUserAnswer('');
       } catch (error) {
@@ -156,16 +161,25 @@ const TaskModal = forwardRef(
 
             {task.verification === 'автоматически' && (
               <div style={{ width: '100%' }}>
-                <input
-                  type="text"
-                  placeholder="напиши сюда ответ"
-                  value={userAnswer}
-                  ref={textInputRef}
-                  onChange={(e) => setUserAnswer(e.target.value)}
-                />
-                <Button onClick={handleSubmit} disabled={!userAnswer.trim()}>
-                  отправить
-                </Button>
+                {isCorrect ? (
+                  <p className="modal_content_main-correct">верно</p>
+                ) : (
+                  <>
+                    <input
+                      type="text"
+                      placeholder="напиши сюда ответ"
+                      value={userAnswer}
+                      ref={textInputRef}
+                      onChange={(e) => setUserAnswer(e.target.value)}
+                    />
+                    <Button
+                      onClick={handleSubmit}
+                      disabled={!userAnswer.trim()}
+                    >
+                      отправить
+                    </Button>
+                  </>
+                )}
               </div>
             )}
 
