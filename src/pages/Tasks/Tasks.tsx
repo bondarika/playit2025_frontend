@@ -14,6 +14,7 @@ import { ModalHandle } from '../../types/modalHandle';
 import userStore from '../../store/userStore';
 import tasksStore from '../../store/tasksStore';
 import { observer } from 'mobx-react-lite';
+import { toJS } from 'mobx';
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
@@ -26,7 +27,7 @@ const TaskPage = observer(() => {
   });
   const user = userStore.user ?? fetchedUser;
 
-  const storeTasks = tasksStore.tasks;
+  const storeTasks = toJS(tasksStore.tasks);
   const { tasks: fetchedTasks } = useTasks();
   const tasks = storeTasks ?? fetchedTasks;
 
