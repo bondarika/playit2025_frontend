@@ -60,7 +60,9 @@ const TaskPage = observer(() => {
         <h1>ЗАДАНИЯ</h1>
         <div className="balance">
           <img src={icons['coin_bag_red']} />
-          <p className="balance__text">{user?.balance}</p>
+          <p className="balance__text">
+            {userStore.user?.balance ?? fetchedUser?.balance}
+          </p>
         </div>
       </header>
 
@@ -69,7 +71,7 @@ const TaskPage = observer(() => {
           .sort((a, b) => {
             const aDone = user?.done_tasks.includes(a.id);
             const bDone = user?.done_tasks.includes(b.id);
-            return Number(aDone) - Number(bDone); 
+            return Number(aDone) - Number(bDone);
           })
           .map((task) => (
             <Task

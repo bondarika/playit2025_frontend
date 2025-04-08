@@ -41,6 +41,7 @@ const TaskModal = forwardRef(
     const textInputRef = useRef<HTMLInputElement | null>(null);
     const sanitizedDescription = DOMPurify.sanitize(task.description);
     const sanitizedTask = DOMPurify.sanitize(task.task);
+    const sanitizedLink = DOMPurify.sanitize(task.link);
 
     useImperativeHandle(ref, () => ({
       showModal: () => setIsVisible(true),
@@ -95,7 +96,7 @@ const TaskModal = forwardRef(
           tasksStore.markTaskAsDone(task.id);
           setTimeout(() => {
             (ref as React.RefObject<ModalHandle>).current?.close();
-            setIsCorrect(false); 
+            setIsCorrect(false);
           }, 5000);
         }
         console.log(toJS(userStore.user));
@@ -157,12 +158,18 @@ const TaskModal = forwardRef(
               style={{ marginBottom: '20px' }}
               dangerouslySetInnerHTML={{ __html: sanitizedTask }}
             />
-            <p>{task.link}</p>
+            <p className="modal_content_main-task">материалы</p>
+            <p
+              style={{ marginBottom: '20px' }}
+              dangerouslySetInnerHTML={{ __html: sanitizedLink }}
+            />
 
             {task.verification === 'автоматически' && (
               <div style={{ width: '100%' }}>
                 {isCorrect ? (
-                  <p className="modal_content_main-correct">верно</p>
+                  <div className="modal_content_main-correct">
+                    <p>верно</p>
+                  </div>
                 ) : (
                   <>
                     <input
