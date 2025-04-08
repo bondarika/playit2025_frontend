@@ -116,4 +116,5 @@ label {
 
 input[type='text']:focus {
   outline: 2px solid $red--lighten--1;
+  border: 1px solid $red--lighten--1;;
 }
