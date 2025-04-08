@@ -12,6 +12,7 @@ class UserStore {
       error: observable,
       authenticate: action,
       clearUser: action,
+      markTaskAsDone: action,
     });
   }
 
@@ -42,6 +43,19 @@ class UserStore {
     this.user = null;
     this.error = null;
     document.cookie = 'user_id=; path=/; max-age=0';
+  };
+
+  markTaskAsDone = async (taskId: number) => {
+    if (!this.user) {
+      throw new Error('User is not authenticated');
+    }
+    if (this.user.done_tasks.includes(taskId)) {
+      return;
+    }
+    runInAction(() => {
+      this.user?.done_tasks.push(taskId);
+    });
+
   };
 }
 
