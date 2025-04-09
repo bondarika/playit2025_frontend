@@ -47,6 +47,7 @@ const TaskModal = forwardRef(
     useImperativeHandle(ref, () => ({
       showModal: () => setIsVisible(true),
       close: () => {
+        setSubmitError('')
         setFile(null);
         setUserAnswer('');
         setIsVisible(false);
@@ -124,9 +125,9 @@ const TaskModal = forwardRef(
         if (error.response?.status === 413) {
           setSubmitError('cлишком большой размер файла');
         } else if (error.response?.status === 400) {
-          setSubmitError('yеподдерживаемый формат файла');
+          setSubmitError('неподдерживаемый формат файла');
         } else {
-          setSubmitError('произошла ошибка при отправке – попробуйте ещё раз');
+          setSubmitError('произошла ошибка при отправке файла');
         }
       } finally {
         setLoading(false);
