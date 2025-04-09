@@ -179,10 +179,7 @@ const TaskModal = forwardRef(
             </div>
             <p dangerouslySetInnerHTML={{ __html: sanitizedDescription }} />
             <p className="modal_content_main-task">задание</p>
-            <p
-              style={{ marginBottom: '20px' }}
-              dangerouslySetInnerHTML={{ __html: sanitizedTask }}
-            />
+            <p dangerouslySetInnerHTML={{ __html: sanitizedTask }} />
             {task.link != null && (
               <p className="modal_content_main-task">материалы</p>
             )}
@@ -192,7 +189,7 @@ const TaskModal = forwardRef(
             />
 
             {task.verification === 'автоматически' && (
-              <div style={{ width: '100%' }}>
+              <div style={{ width: '100%', marginTop: '20px' }}>
                 {isCorrect ? (
                   <div className="modal_content_main-correct">
                     <p>верно</p>

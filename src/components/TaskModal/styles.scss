@@ -97,8 +97,9 @@
           display: flex;
           flex-direction: column;
           gap: 2px;
-          margin-bottom: 20px;
-          color: $red--lighten--1;
+          a {
+            color: $red--lighten--1;
+          }
         }
       }
     }
