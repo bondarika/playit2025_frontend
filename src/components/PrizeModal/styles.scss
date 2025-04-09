@@ -127,4 +127,7 @@
   border-radius: 90%;
   border: none;
   background-color: $white;
+  button:active {
+    background-color: none;
+  }
 }

@@ -170,9 +170,15 @@ const TaskModal = forwardRef(
             {task.link != null && (
               <p className="modal_content_main-task">материалы</p>
             )}
-            <div style={{ display: "flex", flexDirection: "column", gap: "2px", marginBottom: '20px' }}>
-              <p dangerouslySetInnerHTML={{ __html: sanitizedLink }} />
-            </div>
+            <p
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '2px',
+                marginBottom: '20px',
+              }}
+              dangerouslySetInnerHTML={{ __html: sanitizedLink }}
+            />
 
             {task.verification === 'автоматически' && (
               <div style={{ width: '100%' }}>
