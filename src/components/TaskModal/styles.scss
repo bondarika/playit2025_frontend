@@ -39,8 +39,8 @@
         justify-content: center;
         margin-top: 8px;
         color: $red;
-        font-weight: 600;
-        font-size: 16px;
+        font-weight: 500;
+        font-size: 14px;
       }
       &-correct {
         height: 100%;
@@ -93,6 +93,13 @@
         color: rgba(231, 231, 233, 0.6);
         font-size: 12px;
         margin-top: 8px;
+        &-link {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+          margin-bottom: 20px;
+          color: $red--lighten--1;
+        }
       }
     }
   }

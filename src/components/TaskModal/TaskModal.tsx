@@ -47,7 +47,7 @@ const TaskModal = forwardRef(
     useImperativeHandle(ref, () => ({
       showModal: () => setIsVisible(true),
       close: () => {
-        setSubmitError('')
+        setSubmitError('');
         setFile(null);
         setUserAnswer('');
         setIsVisible(false);
@@ -187,12 +187,7 @@ const TaskModal = forwardRef(
               <p className="modal_content_main-task">материалы</p>
             )}
             <p
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '2px',
-                marginBottom: '20px',
-              }}
+              className="modal_content_main-link"
               dangerouslySetInnerHTML={{ __html: sanitizedLink }}
             />
 
