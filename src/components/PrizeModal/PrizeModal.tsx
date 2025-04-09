@@ -176,7 +176,7 @@ const PrizeModal = forwardRef(
                       prize.quantity === 0
                     }
                   >
-                    {prize.quantity === 0 && <p>приз закончился</p>}
+                    {prize.quantity === 0 && <p>нет в наличии</p>}
                     {user &&
                       user.balance !== undefined &&
                       user.balance < prize.price &&

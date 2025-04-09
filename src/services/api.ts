@@ -25,7 +25,6 @@ export const submitTask = async (
         withCredentials: true,
       }
     );
-    console.log('Response:', response.data);
     return response.data;
   } catch (error: any) {
     if (error.response) {
@@ -82,7 +81,6 @@ export const fetchTasks = async () => {
 export const fetchPrizes = async () => {
   try {
     const response = await axiosInstance.get('/shop/get');
-    console.log(response.data.data);
     return response.data.data;
   } catch (error) {
     console.error(
@@ -103,7 +101,6 @@ export const buyPrize = async (
       prize_title,
       value,
     });
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error(

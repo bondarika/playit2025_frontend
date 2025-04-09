@@ -30,6 +30,7 @@ const hexCodes = avatarNames.map((avatar) => extractHexFromImageName(avatar));
 
 const TaskModal = forwardRef(
   ({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) => {
+    const [submitError, setSubmitError] = useState('');
     const [isInProgress, setIsInProgress] = useState(false);
     const [isCorrect, setIsCorrect] = useState(false);
     const [isIncorrect, setIsIncorrect] = useState(false);
@@ -55,6 +56,7 @@ const TaskModal = forwardRef(
     if (!isVisible) return null;
 
     const handleSubmit = async () => {
+      setSubmitError('');
       setLoading(true);
       try {
         const userId = Cookies.get('user_id');
@@ -72,7 +74,6 @@ const TaskModal = forwardRef(
             value: task.points,
             user_answer: userAnswer || '',
           };
-          console.log('requestBody', requestBody);
         } else if (task.verification === 'модерация') {
           endpoint = '/tasks/create/moderation';
           requestBody = new FormData();
@@ -118,8 +119,15 @@ const TaskModal = forwardRef(
         }
         setFile(null);
         setUserAnswer('');
-      } catch (error) {
+      } catch (error: unknown) {
         console.error('Ошибка при отправке задания:', error);
+        if (error.response?.status === 413) {
+          setSubmitError('cлишком большой размер файла');
+        } else if (error.response?.status === 400) {
+          setSubmitError('yеподдерживаемый формат файла');
+        } else {
+          setSubmitError('произошла ошибка при отправке – попробуйте ещё раз');
+        }
       } finally {
         setLoading(false);
       }
@@ -212,6 +220,7 @@ const TaskModal = forwardRef(
                     >
                       отправить
                     </Button>
+                    {submitError && { submitError }}
                   </>
                 )}
               </div>
