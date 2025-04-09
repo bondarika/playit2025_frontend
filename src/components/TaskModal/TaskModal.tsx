@@ -170,10 +170,9 @@ const TaskModal = forwardRef(
             {task.link != null && (
               <p className="modal_content_main-task">материалы</p>
             )}
-            <p
-              style={{ marginBottom: '20px' }}
-              dangerouslySetInnerHTML={{ __html: sanitizedLink }}
-            />
+            <div style={{ display: "flex", flexDirection: "column", gap: "2px", marginBottom: '20px' }}>
+              <p dangerouslySetInnerHTML={{ __html: sanitizedLink }} />
+            </div>
 
             {task.verification === 'автоматически' && (
               <div style={{ width: '100%' }}>
@@ -215,8 +214,11 @@ const TaskModal = forwardRef(
                     onChange={(e) => handleFileChange(e, setFile)}
                   />
                   <label htmlFor="fileInput">
-                    {file && !loading ? file.name : 'прикрепи сюда решение'}
-                    {loading && 'идёт загрузка файла'}
+                    {loading
+                      ? 'идёт загрузка файла'
+                      : file
+                      ? file.name
+                      : 'прикрепи сюда решение'}
                   </label>
                 </div>
                 <Button onClick={handleSubmit} disabled={!file || loading}>
