@@ -1,4 +1,5 @@
-﻿.balance {
+﻿@import '@/styles/variables.scss';
+.balance {
   padding: 5.5px 12px;
   display: flex;
   flex-direction: row;
