@@ -21,7 +21,7 @@ class TasksStore {
   }
 
   private getCurrentDay(): number {
-    const startDate = new Date('2025-04-9');
+    const startDate = new Date(2025, 3, 9); 
     const today = new Date();
     const diffTime = today.getTime() - startDate.getTime();
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
@@ -31,7 +31,7 @@ class TasksStore {
   getTasks = async () => {
     const day = this.getCurrentDay();
     if (this.cachedDay !== null && this.cachedDay >= day) {
-      return; 
+      return;
     }
 
     try {
