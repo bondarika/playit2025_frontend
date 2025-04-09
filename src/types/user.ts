@@ -1,5 +1,4 @@
-﻿import { Prize } from "./prizeProps";
-
+﻿import { Prize } from './prize';
 export interface User {
   id: number;
   username: string;
@@ -7,6 +6,7 @@ export interface User {
   balance: number;
   role: string;
   done_tasks: number[];
+  in_progress: number[];
   group_number: string;
   full_name: string;
   prizes: Prize[];

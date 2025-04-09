@@ -13,6 +13,7 @@ class UserStore {
       authenticate: action,
       clearUser: action,
       markTaskAsDone: action,
+      markTaskAsInProgress: action,
       updateBalance: action,
     });
   }
@@ -25,6 +26,10 @@ class UserStore {
 
   get doneTasks() {
     return this.user?.done_tasks ?? [];
+  }
+
+  get inProgressTasks() {
+    return this.user?.in_progress ?? [];
   }
 
   authenticate = async (userData: { id: number; username: string }) => {
@@ -65,6 +70,18 @@ class UserStore {
     }
     runInAction(() => {
       this.user?.done_tasks.push(taskId);
+    });
+  };
+
+  markTaskAsInProgress = async (taskId: number) => {
+    if (!this.user) {
+      throw new Error('User is not authenticated');
+    }
+    if (this.user.in_progress.includes(taskId)) {
+      return;
+    }
+    runInAction(() => {
+      this.user?.in_progress.push(taskId);
     });
   };
 }

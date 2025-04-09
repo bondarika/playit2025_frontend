@@ -54,6 +54,16 @@
         font-size: 48px;
         color: #9e1d37;
       }
+      &-in_progress {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Morfin Sans';
+        font-size: 48px;
+        color: $red--lighten--1;
+      }
       &_title {
         width: 100%;
         display: flex;

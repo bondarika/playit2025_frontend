@@ -70,6 +70,7 @@ const TaskPage = observer(() => {
               key={task.id}
               task={task}
               onClick={() => handleTaskClick(task)}
+              isInProgress={userStore.inProgressTasks.includes(task.id)}
               isDone={userStore.doneTasks.includes(task.id)}
             />
           ))}

@@ -20,12 +20,14 @@ const avatarNames = Object.keys(characterAvatars).map(
 
 const hexCodes = avatarNames.map((avatar) => extractHexFromImageName(avatar));
 
-function Task({ task, onClick, isDone }: TaskProps) {
+function Task({ task, onClick, isDone, isInProgress }: TaskProps) {
   const sanitizedDescription = DOMPurify.sanitize(task.description);
   return (
     <div
-      onClick={!isDone ? onClick : undefined}
-      className={`task ${isDone ? 'task__disabled' : ''}`}
+      onClick={!isDone && !isInProgress ? onClick : undefined}
+      className={`task 
+        ${isDone ? 'task__disabled' : ''} 
+        ${isInProgress ? 'task__in_progress' : ''}`}
       style={{ background: `#${hexCodes[task.id - 1]}` }}
     >
       {isDone && <img src={icons['check']} className="task__checkmark" />}

@@ -30,6 +30,7 @@ const hexCodes = avatarNames.map((avatar) => extractHexFromImageName(avatar));
 
 const TaskModal = forwardRef(
   ({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) => {
+    const [isInProgress, setIsInProgress] = useState(false);
     const [isCorrect, setIsCorrect] = useState(false);
     const [isIncorrect, setIsIncorrect] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
@@ -90,6 +91,14 @@ const TaskModal = forwardRef(
         }
 
         const response = await submitTask(requestBody, endpoint);
+        if (response?.status === 200) {
+          setIsInProgress(true);
+          userStore.markTaskAsInProgress(task.id);
+          setTimeout(() => {
+            (ref as React.RefObject<ModalHandle>).current?.close();
+            setIsInProgress(false);
+          }, 10000);
+        }
         if (response?.is_correct === true) {
           setIsCorrect(true);
           userStore.markTaskAsDone(task.id);
@@ -98,14 +107,12 @@ const TaskModal = forwardRef(
             userStore.updateBalance(newBalance);
           }
           setTimeout(() => {
-            (ref as React.RefObject<ModalHandle>).current?.close();
             setIsCorrect(false);
           }, 5000);
         }
         if (response?.is_correct === false) {
           setIsIncorrect(true);
           setTimeout(() => {
-            (ref as React.RefObject<ModalHandle>).current?.close();
             setIsIncorrect(false);
           }, 5000);
         }
@@ -212,24 +219,32 @@ const TaskModal = forwardRef(
 
             {task.verification === 'модерация' && (
               <div>
-                <div>
-                  <input
-                    type="file"
-                    id="fileInput"
-                    ref={fileInputRef}
-                    onChange={(e) => handleFileChange(e, setFile)}
-                  />
-                  <label htmlFor="fileInput">
-                    {loading
-                      ? 'идёт загрузка файла'
-                      : file
-                      ? file.name
-                      : 'прикрепи сюда решение'}
-                  </label>
-                </div>
-                <Button onClick={handleSubmit} disabled={!file || loading}>
-                  {loading ? 'загрузка...' : 'отправить'}
-                </Button>
+                {isInProgress ? (
+                  <div className="modal_content_main-in_progress">
+                    <p>на проверке</p>
+                  </div>
+                ) : (
+                  <>
+                    <div>
+                      <input
+                        type="file"
+                        id="fileInput"
+                        ref={fileInputRef}
+                        onChange={(e) => handleFileChange(e, setFile)}
+                      />
+                      <label htmlFor="fileInput">
+                        {loading
+                          ? 'идёт загрузка файла'
+                          : file
+                          ? file.name
+                          : 'прикрепи сюда решение'}
+                      </label>
+                    </div>
+                    <Button onClick={handleSubmit} disabled={!file || loading}>
+                      {loading ? 'загрузка...' : 'отправить'}
+                    </Button>
+                  </>
+                )}
               </div>
             )}
           </div>
