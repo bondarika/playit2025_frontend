@@ -68,9 +68,11 @@ export const fetchUserData = async () => {
   }
 };
 
-export const fetchTasks = async () => {
+export const fetchTasks = async (day: number) => {
   try {
-    const response = await axiosInstance.get('/tasks/get-all');
+    const response = await axiosInstance.get('/tasks/get-all', {
+      params: { day },
+    });
     return response.data.data;
   } catch (error) {
     console.error('Error fetching tasks:', error);
