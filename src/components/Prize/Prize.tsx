@@ -25,10 +25,14 @@ const Prize = observer(({ prize, onClick }: PrizeProps) => {
         />
         <div className="prize__content">
           <h2 className="prize__content__title">{prize.title}</h2>
-          <div className="prize__content__price">
-            <p className="prize__content__price-text">{prize.price}</p>
-            <img src={icons['coin']} />
-          </div>
+          {prize.quantity === 0 ? (
+            <p className="prize__content__not_available">нет в наличии</p>
+          ) : (
+            <div className="prize__content__price">
+              <p className="prize__content__price-text">{prize.price}</p>
+              <img src={icons['coin']} />
+            </div>
+          )}
         </div>
       </div>
     </>

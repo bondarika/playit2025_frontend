@@ -230,7 +230,7 @@ const TaskModal = forwardRef(
                     <p>на проверке</p>
                   </div>
                 ) : (
-                  <>
+                  <div style={{ width: '100%', marginTop: '20px' }}>
                     <div>
                       <input
                         type="file"
@@ -254,7 +254,7 @@ const TaskModal = forwardRef(
                         {submitError}
                       </p>
                     )}
-                  </>
+                  </div>
                 )}
               </div>
             )}
