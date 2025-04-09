@@ -115,7 +115,7 @@
   }
 }
 
-[role='close'] {
+button[role='close'] {
   position: absolute;
   right: 16px;
   top: 16px;
@@ -127,7 +127,7 @@
   border-radius: 90%;
   border: none;
   background-color: $white;
-  button:active {
+  &:active {
     background-color: none;
   }
 }

@@ -52,7 +52,7 @@
         justify-content: center;
         font-family: 'Morfin Sans';
         font-size: 48px;
-        color: #9E1D37;
+        color: #9e1d37;
       }
       &_title {
         width: 100%;
@@ -80,7 +80,7 @@
   }
 }
 
-[role='close'] {
+button[role='close'] {
   position: absolute;
   right: 16px;
   top: 16px;
@@ -92,6 +92,9 @@
   border-radius: 90%;
   border: none;
   background-color: rgba(250, 250, 255, 1);
+  &:active {
+    background-color: none;
+  }
 }
 
 input[type='text'] {
