@@ -13,8 +13,15 @@ class UserStore {
       authenticate: action,
       clearUser: action,
       markTaskAsDone: action,
+      updateBalance: action,
     });
   }
+
+  updateBalance = (newBalance: number) => {
+    if (this.user) {
+      this.user.balance = newBalance;
+    }
+  };
 
   get doneTasks() {
     return this.user?.done_tasks ?? [];

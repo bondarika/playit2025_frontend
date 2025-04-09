@@ -5,7 +5,6 @@ import './styles.scss';
 import useUser from '../../hooks/useUser';
 import Error from '../../components/CustomError/CustomError';
 import Loader from '../../components/Loader/Loader';
-import icons from '../../assets/icons';
 import useTimeoutError from '../../hooks/useTimeoutError';
 import { PrizeProps } from '../../types/prizeProps';
 import { useRef, useState } from 'react';
@@ -15,6 +14,7 @@ import userStore from '../../store/userStore';
 import { observer } from 'mobx-react-lite';
 import prizesStore from '../../store/prizesStore';
 import { toJS } from 'mobx';
+import Balance from '../../components/Balance/Balance';
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
@@ -58,10 +58,7 @@ const StorePage = observer(() => {
     <>
       <header>
         <h1>МАГАЗИН</h1>
-        <div className="balance">
-          <img src={icons['coin_bag_red']} />
-          <p className="balance__text">{user?.balance}</p>
-        </div>
+        <Balance />
       </header>
 
       <div className="store">

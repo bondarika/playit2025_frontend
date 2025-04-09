@@ -10,9 +10,7 @@ import Button from '../Button/Button';
 import { convertFileToBinary } from '../../utils/convertFileToBinary';
 import DOMPurify from 'dompurify';
 import { observer } from 'mobx-react-lite';
-import tasksStore from '../../store/tasksStore';
 import userStore from '../../store/userStore';
-import { toJS } from 'mobx';
 
 const characterAvatars: Record<string, { default: string }> = import.meta.glob(
   '@/assets/images/characters_a/*.webp',
@@ -94,8 +92,11 @@ const TaskModal = forwardRef(
         const response = await submitTask(requestBody, endpoint);
         if (response?.is_correct === true) {
           setIsCorrect(true);
-          tasksStore.markTaskAsDone(task.id);
           userStore.markTaskAsDone(task.id);
+          if (userStore.user) {
+            const newBalance = userStore.user.balance + task.points;
+            userStore.updateBalance(newBalance);
+          }
           setTimeout(() => {
             (ref as React.RefObject<ModalHandle>).current?.close();
             setIsCorrect(false);
@@ -108,7 +109,6 @@ const TaskModal = forwardRef(
             setIsIncorrect(false);
           }, 5000);
         }
-        console.log(toJS(userStore.user));
         setFile(null);
         setUserAnswer('');
       } catch (error) {

@@ -50,20 +50,3 @@ h2,
 p {
   margin: 0;
 }
-
-.balance {
-  padding: 5.5px 12px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 6px;
-  background-color: rgba(246, 233, 240, 1);
-  border-radius: 12px;
-  &__text {
-    color: $red;
-    font-family: 'SF Pro Rounded';
-    font-size: 16px;
-    font-weight: bold;
-  }
-}
