@@ -220,7 +220,11 @@ const TaskModal = forwardRef(
                     >
                       отправить
                     </Button>
-                    {submitError && { submitError }}
+                    {submitError && (
+                      <p className="modal_content_main-submit_error">
+                        {submitError}
+                      </p>
+                    )}
                   </>
                 )}
               </div>
@@ -252,6 +256,11 @@ const TaskModal = forwardRef(
                     <Button onClick={handleSubmit} disabled={!file || loading}>
                       {loading ? 'загрузка...' : 'отправить'}
                     </Button>
+                    {submitError && (
+                      <p className="modal_content_main-submit_error">
+                        {submitError}
+                      </p>
+                    )}
                   </>
                 )}
               </div>
