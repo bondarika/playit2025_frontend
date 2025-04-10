@@ -45,10 +45,6 @@ const ProfilePage = () => {
 
   const timeoutError = useTimeoutError(!!user || !!error);
 
-  runInAction(() => {
-    userStore.user.prizes = [];
-  });
-
   // const handlePrizeClick = (prize: PrizeProps['prize']) => {
   //   prizesStore.selectPrize(prize);
   //   setSelectedPrize(prize);
