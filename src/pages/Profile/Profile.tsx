@@ -6,8 +6,12 @@ import { observer } from 'mobx-react-lite';
 import CustomError from '../../components/CustomError/CustomError';
 import Loader from '../../components/Loader/Loader';
 import useTimeoutError from '../../hooks/useTimeoutError';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { PrizeProps } from '../../types/prizeProps';
+import { ModalHandle } from '../../types/modalHandle';
+import ItemModal from '../../components/ItemModal/ItemModal';
+import Prize from '../../components/Prize/Prize';
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
@@ -18,6 +22,7 @@ const userData = JSON.parse(params.get('user') || 'null');
 
 function ProfilePage(): React.ReactElement {
   const location = useLocation();
+  const modalRef = useRef<ModalHandle | null>(null);
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     if (params.get('openPrizes') === 'true') {
@@ -27,12 +32,21 @@ function ProfilePage(): React.ReactElement {
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [areSettingsOpen, setAreSettingsOpen] = useState(false);
+  const [selectedPrize, setSelectedPrize] = useState<
+    PrizeProps['prize'] | null
+  >(null);
+
   const { user, error } = useUser({
     id: userData.id,
     username: userData.username,
   });
 
   const timeoutError = useTimeoutError(!!user || !!error);
+
+  const handlePrizeClick = (prize: PrizeProps['prize']) => {
+    setSelectedPrize(prize);
+    modalRef.current?.showModal();
+  };
 
   if (timeoutError) {
     return (
@@ -148,45 +162,54 @@ function ProfilePage(): React.ReactElement {
                 }}
               >
                 {user.prizes.length > 0 ? (
-                  [
-                    ...user.prizes,
-                    {
-                      id: 'last',
-                      title:
-                        'вы сможете получить призы\nпосле завершения мероприятия',
-                      value: '',
-                    },
-                  ].map((prize, index, arr) => (
-                    <div
-                      key={prize.id}
-                      className={`profile__dropdown-item ${
-                        index === arr.length - 1
-                          ? 'profile__dropdown-item-last'
-                          : ''
-                      }`}
-                    >
-                      <span
-                        style={{ padding: '8px 10px', whiteSpace: 'pre-line' }}
+                  user.prizes
+                    .map((prize) => (
+                      <div
+                        key={prize.id}
+                        className="profile__dropdown-item"
+                        onClick={() => handlePrizeClick(prize)}
                       >
-                        {prize.title}
-                      </span>
-                    </div>
-                  ))
+                        <span
+                          style={{
+                            padding: '8px 10px',
+                            whiteSpace: 'pre-line',
+                          }}
+                        >
+                          {prize.title}
+                        </span>
+                      </div>
+                    ))
+                    .concat(
+                      <div
+                        key="last"
+                        className="profile__dropdown-item profile__dropdown-item-last"
+                        style={{ borderRadius: '0px 0px 12px 12px' }}
+                      >
+                        <span
+                          style={{
+                            padding: '8px 10px',
+                            whiteSpace: 'pre-line',
+                          }}
+                        >
+                          вы сможете получить призы
+                          <br />
+                          после завершения мероприятия
+                        </span>
+                      </div>
+                    )
                 ) : (
-                  <>
-                    <div
-                      className="profile__dropdown-item"
-                      style={{ borderRadius: '0px 0px 12px 12px' }}
+                  <div
+                    className="profile__dropdown-item"
+                    style={{ borderRadius: '0px 0px 12px 12px' }}
+                  >
+                    <span
+                      className="profile__dropdown-item-last"
+                      style={{ padding: '8px 10px', whiteSpace: 'pre-line' }}
                     >
-                      <span
-                        className="profile__dropdown-item-last"
-                        style={{ padding: '8px 10px', whiteSpace: 'pre-line' }}
-                      >
-                        <p>у вас пока что нет призов,</p>
-                        <p>вы можете купить что-нибудь в магазине</p>
-                      </span>
-                    </div>
-                  </>
+                      <p>у вас пока что нет призов</p>
+                      <p>вы можете купить что-нибудь в магазине</p>
+                    </span>
+                  </div>
                 )}
               </div>
             )}
@@ -197,6 +220,7 @@ function ProfilePage(): React.ReactElement {
           </div>
         </div>
       </div>
+      {selectedPrize && <ItemModal ref={modalRef} prize={selectedPrize} />}
     </div>
   ) : (
     <Loader />
