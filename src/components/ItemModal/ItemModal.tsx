@@ -46,7 +46,9 @@ const ItemModal = forwardRef(
 
     if (!isVisible || !prize) return null;
 
+    console.log('Prize description:', prize.description);
     const sanitizedDescription = DOMPurify.sanitize(prize.description);
+    console.log('Sanitized prize description:', sanitizedDescription);
 
     if (timeoutError) {
       return (
