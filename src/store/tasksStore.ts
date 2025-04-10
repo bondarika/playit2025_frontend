@@ -49,6 +49,7 @@ class TasksStore {
         verification: task['Формат проверки'],
         points: task['Стоимость'],
         link: task['Ссылка'],
+        answer_format: task['Формат ответа']
       }));
       runInAction(() => {
         this.tasks = formattedTasks;

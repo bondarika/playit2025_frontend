@@ -9,4 +9,5 @@
   verification: string;
   id: number;
   done: boolean;
+  answer_format: string;
 }

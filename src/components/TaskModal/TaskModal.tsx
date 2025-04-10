@@ -81,7 +81,7 @@ const TaskModal = forwardRef(
           requestBody.append('task_id', task.id.toString());
           requestBody.append('user_id', parseInt(userId, 10).toString());
           requestBody.append('value', task.points.toString());
-          requestBody.append('text', ' ');
+          requestBody.append('text', userAnswer || '');
           if (file) {
             const binaryFile = await convertFileToBinary(file);
             requestBody.append(
@@ -199,7 +199,7 @@ const TaskModal = forwardRef(
                     <p>неверно</p>
                   </div>
                 ) : (
-                  <>
+                  <div>
                     <input
                       type="text"
                       placeholder="напиши сюда ответ"
@@ -218,7 +218,7 @@ const TaskModal = forwardRef(
                         {submitError}
                       </p>
                     )}
-                  </>
+                  </div>
                 )}
               </div>
             )}
@@ -228,6 +228,27 @@ const TaskModal = forwardRef(
                 {isInProgress ? (
                   <div className="modal_content_main-in_progress">
                     <p>на проверке</p>
+                  </div>
+                ) : task.answer_format === 'текст' ? (
+                  <div>
+                    <input
+                      type="text"
+                      placeholder="напиши сюда ответ"
+                      value={userAnswer}
+                      ref={textInputRef}
+                      onChange={(e) => setUserAnswer(e.target.value)}
+                    />
+                    <Button
+                      onClick={handleSubmit}
+                      disabled={!userAnswer.trim()}
+                    >
+                      отправить
+                    </Button>
+                    {submitError && (
+                      <p className="modal_content_main-submit_error">
+                        {submitError}
+                      </p>
+                    )}
                   </div>
                 ) : (
                   <div style={{ width: '100%', marginTop: '20px' }}>

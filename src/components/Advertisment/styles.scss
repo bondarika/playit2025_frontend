@@ -1,0 +1,11 @@
+﻿.swiper {
+  flex: 1;
+  width: 100%;
+  min-width: calc(50% - 5px);
+  display: flex;
+  &-slide img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+  }
+}
