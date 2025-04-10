@@ -11,6 +11,8 @@ import { useLocation } from 'react-router-dom';
 import { PrizeProps } from '../../types/prizeProps';
 import { ModalHandle } from '../../types/modalHandle';
 import ItemModal from '../../components/ItemModal/ItemModal';
+import { runInAction } from 'mobx';
+import userStore from '../../store/userStore';
 // import { runInAction } from 'mobx';
 // import userStore from '../../store/userStore';
 
@@ -49,13 +51,13 @@ const ProfilePage = () => {
     }
   };
 
-  // useEffect(() => {
-  //   if (user) {
-  //     runInAction(() => {
-  //       userStore.user.prizes = [];
-  //     });
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    if (user) {
+      runInAction(() => {
+        userStore.user.prizes = [];
+      });
+    }
+  }, [user]);
 
   const timeoutError = useTimeoutError(!!user || !!error);
 
