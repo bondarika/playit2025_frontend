@@ -178,8 +178,12 @@ function ProfilePage(): React.ReactElement {
                       className="profile__dropdown-item"
                       style={{ borderRadius: '0px 0px 12px 12px' }}
                     >
-                      <span className="profile__dropdown-item-last">
-                        нет призов
+                      <span
+                        className="profile__dropdown-item-last"
+                        style={{ padding: '8px 10px', whiteSpace: 'pre-line' }}
+                      >
+                        у вас пока что нет призов, вы можете купить что-нибудь в
+                        магазине
                       </span>
                     </div>
                   </>
