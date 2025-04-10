@@ -4,6 +4,7 @@ import ads_2 from '../../assets/images/ads/ads_2.png';
 import ads_3 from '../../assets/images/ads/ads_3.png';
 import 'swiper/css';
 import './styles.scss';
+import { Autoplay } from 'swiper/modules';
 
 const Advertisment = () => {
   return (
@@ -15,6 +16,7 @@ const Advertisment = () => {
           delay: 2500,
           disableOnInteraction: false,
         }}
+        modules={[Autoplay]}
       >
         <SwiperSlide>
           <img src={ads_1} alt="ВНЕШКОМ" />
