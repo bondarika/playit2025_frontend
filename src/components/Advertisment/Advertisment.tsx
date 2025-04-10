@@ -1,7 +1,7 @@
 ﻿import { Swiper, SwiperSlide } from 'swiper/react';
-import ads_1 from '../../assets/images/ads/ads_1.png';
-import ads_2 from '../../assets/images/ads/ads_2.png';
-import ads_3 from '../../assets/images/ads/ads_3.png';
+import ads_1 from '../../assets/images/ads/ads_1.webp';
+import ads_2 from '../../assets/images/ads/ads_2.webp';
+import ads_3 from '../../assets/images/ads/ads_3.webp';
 import 'swiper/css';
 import './styles.scss';
 import { Autoplay } from 'swiper/modules';
