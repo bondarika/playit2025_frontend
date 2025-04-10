@@ -97,7 +97,7 @@ const ProfilePage = () => {
               </p>
               <img
                 src={icons['help_black']}
-                style={{ padding: '8px 15px 8px 0px' }}
+                style={{ padding: '10px 15px 10px 0px' }}
               />
             </a>
             <div className="profile__settings-text">
