@@ -71,7 +71,7 @@ const ItemModal = forwardRef(
           </button>
 
           <div>
-            <div style={{ paddingBottom: '8px' }}>
+            <div>
               <h2 className="item__content-title">{prize.title}</h2>
               <p className="item__content-description">описание:</p>
               <p
