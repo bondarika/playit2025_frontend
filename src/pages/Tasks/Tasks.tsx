@@ -1,4 +1,4 @@
-﻿import React, { useRef, useState } from 'react';
+﻿import React, { useEffect, useRef, useState } from 'react';
 import Task from '../../components/Task/Task';
 import './styles.scss';
 import useTasks from '../../hooks/useTasks';
@@ -20,6 +20,14 @@ const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
 
 const TaskPage = observer(() => {
+  useEffect(() => {
+    const interval = setInterval(() => {
+      tasksStore.getTasks(); 
+    }, 5000); 
+    return () => {
+      clearInterval(interval); 
+    };
+  }, []);
   const tasksModalRef = useRef<ModalHandle | null>(null);
   const { user: fetchedUser } = useUser({
     id: userData.id,
