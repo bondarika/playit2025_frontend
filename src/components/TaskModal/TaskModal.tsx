@@ -43,6 +43,7 @@ const TaskModal = forwardRef(
     const sanitizedDescription = DOMPurify.sanitize(task.description);
     const sanitizedTask = DOMPurify.sanitize(task.task);
     const sanitizedLink = DOMPurify.sanitize(task.link);
+    const sanitizedFormat = DOMPurify.sanitize(task.answer_format);
 
     useImperativeHandle(ref, () => ({
       showModal: () => setIsVisible(true),
@@ -188,6 +189,10 @@ const TaskModal = forwardRef(
               className="modal_content_main-link"
               dangerouslySetInnerHTML={{ __html: sanitizedLink }}
             />
+            {task.answer_format != null && (
+              <p className="modal_content_main-task">формат ответа</p>
+            )}
+            <p dangerouslySetInnerHTML={{ __html: sanitizedFormat }} />
 
             {task.verification === 'автоматически' && (
               <div style={{ width: '100%', marginTop: '20px' }}>

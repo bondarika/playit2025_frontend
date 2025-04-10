@@ -18,14 +18,7 @@ class UserStore {
     });
   }
 
-  reset() {
-   runInAction(() => {
-     if (this.user) {
-       this.user.prizes = [];
-     }
-     this.error = null; 
-   });
-  }
+
   updateBalance = (newBalance: number) => {
     if (this.user) {
       this.user.balance = newBalance;

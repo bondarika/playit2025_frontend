@@ -8,7 +8,6 @@ import Loader from '../../components/Loader/Loader';
 import useTimeoutError from '../../hooks/useTimeoutError';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import userStore from '../../store/userStore';
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
@@ -19,8 +18,6 @@ const userData = JSON.parse(params.get('user') || 'null');
 
 const ProfilePage = () => {
   const location = useLocation();
-  userStore.reset();
-  console.log('User Store:', userStore.user);
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     if (params.get('openPrizes') === 'true') {
