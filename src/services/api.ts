@@ -73,7 +73,6 @@ export const fetchTasks = async (day: number) => {
     const response = await axiosInstance.get('/tasks/get-all', {
       params: { day },
     });
-    console.log(response.data.data);
     return response.data.data;
   } catch (error) {
     console.error('Error fetching tasks:', error);
@@ -84,6 +83,7 @@ export const fetchTasks = async (day: number) => {
 export const fetchPrizes = async () => {
   try {
     const response = await axiosInstance.get('/shop/get');
+    console.log(response.data.data);
     return response.data.data;
   } catch (error) {
     console.error(
