@@ -17,7 +17,6 @@ class UserStore {
       updateBalance: action,
     });
   }
-
   updateBalance = (newBalance: number) => {
     if (this.user) {
       this.user.balance = newBalance;

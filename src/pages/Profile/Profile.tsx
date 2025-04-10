@@ -8,6 +8,8 @@ import Loader from '../../components/Loader/Loader';
 import useTimeoutError from '../../hooks/useTimeoutError';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { runInAction } from 'mobx';
+import userStore from '../../store/userStore';
 // import { PrizeProps } from '../../types/prizeProps';
 // import { ModalHandle } from '../../types/modalHandle';
 // import ItemModal from '../../components/ItemModal/ItemModal';
@@ -42,6 +44,10 @@ const ProfilePage = () => {
   });
 
   const timeoutError = useTimeoutError(!!user || !!error);
+
+  runInAction(() => {
+    userStore.user.prizes = [];
+  });
 
   // const handlePrizeClick = (prize: PrizeProps['prize']) => {
   //   prizesStore.selectPrize(prize);

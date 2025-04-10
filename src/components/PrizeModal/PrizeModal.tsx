@@ -266,7 +266,7 @@ const PrizeModal = forwardRef(
                 </div>
                 <img src={icons['arrow_success']} />
                 <Button
-                  onClick={() => navigate('/profile?openprizemodals=true')}
+                  onClick={() => navigate('/profile?openPrizes=true')}
                 >
                   перейти в профиль
                 </Button>
