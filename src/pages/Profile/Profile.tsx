@@ -11,8 +11,6 @@ import { useLocation } from 'react-router-dom';
 import { PrizeProps } from '../../types/prizeProps';
 import { ModalHandle } from '../../types/modalHandle';
 import ItemModal from '../../components/ItemModal/ItemModal';
-import { runInAction } from 'mobx';
-import userStore from '../../store/userStore';
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
@@ -48,14 +46,6 @@ const ProfilePage = () => {
       profileModalRef.current?.showModal();
     }
   };
-
-  useEffect(() => {
-    if (user) {
-      runInAction(() => {
-        userStore.user.prizes = [];
-      });
-    }
-  }, [user]);
 
   const timeoutError = useTimeoutError(!!user || !!error);
 

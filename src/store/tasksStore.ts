@@ -21,7 +21,7 @@ class TasksStore {
   }
 
   private getCurrentDay(): number {
-    const startDate = new Date(2025, 3, 8, 14);
+    const startDate = new Date(2025, 3, 8, 12);
     const today = new Date();
     const isBefore2PM = today.getHours() < 14;
     const diffTime = today.getTime() - startDate.getTime();
