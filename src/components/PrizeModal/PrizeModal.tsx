@@ -110,7 +110,8 @@ const PrizeModal = forwardRef(
         setPurchaseSuccess(false);
       }
     };
-    console.log(`Тэги: ${typeof(prize.tags)}`)
+    console.log('Prize:', prize);
+    console.log('Prize Tags:', prize.tags);
 
     const sanitizedDescription = DOMPurify.sanitize(prize.description);
 
