@@ -12,7 +12,6 @@ import userStore from '../../store/userStore';
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
-userStore.reset();
 // const hash = params.get("hash") || "null";
 // params.delete("hash");
 // params.sort();
@@ -20,6 +19,8 @@ userStore.reset();
 
 const ProfilePage = () => {
   const location = useLocation();
+  userStore.reset();
+  console.log('User Store:', userStore.user);
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     if (params.get('openPrizes') === 'true') {
