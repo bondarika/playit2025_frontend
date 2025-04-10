@@ -11,7 +11,6 @@ import { useLocation } from 'react-router-dom';
 import { PrizeProps } from '../../types/prizeProps';
 import { ModalHandle } from '../../types/modalHandle';
 import ItemModal from '../../components/ItemModal/ItemModal';
-import Prize from '../../components/Prize/Prize';
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
@@ -20,7 +19,7 @@ const userData = JSON.parse(params.get('user') || 'null');
 // params.sort();
 // const checkDataString = params.toString().replaceAll("&", "\n");
 
-function ProfilePage(): React.ReactElement {
+const ProfilePage = observer(() => {
   const location = useLocation();
   const modalRef = useRef<ModalHandle | null>(null);
   useEffect(() => {
@@ -167,7 +166,7 @@ function ProfilePage(): React.ReactElement {
                       <div
                         key={prize.id}
                         className="profile__dropdown-item"
-                        style={{cursor: 'pointer'}}
+                        style={{ cursor: 'pointer' }}
                         onClick={() => handlePrizeClick(prize)}
                       >
                         <span
@@ -226,7 +225,7 @@ function ProfilePage(): React.ReactElement {
   ) : (
     <Loader />
   );
-}
+});
 
 const ObservedProfilePage = observer(ProfilePage);
 export default ObservedProfilePage;
