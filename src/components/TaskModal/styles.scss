@@ -130,7 +130,8 @@ button[role='close'] {
   }
 }
 
-input[type='text'] {
+input[type='text'],
+textarea {
   padding: 0;
   width: 100%;
   max-width: 100%;
@@ -141,7 +142,11 @@ input[type='text'] {
   text-indent: 16px;
   margin-bottom: 12px;
   font-size: 16px;
-  input::placeholder {
+  &:focus {
+    outline: 2px solid $red--lighten--1;
+    border: 1px solid $red--lighten--1;
+  }
+  &::placeholder {
     color: rgba(231, 231, 233, 0.6);
     text-indent: 16px;
     font-size: 16px;

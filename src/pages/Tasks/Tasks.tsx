@@ -20,14 +20,6 @@ const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
 
 const TaskPage = observer(() => {
-  useEffect(() => {
-    const interval = setInterval(() => {
-      tasksStore.getTasks(); 
-    }, 5000); 
-    return () => {
-      clearInterval(interval); 
-    };
-  }, []);
   const tasksModalRef = useRef<ModalHandle | null>(null);
   const { user: fetchedUser } = useUser({
     id: userData.id,

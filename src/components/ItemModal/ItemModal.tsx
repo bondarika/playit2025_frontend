@@ -3,7 +3,7 @@ import { ModalHandle } from '../../types/modalHandle';
 import './styles.scss';
 import icons from '../../assets/icons';
 import { PrizeModalProps } from '../../types/prizeModal';
-import DOMPurify from 'dompurify';
+// import DOMPurify from 'dompurify';
 
 const prizes: Record<string, { default: string }> = import.meta.glob(
   '@/assets/images/prizes_large/*.webp',
@@ -29,7 +29,7 @@ const ItemModal = forwardRef(
 
     if (!isVisible || !prize) return null;
 
-    const sanitizedDescription = DOMPurify.sanitize(prize.description);
+    // const sanitizedDescription = DOMPurify.sanitize(prize.description);
 
     return (
       <div className="item">
@@ -46,11 +46,11 @@ const ItemModal = forwardRef(
           <div>
             <div>
               <h2 className="item__content-title">{prize.title}</h2>
-              <p className="item__content-description">описание:</p>
+              {/* <p className="item__content-description">описание:</p>
               <p
                 className="item__content-text"
                 dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
-              />
+              /> */}
             </div>
             <img
               src={avatarArray[prize.id - 1]}
