@@ -18,6 +18,13 @@ const userData = JSON.parse(params.get('user') || 'null');
 
 const ProfilePage = () => {
   const location = useLocation();
+    useEffect(() => {
+      if (user) {
+        runInAction(() => {
+          userStore.user.prizes = [];
+        });
+      }
+    }, [user]);
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     if (params.get('openPrizes') === 'true') {
