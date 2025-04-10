@@ -6,10 +6,13 @@ import { observer } from 'mobx-react-lite';
 import CustomError from '../../components/CustomError/CustomError';
 import Loader from '../../components/Loader/Loader';
 import useTimeoutError from '../../hooks/useTimeoutError';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { runInAction } from 'mobx';
-import userStore from '../../store/userStore';
+import { PrizeProps } from '../../types/prizeProps';
+import { ModalHandle } from '../../types/modalHandle';
+import ItemModal from '../../components/ItemModal/ItemModal';
+// import { runInAction } from 'mobx';
+// import userStore from '../../store/userStore';
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
@@ -29,18 +32,30 @@ const ProfilePage = () => {
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [areSettingsOpen, setAreSettingsOpen] = useState(false);
+  const profileModalRef = useRef<ModalHandle | null>(null);
+  const [selectedProfilePrize, setSelectedProfilePrize] = useState<
+    PrizeProps['prize'] | null
+  >(null);
 
   const { user, error } = useUser({
     id: userData.id,
     username: userData.username,
   });
-  useEffect(() => {
-    if (user) {
-      runInAction(() => {
-        userStore.user.prizes = [];
-      });
+
+  const handlePrizeClick = (prize: PrizeProps['prize']) => {
+    if (prize) {
+      setSelectedProfilePrize(prize);
+      profileModalRef.current?.showModal();
     }
-  }, [user]);
+  };
+
+  // useEffect(() => {
+  //   if (user) {
+  //     runInAction(() => {
+  //       userStore.user.prizes = [];
+  //     });
+  //   }
+  // }, [user]);
 
   const timeoutError = useTimeoutError(!!user || !!error);
 
@@ -164,6 +179,7 @@ const ProfilePage = () => {
                         key={prize.id}
                         className="profile__dropdown-item"
                         style={{ cursor: 'pointer' }}
+                        onClick={() => handlePrizeClick(prize)}
                       >
                         <span
                           style={{
@@ -216,6 +232,9 @@ const ProfilePage = () => {
           </div>
         </div>
       </div>
+      {selectedProfilePrize && (
+        <ItemModal ref={profileModalRef} prize={selectedProfilePrize} />
+      )}
     </div>
   ) : (
     <Loader />

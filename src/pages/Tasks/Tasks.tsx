@@ -20,7 +20,7 @@ const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
 
 const TaskPage = observer(() => {
-  const modalRef = useRef<ModalHandle | null>(null);
+  const tasksModalRef = useRef<ModalHandle | null>(null);
   const { user: fetchedUser } = useUser({
     id: userData.id,
     username: userData.username,
@@ -40,7 +40,7 @@ const TaskPage = observer(() => {
   const handleTaskClick = (task: TaskProps['task']) => {
     tasksStore.selectTask(task);
     setSelectedTask(task);
-    modalRef.current?.showModal();
+    tasksModalRef.current?.showModal();
   };
 
   if (timeoutError) {
@@ -75,7 +75,7 @@ const TaskPage = observer(() => {
             />
           ))}
       </div>
-      {selectedTask && <TaskModal ref={modalRef} task={selectedTask} />}
+      {selectedTask && <TaskModal ref={tasksModalRef} task={selectedTask} />}
     </>
   ) : (
     <Loader />

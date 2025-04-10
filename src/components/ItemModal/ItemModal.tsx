@@ -3,16 +3,7 @@ import { ModalHandle } from '../../types/modalHandle';
 import './styles.scss';
 import icons from '../../assets/icons';
 import { PrizeModalProps } from '../../types/prizeModal';
-import CustomError from '../CustomError/CustomError';
 import DOMPurify from 'dompurify';
-import userStore from '../../store/userStore';
-import Loader from '../Loader/Loader';
-import useTimeoutError from '../../hooks/useTimeoutError';
-import useUser from '../../hooks/useUser';
-import WebApp from '@twa-dev/sdk';
-
-const params = new URLSearchParams(WebApp.initData);
-const userData = JSON.parse(params.get('user') || 'null');
 
 const prizes: Record<string, { default: string }> = import.meta.glob(
   '@/assets/images/prizes_large/*.webp',
@@ -27,15 +18,7 @@ const avatarArray = Object.values(prizes).map(
 
 const ItemModal = forwardRef(
   ({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) => {
-    const storeUser = userStore.user;
-    const { user: fetchedUser } = useUser({
-      id: userData.id,
-      username: userData.username,
-    });
-    const user = storeUser ?? fetchedUser;
-
     const [isVisible, setIsVisible] = useState(false);
-    const timeoutError = useTimeoutError(!!user);
 
     useImperativeHandle(ref, () => ({
       showModal: () => setIsVisible(true),
@@ -46,19 +29,9 @@ const ItemModal = forwardRef(
 
     if (!isVisible || !prize) return null;
 
-    console.log('Prize description:', prize.description);
     const sanitizedDescription = DOMPurify.sanitize(prize.description);
-    console.log('Sanitized prize description:', sanitizedDescription);
 
-    if (timeoutError) {
-      return (
-        <div>
-          <CustomError />
-        </div>
-      );
-    }
-
-    return user ? (
+    return (
       <div className="item">
         <div className="item__content">
           <button
@@ -86,8 +59,6 @@ const ItemModal = forwardRef(
           </div>
         </div>
       </div>
-    ) : (
-      <Loader />
     );
   }
 );

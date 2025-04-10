@@ -21,7 +21,7 @@ const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
 
 const StorePage = observer(() => {
-  const modalRef = useRef<ModalHandle | null>(null);
+  const storeModalRef = useRef<ModalHandle | null>(null);
 
   const storeUser = userStore.user;
   const { user: fetchedUser } = useUser({
@@ -43,7 +43,7 @@ const StorePage = observer(() => {
   const handlePrizeClick = (prize: PrizeProps['prize']) => {
     prizesStore.selectPrize(prize);
     setSelectedPrize(prize);
-    modalRef.current?.showModal();
+    storeModalRef.current?.showModal();
   };
 
   if (timeoutError) {
@@ -62,7 +62,7 @@ const StorePage = observer(() => {
       </header>
 
       <div className="store">
-        <Advertisment/>
+        <Advertisment />
         {prizes.map((prize) => (
           <Prize
             key={prize.id}
@@ -71,7 +71,9 @@ const StorePage = observer(() => {
           />
         ))}
       </div>
-      {selectedPrize && <PrizeModal ref={modalRef} prize={selectedPrize} />}
+      {selectedPrize && (
+        <PrizeModal ref={storeModalRef} prize={selectedPrize} />
+      )}
     </>
   ) : (
     <Loader />

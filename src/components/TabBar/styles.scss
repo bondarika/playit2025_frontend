@@ -42,7 +42,7 @@
 
 .icon {
   &-inactive {
-    fill: $red;
+    fill: $red--lighten--1;
   }
   &-active {
     fill: $white;
