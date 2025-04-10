@@ -53,6 +53,7 @@ const PrizeModal = forwardRef(
     useImperativeHandle(ref, () => ({
       showModal: () => setIsVisible(true),
       close: () => {
+        setBuyError('');
         setIsConfirming(false);
         setPurchaseSuccess(false);
         setIsVisible(false);
@@ -62,10 +63,12 @@ const PrizeModal = forwardRef(
     if (!isVisible) return null;
 
     const handleBuyClick = () => {
+      setBuyError('');
       setIsConfirming(true);
     };
 
     const handleCancelClick = () => {
+      setBuyError('');
       setIsConfirming(false);
     };
 
@@ -235,7 +238,7 @@ const PrizeModal = forwardRef(
                   </div>
                 </div>
                 {buyError && (
-                  <p className="modal_content_main-submit_error">
+                  <p className="item__content__purchase-confirmation-error">
                     {buyError}
                   </p>
                 )}
