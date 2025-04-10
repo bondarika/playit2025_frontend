@@ -19,7 +19,7 @@ const userData = JSON.parse(params.get('user') || 'null');
 // params.sort();
 // const checkDataString = params.toString().replaceAll("&", "\n");
 
-const ProfilePage = observer(() => {
+const ProfilePage = () => {
   const location = useLocation();
   const modalRef = useRef<ModalHandle | null>(null);
   useEffect(() => {
@@ -225,7 +225,7 @@ const ProfilePage = observer(() => {
   ) : (
     <Loader />
   );
-});
+};
 
 const ObservedProfilePage = observer(ProfilePage);
 export default ObservedProfilePage;
