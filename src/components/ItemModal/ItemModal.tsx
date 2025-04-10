@@ -69,11 +69,7 @@ const ItemModal = forwardRef(
           </button>
 
           <div>
-            <img
-              src={avatarArray[prize.id - 1]}
-              className="item__content-avatar"
-            />
-            <div style={{ padding: '0px 4px' }}>
+            <div style={{ paddingBottom: '8px' }}>
               <h2 className="item__content-title">{prize.title}</h2>
               <p className="item__content-description">описание:</p>
               <p
@@ -81,6 +77,10 @@ const ItemModal = forwardRef(
                 dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
               />
             </div>
+            <img
+              src={avatarArray[prize.id - 1]}
+              className="item__content-avatar"
+            />
           </div>
         </div>
       </div>
