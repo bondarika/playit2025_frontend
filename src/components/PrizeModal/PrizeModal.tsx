@@ -22,7 +22,7 @@ const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
 
 const prizes: Record<string, { default: string }> = import.meta.glob(
-  '@/assets/images/prizes_large/*.webp',
+  '@/assets/images/prizemodals_large/*.webp',
   {
     eager: true,
   }
@@ -80,7 +80,11 @@ const PrizeModal = forwardRef(
           throw new Error('Пользовательский id не найден в cookies');
         }
 
-        const response = await buyPrize(userId, prize.title, prize.price);
+        const response = await buyPrize(
+          userId,
+          prize.title,
+          prize.price
+        );
 
         if (response.status === 'success') {
           runInAction(() => {
@@ -94,7 +98,10 @@ const PrizeModal = forwardRef(
                 quantity: 1,
               });
             }
-            prizesStore.updatePrizeQuantity(prize.id, prize.quantity - 1);
+            prizesStore.updatePrizeQuantity(
+              prize.id,
+              prize.quantity - 1
+            );
           });
 
           setIsConfirming(false);
@@ -121,8 +128,8 @@ const PrizeModal = forwardRef(
     }
 
     return user ? (
-      <div className="prize">
-        <div className="prize__content">
+      <div className="prizemodal">
+        <div className="prizemodal__content">
           <button
             role="close"
             onClick={() =>
@@ -135,22 +142,22 @@ const PrizeModal = forwardRef(
           <div>
             <img
               src={avatarArray[prize.id - 1]}
-              className="prize__content-avatar"
+              className="prizemodal__content-avatar"
             />
             <div style={{ padding: '0px 4px' }}>
-              <p className="prize__content-tag">
+              <p className="prizemodal__content-tag">
                 в наличии: {prize.quantity} шт
               </p>
-              <h2 className="prize__content-title">{prize.title}</h2>
-              <p className="prize__content-description">описание:</p>
+              <h2 className="prizemodal__content-title">{prize.title}</h2>
+              <p className="prizemodal__content-description">описание:</p>
               <p
-                className="prize__content-text"
+                className="prizemodal__content-text"
                 dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
               />
             </div>
           </div>
 
-          <div className="prize__content__purchase">
+          <div className="prizemodal__content__purchase">
             {!isConfirming && !purchaseSuccess && (
               <>
                 <div
@@ -172,7 +179,7 @@ const PrizeModal = forwardRef(
                       justifyContent: 'center',
                     }}
                   >
-                    <p className="prize__content__purchase-price">
+                    <p className="prizemodal__content__purchase-price">
                       {prize.price}
                     </p>
                     <img
@@ -206,7 +213,7 @@ const PrizeModal = forwardRef(
 
             {isConfirming && !purchaseSuccess && (
               <>
-                <div className="prize__content__purchase-confirmation">
+                <div className="prizemodal__content__purchase-confirmation">
                   <div style={{ margin: '0px 4px' }}>
                     вы покупаете&nbsp;
                     <p
@@ -220,13 +227,13 @@ const PrizeModal = forwardRef(
                     &nbsp;за&nbsp;{prize.price}&nbsp;монет
                   </div>
                   {user ? (
-                    <div className="prize__content__purchase-balance">
-                      <div className="prize__content__purchase-balance-text">
+                    <div className="prizemodal__content__purchase-balance">
+                      <div className="prizemodal__content__purchase-balance-text">
                         <img src={icons['coin_bag_red']} />
                         <p>{user.balance}</p>
                       </div>
                       <img src={icons['shop_arrow']} />
-                      <div className="prize__content__purchase-balance-text">
+                      <div className="prizemodal__content__purchase-balance-text">
                         <img src={icons['coin_bag_red']} />
                         <p>{user.balance - prize.price}</p>
                       </div>
@@ -234,10 +241,10 @@ const PrizeModal = forwardRef(
                   ) : (
                     <></>
                   )}
-                  <div className="prize__content__buttons">
+                  <div className="prizemodal__content__buttons">
                     <Button
                       onClick={handleCancelClick}
-                      className="prize__content__buttons-cancel"
+                      className="prizemodal__content__buttons-cancel"
                     >
                       отмена
                     </Button>
@@ -245,7 +252,7 @@ const PrizeModal = forwardRef(
                   </div>
                 </div>
                 {buyError && (
-                  <p className="prize__content__purchase-confirmation-error">
+                  <p className="prizemodal__content__purchase-confirmation-error">
                     {buyError}
                   </p>
                 )}
@@ -253,13 +260,15 @@ const PrizeModal = forwardRef(
             )}
 
             {purchaseSuccess && (
-              <div className="prize__content__purchase-success">
+              <div className="prizemodal__content__purchase-success">
                 <div style={{ alignSelf: 'flex-start' }}>
                   <p style={{ width: '100%' }}>всё успешно!</p>
                   <p style={{ width: '100%' }}>ищите приз в профиле</p>
                 </div>
                 <img src={icons['arrow_success']} />
-                <Button onClick={() => navigate('/profile?openPrizes=true')}>
+                <Button
+                  onClick={() => navigate('/profile?openprizemodals=true')}
+                >
                   перейти в профиль
                 </Button>
               </div>

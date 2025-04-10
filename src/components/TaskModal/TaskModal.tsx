@@ -231,7 +231,7 @@ const TaskModal = forwardRef(
                     <p>на проверке</p>
                   </div>
                 ) : task.answer_format === 'текст' ? (
-                  <div>
+                  <div style={{ width: '100%', marginTop: '20px' }}>
                     <input
                       type="text"
                       placeholder="напиши сюда ответ"
