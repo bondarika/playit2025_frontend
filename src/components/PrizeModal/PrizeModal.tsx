@@ -80,7 +80,7 @@ const PrizeModal = forwardRef(
           throw new Error('Пользовательский id не найден в cookies');
         }
 
-        const response = await buyPrize(55, prize.title, prize.price); //userId = 55
+        const response = await buyPrize(userId, prize.title, prize.price);
 
         if (response.status === 'success') {
           runInAction(() => {
