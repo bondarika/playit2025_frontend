@@ -11,6 +11,7 @@ import { useLocation } from 'react-router-dom';
 import { PrizeProps } from '../../types/prizeProps';
 import { ModalHandle } from '../../types/modalHandle';
 import ItemModal from '../../components/ItemModal/ItemModal';
+import prizesStore from '../../store/prizesStore';
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
@@ -43,6 +44,7 @@ const ProfilePage = () => {
   const timeoutError = useTimeoutError(!!user || !!error);
 
   const handlePrizeClick = (prize: PrizeProps['prize']) => {
+    prizesStore.selectPrize(prize);
     setSelectedPrize(prize);
     modalRef.current?.showModal();
   };
