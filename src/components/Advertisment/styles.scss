@@ -1,11 +1,11 @@
 ﻿.advertisment {
-  width: 100%;
+  width: calc(50% - 5px);
   min-width: calc(50% - 5px);
   display: flex;
   justify-content: center;
   .swiper {
     width: 100%;
-    max-width: 100%;
+    min-width: calc(50% - 5px);
     &-slide {
       width: 100%;
       img {
