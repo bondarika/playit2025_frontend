@@ -91,7 +91,7 @@ const PrizeModal = forwardRef(
                 title: prize.title,
                 description: prize.description,
                 price: prize.price,
-                quantity: 1, 
+                quantity: 1,
               });
             }
             prizesStore.updatePrizeQuantity(prize.id, prize.quantity - 1);
@@ -121,8 +121,8 @@ const PrizeModal = forwardRef(
     }
 
     return user ? (
-      <div className="item">
-        <div className="item__content">
+      <div className="prize">
+        <div className="prize__content">
           <button
             role="close"
             onClick={() =>
@@ -135,22 +135,22 @@ const PrizeModal = forwardRef(
           <div>
             <img
               src={avatarArray[prize.id - 1]}
-              className="item__content-avatar"
+              className="prize__content-avatar"
             />
             <div style={{ padding: '0px 4px' }}>
-              <p className="item__content-tag">
+              <p className="prize__content-tag">
                 в наличии: {prize.quantity} шт
               </p>
-              <h2 className="item__content-title">{prize.title}</h2>
-              <p className="item__content-description">описание:</p>
+              <h2 className="prize__content-title">{prize.title}</h2>
+              <p className="prize__content-description">описание:</p>
               <p
-                className="item__content-text"
+                className="prize__content-text"
                 dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
               />
             </div>
           </div>
 
-          <div className="item__content__purchase">
+          <div className="prize__content__purchase">
             {!isConfirming && !purchaseSuccess && (
               <>
                 <div
@@ -172,7 +172,7 @@ const PrizeModal = forwardRef(
                       justifyContent: 'center',
                     }}
                   >
-                    <p className="item__content__purchase-price">
+                    <p className="prize__content__purchase-price">
                       {prize.price}
                     </p>
                     <img
@@ -206,7 +206,7 @@ const PrizeModal = forwardRef(
 
             {isConfirming && !purchaseSuccess && (
               <>
-                <div className="item__content__purchase-confirmation">
+                <div className="prize__content__purchase-confirmation">
                   <div style={{ margin: '0px 4px' }}>
                     вы покупаете&nbsp;
                     <p
@@ -220,13 +220,13 @@ const PrizeModal = forwardRef(
                     &nbsp;за&nbsp;{prize.price}&nbsp;монет
                   </div>
                   {user ? (
-                    <div className="item__content__purchase-balance">
-                      <div className="item__content__purchase-balance-text">
+                    <div className="prize__content__purchase-balance">
+                      <div className="prize__content__purchase-balance-text">
                         <img src={icons['coin_bag_red']} />
                         <p>{user.balance}</p>
                       </div>
                       <img src={icons['shop_arrow']} />
-                      <div className="item__content__purchase-balance-text">
+                      <div className="prize__content__purchase-balance-text">
                         <img src={icons['coin_bag_red']} />
                         <p>{user.balance - prize.price}</p>
                       </div>
@@ -234,10 +234,10 @@ const PrizeModal = forwardRef(
                   ) : (
                     <></>
                   )}
-                  <div className="item__content__buttons">
+                  <div className="prize__content__buttons">
                     <Button
                       onClick={handleCancelClick}
-                      className="item__content__buttons-cancel"
+                      className="prize__content__buttons-cancel"
                     >
                       отмена
                     </Button>
@@ -245,7 +245,7 @@ const PrizeModal = forwardRef(
                   </div>
                 </div>
                 {buyError && (
-                  <p className="item__content__purchase-confirmation-error">
+                  <p className="prize__content__purchase-confirmation-error">
                     {buyError}
                   </p>
                 )}
@@ -253,7 +253,7 @@ const PrizeModal = forwardRef(
             )}
 
             {purchaseSuccess && (
-              <div className="item__content__purchase-success">
+              <div className="prize__content__purchase-success">
                 <div style={{ alignSelf: 'flex-start' }}>
                   <p style={{ width: '100%' }}>всё успешно!</p>
                   <p style={{ width: '100%' }}>ищите приз в профиле</p>
