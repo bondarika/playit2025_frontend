@@ -46,6 +46,7 @@ const PrizeModal = forwardRef(
     const [isVisible, setIsVisible] = useState(false);
     const [isConfirming, setIsConfirming] = useState(false);
     const [purchaseSuccess, setPurchaseSuccess] = useState(false);
+    const [buyError, setBuyError] = useState('');
 
     const timeoutError = useTimeoutError(!!user);
 
@@ -69,13 +70,14 @@ const PrizeModal = forwardRef(
     };
 
     const handleSubmit = async () => {
+      setBuyError('');
       try {
         const userId = Cookies.get('user_id');
         if (!userId) {
           throw new Error('Пользовательский id не найден в cookies');
         }
 
-        const response = await buyPrize(userId, prize.title, prize.price);
+        const response = await buyPrize(55, prize.title, prize.price); //userId = 55
 
         if (response.status === 'success') {
           runInAction(() => {
@@ -88,9 +90,11 @@ const PrizeModal = forwardRef(
           setIsConfirming(false);
           setPurchaseSuccess(true);
         } else {
+          setBuyError('произошла ошибка');
           throw new Error('Ошибка при покупке приза');
         }
       } catch (error) {
+        setBuyError('произошла ошибка');
         console.error('Ошибка при покупке приза:', error);
         setPurchaseSuccess(false);
       }
@@ -230,6 +234,11 @@ const PrizeModal = forwardRef(
                     <Button onClick={handleSubmit}>подтвердить</Button>
                   </div>
                 </div>
+                {buyError && (
+                  <p className="modal_content_main-submit_error">
+                    {buyError}
+                  </p>
+                )}
               </>
             )}
 

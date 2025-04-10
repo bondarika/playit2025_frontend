@@ -182,8 +182,8 @@ function ProfilePage(): React.ReactElement {
                         className="profile__dropdown-item-last"
                         style={{ padding: '8px 10px', whiteSpace: 'pre-line' }}
                       >
-                        у вас пока что нет призов, вы можете купить что-нибудь в
-                        магазине
+                        <p>у вас пока что нет призов,</p>
+                        <p>вы можете купить что-нибудь в магазине</p>
                       </span>
                     </div>
                   </>
