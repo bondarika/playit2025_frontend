@@ -47,6 +47,7 @@ const TaskModal = forwardRef(
     useImperativeHandle(ref, () => ({
       showModal: () => setIsVisible(true),
       close: () => {
+        setIsCorrect(false);
         setSubmitError('');
         setFile(null);
         setUserAnswer('');

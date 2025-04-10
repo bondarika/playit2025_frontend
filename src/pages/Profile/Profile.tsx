@@ -167,6 +167,7 @@ function ProfilePage(): React.ReactElement {
                       <div
                         key={prize.id}
                         className="profile__dropdown-item"
+                        style={{cursor: 'pointer'}}
                         onClick={() => handlePrizeClick(prize)}
                       >
                         <span
