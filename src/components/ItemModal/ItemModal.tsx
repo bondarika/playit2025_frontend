@@ -74,9 +74,6 @@ const ItemModal = forwardRef(
               className="item__content-avatar"
             />
             <div style={{ padding: '0px 4px' }}>
-              <p className="item__content-tag">
-                в наличии: {prize.quantity} шт
-              </p>
               <h2 className="item__content-title">{prize.title}</h2>
               <p className="item__content-description">описание:</p>
               <p
