@@ -8,6 +8,8 @@ import Loader from '../../components/Loader/Loader';
 import useTimeoutError from '../../hooks/useTimeoutError';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { runInAction } from 'mobx';
+import userStore from '../../store/userStore';
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
@@ -18,13 +20,6 @@ const userData = JSON.parse(params.get('user') || 'null');
 
 const ProfilePage = () => {
   const location = useLocation();
-    useEffect(() => {
-      if (user) {
-        runInAction(() => {
-          userStore.user.prizes = [];
-        });
-      }
-    }, [user]);
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     if (params.get('openPrizes') === 'true') {
@@ -39,6 +34,13 @@ const ProfilePage = () => {
     id: userData.id,
     username: userData.username,
   });
+  useEffect(() => {
+    if (user) {
+      runInAction(() => {
+        userStore.user.prizes = [];
+      });
+    }
+  }, [user]);
 
   const timeoutError = useTimeoutError(!!user || !!error);
 
