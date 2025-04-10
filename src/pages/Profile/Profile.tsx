@@ -51,14 +51,6 @@ const ProfilePage = () => {
     }
   };
 
-  useEffect(() => {
-    if (user) {
-      runInAction(() => {
-        userStore.user.prizes = [];
-      });
-    }
-  }, [user]);
-
   const timeoutError = useTimeoutError(!!user || !!error);
 
   if (timeoutError) {
