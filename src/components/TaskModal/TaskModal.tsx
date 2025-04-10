@@ -44,6 +44,7 @@ const TaskModal = forwardRef(
     const sanitizedTask = DOMPurify.sanitize(task.task);
     const sanitizedLink = DOMPurify.sanitize(task.link);
     const sanitizedFormat = DOMPurify.sanitize(task.answer_format);
+    const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
 
     useImperativeHandle(ref, () => ({
       showModal: () => setIsVisible(true),
@@ -237,11 +238,12 @@ const TaskModal = forwardRef(
                   </div>
                 ) : task.answer_format === 'текст' ? (
                   <div style={{ width: '100%', marginTop: '20px' }}>
-                    <input
-                      type="text"
+                    <textarea
+                      rows={5}
+                      style={{ resize: 'vertical' }}
                       placeholder="напиши сюда ответ"
                       value={userAnswer}
-                      ref={textInputRef}
+                      ref={textAreaRef}
                       onChange={(e) => setUserAnswer(e.target.value)}
                     />
                     <Button
