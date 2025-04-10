@@ -92,7 +92,7 @@ const PrizeModal = forwardRef(
                 description: prize.description,
                 price: prize.price,
                 quantity: 1,
-                tags: prize.tags,
+                tags: prize.tags || [],
               });
             }
             prizesStore.updatePrizeQuantity(prize.id, prize.quantity - 1);
@@ -110,6 +110,7 @@ const PrizeModal = forwardRef(
         setPurchaseSuccess(false);
       }
     };
+    console.log(`Тэги: ${prize.tags}`)
 
     const sanitizedDescription = DOMPurify.sanitize(prize.description);
 
@@ -143,9 +144,9 @@ const PrizeModal = forwardRef(
                 <p className="prizemodal__content-tag">
                   в наличии: {prize.quantity} шт
                 </p>
-                {prize.tags.map((tag, index) => (
+                {/* {prize.tags.map((tag, index) => (
                   <p key={index} className="prizemodal__content-tag">{tag}</p>
-                ))}
+                ))} */}
               </div>
               <h2 className="prizemodal__content-title">{prize.title}</h2>
               <p className="prizemodal__content-description">описание:</p>

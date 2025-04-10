@@ -32,7 +32,7 @@ class PrizesStore {
           description: prize['Описание'],
           price: prize['Цена'],
           quantity: prize['Кол-во'],
-          tags: prize['Тэги'],
+          tags: prize['Тэги'] ? prize['Тэги'].split('↩').map((tag) => tag.trim()) : [],
         })
       );
       runInAction(() => {
