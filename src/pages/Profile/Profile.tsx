@@ -32,9 +32,9 @@ const ProfilePage = () => {
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [areSettingsOpen, setAreSettingsOpen] = useState(false);
-  const [selectedPrize, setSelectedPrize] = useState<
-    PrizeProps['prize'] | null
-  >(null);
+  // const [selectedPrize, setSelectedPrize] = useState<
+  //   PrizeProps['prize'] | null
+  // >(null);
 
   const { user, error } = useUser({
     id: userData.id,
@@ -43,11 +43,11 @@ const ProfilePage = () => {
 
   const timeoutError = useTimeoutError(!!user || !!error);
 
-  const handlePrizeClick = (prize: PrizeProps['prize']) => {
-    prizesStore.selectPrize(prize);
-    setSelectedPrize(prize);
-    modalRef.current?.showModal();
-  };
+  // const handlePrizeClick = (prize: PrizeProps['prize']) => {
+  //   prizesStore.selectPrize(prize);
+  //   setSelectedPrize(prize);
+  //   modalRef.current?.showModal();
+  // };
 
   if (timeoutError) {
     return (
@@ -169,7 +169,7 @@ const ProfilePage = () => {
                         key={prize.id}
                         className="profile__dropdown-item"
                         style={{ cursor: 'pointer' }}
-                        onClick={() => handlePrizeClick(prize)}
+                        // onClick={() => handlePrizeClick(prize)}
                       >
                         <span
                           style={{
