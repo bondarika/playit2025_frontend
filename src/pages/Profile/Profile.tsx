@@ -24,7 +24,7 @@ function ProfilePage(): React.ReactElement {
       setIsDropdownOpen(true);
     }
   }, [location.search]);
-  
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [areSettingsOpen, setAreSettingsOpen] = useState(false);
   const { user, error } = useUser({
@@ -178,7 +178,9 @@ function ProfilePage(): React.ReactElement {
                       className="profile__dropdown-item"
                       style={{ borderRadius: '0px 0px 12px 12px' }}
                     >
-                      <span style={{ padding: '8px 10px' }}>нет призов</span>
+                      <span className="profile__dropdown-item-last">
+                        нет призов
+                      </span>
                     </div>
                   </>
                 )}
