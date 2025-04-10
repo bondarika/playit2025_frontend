@@ -21,11 +21,12 @@ class TasksStore {
   }
 
   private getCurrentDay(): number {
-    const startDate = new Date(2025, 3, 9); 
+    const startDate = new Date(2025, 3, 8, 14);
     const today = new Date();
+    const isBefore2PM = today.getHours() < 14;
     const diffTime = today.getTime() - startDate.getTime();
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-    return Math.max(1, diffDays + 1);
+    return Math.max(1, diffDays + (isBefore2PM ? 0 : 1));
   }
 
   getTasks = async () => {
@@ -49,7 +50,7 @@ class TasksStore {
         verification: task['Формат проверки'],
         points: task['Стоимость'],
         link: task['Ссылка'],
-        answer_format: task['Формат ответа']
+        answer_format: task['Формат ответа'],
       }));
       runInAction(() => {
         this.tasks = formattedTasks;
