@@ -32,6 +32,7 @@ class PrizesStore {
           description: prize['Описание'],
           price: prize['Цена'],
           quantity: prize['Кол-во'],
+          tags: prize['Тэги'],
         })
       );
       runInAction(() => {

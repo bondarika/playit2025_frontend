@@ -4,4 +4,5 @@
   Описание: string;
   Цена: number;
   'Кол-во': number;
+  Тэги: string;
 }

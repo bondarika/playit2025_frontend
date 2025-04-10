@@ -22,7 +22,7 @@ const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
 
 const prizes: Record<string, { default: string }> = import.meta.glob(
-  '@/assets/images/prizemodals_large/*.webp',
+  '@/assets/images/prizes_large/*.webp',
   {
     eager: true,
   }
@@ -80,11 +80,7 @@ const PrizeModal = forwardRef(
           throw new Error('Пользовательский id не найден в cookies');
         }
 
-        const response = await buyPrize(
-          userId,
-          prize.title,
-          prize.price
-        );
+        const response = await buyPrize(userId, prize.title, prize.price);
 
         if (response.status === 'success') {
           runInAction(() => {
@@ -96,12 +92,10 @@ const PrizeModal = forwardRef(
                 description: prize.description,
                 price: prize.price,
                 quantity: 1,
+                tags: prize.tags,
               });
             }
-            prizesStore.updatePrizeQuantity(
-              prize.id,
-              prize.quantity - 1
-            );
+            prizesStore.updatePrizeQuantity(prize.id, prize.quantity - 1);
           });
 
           setIsConfirming(false);
@@ -145,9 +139,14 @@ const PrizeModal = forwardRef(
               className="prizemodal__content-avatar"
             />
             <div style={{ padding: '0px 4px' }}>
-              <p className="prizemodal__content-tag">
-                в наличии: {prize.quantity} шт
-              </p>
+              <div style={{display: 'flex', gap: '4px'}}>
+                <p className="prizemodal__content-tag">
+                  в наличии: {prize.quantity} шт
+                </p>
+                {prize.tags.map((tag, index) => (
+                  <p key={index} className="prizemodal__content-tag">{tag}</p>
+                ))}
+              </div>
               <h2 className="prizemodal__content-title">{prize.title}</h2>
               <p className="prizemodal__content-description">описание:</p>
               <p
