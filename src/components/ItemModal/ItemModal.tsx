@@ -26,7 +26,7 @@ const ItemModal = forwardRef(
     const { prizes: fetchedPrizes } = usePrizes();
     const prizes = storePrizes ?? fetchedPrizes;
 
-    const currentPrize = prizes?.find((p) => p.id === prize.id);
+    const currentPrize = prizes?.find((p) => p.id === prize.prize_id);
     console.log('currentPrize', currentPrize);
 
     const [isVisible, setIsVisible] = useState(false);
