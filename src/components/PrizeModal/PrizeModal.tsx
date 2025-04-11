@@ -86,7 +86,7 @@ const PrizeModal = forwardRef(
           runInAction(() => {
             if (userStore.user) {
               userStore.user.balance -= prize.price;
-              userStore.user.prizes.push({
+              userStore.addPrize({
                 id: prize.id,
                 title: prize.title,
                 description: prize.description,
