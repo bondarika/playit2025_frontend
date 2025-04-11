@@ -96,13 +96,15 @@ export const fetchPrizes = async () => {
 export const buyPrize = async (
   user_id: string,
   prize_title: string,
-  value: number
+  value: number,
+  prize_id: number,
 ) => {
   try {
     const response = await axiosInstance.post('/shop/exchange', {
       user_id,
       prize_title,
       value,
+      prize_id,
     });
     return response.data;
   } catch (error) {
