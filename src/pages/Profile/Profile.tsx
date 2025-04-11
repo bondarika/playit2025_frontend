@@ -157,7 +157,13 @@ const ProfilePage = () => {
               </p>
             </div>
             <div className="profile__settings-text">
-              <p>playIT 2025 by itse x tech.dep</p>
+              <p
+                style={{
+                  margin: '10px 0px 10px 15px',
+                }}
+              >
+                playIT 2025 by itse x tech.dep
+              </p>
             </div>
           </div>
         )}

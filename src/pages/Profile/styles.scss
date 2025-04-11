@@ -119,9 +119,9 @@
       align-items: center;
       width: 100%;
       font-size: 16px;
-      border-bottom: 0.5px solid rgba(60, 60, 67, 0.36);
     }
     &-text {
+      border-top: 0.5px solid rgba(60, 60, 67, 0.36);
       display: flex;
       flex-direction: column;
       align-items: flex-start;
