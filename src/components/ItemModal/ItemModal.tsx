@@ -41,7 +41,8 @@ const ItemModal = forwardRef(
       },
     }));
 
-    const fullPrize = user?.prizes.find((p) => p.id === prize.prize_id);
+    const fullPrize = user?.prizes.find((p) => p.id === prize.id);
+    
 
     if (!isVisible || !prize || !fullPrize) return null;
 
