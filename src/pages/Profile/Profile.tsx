@@ -103,33 +103,33 @@ const ProfilePage = () => {
               />
             </a>
             <div className="profile__settings-text">
-              <span style={{ margin: '15px 10px 0px 0px' }}>designed by</span>
+              <span style={{ margin: '10px 0px 0px 15px' }}>designed by</span>
               <span
                 style={{
                   color: 'rgba(207, 80, 105, 1)',
-                  margin: '15px 0px 0px 10px',
+                  margin: '0px 0px 10px 15px',
                 }}
               >
                 bozhenkas x yduwoqj
               </span>
             </div>
             <div className="profile__settings-text">
-              <p style={{ margin: '15px 10px 0px 0px' }}>developed by</p>
+              <p style={{ margin: '10px 0px 0px 15px' }}>developed by</p>
               <p
                 style={{
                   color: 'rgba(207, 80, 105, 1)',
-                  margin: '15px 0px 0px 10px',
+                  margin: '0px 0px 10px 15px',
                 }}
               >
                 bondarika x stremilovv
               </p>
             </div>
             <div className="profile__settings-text">
-              <p style={{ margin: '15px 10px 0px 0px' }}>written by</p>
+              <p style={{ margin: '10px 0px 0px 15px' }}>written by</p>
               <p
                 style={{
                   color: 'rgba(207, 80, 105, 1)',
-                  margin: '15px 0px 0px 10px',
+                  margin: '0px 0px 10px 15px',
                 }}
               >
                 stigende, marrioo, dnchhe,
@@ -137,18 +137,18 @@ const ProfilePage = () => {
               <p
                 style={{
                   color: 'rgba(207, 80, 105, 0.22)',
-                  margin: '15px 0px 0px 10px',
+                  margin: '0px 0px 10px 15px',
                 }}
               >
                 manya azur
               </p>
             </div>
             <div className="profile__settings-text">
-              <p style={{ margin: '15px 10px 0px 0px' }}>graphics by</p>
+              <p style={{ margin: '10px 0px 0px 15px' }}>graphics by</p>
               <p
                 style={{
                   color: 'rgba(207, 80, 105, 1)',
-                  margin: '15px 0px 0px 10px',
+                  margin: '0px 0px 10px 15px',
                 }}
               >
                 annbdito x densdensdensdens

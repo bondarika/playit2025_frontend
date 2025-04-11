@@ -32,7 +32,7 @@ const ItemModal = forwardRef(
     if (!isVisible || !prize) return null;
 
     const fullPrize = toJS(prize);
-    console.log('prize', prize);
+    console.log('prize', fullPrize);
     
 
     const sanitizedDescription = DOMPurify.sanitize(fullPrize.description);
