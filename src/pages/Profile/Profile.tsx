@@ -100,7 +100,7 @@ const ProfilePage = () => {
                 style={{ padding: '10px 15px 10px 0px' }}
               />
             </a>
-            <div className="profile__settings-text">
+            <div className="profile__settings-item">
               <p>designed by</p>
               <p style={{ color: 'rgba(207, 80, 105, 1)', display: 'flex' }}>
                 bozhenkas x yduwoqj
