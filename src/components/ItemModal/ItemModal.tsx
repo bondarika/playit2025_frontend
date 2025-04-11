@@ -5,6 +5,7 @@ import icons from '../../assets/icons';
 import { PrizeModalProps } from '../../types/prizeModal';
 import DOMPurify from 'dompurify';
 import { observer } from 'mobx-react-lite';
+import { toJS } from 'mobx';
 
 const prizes: Record<string, { default: string }> = import.meta.glob(
   '@/assets/images/prizes_large/*.webp',
@@ -29,9 +30,12 @@ const ItemModal = forwardRef(
     }));
 
     if (!isVisible || !prize) return null;
-    console.log('prize', prize);
 
-    const sanitizedDescription = DOMPurify.sanitize(prize.description);
+    const fullPrize = toJS(prize);
+    console.log('prize', prize);
+    
+
+    const sanitizedDescription = DOMPurify.sanitize(fullPrize.description);
 
     return (
       <div className="item">
@@ -47,7 +51,7 @@ const ItemModal = forwardRef(
 
           <div>
             <div>
-              <h2 className="item__content-title">{prize.title}</h2>
+              <h2 className="item__content-title">{fullPrize.title}</h2>
               <p className="item__content-description">описание:</p>
               <p
                 className="item__content-text"
@@ -55,7 +59,7 @@ const ItemModal = forwardRef(
               />
             </div>
             <img
-              src={avatarArray[prize.prize_id - 1]}
+              src={avatarArray[fullPrize.prize_id - 1]}
               className="item__content-avatar"
             />
           </div>
