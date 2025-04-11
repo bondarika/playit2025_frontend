@@ -101,7 +101,7 @@ const ProfilePage = () => {
               />
             </a>
             <div className="profile__settings-text">
-              <span>designed by</span>
+              <span style={{margin: "15px 10px"}}>designed by</span>
               <span style={{ color: 'rgba(207, 80, 105, 1)', display: 'flex' }}>
                 bozhenkas x yduwoqj
               </span>
@@ -117,7 +117,7 @@ const ProfilePage = () => {
               <p style={{ color: 'rgba(207, 80, 105, 1)', display: 'flex' }}>
                 stigende, marrioo, dnchhe,
               </p>
-              <p style={{ color: 'rgba(207, 80, 105, 1)', display: 'flex' }}>
+              <p style={{ color: 'rgba(207, 80, 105, 0.22)', display: 'flex' }}>
                 manya azur
               </p>
             </div>

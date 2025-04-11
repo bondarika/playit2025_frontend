@@ -3,7 +3,7 @@ import { ModalHandle } from '../../types/modalHandle';
 import './styles.scss';
 import icons from '../../assets/icons';
 import { PrizeModalProps } from '../../types/prizeModal';
-// import DOMPurify from 'dompurify';
+import DOMPurify from 'dompurify';
 
 const prizes: Record<string, { default: string }> = import.meta.glob(
   '@/assets/images/prizes_large/*.webp',
@@ -18,6 +18,7 @@ const avatarArray = Object.values(prizes).map(
 
 const ItemModal = forwardRef(
   ({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) => {
+    const avatarSrc = avatarArray[prize.prize_id - 1];
     const [isVisible, setIsVisible] = useState(false);
 
     useImperativeHandle(ref, () => ({
@@ -29,7 +30,7 @@ const ItemModal = forwardRef(
 
     if (!isVisible || !prize) return null;
 
-    // const sanitizedDescription = DOMPurify.sanitize(prize.description);
+    const sanitizedDescription = DOMPurify.sanitize(prize.description);
 
     return (
       <div className="item">
@@ -46,16 +47,13 @@ const ItemModal = forwardRef(
           <div>
             <div>
               <h2 className="item__content-title">{prize.title}</h2>
-              {/* <p className="item__content-description">описание:</p>
+              <p className="item__content-description">описание:</p>
               <p
                 className="item__content-text"
                 dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
-              /> */}
+              />
             </div>
-            <img
-              src={avatarArray[prize.prize_id - 1]}
-              className="item__content-avatar"
-            />
+            <img src={avatarSrc} className="item__content-avatar" />
           </div>
         </div>
       </div>
