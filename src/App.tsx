@@ -9,7 +9,7 @@ export default function App() {
     if (!isMobile) {
       document.body.innerHTML = `
         <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; text-align: center;">
-           <img src="src/assets/images/qr.png" alt="Mobile Only" style="width: auto; height: auto; margin-bottom: 20px;" />
+           <img src="src/assets/images/qr.png" alt="Mobile Only" style="width: auto; height: 180px; margin-bottom: 20px;" />
           <p style="font-family: 'SF Pro Display', Arial, sans-serif; font-size: 20px; font-weight: 600; color: rgba(207, 80, 105, 1);">
             PlayIT доступно только на мобильных устройствах 😔
           </p>
