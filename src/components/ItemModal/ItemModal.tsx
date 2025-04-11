@@ -64,7 +64,7 @@ const ItemModal = forwardRef(
               />
             </div>
             <img
-              src={avatarArray[currentPrize.prize_id - 1]}
+              src={avatarArray[currentPrize.id - 1]}
               className="item__content-avatar"
             />
           </div>
