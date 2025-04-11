@@ -33,7 +33,7 @@
     text-overflow: ellipsis;
     font-family: 'Morfin Sans';
     font-weight: 400;
-    font-size: 18px;
+    font-size: 20px;
     margin: 0;
   }
   &_description {
@@ -44,7 +44,7 @@
     overflow: hidden;
     line-clamp: 3;
     font-size: 12px;
-    margin: 4px 12px 0px 0px;
+    margin: 1px 12px 0px 0px;
     text-transform: lowercase;
   }
   &_reward {

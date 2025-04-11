@@ -102,19 +102,27 @@ const ProfilePage = () => {
             </a>
             <div className="profile__settings-text">
               <p>designed by</p>
-              <p>bozhenkas x yduwoqj</p>
+              <p style={{ color: 'rgba(207, 80, 105, 1)' }}>
+                bozhenkas x yduwoqj
+              </p>
             </div>
             <div className="profile__settings-text">
               <p>developed by</p>
-              <p>bondarika x stremilovv</p>
+              <p style={{ color: 'rgba(207, 80, 105, 1)' }}>
+                bondarika x stremilovv
+              </p>
             </div>
             <div className="profile__settings-text">
               <p>written by</p>
-              <p>stigende, marrioo, dnchhe, manya azur</p>
+              <p style={{ color: 'rgba(207, 80, 105, 1)' }}>
+                stigende, marrioo, dnchhe, manya azur
+              </p>
             </div>
             <div className="profile__settings-text">
               <p>graphic by</p>
-              <p>annbdito x densdensdensdens</p>
+              <p style={{ color: 'rgba(207, 80, 105, 1)' }}>
+                annbdito x densdensdensdens
+              </p>
             </div>
             <div className="profile__settings-text">
               <p>playIT 2025 by itse x tech.dep</p>
