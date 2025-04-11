@@ -115,8 +115,9 @@ const ProfilePage = () => {
             <div className="profile__settings-text">
               <p>written by</p>
               <p style={{ color: 'rgba(207, 80, 105, 1)' }}>
-                stigende, marrioo, dnchhe, manya azur
+                stigende, marrioo, dnchhe,
               </p>
+              <p style={{ color: 'rgba(207, 80, 105, 1)' }}>manya azur</p>
             </div>
             <div className="profile__settings-text">
               <p>graphic by</p>
