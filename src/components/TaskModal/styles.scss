@@ -152,8 +152,12 @@ textarea {
   }
 }
 
-textarea::placeholder {
-  padding-top: 8px;
+textarea {
+  display: flex;
+  &::placeholder {
+    align-self: center;
+    justify-self: center;
+  }
 }
 
 input[type='file'] {
