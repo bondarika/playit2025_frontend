@@ -11,6 +11,7 @@ import { useLocation } from 'react-router-dom';
 import { PrizeProps } from '../../types/prizeProps';
 import { ModalHandle } from '../../types/modalHandle';
 import ItemModal from '../../components/ItemModal/ItemModal';
+import prizesStore from '../../store/prizesStore';
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
@@ -42,6 +43,7 @@ const ProfilePage = () => {
 
   const handlePrizeClick = (prize: PrizeProps['prize']) => {
     if (prize) {
+      prizesStore.selectPrize(prize);
       setSelectedProfilePrize(prize);
       profileModalRef.current?.showModal();
     }
@@ -101,7 +103,7 @@ const ProfilePage = () => {
               />
             </a>
             <div className="profile__settings-text">
-              <span style={{margin: "15px 10px"}}>designed by</span>
+              <span style={{ margin: '15px 10px' }}>designed by</span>
               <span style={{ color: 'rgba(207, 80, 105, 1)', display: 'flex' }}>
                 bozhenkas x yduwoqj
               </span>
