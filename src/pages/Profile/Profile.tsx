@@ -43,6 +43,7 @@ const ProfilePage = () => {
 
   const handlePrizeClick = (prize: PrizeProps['prize']) => {
     if (prize) {
+      console.log('Selected prize:', prize);
       prizesStore.selectPrize(prize);
       setSelectedProfilePrize(prize);
       profileModalRef.current?.showModal();
@@ -129,14 +130,14 @@ const ProfilePage = () => {
               <p
                 style={{
                   color: 'rgba(207, 80, 105, 1)',
-                  margin: '0px 0px 10px 15px',
+                  margin: '0px 0px 0px 15px',
                 }}
               >
                 stigende, marrioo, dnchhe,
               </p>
               <p
                 style={{
-                  color: 'rgba(207, 80, 105, 0.22)',
+                  color: 'rgba(207, 80, 105, 1)',
                   margin: '0px 0px 10px 15px',
                 }}
               >
