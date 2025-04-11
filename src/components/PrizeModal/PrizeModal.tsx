@@ -93,6 +93,7 @@ const PrizeModal = forwardRef(
                 price: prize.price,
                 quantity: 1,
                 tags: prize.tags || [],
+                prize_id: prize.prize_id,
               });
             }
             prizesStore.updatePrizeQuantity(prize.id, prize.quantity - 1);

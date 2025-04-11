@@ -5,4 +5,5 @@
   price: number;
   quantity: number;
   tags: string[];
+  prize_id: number;
 }
