@@ -25,6 +25,7 @@ const ItemModal = forwardRef(
     const storePrizes = toJS(prizesStore.prizes);
     const { prizes: fetchedPrizes } = usePrizes();
     const prizes = storePrizes ?? fetchedPrizes;
+    
 
     const currentPrize = prizes?.find((p) => p.id === prize.prize_id);
     console.log('currentPrize', currentPrize);
