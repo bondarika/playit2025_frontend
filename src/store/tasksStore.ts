@@ -21,12 +21,12 @@ class TasksStore {
   }
 
   private getCurrentDay(): number {
-    const startDate = new Date(2025, 3, 8, 12);
+    const startDate = new Date(2025, 3, 9, 12);
     const today = new Date();
-    const isBefore2PM = today.getHours() < 14;
+    const isBefore12PM = today.getHours() < 12;
     const diffTime = today.getTime() - startDate.getTime();
     const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-    return Math.max(1, diffDays + (isBefore2PM ? 0 : 1));
+    return Math.max(1, diffDays + (isBefore12PM ? 0 : 1));
   }
 
   getTasks = async () => {
