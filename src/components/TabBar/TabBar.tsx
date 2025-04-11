@@ -5,7 +5,7 @@ import Task from '../../pages/Tasks/Tasks';
 import Shop from '@/assets/icons/shop/shop_icon.svg?react';
 import Tasks from '@/assets/icons/tasks/tasks_icon.svg?react';
 import './styles.scss';
-import ObservedProfilePage from '../../pages/Profile/Profile';
+import ProfilePage from '../../pages/Profile/Profile';
 import WebApp from '@twa-dev/sdk';
 
 function TabBar() {
@@ -57,7 +57,7 @@ function TabBar() {
       <Routes>
         <Route index element={<Navigate to="/profile" />} />
         <Route path="/tasks" element={<Task />} />
-        <Route path="/profile" element={<ObservedProfilePage />} />
+        <Route path="/profile" element={<ProfilePage />} />
         <Route path="/store" element={<Store />} />
       </Routes>
     </>

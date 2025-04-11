@@ -21,7 +21,7 @@ const userData = JSON.parse(params.get('user') || 'null');
 // params.sort();
 // const checkDataString = params.toString().replaceAll("&", "\n");
 
-const ProfilePage = () => {
+const ProfilePage = observer(() => {
   const location = useLocation();
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -291,7 +291,6 @@ const ProfilePage = () => {
   ) : (
     <Loader />
   );
-};
+});
 
-const ObservedProfilePage = observer(ProfilePage);
-export default ObservedProfilePage;
+export default ProfilePage;
