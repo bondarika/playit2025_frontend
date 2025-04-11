@@ -60,6 +60,7 @@ const TaskModal = forwardRef(
     if (!isVisible) return null;
 
     const handleSubmit = async () => {
+      if (loading) return;
       setSubmitError('');
       setLoading(true);
       try {
