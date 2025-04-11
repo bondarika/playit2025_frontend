@@ -152,6 +152,10 @@ textarea {
   }
 }
 
+textarea::placeholder {
+  padding-top: 8px;
+}
+
 input[type='file'] {
   display: none;
 }
