@@ -140,12 +140,14 @@ const PrizeModal = forwardRef(
               className="prizemodal__content-avatar"
             />
             <div style={{ padding: '0px 4px' }}>
-              <div style={{display: 'flex', gap: '4px'}}>
+              <div style={{ display: 'flex', gap: '4px' }}>
                 <p className="prizemodal__content-tag">
                   в наличии: {prize.quantity} шт
                 </p>
                 {prize.tags.map((tag, index) => (
-                  <p key={index} className="prizemodal__content-tag">{tag}</p>
+                  <p key={index} className="prizemodal__content-tag">
+                    {tag}
+                  </p>
                 ))}
               </div>
               <h2 className="prizemodal__content-title">{prize.title}</h2>
@@ -267,7 +269,9 @@ const PrizeModal = forwardRef(
                 </div>
                 <img src={icons['arrow_success']} />
                 <Button
-                  onClick={() => navigate('/profile?openPrizes=true')}
+                  onClick={() =>
+                    navigate('/profile?openPrizes=true')
+                  }
                 >
                   перейти в профиль
                 </Button>
