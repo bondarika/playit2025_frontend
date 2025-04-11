@@ -135,7 +135,6 @@ textarea {
   padding: 0;
   width: 100%;
   max-width: 100%;
-  height: 46px;
   background-color: transparent;
   border-radius: 8px;
   border: 1px solid rgba(231, 231, 233, 1);
@@ -155,6 +154,9 @@ textarea {
 
 input[type='file'] {
   display: none;
+}
+input[type='text'] {
+  height: 46px;
 }
 
 label {
