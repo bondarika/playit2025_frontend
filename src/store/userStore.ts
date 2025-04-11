@@ -1,6 +1,7 @@
 ﻿import { action, makeAutoObservable, observable, runInAction } from 'mobx';
 import { makeRequest, fetchUserData } from '../services/api';
 import { User } from '../types/user';
+import { Prize } from '../types/prize';
 
 class UserStore {
   user: User | null = null;
@@ -15,10 +16,15 @@ class UserStore {
       markTaskAsDone: action,
       markTaskAsInProgress: action,
       updateBalance: action,
+      addPrize: action,
     });
   }
 
-
+  addPrize(prize: Prize) {
+    if (this.user) {
+      this.user.prizes.push(prize);
+    }
+  }
   updateBalance = (newBalance: number) => {
     if (this.user) {
       this.user.balance = newBalance;
