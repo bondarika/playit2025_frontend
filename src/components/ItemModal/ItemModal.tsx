@@ -4,9 +4,7 @@ import './styles.scss';
 import icons from '../../assets/icons';
 import { PrizeModalProps } from '../../types/prizeModal';
 import DOMPurify from 'dompurify';
-import prizesStore from '../../store/prizesStore';
-import { toJS } from 'mobx';
-import usePrizes from '../../hooks/usePrizes';
+import { observer } from 'mobx-react-lite';
 
 const prizes: Record<string, { default: string }> = import.meta.glob(
   '@/assets/images/prizes_large/*.webp',
@@ -22,15 +20,6 @@ const avatarArray = Object.values(prizes).map(
 const ItemModal = forwardRef(
   ({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) => {
     const [isVisible, setIsVisible] = useState(false);
-
-    const storePrizes = toJS(prizesStore.prizes);
-    const { prizes: fetchedPrizes } = usePrizes();
-    const prizes = storePrizes ?? fetchedPrizes;
-
-    const currentPrize = prizes?.find((p) => p.id === prize.prize_id);
-    const avatarSrc = currentPrize
-      ? avatarArray[currentPrize.prize_id - 1]
-      : null;
 
     useImperativeHandle(ref, () => ({
       showModal: () => setIsVisible(true),
@@ -65,7 +54,7 @@ const ItemModal = forwardRef(
               />
             </div>
             <img
-              src={avatarSrc || undefined}
+              src={avatarArray[prize.prize_id - 1]}
               className="item__content-avatar"
             />
           </div>
@@ -75,4 +64,4 @@ const ItemModal = forwardRef(
   }
 );
 
-export default ItemModal;
+export default observer(ItemModal);
