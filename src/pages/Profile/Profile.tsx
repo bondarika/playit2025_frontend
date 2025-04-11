@@ -42,6 +42,10 @@ const ProfilePage = observer(() => {
     username: userData.username,
   });
 
+  useEffect(() => {
+    console.log('Updated user prizes:', user?.prizes);
+  }, [user?.prizes]);
+
   const handlePrizeClick = (prize: PrizeProps['prize']) => {
     if (prize) {
       console.log('Selected prize:', toJS(prize));
