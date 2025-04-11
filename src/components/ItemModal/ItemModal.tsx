@@ -6,6 +6,7 @@ import { PrizeModalProps } from '../../types/prizeModal';
 import DOMPurify from 'dompurify';
 import { observer } from 'mobx-react-lite';
 import { toJS } from 'mobx';
+import prizesStore from '../../store/prizesStore';
 
 const prizes: Record<string, { default: string }> = import.meta.glob(
   '@/assets/images/prizes_large/*.webp',
@@ -32,7 +33,8 @@ const ItemModal = forwardRef(
     if (!isVisible || !prize) return null;
 
     const fullPrize = toJS(prize);
-    console.log('prize', fullPrize);
+    const storedPrize = prizesStore.prizes.find((p) => p.id === prize.id);
+    console.log('prize', storedPrize);
     
 
     const sanitizedDescription = DOMPurify.sanitize(fullPrize.description);
