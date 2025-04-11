@@ -38,9 +38,9 @@ const ItemModal = forwardRef(
       },
     }));
 
-    if (!isVisible || !prize) return null;
+    if (!isVisible || !currentPrize) return null;
 
-    const sanitizedDescription = DOMPurify.sanitize(prize.description);
+    const sanitizedDescription = DOMPurify.sanitize(currentPrize.description);
 
     return (
       <div className="item">
@@ -64,7 +64,7 @@ const ItemModal = forwardRef(
               />
             </div>
             <img
-              src={avatarArray[prize.prize_id - 1]}
+              src={avatarArray[currentPrize.prize_id - 1]}
               className="item__content-avatar"
             />
           </div>
