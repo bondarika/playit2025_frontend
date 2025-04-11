@@ -112,13 +112,16 @@ const TaskModal = forwardRef(
             const newBalance = userStore.user.balance + task.points;
             userStore.updateBalance(newBalance);
           }
+          (ref as React.RefObject<ModalHandle>).current?.close();
           setTimeout(() => {
+            (ref as React.RefObject<ModalHandle>).current?.close(); 
             setIsCorrect(false);
           }, 5000);
         }
         if (response?.is_correct === false) {
           setIsIncorrect(true);
           setTimeout(() => {
+            
             setIsIncorrect(false);
           }, 5000);
         }
