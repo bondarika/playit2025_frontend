@@ -1,6 +1,7 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import TabBar from './components/TabBar/TabBar';
 import WebApp from '@twa-dev/sdk';
+import { useEffect } from 'react';
 
 export default function App() {
   useEffect(() => {
