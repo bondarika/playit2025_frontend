@@ -137,7 +137,7 @@ const ProfilePage = () => {
         <div className="profile__picture">
           <img src={userData.photo_url} className="profile__picture-avatar" />
           <h3 className="profile__subtitle">
-            {user.username ? user.username : user.telegram_id}
+            {user.username ? `@${user.username}` : user.telegram_id}
           </h3>
         </div>
         <div className="profile__info">
