@@ -5,6 +5,9 @@ import icons from '../../assets/icons';
 import { PrizeModalProps } from '../../types/prizeModal';
 import DOMPurify from 'dompurify';
 import { observer } from 'mobx-react-lite';
+import userStore from '../../store/userStore';
+import useUser from '../../hooks/useUser';
+import WebApp from '@twa-dev/sdk';
 
 const prizes: Record<string, { default: string }> = import.meta.glob(
   '@/assets/images/prizes_large/*.webp',
@@ -17,9 +20,19 @@ const avatarArray = Object.values(prizes).map(
   (img) => (img as { default: string }).default
 );
 
+const params = new URLSearchParams(WebApp.initData);
+const userData = JSON.parse(params.get('user') || 'null');
+
 const ItemModal = forwardRef(
   ({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) => {
     const [isVisible, setIsVisible] = useState(false);
+
+    const storeUser = userStore.user;
+    const { user: fetchedUser } = useUser({
+      id: userData.id,
+      username: userData.username,
+    });
+    const user = storeUser ?? fetchedUser;
 
     useImperativeHandle(ref, () => ({
       showModal: () => setIsVisible(true),
@@ -28,9 +41,11 @@ const ItemModal = forwardRef(
       },
     }));
 
-    if (!isVisible || !prize) return null;
+    const fullPrize = user?.prizes.find((p) => p.id === prize.prize_id);
 
-    const sanitizedDescription = DOMPurify.sanitize(prize.description);
+    if (!isVisible || !prize || !fullPrize) return null;
+
+    const sanitizedDescription = DOMPurify.sanitize(fullPrize.description);
 
     return (
       <div className="item">
@@ -54,7 +69,7 @@ const ItemModal = forwardRef(
               />
             </div>
             <img
-              src={avatarArray[prize.prize_id - 1]}
+              src={avatarArray[fullPrize.prize_id - 1]}
               className="item__content-avatar"
             />
           </div>
