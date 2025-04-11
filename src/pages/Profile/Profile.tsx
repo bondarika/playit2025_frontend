@@ -12,6 +12,7 @@ import { PrizeProps } from '../../types/prizeProps';
 import { ModalHandle } from '../../types/modalHandle';
 import ItemModal from '../../components/ItemModal/ItemModal';
 import prizesStore from '../../store/prizesStore';
+import { toJS } from 'mobx';
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
@@ -43,7 +44,7 @@ const ProfilePage = () => {
 
   const handlePrizeClick = (prize: PrizeProps['prize']) => {
     if (prize) {
-      console.log('Selected prize:', prize);
+      console.log('Selected prize:', toJS(prize));
       prizesStore.selectPrize(prize);
       setSelectedProfilePrize(prize);
       profileModalRef.current?.showModal();
