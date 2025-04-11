@@ -83,6 +83,7 @@ const PrizeModal = forwardRef(
         const response = await buyPrize(userId, prize.title, prize.price, prize.id);
 
         if (response.status === 'success') {
+          console.log(prize.prize_id);
           runInAction(() => {
             if (userStore.user) {
               userStore.user.balance -= prize.price;
