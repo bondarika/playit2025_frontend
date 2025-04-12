@@ -9,6 +9,7 @@ import shop_arrow from './shop_arrow.svg';
 import help_black from './help_black.svg';
 import arrow_success from './arrow_success.svg';
 import check from './check.svg';
+import no_fullsize from './no_fullsize.svg';
 
 const icons = {
   settings,
@@ -22,6 +23,7 @@ const icons = {
   shop_arrow,
   arrow_success,
   check,
+  no_fullsize,
 } as const;
 
 export default icons;

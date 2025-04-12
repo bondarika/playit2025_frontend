@@ -1,21 +1,31 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import TabBar from './components/TabBar/TabBar';
 import WebApp from '@twa-dev/sdk';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import NoFullsize from './components/NoFullsize/NoFullsize';
 
 export default function App() {
+  const [isScreenLocked, setIsScreenLocked] = useState(false);
   useEffect(() => {
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    if (!isMobile) {
-      document.body.innerHTML = `
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; text-align: center;">
-          <p style="font-family: 'SF Pro Display', Arial, sans-serif; font-size: 20px; font-weight: 600; color: rgba(207, 80, 105, 1);">
-            PlayIT доступно только на мобильных устройствах 😔
-          </p>
-        </div>
-      `;
-    }
+    const checkScreenSize = () => {
+      if (window.innerWidth > 500) {
+        setIsScreenLocked(true);
+      } else {
+        setIsScreenLocked(false);
+      }
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => {
+      window.removeEventListener('resize', checkScreenSize);
+    };
   }, []);
+
+  if (isScreenLocked) {
+    return <NoFullsize />;
+  }
   WebApp.expand();
   return (
     <BrowserRouter>
