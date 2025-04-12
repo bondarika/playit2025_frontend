@@ -1,4 +1,10 @@
-﻿import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
+﻿import {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react';
 import { ModalHandle } from '../../types/modalHandle';
 import './styles.scss';
 import Cookies from 'js-cookie';
@@ -11,6 +17,7 @@ import { convertFileToBinary } from '../../utils/convertFileToBinary';
 import DOMPurify from 'dompurify';
 import { observer } from 'mobx-react-lite';
 import userStore from '../../store/userStore';
+import { getCachedImage, preloadImage } from '../../utils/imageCache';
 
 const characterAvatars: Record<string, { default: string }> = import.meta.glob(
   '@/assets/images/characters_a/*.webp',
@@ -30,6 +37,14 @@ const hexCodes = avatarNames.map((avatar) => extractHexFromImageName(avatar));
 
 const TaskModal = forwardRef(
   ({ task }: TaskModalProps, ref: React.Ref<ModalHandle>) => {
+    useEffect(() => {
+      const preloadAllImages = async () => {
+        await Promise.all(avatarArray.map((src) => preloadImage(src)));
+      };
+
+      preloadAllImages();
+    }, []);
+
     const [submitError, setSubmitError] = useState('');
     const [isInProgress, setIsInProgress] = useState(false);
     const [isCorrect, setIsCorrect] = useState(false);
@@ -113,14 +128,13 @@ const TaskModal = forwardRef(
             userStore.updateBalance(newBalance);
           }
           setTimeout(() => {
-            (ref as React.RefObject<ModalHandle>).current?.close(); 
+            (ref as React.RefObject<ModalHandle>).current?.close();
             setIsCorrect(false);
           }, 1000);
         }
         if (response?.is_correct === false) {
           setIsIncorrect(true);
           setTimeout(() => {
-            
             setIsIncorrect(false);
           }, 5000);
         }
@@ -167,7 +181,10 @@ const TaskModal = forwardRef(
           </button>
 
           <img
-            src={avatarArray[task.id - 1]}
+            src={
+              getCachedImage(avatarArray[task.id - 1])?.src ||
+              avatarArray[task.id - 1]
+            }
             className="modal_content-avatar"
           />
           <div className="modal_content_main">
