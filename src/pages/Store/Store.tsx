@@ -16,7 +16,7 @@ import prizesStore from '../../store/prizesStore';
 import { toJS } from 'mobx';
 import Balance from '../../components/Balance/Balance';
 import Advertisment from '../../components/Advertisment/Advertisment';
-import TechHour from '../../components/TechHour/TechHour';
+// import TechHour from '../../components/TechHour/TechHour';
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
@@ -86,31 +86,31 @@ const StorePage = observer(() => {
     );
   }
 
-  // return prizes && user ? (
-  //   <>
-  //     <header>
-  //       <h1>МАГАЗИН</h1>
-  //       <Balance />
-  //     </header>
+  return prizes && user ? (
+    <>
+      <header>
+        <h1>МАГАЗИН</h1>
+        <Balance />
+      </header>
 
-  //     <div className="store">
-  //       <Advertisment />
-  //       {prizes.map((prize) => (
-  //         <Prize
-  //           key={prize.id}
-  //           prize={prize}
-  //           onClick={() => handlePrizeClick(prize)}
-  //         />
-  //       ))}
-  //     </div>
-  //     {selectedPrize && (
-  //       <PrizeModal ref={storeModalRef} prize={selectedPrize} />
-  //     )}
-  //   </>
-  // ) : (
-  //   <Loader />
-  // );
-  return <TechHour />;
+      <div className="store">
+        <Advertisment />
+        {prizes.map((prize) => (
+          <Prize
+            key={prize.id}
+            prize={prize}
+            onClick={() => handlePrizeClick(prize)}
+          />
+        ))}
+      </div>
+      {selectedPrize && (
+        <PrizeModal ref={storeModalRef} prize={selectedPrize} />
+      )}
+    </>
+  ) : (
+    <Loader />
+  );
+  // return <TechHour />;
 });
 
 export default StorePage;
