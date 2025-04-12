@@ -323,12 +323,11 @@ const ProfilePage = observer(() => {
               <div
                 className="profile__dropdown"
                 style={{
-                  borderRadius:
-                    user.prizes.length > 0 ? '' : '0px 0px 12px 12px',
+                  borderRadius: '0px 0px 12px 12px',
                 }}
               >
                 {Array.isArray(topUsers[0]) &&
-                  topUsers[1]
+                  topUsers[0]
                     .map((user, index) => (
                       <div
                         key={user.id || index}
