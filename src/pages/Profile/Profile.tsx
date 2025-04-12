@@ -314,7 +314,9 @@ const ProfilePage = observer(() => {
                 src={icons['arrow']}
                 style={{
                   marginRight: '10px',
-                  transform: isTopDropdownOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+                  transform: isTopDropdownOpen
+                    ? 'rotate(90deg)'
+                    : 'rotate(0deg)',
                   transition: 'transform 0.2s ease-in-out',
                 }}
               />
@@ -356,9 +358,9 @@ const ProfilePage = observer(() => {
                             whiteSpace: 'pre-line',
                           }}
                         >
-                          топ определяется по максимально возможному балансу
+                          сейчас топ определяется по текущему балансу
                           <br />
-                          покупки в магазине на него не влияют
+                          вот они богатеи!
                         </span>
                       </div>
                     )}
