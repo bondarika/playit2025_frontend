@@ -37,7 +37,7 @@ class TasksStore {
     }
 
     try {
-      const fetchedTasks: any[] | null = [];
+      const fetchedTasks: FetchedTask[] | null = [];
       for (let i = this.cachedDay || 1; i <= day; i++) {
         const tasksForDay = await fetchTasks(i);
         if (!tasksForDay) {

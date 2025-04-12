@@ -66,9 +66,9 @@ const TaskPage = observer(() => {
             const bDone = user?.done_tasks.includes(b.id);
             return Number(aDone) - Number(bDone);
           })
-          .map((task) => (
+          .map((task, index) => (
             <Task
-              key={task.id}
+              key={`${task.id}-${task.day}-${index}`}
               task={task}
               onClick={() => handleTaskClick(task)}
               isInProgress={userStore.inProgressTasks.includes(task.id)}
