@@ -15,6 +15,7 @@ import tasksStore from '../../store/tasksStore';
 import { observer } from 'mobx-react-lite';
 import { toJS } from 'mobx';
 import Balance from '../../components/Balance/Balance';
+import TechHour from '../../components/TechHour/TechHour';
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
@@ -51,35 +52,36 @@ const TaskPage = observer(() => {
     );
   }
 
-  return tasks && user ? (
-    <>
-      <header>
-        <h1>ЗАДАНИЯ</h1>
-        <Balance />
-      </header>
+  // return tasks && user ? (
+  //   <>
+  //     <header>
+  //       <h1>ЗАДАНИЯ</h1>
+  //       <Balance />
+  //     </header>
 
-      <div className="tasks">
-        {[...tasks]
-          .sort((a, b) => {
-            const aDone = user?.done_tasks.includes(a.id);
-            const bDone = user?.done_tasks.includes(b.id);
-            return Number(aDone) - Number(bDone);
-          })
-          .map((task) => (
-            <Task
-              key={task.id}
-              task={task}
-              onClick={() => handleTaskClick(task)}
-              isInProgress={userStore.inProgressTasks.includes(task.id)}
-              isDone={userStore.doneTasks.includes(task.id)}
-            />
-          ))}
-      </div>
-      {selectedTask && <TaskModal ref={tasksModalRef} task={selectedTask} />}
-    </>
-  ) : (
-    <Loader />
-  );
+  //     <div className="tasks">
+  //       {[...tasks]
+  //         .sort((a, b) => {
+  //           const aDone = user?.done_tasks.includes(a.id);
+  //           const bDone = user?.done_tasks.includes(b.id);
+  //           return Number(aDone) - Number(bDone);
+  //         })
+  //         .map((task) => (
+  //           <Task
+  //             key={task.id}
+  //             task={task}
+  //             onClick={() => handleTaskClick(task)}
+  //             isInProgress={userStore.inProgressTasks.includes(task.id)}
+  //             isDone={userStore.doneTasks.includes(task.id)}
+  //           />
+  //         ))}
+  //     </div>
+  //     {selectedTask && <TaskModal ref={tasksModalRef} task={selectedTask} />}
+  //   </>
+  // ) : (
+  //   <Loader />
+  // );
+    return <TechHour />;
 });
 
 export default TaskPage;

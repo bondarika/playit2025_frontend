@@ -63,9 +63,9 @@ class UserStore {
   };
 
   getTopUsers = async () => {
-    if (!this.user) {
-      throw new Error('User is not authenticated');
-    }
+    // if (!this.user) {
+    //   throw new Error('User is not authenticated');
+    // }
     try {
       const data = await fetchTop();
       return data;

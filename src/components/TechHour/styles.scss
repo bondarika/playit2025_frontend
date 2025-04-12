@@ -1,0 +1,30 @@
+﻿@import '@/styles/variables.scss';
+
+.techHour {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: calc(100% - 55px);
+  align-items: center;
+  position: fixed;
+  color: $grey;
+  font-weight: 500;
+  font-size: 16px;
+  &__title {
+    font-family: 'Orpheus';
+    font-size: 64px;
+    margin-bottom: 24px;
+  }
+  &__text {
+    width: calc(100% - 40px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    &-sub {
+      color: $grey--lighten--1;
+      font-size: 12px;
+      font-weight: 400;
+    }
+  }
+}
