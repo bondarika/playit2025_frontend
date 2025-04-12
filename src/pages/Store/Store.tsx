@@ -7,7 +7,7 @@ import Error from '../../components/CustomError/CustomError';
 import Loader from '../../components/Loader/Loader';
 import useTimeoutError from '../../hooks/useTimeoutError';
 import { PrizeProps } from '../../types/prizeProps';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import PrizeModal from '../../components/PrizeModal/PrizeModal';
 import { ModalHandle } from '../../types/modalHandle';
 import userStore from '../../store/userStore';
@@ -16,6 +16,7 @@ import prizesStore from '../../store/prizesStore';
 import { toJS } from 'mobx';
 import Balance from '../../components/Balance/Balance';
 import Advertisment from '../../components/Advertisment/Advertisment';
+import { preloadImage } from '../../utils/imageCache';
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');

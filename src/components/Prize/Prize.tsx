@@ -2,6 +2,8 @@
 import './styles.scss';
 import icons from '../../assets/icons';
 import { observer } from 'mobx-react-lite';
+import { preloadImage } from '../../utils/imageCache';
+import { useEffect } from 'react';
 
 const prizes: Record<string, { default: string }> = import.meta.glob(
   '@/assets/images/prizes_small/*.webp',
@@ -15,6 +17,13 @@ const avatarArray = Object.values(prizes).map(
 );
 
 const Prize = observer(({ prize, onClick }: PrizeProps) => {
+  useEffect(() => {
+    const preloadAllImages = async () => {
+      await Promise.all(avatarArray.map((src) => preloadImage(src)));
+    };
+
+    preloadAllImages();
+  }, []);
   return (
     <>
       <div className="prize" onClick={onClick}>
