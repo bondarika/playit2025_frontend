@@ -49,16 +49,24 @@ const StorePage = observer(() => {
   };
 
   useEffect(() => {
-    const prize = prizes?.find((prize) => prize.id === 23); 
+    const prize = prizes?.find((prize) => prize.id === 31);
     if (prize) {
-      console.log(`Title of prize 23: ${prize.title}`);
-      console.log(`Quantity of prize 23: ${prize.quantity}`);
+      console.log(`Title of prize 31: ${prize.title}`);
+      console.log(`Quantity of prize 31: ${prize.quantity}`);
     } else {
-      console.log('Prize with ID 23 not found');
+      console.log('Prize with ID 31 not found');
     }
   }, [prizes]);
 
-
+  useEffect(() => {
+    const prize = prizes?.find((prize) => prize.id === 4);
+    if (prize) {
+      console.log(`Title of prize 4: ${prize.title}`);
+      console.log(`Quantity of prize 4: ${prize.quantity}`);
+    } else {
+      console.log('Prize with ID 4 not found');
+    }
+  }, [prizes]);
 
   if (timeoutError) {
     return (
@@ -92,7 +100,7 @@ const StorePage = observer(() => {
   // ) : (
   //   <Loader />
   // );
-    return <TechHour />;
+  return <TechHour />;
 });
 
 export default StorePage;
