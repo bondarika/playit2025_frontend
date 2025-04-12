@@ -151,7 +151,7 @@ const ProfilePage = observer(() => {
                   margin: '0px 0px 0px 15px',
                 }}
               >
-                stigende, marrioo, dnchhe, dzhar
+                stigende, marrioo, dnchhe,
               </p>
               <p
                 style={{
@@ -159,7 +159,7 @@ const ProfilePage = observer(() => {
                   margin: '0px 0px 10px 15px',
                 }}
               >
-                manya azur
+                manya azur, dzhar
               </p>
             </div>
             <div className="profile__settings-text">

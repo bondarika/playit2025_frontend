@@ -1,4 +1,4 @@
-﻿import { forwardRef, useImperativeHandle, useState } from 'react';
+﻿import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { ModalHandle } from '../../types/modalHandle';
 import './styles.scss';
 import icons from '../../assets/icons';
@@ -17,6 +17,7 @@ import WebApp from '@twa-dev/sdk';
 import prizesStore from '../../store/prizesStore';
 import { observer } from 'mobx-react-lite';
 import { useNavigate } from 'react-router-dom';
+import { getCachedImage, preloadImage } from '../../utils/imageCache';
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
@@ -34,6 +35,13 @@ const avatarArray = Object.values(prizes).map(
 
 const PrizeModal = forwardRef(
   ({ prize }: PrizeModalProps, ref: React.Ref<ModalHandle>) => {
+    useEffect(() => {
+      const preloadAllImages = async () => {
+        await Promise.all(avatarArray.map((src) => preloadImage(src)));
+      };
+
+      preloadAllImages();
+    }, []);
     const navigate = useNavigate();
 
     const storeUser = userStore.user;
@@ -80,7 +88,12 @@ const PrizeModal = forwardRef(
           throw new Error('Пользовательский id не найден в cookies');
         }
 
-        const response = await buyPrize(userId, prize.title, prize.price, prize.id);
+        const response = await buyPrize(
+          userId,
+          prize.title,
+          prize.price,
+          prize.id
+        );
 
         if (response.status === 'success') {
           console.log(prize.prize_id);
@@ -137,7 +150,10 @@ const PrizeModal = forwardRef(
 
           <div>
             <img
-              src={avatarArray[prize.id - 1]}
+              src={
+                getCachedImage(avatarArray[prize.id - 1])?.src ||
+                avatarArray[prize.id - 1]
+              }
               className="prizemodal__content-avatar"
             />
             <div style={{ padding: '0px 4px' }}>
@@ -269,11 +285,7 @@ const PrizeModal = forwardRef(
                   <p style={{ width: '100%' }}>ищите приз в профиле</p>
                 </div>
                 <img src={icons['arrow_success']} />
-                <Button
-                  onClick={() =>
-                    navigate('/profile?openPrizes=true')
-                  }
-                >
+                <Button onClick={() => navigate('/profile?openPrizes=true')}>
                   перейти в профиль
                 </Button>
               </div>

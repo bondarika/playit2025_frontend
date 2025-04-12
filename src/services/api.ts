@@ -95,7 +95,7 @@ export const fetchPrizes = async () => {
 
 export const fetchTop = async () => {
   try {
-    const response = await axiosInstance.get('/users/top-users');
+    const response = await axiosInstance.get('/auth/users/top-users');
     console.log(response.data.data);
     return response.data.data;
   } catch (error) {
