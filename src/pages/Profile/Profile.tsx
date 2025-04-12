@@ -24,7 +24,9 @@ const userData = JSON.parse(params.get('user') || 'null');
 // const checkDataString = params.toString().replaceAll("&", "\n");
 
 const ProfilePage = observer(() => {
-  const [topUsers, setTopUsers] = useState([]);
+  const [topUsers, setTopUsers] = useState<
+    Array<Array<{ id: string; username: string }>>
+  >([]);
 
   const location = useLocation();
   useEffect(() => {
@@ -35,6 +37,7 @@ const ProfilePage = observer(() => {
   }, [location.search]);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isTopDropdownOpen, setIsTopDropdownOpen] = useState(false);
   const [areSettingsOpen, setAreSettingsOpen] = useState(false);
   const profileModalRef = useRef<ModalHandle | null>(null);
   const [selectedProfilePrize, setSelectedProfilePrize] = useState<
@@ -296,6 +299,74 @@ const ProfilePage = observer(() => {
               </div>
             )}
           </div>
+
+          <div style={{ width: '100%' }}>
+            <button
+              onClick={() => setIsTopDropdownOpen((prev) => !prev)}
+              className="profile__info-stats"
+              style={{
+                padding: '0',
+                borderRadius: isDropdownOpen ? '12px 12px 0px 0px' : '12px',
+              }}
+            >
+              <p className="profile__maintext">топ игроков</p>
+              <img
+                src={icons['arrow']}
+                style={{
+                  marginRight: '10px',
+                  transform: isDropdownOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+                  transition: 'transform 0.2s ease-in-out',
+                }}
+              />
+            </button>
+            {isDropdownOpen && (
+              <div
+                className="profile__dropdown"
+                style={{
+                  borderRadius:
+                    user.prizes.length > 0 ? '' : '0px 0px 12px 12px',
+                }}
+              >
+                {Array.isArray(topUsers[0]) &&
+                  topUsers[1]
+                    .map((user, index) => (
+                      <div
+                        key={user.id || index}
+                        className="profile__dropdown-item"
+                      >
+                        <span
+                          style={{
+                            padding: '8px 10px',
+                            whiteSpace: 'pre-line',
+                            color: 'black',
+                          }}
+                        >
+                          {index + 1}. {user.username}
+                        </span>
+                      </div>
+                    ))
+                    .concat(
+                      <div
+                        key="last"
+                        className="profile__dropdown-item profile__dropdown-item-last"
+                        style={{ borderRadius: '0px 0px 12px 12px' }}
+                      >
+                        <span
+                          style={{
+                            padding: '8px 10px',
+                            whiteSpace: 'pre-line',
+                          }}
+                        >
+                          топ определяется по максимально возможному балансу
+                          <br />
+                          покупки в магазине на него не влияют
+                        </span>
+                      </div>
+                    )}
+              </div>
+            )}
+          </div>
+
           <div className="profile__identifier">
             <p>идентификатор пользователя:</p>
             <p>{user.telegram_id}</p>
