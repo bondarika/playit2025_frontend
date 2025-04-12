@@ -1,4 +1,5 @@
 ﻿import icons from '../../assets/icons';
+import './styles.scss';
 
 const NoFullsize = () => {
   return (
