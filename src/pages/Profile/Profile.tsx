@@ -24,21 +24,7 @@ const userData = JSON.parse(params.get('user') || 'null');
 
 const ProfilePage = observer(() => {
   const [topUsers, setTopUsers] = useState([]);
-  useEffect(() => {
-    const fetchTopUsers = async () => {
-      try {
-        const data = await userStore.getTopUsers();
-        setTopUsers(data);
-      } catch (err) {
-        console.error('Error fetching top users:', err);
-      }
-    };
 
-    fetchTopUsers();
-  }, []);
-
-  console.log('Top users:', topUsers);
-  
   const location = useLocation();
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -67,6 +53,20 @@ const ProfilePage = observer(() => {
       profileModalRef.current?.showModal();
     }
   };
+
+  useEffect(() => {
+    const fetchTopUsers = async () => {
+      try {
+        const topUsers = await userStore.getTopUsers();
+        setTopUsers(topUsers);
+      } catch (err) {
+        console.error('Error fetching top users:', err);
+      }
+    };
+
+    fetchTopUsers();
+  }, []);
+  console.log('Top users:', topUsers);
 
   const timeoutError = useTimeoutError(!!user || !!error);
 

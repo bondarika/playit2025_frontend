@@ -67,7 +67,6 @@ class UserStore {
       throw new Error('User is not authenticated');
     }
     try {
-      await fetchTop();
       const data = await fetchTop();
       return data;
     } catch (error) {
