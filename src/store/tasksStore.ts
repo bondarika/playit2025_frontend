@@ -31,36 +31,29 @@ class TasksStore {
 
   getTasks = async () => {
     const day = this.getCurrentDay();
-    console.log('Current day:', day);
     if (this.cachedDay !== null && this.cachedDay >= day) {
       return;
     }
 
     try {
-      const fetchedTasks: FetchedTask[] | null = [];
-      for (let i = this.cachedDay || 1; i <= day; i++) {
-        const tasksForDay = await fetchTasks(i);
-        if (!tasksForDay) {
-          throw new Error(`Error when fetching tasks for day ${i}`);
-        }
-        fetchedTasks.push(
-          ...tasksForDay.map((task: FetchedTask) => ({
-            id: task['№'],
-            day: task['Номер дня'],
-            difficulty: task['Сложность'],
-            character: task['Персонаж'],
-            description: task['О себе'],
-            task: task['Задание'],
-            verification: task['Формат проверки'],
-            points: task['Стоимость'],
-            link: task['Ссылка'],
-            answer_format: task['Формат ответа'],
-          }))
-        );
+      const fetchedTasks = await fetchTasks(day);
+      if (!fetchedTasks) {
+        throw new Error('Error when fetching tasks');
       }
-
+      const formattedTasks: Task[] = fetchedTasks.map((task: FetchedTask) => ({
+        id: task['№'],
+        day: task['Номер дня'],
+        difficulty: task['Сложность'],
+        character: task['Персонаж'],
+        description: task['О себе'],
+        task: task['Задание'],
+        verification: task['Формат проверки'],
+        points: task['Стоимость'],
+        link: task['Ссылка'],
+        answer_format: task['Формат ответа'],
+      }));
       runInAction(() => {
-        this.tasks = fetchedTasks;
+        this.tasks = formattedTasks;
         this.cachedDay = day;
         this.error = null;
       });
