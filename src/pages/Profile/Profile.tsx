@@ -13,6 +13,7 @@ import { ModalHandle } from '../../types/modalHandle';
 import ItemModal from '../../components/ItemModal/ItemModal';
 import prizesStore from '../../store/prizesStore';
 import { toJS } from 'mobx';
+import userStore from '../../store/userStore';
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
@@ -22,6 +23,22 @@ const userData = JSON.parse(params.get('user') || 'null');
 // const checkDataString = params.toString().replaceAll("&", "\n");
 
 const ProfilePage = observer(() => {
+  const [topUsers, setTopUsers] = useState([]);
+  useEffect(() => {
+    const fetchTopUsers = async () => {
+      try {
+        const data = await userStore.getTopUsers();
+        setTopUsers(data);
+      } catch (err) {
+        console.error('Error fetching top users:', err);
+      }
+    };
+
+    fetchTopUsers();
+  }, []);
+
+  console.log('Top users:', topUsers);
+  
   const location = useLocation();
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -134,7 +151,7 @@ const ProfilePage = observer(() => {
                   margin: '0px 0px 0px 15px',
                 }}
               >
-                stigende, marrioo, dnchhe,
+                stigende, marrioo, dnchhe, dzhar
               </p>
               <p
                 style={{
@@ -194,7 +211,7 @@ const ProfilePage = observer(() => {
           <div className="profile__info-stats">
             <p className="profile__maintext">выполнено заданий</p>
             <div className="profile__box">
-              <p>{user.done_tasks.length}/35</p>
+              <p>{userStore.doneTasks.length}/35</p>
             </div>
           </div>
           <div style={{ width: '100%' }}>

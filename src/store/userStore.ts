@@ -1,5 +1,5 @@
 ﻿import { action, makeAutoObservable, observable, runInAction } from 'mobx';
-import { makeRequest, fetchUserData } from '../services/api';
+import { makeRequest, fetchUserData, fetchTop } from '../services/api';
 import { User } from '../types/user';
 import { Prize } from '../types/prize';
 
@@ -32,7 +32,7 @@ class UserStore {
   };
 
   get doneTasks() {
-    return this.user?.done_tasks ?? [];
+    return [...new Set(this.user?.done_tasks ?? [])];
   }
 
   get inProgressTasks() {
@@ -62,6 +62,20 @@ class UserStore {
     }
   };
 
+  getTopUsers = async () => {
+    if (!this.user) {
+      throw new Error('User is not authenticated');
+    }
+    try {
+      await fetchTop();
+      const data = await fetchTop();
+      return data;
+    } catch (error) {
+      console.error('Error fetching top users:', error);
+      throw error;
+    }
+  };
+
   clearUser = () => {
     this.user = null;
     this.error = null;
@@ -76,7 +90,9 @@ class UserStore {
       return;
     }
     runInAction(() => {
-      this.user?.done_tasks.push(taskId);
+      if (!this.user?.done_tasks.includes(taskId)) {
+        this.user?.done_tasks.push(taskId);
+      }
     });
   };
 

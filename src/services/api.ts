@@ -93,6 +93,19 @@ export const fetchPrizes = async () => {
   }
 };
 
+export const fetchTop = async () => {
+  try {
+    const response = await axiosInstance.get('/users/top-users');
+    console.log(response.data.data);
+    return response.data.data;
+  } catch (error) {
+    console.error(
+      'Ошибка при отправке данных на сервер:',
+      error instanceof Error ? error.message : error
+    );
+  }
+};
+
 export const buyPrize = async (
   user_id: string,
   prize_title: string,
