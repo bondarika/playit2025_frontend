@@ -68,6 +68,13 @@ const PrizeModal = forwardRef(
       },
     }));
 
+    useEffect(() => {
+      if (isVisible) {
+        console.log('Prize ID:', prize.id);
+        console.log('Prize Info:', prize);
+      }
+    }, [isVisible, prize]);
+
     if (!isVisible) return null;
 
     const handleBuyClick = () => {
