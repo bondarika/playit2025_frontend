@@ -31,6 +31,7 @@ class TasksStore {
 
   getTasks = async () => {
     const day = this.getCurrentDay();
+    console.log('Current day:', day);
     if (this.cachedDay !== null && this.cachedDay >= day) {
       return;
     }
