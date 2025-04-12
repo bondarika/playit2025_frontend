@@ -319,7 +319,7 @@ const ProfilePage = observer(() => {
                 }}
               />
             </button>
-            {isDropdownOpen && (
+            {isTopDropdownOpen && (
               <div
                 className="profile__dropdown"
                 style={{
