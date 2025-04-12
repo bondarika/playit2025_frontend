@@ -48,6 +48,17 @@ const StorePage = observer(() => {
     storeModalRef.current?.showModal();
   };
 
+  useEffect(() => {
+    const prize = prizes?.find((prize) => prize.id === 23); 
+    if (prize) {
+      console.log(`Quantity of prize 23: ${prize.quantity}`);
+    } else {
+      console.log('Prize with ID 23 not found');
+    }
+  }, [prizes]);
+
+
+
   if (timeoutError) {
     return (
       <div>
