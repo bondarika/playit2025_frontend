@@ -36,7 +36,7 @@ class TasksStore {
     }
 
     try {
-      const fetchedTasks = await fetchTasks(2);
+      const fetchedTasks = await fetchTasks(day);
       if (!fetchedTasks) {
         throw new Error('Error when fetching tasks');
       }
