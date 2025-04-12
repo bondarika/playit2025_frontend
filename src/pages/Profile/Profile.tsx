@@ -306,7 +306,7 @@ const ProfilePage = observer(() => {
               className="profile__info-stats"
               style={{
                 padding: '0',
-                borderRadius: isDropdownOpen ? '12px 12px 0px 0px' : '12px',
+                borderRadius: isTopDropdownOpen ? '12px 12px 0px 0px' : '12px',
               }}
             >
               <p className="profile__maintext">топ игроков</p>
@@ -314,7 +314,7 @@ const ProfilePage = observer(() => {
                 src={icons['arrow']}
                 style={{
                   marginRight: '10px',
-                  transform: isDropdownOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+                  transform: isTopDropdownOpen ? 'rotate(90deg)' : 'rotate(0deg)',
                   transition: 'transform 0.2s ease-in-out',
                 }}
               />
