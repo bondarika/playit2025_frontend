@@ -72,6 +72,7 @@ const StorePage = observer(() => {
     const prize = prizes?.find((prize) => prize.id === 23);
     if (prize) {
       console.log(`Title of prize 23: ${prize.title}`);
+      console.log(`Title of prize 23: ${prize.description}`);
       console.log(`Quantity of prize 23: ${prize.quantity}`);
     } else {
       console.log('Prize with ID 23 not found');
