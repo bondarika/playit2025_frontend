@@ -215,7 +215,7 @@ const ProfilePage = observer(() => {
           <div className="profile__info-stats">
             <p className="profile__maintext">выполнено заданий</p>
             <div className="profile__box">
-              <p>{userStore.doneTasks.length}/35</p>
+              <p>{userStore.doneTasks.length}/36</p>
             </div>
           </div>
           <div style={{ width: '100%' }}>
@@ -329,41 +329,51 @@ const ProfilePage = observer(() => {
                 }}
               >
                 {Array.isArray(topUsers[0]) &&
-                  topUsers[0]
-                    .map((user, index) => (
-                      <div
-                        key={user.id || index}
-                        className="profile__dropdown-item"
+                  topUsers[0].map((user, index) => (
+                    <div
+                      key={user.id || index}
+                      className="profile__dropdown-item"
+                    >
+                      <span
+                        style={{
+                          padding: '8px 10px',
+                          whiteSpace: 'pre-line',
+                          color: 'black',
+                        }}
                       >
-                        <span
-                          style={{
-                            padding: '8px 10px',
-                            whiteSpace: 'pre-line',
-                            color: 'black',
-                          }}
-                        >
-                          {index + 1}. {user.username}
-                        </span>
-                      </div>
-                    ))
-                    .concat(
-                      <div
-                        key="last"
-                        className="profile__dropdown-item profile__dropdown-item-last"
-                        style={{ borderRadius: '0px 0px 12px 12px' }}
-                      >
-                        <span
-                          style={{
-                            padding: '8px 10px',
-                            whiteSpace: 'pre-line',
-                          }}
-                        >
-                          топ определяется по максимально возможному балансу
-                          <br />
-                          то есть покупки в магазине на него не влияют
-                        </span>
-                      </div>
-                    )}
+                        {index + 1}. {user.username}
+                      </span>
+                    </div>
+                  ))}
+                {topUsers[1] && typeof topUsers[1] === 'object' && (
+                  <div key={topUsers[1].id} className="profile__dropdown-item">
+                    <span
+                      style={{
+                        padding: '8px 10px',
+                        whiteSpace: 'pre-line',
+                        color: 'black',
+                      }}
+                    >
+                      {topUsers[1].rank}. {topUsers[1].username}
+                    </span>
+                  </div>
+                )}
+                <div
+                  key="last"
+                  className="profile__dropdown-item profile__dropdown-item-last"
+                  style={{ borderRadius: '0px 0px 12px 12px' }}
+                >
+                  <span
+                    style={{
+                      padding: '8px 10px',
+                      whiteSpace: 'pre-line',
+                    }}
+                  >
+                    топ определяется по максимально возможному балансу
+                    <br />
+                    то есть покупки в магазине на него не влияют
+                  </span>
+                </div>
               </div>
             )}
           </div>
@@ -386,3 +396,22 @@ const ProfilePage = observer(() => {
 });
 
 export default ProfilePage;
+
+// .concat(
+//   <div
+//     key="last"
+//     className="profile__dropdown-item profile__dropdown-item-last"
+//     style={{ borderRadius: '0px 0px 12px 12px' }}
+//   >
+//     <span
+//       style={{
+//         padding: '8px 10px',
+//         whiteSpace: 'pre-line',
+//       }}
+//     >
+//       топ определяется по максимально возможному балансу
+//       <br />
+//       то есть покупки в магазине на него не влияют
+//     </span>
+//   </div>
+// )
