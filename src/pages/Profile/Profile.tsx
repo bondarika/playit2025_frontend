@@ -351,7 +351,7 @@ const ProfilePage = observer(() => {
                       style={{
                         padding: '8px 10px',
                         whiteSpace: 'pre-line',
-                        color: 'black',
+                        color: 'rgba(207, 80, 105, 1)',
                       }}
                     >
                       {topUsers[1].rank}. {topUsers[1].username}
