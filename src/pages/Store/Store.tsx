@@ -87,31 +87,31 @@ const StorePage = observer(() => {
     );
   }
 
-  // return prizes && user ? (
-  //   <>
-  //     <header>
-  //       <h1>МАГАЗИН</h1>
-  //       <Balance />
-  //     </header>
+  return prizes && user ? (
+    <>
+      <header>
+        <h1>МАГАЗИН</h1>
+        <Balance />
+      </header>
 
-  //     <div className="store">
-  //       <Advertisment />
-  //       {prizes.map((prize) => (
-  //         <Prize
-  //           key={prize.id}
-  //           prize={prize}
-  //           onClick={() => handlePrizeClick(prize)}
-  //         />
-  //       ))}
-  //     </div>
-  //     {selectedPrize && (
-  //       <PrizeModal ref={storeModalRef} prize={selectedPrize} />
-  //     )}
-  //   </>
-  // ) : (
-  //   <Loader />
-  // );
-  return <TechHour />;
+      <div className="store">
+        <Advertisment />
+        {prizes.map((prize) => (
+          <Prize
+            key={prize.id}
+            prize={prize}
+            onClick={() => handlePrizeClick(prize)}
+          />
+        ))}
+      </div>
+      {selectedPrize && (
+        <PrizeModal ref={storeModalRef} prize={selectedPrize} />
+      )}
+    </>
+  ) : (
+    <Loader />
+  );
+  // return <TechHour />;
 });
 
 export default StorePage;

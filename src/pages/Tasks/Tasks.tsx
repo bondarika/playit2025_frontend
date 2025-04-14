@@ -15,73 +15,74 @@ import tasksStore from '../../store/tasksStore';
 import { observer } from 'mobx-react-lite';
 import { toJS } from 'mobx';
 import Balance from '../../components/Balance/Balance';
+import TechHour from '../../components/TechHour/TechHour';
 // import TechHour from '../../components/TechHour/TechHour';
 
 const params = new URLSearchParams(WebApp.initData);
 const userData = JSON.parse(params.get('user') || 'null');
 
 const TaskPage = observer(() => {
-  const tasksModalRef = useRef<ModalHandle | null>(null);
-  const { user: fetchedUser } = useUser({
-    id: userData.id,
-    username: userData.username,
-  });
-  const user = userStore.user ?? fetchedUser;
+  // const tasksModalRef = useRef<ModalHandle | null>(null);
+  // const { user: fetchedUser } = useUser({
+  //   id: userData.id,
+  //   username: userData.username,
+  // });
+  // const user = userStore.user ?? fetchedUser;
 
-  const storeTasks = toJS(tasksStore.tasks);
-  const { tasks: fetchedTasks } = useTasks();
-  const tasks = storeTasks ?? fetchedTasks;
+  // const storeTasks = toJS(tasksStore.tasks);
+  // const { tasks: fetchedTasks } = useTasks();
+  // const tasks = storeTasks ?? fetchedTasks;
 
-  const [selectedTask, setSelectedTask] = useState<TaskProps['task'] | null>(
-    null
-  );
+  // const [selectedTask, setSelectedTask] = useState<TaskProps['task'] | null>(
+  //   null
+  // );
 
-  const timeoutError = useTimeoutError(!!user || !!tasks);
+  // const timeoutError = useTimeoutError(!!user || !!tasks);
 
-  const handleTaskClick = (task: TaskProps['task']) => {
-    tasksStore.selectTask(task);
-    setSelectedTask(task);
-    tasksModalRef.current?.showModal();
-  };
+  // const handleTaskClick = (task: TaskProps['task']) => {
+  //   tasksStore.selectTask(task);
+  //   setSelectedTask(task);
+  //   tasksModalRef.current?.showModal();
+  // };
 
-  if (timeoutError) {
-    return (
-      <div>
-        <CustomError />
-      </div>
-    );
-  }
+  // if (timeoutError) {
+  //   return (
+  //     <div>
+  //       <CustomError />
+  //     </div>
+  //   );
+  // }
 
-  return tasks && user ? (
-    <>
-      <header>
-        <h1>ЗАДАНИЯ</h1>
-        <Balance />
-      </header>
+  // return tasks && user ? (
+  //   <>
+  //     <header>
+  //       <h1>ЗАДАНИЯ</h1>
+  //       <Balance />
+  //     </header>
 
-      <div className="tasks">
-        {[...tasks]
-          .sort((a, b) => {
-            const aDone = user?.done_tasks.includes(a.id);
-            const bDone = user?.done_tasks.includes(b.id);
-            return Number(aDone) - Number(bDone);
-          })
-          .map((task, index) => (
-            <Task
-              key={`${task.id}-${task.day}-${index}`}
-              task={task}
-              onClick={() => handleTaskClick(task)}
-              isInProgress={userStore.inProgressTasks.includes(task.id)}
-              isDone={userStore.doneTasks.includes(task.id)}
-            />
-          ))}
-      </div>
-      {selectedTask && <TaskModal ref={tasksModalRef} task={selectedTask} />}
-    </>
-  ) : (
-    <Loader />
-  );
-    // return <TechHour />;
+  //     <div className="tasks">
+  //       {[...tasks]
+  //         .sort((a, b) => {
+  //           const aDone = user?.done_tasks.includes(a.id);
+  //           const bDone = user?.done_tasks.includes(b.id);
+  //           return Number(aDone) - Number(bDone);
+  //         })
+  //         .map((task, index) => (
+  //           <Task
+  //             key={`${task.id}-${task.day}-${index}`}
+  //             task={task}
+  //             onClick={() => handleTaskClick(task)}
+  //             isInProgress={userStore.inProgressTasks.includes(task.id)}
+  //             isDone={userStore.doneTasks.includes(task.id)}
+  //           />
+  //         ))}
+  //     </div>
+  //     {selectedTask && <TaskModal ref={tasksModalRef} task={selectedTask} />}
+  //   </>
+  // ) : (
+  //   <Loader />
+  // );
+    return <TechHour />;
 });
 
 export default TaskPage;
