@@ -12,9 +12,11 @@
   font-weight: 500;
   font-size: 16px;
   &__title {
+    width: calc(100% - 40px);
     font-family: 'Orpheus';
-    font-size: 64px;
+    font-size: 58px;
     margin-bottom: 24px;
+    margin: 0 auto;
   }
   &__text {
     width: calc(100% - 40px);
