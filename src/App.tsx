@@ -8,7 +8,7 @@ export default function App() {
   const [isScreenLocked, setIsScreenLocked] = useState(false);
   useEffect(() => {
     const checkScreenSize = () => {
-      if (window.innerWidth > 500) {
+      if (window.innerWidth > 521) {
         setIsScreenLocked(true);
       } else {
         setIsScreenLocked(false);
